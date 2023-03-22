@@ -1,0 +1,1532 @@
+@extends('admin.layouts.master')
+@section('title', 'Edit Laws & Rules')
+@section('content')
+
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">Edit Laws & Rules</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Edit Laws & Rules
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="row" id="basic-table">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="head-label">
+                                <h5 class="mb-0"><strong>Edit Laws & Rules</strong></h5>
+                            </div>
+                            <div class="dt-action-buttons text-end">
+                                <div class="dt-buttons d-inline-flex">
+                                    <a href="{{ route('law.show', $law->id) }}" class="btn btn-info btn-sm me-1"><i
+                                            data-feather='eye'></i> View</a>
+                                    <a href="{{ route('law.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('law.update', $law->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="mb-1">
+                                    <label class="form-label">Category</label>
+                                    <select name="law_category_id"
+                                        class="form-control @error('law_category_id') is-invalid @enderror">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                @if ($law->law_category_id == $category->id) @selected(true) @endif>
+                                                {{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('law_category_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Title</label>
+                                            <input type="text" name="title" placeholder="Enter title"
+                                                class="form-control @error('title') is-invalid @enderror"
+                                                value="{{ old('title', $law->title) }}">
+
+                                            @error('title')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Sort Form</label>
+                                            <input type="text" name="short_form" placeholder="Enter short form"
+                                                class="form-control @error('short_form') is-invalid @enderror"
+                                                value="{{ old('short_form', $law->short_form) }}">
+
+                                            @error('short_form')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Act No</label>
+                                            <input type="text" name="act_no" placeholder="Enter act no"
+                                                class="form-control @error('act_no') is-invalid @enderror"
+                                                value="{{ old('act_no', $law->act_no) }}">
+
+                                            @error('act_no')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Act Year</label>
+                                            <input type="test" name="act_year" placeholder="Enter act year"
+                                                class="form-control @error('act_no') is-invalid @enderror"
+                                                value="{{ old('act_year', $law->act_year) }}">
+
+                                            @error('act_year')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Act Date</label>
+                                            <input type="date" name="act_date" placeholder="Enter act date"
+                                                class="form-control @error('act_date') is-invalid @enderror"
+                                                value="{{ old('act_date', $law->act_date) }}">
+
+                                            @error('act_date')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Last Amendment</label>
+                                            <input type="date" name="last_amendment"
+                                                class="form-control @error('last_amendment') is-invalid @enderror"
+                                                value="{{ old('last_amendment', $law->last_amendment) }}">
+
+                                            @error('last_amendment')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Total Chapter</label>
+                                            <input type="text" name="total_chapter" placeholder="Enter total chapter"
+                                                class="form-control @error('total_chapter') is-invalid @enderror"
+                                                value="{{ old('total_chapter', $law->total_chapter) }}">
+
+                                            @error('total_chapter')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Total Section</label>
+                                            <input type="text" name="total_section" placeholder="Enter total section"
+                                                class="form-control @error('total_section') is-invalid @enderror"
+                                                value="{{ old('total_section', $law->total_section) }}">
+
+                                            @error('total_section')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Total Schedule</label>
+                                            <input type="text" name="total_schedule"
+                                                placeholder="Enter total schedule"
+                                                class="form-control @error('total_schedule') is-invalid @enderror"
+                                                value="{{ old('total_schedule', $law->total_schedule) }}">
+
+                                            @error('total_schedule')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Total Form</label>
+                                            <input type="text" name="total_form" placeholder="Enter total form"
+                                                class="form-control @error('total_form') is-invalid @enderror"
+                                                value="{{ old('total_form', $law->total_form) }}">
+
+                                            @error('total_form')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Sort</label>
+                                    <input type="number" min="0" placeholder="[0,1,2,3]"
+                                        class="form-control @error('sort') is-invalid @enderror" name="sort"
+                                        value="{{ old('sort', $law->sort) }}">
+                                    @error('sort')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Description</label>
+                                    <textarea name="description" rows="2" class="summernote @error('description') is-invalid @enderror"
+                                        placeholder="Enter description">{{ old('description', $law->description) }}</textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card border">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch10"><strong>Are there
+                                                                    rules?</strong></label>
+                                                            <div class="form-check form-switch form-check-success">
+                                                                <input type="checkbox"
+                                                                    class="form-check-input rules_status"
+                                                                    id="customSwitch10" value="1" name="is_rules"
+                                                                    @if (old('is_rules', $law->is_rules) == '1') checked @endif />
+                                                                <label class="form-check-label" for="customSwitch10">
+                                                                    <span class="switch-icon-left"><i
+                                                                            data-feather="check"></i></span>
+                                                                    <span class="switch-icon-right"><i
+                                                                            data-feather="x"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="rules_show mt-3"
+                                                            @if (old('is_rules', $law->is_rules) == 1) style="display:block;" @else style="display:none;" @endif>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules
+                                                                            Title</label>
+                                                                        <input type="test" name="rules_title"
+                                                                            placeholder="Enter rules title"
+                                                                            class="form-control @error('rules_title') is-invalid @enderror"
+                                                                            value="{{ old('rules_title', $law->rules_title) }}">
+
+                                                                        @error('rules_title')
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules
+                                                                            Short Form</label>
+                                                                        <input type="test" name="rules_short_form"
+                                                                            placeholder="Enter rules short form"
+                                                                            class="form-control @error('rules_short_form') is-invalid @enderror"
+                                                                            value="{{ old('rules_short_form', $law->rules_short_form) }}">
+
+                                                                        @error('rules_short_form')
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules
+                                                                            Year</label>
+                                                                        <input type="test" name="rules_year"
+                                                                            placeholder="Enter rules year"
+                                                                            class="form-control @error('rules_year') is-invalid @enderror"
+                                                                            value="{{ old('rules_year', $law->rules_year) }}">
+
+                                                                        @error('rules_year')
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules
+                                                                            Date</label>
+                                                                        <input type="date" name="rules_date"
+                                                                            placeholder="Enter rules date"
+                                                                            class="form-control @error('rules_date') is-invalid @enderror"
+                                                                            value="{{ old('rules_date', $law->rules_date) }}">
+
+                                                                        @error('rules_date')
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-1">
+                                    <label class="form-label">Status</label>
+                                    <select name="status" class="form-control">
+                                        <option value="1" @if (old('status') == '1') selected @endif>
+                                            Active
+                                        </option>
+                                        <option value="0" @if (old('status') == '0') selected @endif>
+                                            Deactive
+                                        </option>
+                                    </select>
+                                </div>
+
+
+                                <div class="mt-2 float-end">
+                                    <button type="submit" class="btn btn-info sub-btn"><i data-feather='save'></i>
+                                        Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!--/ Collapsible and Refresh Actions -->
+
+                        <div class="card-body">
+                            <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-home" type="button" role="tab"
+                                        aria-controls="pills-home" aria-selected="true">{{ $law->title }}</button>
+                                </li>
+                                @if ($law->is_rules == 1)
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-profile" type="button" role="tab"
+                                            aria-controls="pills-profile"
+                                            aria-selected="false">{{ $law->rules_title }}</button>
+                                    </li>
+                                @endif
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="card-body rounded" style="background: #f5f5f5; border:1px dotted #7367f0">
+                                        <h4 class="text-center">{{ $law->title }}</h4>
+                                        <div class="card-header px-0">
+                                            <div class="head-label">
+                                                <h5 class="mb-0 text-success"><strong>Chapters</strong></h5>
+                                            </div>
+                                            <div class="dt-action-buttons text-end">
+                                                <div class="dt-buttons d-inline-flex"><a href="#!"
+                                                        class="btn btn-success btn-sm cAddBtn" bla="1"
+                                                        blr="" data-bs-toggle="modal"
+                                                        data-bs-target="#cAddModal"><i data-feather='plus-square'></i> Add
+                                                        Chapter</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="card rounded">
+
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless example" id="loadChapter">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>SL</th>
+                                                                <th>Chapter No</th>
+                                                                <th>Chapter Title</th>
+                                                                <th>Sort</th>
+                                                                <th>Status</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($law->actChapter as $chapter)
+                                                                <tr>
+                                                                    <td>
+                                                                        {{ $loop->iteration }}
+                                                                    </td>
+                                                                    <td>{{ $chapter->chapter_no }}</td>
+                                                                    <td>
+                                                                        {{ $chapter->title }}
+                                                                    </td>
+                                                                    <td>{{ $chapter->sort }}</td>
+                                                                    <td>
+                                                                        @if ($chapter->status == 1)
+                                                                            <span
+                                                                                class="badge badge-light-success">Active</span>
+                                                                        @else
+                                                                            <span
+                                                                                class="badge badge-light-warning">Deactive</span>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="me-1 editChapter" href="#!"
+                                                                            id="{{ $chapter->id }}"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-original-title="Edit">
+                                                                            <i class="far fa-edit text-dark"></i>
+                                                                        </a>
+                                                                        <a class="me-1 deleteChapter"
+                                                                            href="{{ $chapter->id }}"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-original-title="Delete">
+                                                                            <i class="far fa-trash-alt text-danger"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="card-header px-0">
+                                            <div class="head-label">
+                                                <h5 class="mb-0 text-success"><strong>Chapter with Section</strong></h5>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            .nav-pills.nav-justified .nav-link {
+                                                display: block;
+                                                border: 1px solid #ddd;
+                                            }
+                                        </style>
+                                        <div id="loadSection">
+                                            @foreach ($law->actChapter as $chapter)
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5 class="text-primary">{{ $chapter->chapter_no }} :
+                                                            {{ $chapter->title }}</h5>
+                                                        <div class="heading-elements">
+                                                            <ul class="list-inline mb-0">
+                                                                <li>
+                                                                    <a class="btn btn-success btn-sm sAddBtn"
+                                                                        href="#!" bla="1" blr=""
+                                                                        data-id="{{ $chapter->id }}"><i
+                                                                            data-feather='plus-square'></i>
+                                                                        Add
+                                                                        Section</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a data-action="collapse"><i
+                                                                            data-feather="chevron-down"></i></a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-content collapse">
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-borderless example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SL</th>
+                                                                            <th>Title</th>
+                                                                            <th>Parent</th>
+                                                                            <th>Description</th>
+                                                                            <th>Sort</th>
+                                                                            <th>Status</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                        @foreach ($chapter->section->where('parent_id', 0) as $section)
+                                                                            <tr>
+                                                                                <td>
+                                                                                    {{ $loop->iteration }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{ $section->title }}
+                                                                                </td>
+                                                                                <td>
+
+                                                                                    {{ @$section->parent->title }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                    <a class="text-primary" type="button"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#sectionDesc2_{{ $section->id }}">Read
+                                                                                        more</a>
+
+                                                                                    <div class="modal fade"
+                                                                                        id="sectionDesc2_{{ $section->id }}"
+                                                                                        tabindex="-1"
+                                                                                        aria-labelledby="exampleModalLabel"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-lg">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title"
+                                                                                                        id="exampleModalLabel">
+                                                                                                        {{ $section->title }}
+                                                                                                    </h5>
+                                                                                                    <button type="button"
+                                                                                                        class="btn-close"
+                                                                                                        data-bs-dismiss="modal"
+                                                                                                        aria-label="Close"></button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    {!! $section->description !!}
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button"
+                                                                                                        class="btn btn-secondary"
+                                                                                                        data-bs-dismiss="modal">Close</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>{{ $section->sort }}</td>
+                                                                                <td>
+                                                                                    @if ($section->status == 1)
+                                                                                        <span
+                                                                                            class="badge badge-light-success">Active</span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge badge-light-warning">Deactive</span>
+                                                                                    @endif
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a class="me-1 editSection"
+                                                                                        href="javascript:;"
+                                                                                        id="{{ $section->id }}"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-original-title="Edit">
+                                                                                        <i
+                                                                                            class="far fa-edit text-dark"></i>
+                                                                                    </a>
+                                                                                    <a class="me-1 deleteSection"
+                                                                                        id="{{ $section->id }}"
+                                                                                        href="javascript:;"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-original-title="Delete">
+                                                                                        <i
+                                                                                            class="far fa-trash-alt text-danger"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            @if (count($section->childs))
+                                                                                @include('admin.law.child_section',
+                                                                                    [
+                                                                                        'childs' =>
+                                                                                            $section->childs,
+                                                                                    ])
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                @if ($law->is_rules == 1)
+                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                        aria-labelledby="pills-profile-tab">
+                                        <div class="card-body rounded"
+                                            style="background: #f5f5f5; border:1px dotted #7367f0">
+                                            <h4 class="text-center">{{ $law->rules_title }}</h4>
+                                            <div class="card-header px-0">
+                                                <div class="head-label">
+                                                    <h5 class="mb-0 text-success"><strong>Chapters</strong></h5>
+                                                </div>
+                                                <div class="dt-action-buttons text-end">
+                                                    <div class="dt-buttons d-inline-flex"><a href="#!"
+                                                            bla="" blr="1"
+                                                            class="btn btn-success btn-sm cAddBtn" data-bs-toggle="modal"
+                                                            data-bs-target="#cAddModal"><i data-feather='plus-square'></i>
+                                                            Add
+                                                            Chapter</a></div>
+                                                </div>
+                                            </div>
+                                            <div class="card border rounded">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-borderless example" id="loadChapter">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>SL</th>
+                                                                    <th>Chapter No</th>
+                                                                    <th>Chapter Title</th>
+                                                                    <th>Sort</th>
+                                                                    <th>Status</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($law->rulesChapter as $chapter)
+                                                                    <tr>
+                                                                        <td>
+                                                                            {{ $loop->iteration }}
+                                                                        </td>
+                                                                        <td>{{ $chapter->chapter_no }}</td>
+                                                                        <td>
+                                                                            {{ $chapter->title }}
+                                                                        </td>
+                                                                        <td>{{ $chapter->sort }}</td>
+                                                                        <td>
+                                                                            @if ($chapter->status == 1)
+                                                                                <span
+                                                                                    class="badge badge-light-success">Active</span>
+                                                                            @else
+                                                                                <span
+                                                                                    class="badge badge-light-warning">Deactive</span>
+                                                                            @endif
+                                                                        </td>
+                                                                        <td>
+                                                                            <a class="me-1 editChapter" href="#!"
+                                                                                id="{{ $chapter->id }}"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-original-title="Edit">
+                                                                                <i class="far fa-edit text-dark"></i>
+                                                                            </a>
+                                                                            <a class="me-1 deleteChapter"
+                                                                                href="{{ $chapter->id }}"
+                                                                                data-bs-toggle="tooltip"
+                                                                                data-bs-original-title="Delete">
+                                                                                <i
+                                                                                    class="far fa-trash-alt text-danger"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="card-header px-0">
+                                                <div class="head-label">
+                                                    <h5 class="mb-0 text-success"><strong>Chapter with Rules</strong></h5>
+                                                </div>
+                                            </div>
+                                            <style>
+                                                .chapter-with {
+                                                    text-transform: lowercase;
+                                                }
+
+                                                .chapter-with::first-line {
+                                                    text-transform: capitalize
+                                                }
+                                            </style>
+                                            <div id="loadSection">
+                                                @foreach ($law->rulesChapter as $chapter)
+                                                    <div class="card border rounded">
+                                                        <div class="card-header">
+                                                            <div class="head-label">
+                                                                <h5 class="mb-0 text-primary chapter-with">
+                                                                    <strong>{{ $chapter->chapter_no }} :
+                                                                        {{ $chapter->title }}</strong>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="dt-action-buttons text-end">
+                                                                <div class="dt-buttons d-inline-flex"><a
+                                                                        class="btn btn-success btn-sm sAddBtn"
+                                                                        href="#!" bla="" blr="1"
+                                                                        data-id="{{ $chapter->id }}"><i
+                                                                            data-feather='plus-square'></i>
+                                                                        Add
+                                                                        Rules</a></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-borderless example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SL</th>
+                                                                            <th>Title</th>
+                                                                            <th>Parent</th>
+                                                                            <th>Description</th>
+                                                                            <th>Sort</th>
+                                                                            <th>Status</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                        @foreach ($chapter->section->where('parent_id', 0) as $section)
+                                                                            <tr>
+                                                                                <td>
+                                                                                    {{ $loop->iteration }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{ $section->title }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{ @$section->parent->title }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                    <a class="text-primary" type="button"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#sectionDesc2_{{ $section->id }}">Read
+                                                                                        more</a>
+
+                                                                                    <div class="modal fade"
+                                                                                        id="sectionDesc2_{{ $section->id }}"
+                                                                                        tabindex="-1"
+                                                                                        aria-labelledby="exampleModalLabel"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-lg">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title"
+                                                                                                        id="exampleModalLabel">
+                                                                                                        {{ $section->title }}
+                                                                                                    </h5>
+                                                                                                    <button type="button"
+                                                                                                        class="btn-close"
+                                                                                                        data-bs-dismiss="modal"
+                                                                                                        aria-label="Close"></button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    {!! $section->description !!}
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button"
+                                                                                                        class="btn btn-secondary"
+                                                                                                        data-bs-dismiss="modal">Close</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>{{ $section->sort }}</td>
+                                                                                <td>
+                                                                                    @if ($section->status == 1)
+                                                                                        <span
+                                                                                            class="badge badge-light-success">Active</span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge badge-light-warning">Deactive</span>
+                                                                                    @endif
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a class="me-1 editSection"
+                                                                                        href="javascript:;"
+                                                                                        id="{{ $section->id }}"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-original-title="Edit">
+                                                                                        <i
+                                                                                            class="far fa-edit text-dark"></i>
+                                                                                    </a>
+                                                                                    <a class="me-1 deleteSection"
+                                                                                        id="{{ $section->id }}"
+                                                                                        href="javascript:;"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-original-title="Delete">
+                                                                                        <i
+                                                                                            class="far fa-trash-alt text-danger"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            @if (count($section->childs))
+                                                                                @include('admin.law.child_section',
+                                                                                    [
+                                                                                        'childs' =>
+                                                                                            $section->childs,
+                                                                                    ])
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Add Chapter Modal -->
+    <div class="modal fade" id="cAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Chapter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="cAddForm">
+                    @csrf
+                    <input type="hidden" name="law_id" value="{{ $law->id }}">
+                    <input type="hidden" name="is_act" id="is_act" value="">
+                    <input type="hidden" name="is_rules" id="is_rules" value="">
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="c_validation-errors"></div>
+                        <div class="alert alert-success" id="c_validation-success"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter No</label>
+                            <input type="text" name="chapter_no" placeholder="Enter chapter no" class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter No (BN)</label>
+                            <input type="text" name="chapter_no_bn" placeholder="Enter chapter no (bn)"
+                                class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter Title</label>
+                            <input type="text" name="title" placeholder="Enter chapter title" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter Title (BN)</label>
+                            <input type="text" name="title_bn" placeholder="Enter chapter (bn)" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Sort</label>
+                            <input type="number" min="0" placeholder="[0,1,2,3]" class="form-control"
+                                name="sort">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="1">
+                                    Active
+                                </option>
+                                <option value="0">
+                                    Deactive
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Edit Chapter Modal -->
+    <div class="modal fade" id="cEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Chapter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="cEditForm">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="c_edit-errors"></div>
+                        <div class="alert alert-success" id="c_edit-errors"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter No</label>
+                            <input type="text" name="chapter_no" placeholder="Enter chapter no" id="chapter_no"
+                                class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter No (BN)</label>
+                            <input type="text" name="chapter_no_bn" placeholder="Enter chapter no (bn)"
+                                id="chapter_no_bn" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter Title</label>
+                            <input type="text" name="title" placeholder="Enter chapter title" id="chapter_title"
+                                class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter Title (BN)</label>
+                            <input type="text" name="title_bn" placeholder="Enter chapter title (bn)"
+                                id="chapter_title_bn" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Sort</label>
+                            <input type="number" min="0" placeholder="[0,1,2,3]" class="form-control"
+                                name="sort" id="chapter_sort">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" id="chapter_status" class="form-control">
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Add Section Modal -->
+    <div class="modal fade" id="sAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Section/Rules</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="sAddForm">
+                    @csrf
+                    <input type="hidden" name="law_id" value="{{ $law->id }}">
+                    <input type="hidden" id="s_chapter_id" name="chapter_id" value="">
+
+                    <input type="hidden" name="s_is_act" id="s_is_act" value="">
+                    <input type="hidden" name="s_is_rules" id="s_is_rules" value="">
+
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="s_validation-errors"></div>
+                        <div class="alert alert-success" id="s_validation-success"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Parent Section</label>
+                            <select name="parent_id" id="s_parent_id" class="form-control">
+
+                            </select>
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Section No</label>
+                            <input type="text" name="section_no" placeholder="Ex: 12" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Section No (BN)</label>
+                            <input type="text" name="section_no_bn" placeholder="Ex: ১২" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title</label>
+                            <input type="text" name="title" placeholder="Enter title" class="form-control">
+
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title (BN)</label>
+                            <input type="text" name="title_bn" placeholder="Enter title (bn)" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description</label>
+                            <textarea name="description" class="form-control summernote" rows="3" placeholder="Description..."></textarea>
+
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description (BN)</label>
+                            <textarea name="description_bn" class="form-control summernote" rows="3" placeholder="Description bangla..."></textarea>
+
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Sort</label>
+                            <input type="number" min="0" placeholder="[0,1,2,3]" class="form-control"
+                                name="sort">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="1">
+                                    Active
+                                </option>
+                                <option value="0">
+                                    Deactive
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Edit Section Modal -->
+    <div class="modal fade" id="sEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Section/Rules</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="sEditForm">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="s_edit-errors"></div>
+                        <div class="alert alert-success" id="s_edit-errors"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Parent Section</label>
+                            <select name="parent_id" id="s_parent_edit_id" class="form-control">
+
+                            </select>
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Section No</label>
+                            <input type="text" name="section_no" placeholder="Ex: 12" id="section_no"
+                                class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Section No (BN)</label>
+                            <input type="text" name="section_no_bn" placeholder="Ex: ১২" id="section_no_bn"
+                                class="form-control">
+                        </div>
+
+
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title</label>
+                            <input type="text" name="title" id="section_title" placeholder="Enter title"
+                                class="form-control">
+
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title (BN)</label>
+                            <input type="text" name="title_bn" placeholder="Enter title (bn)" id="section_title_bn"
+                                class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description</label>
+                            <textarea name="description" id="section_description" class="form-control summernote" rows="3"
+                                placeholder="Description..."></textarea>
+
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description (BN)</label>
+                            <textarea name="description_bn" id="section_description_bn" class="form-control summernote" rows="3"
+                                placeholder="Description bangla..."></textarea>
+
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Sort</label>
+                            <input type="number" min="0" id="section_sort" placeholder="[0,1,2,3]"
+                                class="form-control" name="sort">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" id="section_status" class="form-control">
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+@section('scripts')
+
+    <script>
+        $(document).ready(function() {
+            $(".rules_status").click(function() {
+                if ($(this).is(":checked")) {
+                    $(".rules_show").slideDown();
+                } else {
+                    $(".rules_show").slideUp();
+                }
+            });
+        });
+    </script>
+
+    {{-- <script>
+        $(document).ready(function() {
+            $(".collapse").on("shown.bs.collapse", function() {
+                localStorage.setItem("coll_" + this.id, true);
+                console.log('SHOW ' + this.id);
+            });
+
+            $(".collapse").on("hidden.bs.collapse", function() {
+                localStorage.removeItem("coll_" + this.id);
+                console.log('HIDE' + this.id);
+            });
+
+            $(".collapse").each(function() {
+                console.log('EACH ' + this.id);
+                if (localStorage.getItem("coll_" + this.id) === "true") {
+                    $(this).collapse("show");
+                } else {
+                    $(this).collapse("hide");
+                }
+            });
+        });
+    </script> --}}
+
+    <script>
+        const pillsTab = document.querySelector('#pills-tab');
+        const pills = pillsTab.querySelectorAll('button[data-bs-toggle="pill"]');
+
+        pills.forEach(pill => {
+            pill.addEventListener('shown.bs.tab', (event) => {
+                const {
+                    target
+                } = event;
+                const {
+                    id: targetId
+                } = target;
+
+                savePillId(targetId);
+            });
+        });
+
+        const savePillId = (selector) => {
+            localStorage.setItem('activePillId', selector);
+        };
+
+        const getPillId = () => {
+            const activePillId = localStorage.getItem('activePillId');
+
+            // if local storage item is null, show default tab
+            if (!activePillId) return;
+
+            // call 'show' function
+            const someTabTriggerEl = document.querySelector(`#${activePillId}`)
+            const tab = new bootstrap.Tab(someTabTriggerEl);
+
+            tab.show();
+        };
+
+        // get pill id on load
+        getPillId();
+    </script>
+
+    {{-- Start law chapter ajax --}}
+    <script>
+        //Chapter Add button
+        $('.cAddBtn').on('click', function() {
+            $('#c_validation-errors').html('');
+            $('#c_validation-success').html('');
+
+            var is_act = $(this).attr('bla');
+            var is_rules = $(this).attr('blr');
+
+            $('#is_act').val(is_act);
+            $('#is_rules').val(is_rules);
+        });
+        //Chapter ADD DATA
+        $("#cAddForm").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('law.chapter.store') }}",
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#cAddModal').modal('hide');
+                    $('#c_validation-errors').html('');
+                    $('#c_validation-errors').hide();
+                    $('#cAddForm')[0].reset();
+                    $('#c_validation-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data inserted !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#c_validation-errors').html('');
+                    $('#c_validation-errors').fadeOut(100);
+                    $('#c_validation-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#c_validation-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+        //Chapter EDIT DATA
+        $(document).on('click', '.editChapter', function(e) {
+            e.preventDefault();
+            $('#cEditModal').modal('show');
+            $('#c_edit-errors').html('');
+            $('#chapter_status').html('');
+            $('#c_edit-errors').fadeOut(100);
+            $('#cEditForm')[0].reset();
+            var id = $(this).attr('id');
+            var url = "{{ route('law.chapter.edit', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    if (data != "") {
+                        $('#chapter_no').val(data.chapter_no);
+                        $('#chapter_no_bn').val(data.chapter_no_bn);
+                        $('#chapter_title').val(data.title);
+                        $('#chapter_title_bn').val(data.title_bn);
+                        $('#chapter_sort').val(data.sort);
+                        $('#chapter_status').append(`
+                            <option value="1" ${data.status == 1 ? 'selected' : ''}> Active</option>
+                            <option value="0" ${data.status == 0 ? 'selected' : ''}> Deactive </option>
+                        `)
+                        $('#cEditModal').attr('data_id', data.id);
+
+                    }
+                },
+            });
+        });
+        //Chapter UPDATE DATA
+        $("#cEditForm").on("submit", function(e) {
+            e.preventDefault();
+            var id = $('#cEditModal').attr('data_id');
+            var url = "{{ route('law.chapter.update', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#cEditModal').modal('hide');
+                    $('#c_edit-errors').html('');
+                    $('#c_edit-errors').hide();
+                    $('#c_edit-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data updated !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#c_edit-errors').html('');
+                    $('#c_edit-errors').fadeOut(100);
+                    $('#c_edit-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#c_edit-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+
+        //Chapter DELETE DATA
+        $(document).on('click', '.deleteChapter', function(e) {
+            e.preventDefault();
+            var id = $(this).attr('href');
+            var url = "{{ route('law.chapter.destroy', ':id') }}";
+            url = url.replace(':id', id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        success: function(data) {
+                            toastr.success('Successfully data Deleted !', 'Success', {
+                                timeOut: 3000
+                            });
+                            location.reload();
+                            // $('#loadChapter').load(location.href + " #loadChapter");
+                            // $('#loadSection').load(location.href + " #loadSection");
+                        },
+                    });
+                }
+            });
+
+
+        });
+    </script>
+    {{-- End law chapter ajax --}}
+
+    {{-- Start law section ajax --}}
+    <script>
+        //Section Add button
+        $('.sAddBtn').on('click', function() {
+            $('#s_validation-errors').html('');
+            $('#s_validation-success').html('');
+            $('#sAddModal').modal('show');
+            var id = $(this).data('id');
+            $('#s_chapter_id').val(id);
+
+            var is_act = $(this).attr('bla');
+            var is_rules = $(this).attr('blr');
+
+            $('#s_is_act').val(is_act);
+            $('#s_is_rules').val(is_rules);
+
+            var url = "{{ route('law.section.get', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    var html = '<option value="0">Select Parent Section</option>';
+                    $.each(data, function(key, val) {
+                        html += '<option value="' + val.id + '">' + val
+                            .title + '</option>';
+                    });
+                    $('#s_parent_id').html(html);
+                },
+            });
+        });
+
+
+        //Section ADD DATA
+        $("#sAddForm").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('law.section.store') }}",
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#sAddModal').modal('hide');
+                    $('#s_validation-errors').html('');
+                    $('#s_validation-errors').hide();
+                    $('#sAddForm')[0].reset();
+                    $('#s_validation-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data inserted !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#s_validation-errors').html('');
+                    $('#s_validation-errors').fadeOut(100);
+                    $('#s_validation-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#s_validation-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+
+        //SECTION EDIT DATA
+        $(document).on('click', '.editSection', function(e) {
+            e.preventDefault();
+            $('#sEditModal').modal('show');
+            $('#s_edit-errors').html('');
+            $('#section_status').html('');
+            $('#s_parent_edit_id').html('');
+            $('#s_edit-errors').fadeOut(100);
+            $('#sEditForm')[0].reset();
+            var id = $(this).attr('id');
+            var url = "{{ route('law.section.edit', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    if (data.section != "") {
+                        $('#section_no').val(data.section.section_no);
+                        $('#section_no_bn').val(data.section.section_no_bn);
+                        $('#section_title').val(data.section.title);
+                        $('#section_title_bn').val(data.section.title_bn);
+                        $('#section_description').summernote('code', data.section.description);
+                        $('#section_description_bn').summernote('code', data.section.description_bn);
+                        $('#section_sort').val(data.section.sort);
+                        $('#section_status').append(`
+                            <option value="1" ${data.section.status == 1 ? 'selected' : ''}> Active</option>
+                            <option value="0" ${data.section.status == 0 ? 'selected' : ''}> Deactive </option>
+                        `);
+
+                        var html = '<option value="0">Select Parent Section</option>';
+
+                        $.each(data.parent, function(key, value) {
+                            html +=
+                                `<option value="${value.id}" ${value.id == data.section.parent_id ? 'selected' : ''}>${value.title}</option>`;
+                        });
+                        $('#s_parent_edit_id').html(html);
+
+                        $('#sEditModal').attr('data_id', data.section.id);
+
+                    }
+                },
+            });
+        });
+        //Section UPDATE DATA
+        $("#sEditForm").on("submit", function(e) {
+            e.preventDefault();
+            var id = $('#sEditModal').attr('data_id');
+            var url = "{{ route('law.section.update', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#sEditModal').modal('hide');
+                    $('#s_edit-errors').html('');
+                    $('#s_edit-errors').hide();
+                    $('#s_edit-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data updated !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                },
+                error: function(xhr) {
+                    $('#s_edit-errors').html('');
+                    $('#s_edit-errors').fadeOut(100);
+                    $('#s_edit-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#s_edit-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+
+        //Chapter DELETE DATA
+        $(document).on('click', '.deleteSection', function(e) {
+            e.preventDefault();
+            var id = $(this).attr('id');
+            var url = "{{ route('law.section.destroy', ':id') }}";
+            url = url.replace(':id', id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        success: function(data) {
+                            toastr.success('Successfully data Deleted !', 'Success', {
+                                timeOut: 3000
+                            });
+                            location.reload();
+                        },
+                    });
+                }
+            });
+
+
+        });
+    </script>
+    {{-- End law section ajax --}}
+
+@endsection
+@endsection

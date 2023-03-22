@@ -1,0 +1,288 @@
+body {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+:focus {
+    outline: 0 !important;
+}
+
+.color-555 {
+    color: #555;
+}
+
+.text-13 {
+    font-size: 13px !important;
+}
+
+.text-14 {
+    font-size: 14px !important;
+}
+
+.text-15 {
+    font-size: 15px !important;
+}
+
+.text-16 {
+    font-size: 16px !important;
+}
+
+.text-17 {
+    font-size: 17px !important;
+}
+
+.text-18 {
+    font-size: 18px !important;
+}
+
+.text-19 {
+    font-size: 19px !important;
+}
+
+.text-20 {
+    font-size: 20px !important;
+}
+
+.td {
+    color: #0CA2A3;
+}
+
+.bd {
+    background: #0CA2A3;
+}
+
+:root {
+    --td: #0CA2A3;
+    --bd: #0CA2A3;
+    --shadow: 0px 8px 20px -5px #ddd;
+    --shadow-hover: 0px 10px 15px 0px #ddd;
+    --border: 1px solid #f0f8ff;
+    --animate: translate(0, -2%);
+}
+/* scrollUp */
+#scrollUp {
+    background: var(--bd);
+    height: 40px;
+    width: 40px;
+    right: 50px;
+    bottom: 25px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+#scrollUp:hover {
+    background: #222;
+}
+
+/* Preloader */
+#pre-loader {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    margin-top: 0px;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    overflow: hidden !important;
+    right: 0px;
+    z-index: 999999;
+}
+
+#pre-loader img {
+    text-align: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    margin: 0 auto;
+}
+
+
+/* every section title */
+.section-title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.section-title h2 {
+    color: var(--td);
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-title h2>span {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2>span:before,
+.section-title h2>span:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    border-bottom: 2px solid;
+    width: 85px;
+    margin: 0 15px;
+}
+
+.section-title h2>span:before {
+    right: 100%;
+}
+
+.section-title h2>span:after {
+    left: 100%;
+}
+
+.section-title p {
+    width: 55%;
+    font-size: 15px;
+    margin: 0 auto;
+    text-transform: capitalize;
+}
+
+
+
+/* page header styles */
+.page-header-section{
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+.page-header-section::after{
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: #0018307a;
+    top: 0;
+    left: 0;
+}
+
+
+.page-header-box {
+    position: relative;
+    height: 100%;
+}
+
+.page-header-txt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.page-header-txt h4 {
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+/* slick slider configuaration */
+.slider-box {
+    position: relative;
+}
+
+.my-slider-width {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.slider-item {
+    margin: 20px 0;
+}
+
+.prv {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+}
+
+.nxt {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+}
+
+.ps-control {
+    font-size: 25px;
+    height: 30px;
+    width: 30px;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+    border: 2px solid var(--td);
+    color: var(--td);
+    font-weight: 700;
+}
+
+.ps-control:hover {
+    background: var(--bd);
+    color: #fff;
+}
+
+.my-slider .slick-dots li {
+
+    border: 1px solid var(--td);
+    border-radius: 50%;
+}
+
+.my-slider .slick-dots li.slick-active {
+    background: var(--bd);
+}
+
+.my-slider .slick-dots li button:before {
+    display: none;
+}
+
+.my-slider .slick-dots {
+    bottom: -30px;
+}
+
+.my-slider-width .slick-dotted.slick-slider {
+    margin-bottom: 0px !important;
+}
+
+.my-slider .slick-dots li {
+    width: 15px;
+    height: 15px;
+}
+
+/* paginateion styles */
+.custom-paginate{
+    border: var(--border);
+    padding: 7px 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: var(--shadow);
+    background: #fff;
+}
+.custom-paginate .pagination{
+    margin: 0;
+}
+.custom-paginate .main-pgnt{
+    float: right;
+}
+.custom-paginate .page-link {
+    padding: .3rem .75rem;
+    color: #0ca2a3;
+}
+.page-item.active .page-link {
+    background-color: var(--bd);
+    border-color: var(--bd);
+}

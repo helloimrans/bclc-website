@@ -1,0 +1,243 @@
+@extends('admin.layouts.master')
+@section('title', 'Edit Abrwn Category')
+@section('content')
+
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-start mb-0">Edit Abrwn Category</h2>
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Edit Abrwn Category
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="row" id="basic-table">
+                <div class="col-12">
+                    <div class="card p-2">
+                        <div class="card-header">
+                            <div class="head-label">
+                                <h5 class="mb-0">Edit Abrwn Category</h5>
+                                <span><small>( Article, Blog, Review, Write Up, News )</small></span>
+                            </div>
+                            <div class="dt-action-buttons text-end">
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('abrwn.category.index') }}"
+                                        class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('abrwn.category.update', $category->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Name</label>
+                                    <input type="text" name="name" placeholder="Enter name"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name', $category->name) }}">
+
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
+
+                                </div>
+
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Description</label>
+                                    <textarea name="description" rows="2" class="form-control @error('description') is-invalid @enderror"
+                                        placeholder="Enter description">{{ old('description', $category->description) }}</textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">{{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label">Sort</label>
+                                            <input type="number" min="0" placeholder="[0,1,2,3]"
+                                                class="form-control @error('sort') is-invalid @enderror" name="sort"
+                                                value="{{ old('sort', $category->sort) }}">
+                                            @error('sort')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label">Status</label>
+                                            <select name="status" class="form-control">
+                                                <option value="1" @if (old('status', $category->status) == '1') selected @endif>
+                                                    Active
+                                                </option>
+                                                <option value="0" @if (old('status', $category->status) == '0') selected @endif>
+                                                    Deactive
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-1">
+                                            <label class="form-label">Image</label>
+                                            <input type="file" id="upImgInput2" name="image"
+                                                class="form-control @error('image') is-invalid @enderror">
+                                            @error('image')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-1">
+                                            <img src="@if ($category->image) {{ asset($category->image) }}
+                                                                                @else
+                                                                                {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                id="upImg2" class="upImg2 rounded me-50 border" alt="profile image"
+                                                height="100">
+                                        </div>
+                                        <div class="mb-1">
+                                            <button type="button" id="upImgReset2"
+                                                class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card border">
+                                            <div class="card-header">
+                                                <h6>Category Type</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch10">Article Category</label>
+                                                            <div class="form-check form-switch form-check-success">
+                                                                <input type="checkbox" class="form-check-input"  id="customSwitch10" value="1" name="is_article"
+                                                                @if (old('is_article',$category->is_article) == '1') checked @endif  />
+                                                                <label class="form-check-label" for="customSwitch10">
+                                                                    <span class="switch-icon-left"><i
+                                                                            data-feather="check"></i></span>
+                                                                    <span class="switch-icon-right"><i
+                                                                            data-feather="x"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                        @error('is_article')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch11">Blog Category</label>
+                                                            <div class="form-check form-switch form-check-success">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    id="customSwitch11" name="is_blog"
+                                                                    value="1"  @if (old('is_blog',$category->is_blog) == '1') checked @endif  />
+                                                                <label class="form-check-label" for="customSwitch11">
+                                                                    <span class="switch-icon-left"><i
+                                                                            data-feather="check"></i></span>
+                                                                    <span class="switch-icon-right"><i
+                                                                            data-feather="x"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        @error('is_blog')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch12">Review Category</label>
+                                                            <div class="form-check form-switch form-check-success">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    id="customSwitch12" name="is_review"
+                                                                    value="1"  @if (old('is_review',$category->is_review) == '1') checked @endif  />
+                                                                <label class="form-check-label" for="customSwitch12">
+                                                                    <span class="switch-icon-left"><i
+                                                                            data-feather="check"></i></span>
+                                                                    <span class="switch-icon-right"><i
+                                                                            data-feather="x"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        @error('is_review')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch13">Write Up Category</label>
+                                                            <div class="form-check form-switch form-check-success">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    id="customSwitch13" name="is_writeup"
+                                                                    value="1"  @if (old('is_writeup',$category->is_writeup) == '1') checked @endif  />
+                                                                <label class="form-check-label" for="customSwitch13">
+                                                                    <span class="switch-icon-left"><i
+                                                                            data-feather="check"></i></span>
+                                                                    <span class="switch-icon-right"><i
+                                                                            data-feather="x"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        @error('is_writeup')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch14">News Category</label>
+                                                            <div class="form-check form-switch form-check-success">
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    id="customSwitch14" name="is_news"
+                                                                    value="1"  @if (old('is_news',$category->is_news) == '1') checked @endif  />
+                                                                <label class="form-check-label" for="customSwitch14">
+                                                                    <span class="switch-icon-left"><i
+                                                                            data-feather="check"></i></span>
+                                                                    <span class="switch-icon-right"><i
+                                                                            data-feather="x"></i></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        @error('is_news')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 text-end">
+                                    <button type="submit" class="btn btn-info sub-btn"><i data-feather='save'></i>
+                                        Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
