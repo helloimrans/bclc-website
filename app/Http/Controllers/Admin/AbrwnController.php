@@ -19,6 +19,7 @@ class AbrwnController extends Controller
      */
     public function index()
     {
+        
         $data['abrwns'] = Abrwn::with('category')->latest()->get();
         return view('admin.abrwn.index', $data);
     }
