@@ -163,4 +163,9 @@ class FrontendController extends Controller
         $data['chapter'] = LawChapter::with('law')->where('slug',$slug)->first();
         return view('frontend.pages.laws_rules_chapter',$data);
     }
+
+    
+    public function officeFunction(){
+        return view('frontend.pages.Office_Function');
+    }
 }

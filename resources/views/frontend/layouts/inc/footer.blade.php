@@ -148,7 +148,7 @@
             <li><a href="{{ route('laws.rules') }}"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Laws & Rules</a></li>
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Legal Updates</a></li>
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Convention & Treaty</a></li>
-            <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Office and Functions</a></li>
+            <li><a href="{{ route('office.function') }}"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Office and Functions</a></li>
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Services and Facilities</a></li>
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Career in Legal Sector</a></li>
           </ul>

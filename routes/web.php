@@ -88,4 +88,11 @@ Route::get('section/search', [SearchController::class, 'sectionSearch']);
 Route::get('section/form/search', [SearchController::class, 'sectionFormSearch'])->name('section.form.search');
 Route::get('search/result/one/{slug}', [SearchController::class, 'searchResultOne'])->name('search.result.one');
 
+
+//Office and Functions
+
+Route::get('office-&-function', [FrontendController::class,'officeFunction'])->name('office.function');
+
+
+
 require __DIR__.'/auth.php';
