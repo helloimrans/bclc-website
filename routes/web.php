@@ -88,4 +88,10 @@ Route::get('section/search', [SearchController::class, 'sectionSearch']);
 Route::get('section/form/search', [SearchController::class, 'sectionFormSearch'])->name('section.form.search');
 Route::get('search/result/one/{slug}', [SearchController::class, 'searchResultOne'])->name('search.result.one');
 
-require __DIR__.'/auth.php';
+// Training
+Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
+    Route::get('courses', [FrontendController::class, 'courses'])->name('courses');
+    Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
+});
+
+require __DIR__ . '/auth.php';
