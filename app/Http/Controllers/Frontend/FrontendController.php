@@ -164,9 +164,9 @@ class FrontendController extends Controller
         return view('frontend.pages.laws_rules_chapter',$data);
     }
 
-    
+
     public function officeFunction(){
-        return view('frontend.pages.Office_Function');
+        return view('frontend.pages.office_function');
     }
 
     public function courses()
