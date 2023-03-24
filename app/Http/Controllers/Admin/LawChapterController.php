@@ -41,8 +41,10 @@ class LawChapterController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'chapter_no' => 'required',
-            'title' => 'required',
+            'chapter_no' => 'required_without:chapter_no_bn',
+            'chapter_no_bn' => 'required_without:chapter_no',
+            'title' => 'required_without:title_bn',
+            'title_bn' => 'required_without:title',
             'sort' => 'numeric|min:0',
         ]);
 
@@ -102,8 +104,10 @@ class LawChapterController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'chapter_no' => 'required',
-            'title' => 'required',
+            'chapter_no' => 'required_without:chapter_no_bn',
+            'chapter_no_bn' => 'required_without:chapter_no',
+            'title' => 'required_without:title_bn',
+            'title_bn' => 'required_without:title',
             'sort' => 'numeric|min:0',
         ]);
 

@@ -601,7 +601,7 @@ header.scrolled .logo {
 }
 
 /* training section styles */
-.training-box {
+.course-box {
     border: 1px solid #ededed;
     box-shadow: var(--shadow);
     border-radius: 10px;
@@ -611,23 +611,23 @@ header.scrolled .logo {
     transition: 0.4s;
 }
 
-.training-box:hover {
+.course-box:hover {
     transform: var(--animate);
 }
 
-.training-img {
+.course-img {
     overflow: hidden;
     height: 204px;
     border-radius: 10px;
     border-bottom: 1px solid #ededed;
 }
 
-.training-img > img {
+.course-img > img {
     border-radius: 10px;
     min-height: 100%;
 }
 
-.training-author {
+.course-author {
     margin-bottom: 20px;
 }
 
@@ -635,7 +635,7 @@ header.scrolled .logo {
     margin-top: -28px;
 }
 
-.training-desc p img {
+.course-desc p img {
     display: inline-block;
 }
 
@@ -659,7 +659,7 @@ header.scrolled .logo {
 .ta-img-main img {
 }
 
-.training-desc a {
+.course-desc a {
     text-decoration: none;
     color: #000000;
     font-weight: 600;
@@ -667,23 +667,23 @@ header.scrolled .logo {
     font-size: 17px;
 }
 
-.training-desc span {
+.course-desc span {
     font-size: 15px;
     margin-bottom: 10px;
     display: block;
 }
 
-.training-desc p {
+.course-desc p {
     margin-bottom: 10px;
     font-size: 15px;
 }
 
-.training-desc {
+.course-desc {
     padding: 20px;
     padding-top: 0;
 }
 
-.training-desc a:hover {
+.course-desc a:hover {
     color: var(--td);
 }
 
@@ -1222,7 +1222,7 @@ header.scrolled .logo {
     margin: 0 7px;
 }
 
-.training-details-section .section-title h2 {
+.course-details-section .section-title h2 {
     margin-right: 200px;
     font-size: 18px;
 }

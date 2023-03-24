@@ -179,7 +179,7 @@
                                             <input type="hidden" name="law_id" value="{{ $law->id }}">
                                             <div class="input-group">
                                                 <input class="form-control form-control-sm" type="text" id="search"
-                                                    name="search" placeholder="Search..." autocomplete="off">
+                                                    name="search" placeholder="Search..." autocomplete="off" required>
                                                 <div class="input-group-prepend">
                                                     <button type="submit" class="btn service-nsbtn"><i
                                                             class="fa fa-search"></i></button>
@@ -233,6 +233,7 @@
                                     </tr>
                                 </table>
                                 </div>
+                                <p>{{$law->description}}</p>
                                 @foreach ($law->actChapter->where('status', 1) as $chapter)
                                     <div class="laws-chapters-one mt-4">
                                         <h5>{{ $chapter->chapter_no }} : {{ $chapter->title }}</h5>

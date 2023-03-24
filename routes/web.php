@@ -95,4 +95,11 @@ Route::get('office-&-function', [FrontendController::class,'officeFunction'])->n
 
 
 
-require __DIR__.'/auth.php';
+
+// Training
+Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
+    Route::get('courses', [FrontendController::class, 'courses'])->name('courses');
+    Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
+});
+
+require __DIR__ . '/auth.php';

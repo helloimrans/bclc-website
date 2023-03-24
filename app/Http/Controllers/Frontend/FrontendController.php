@@ -168,4 +168,13 @@ class FrontendController extends Controller
     public function officeFunction(){
         return view('frontend.pages.Office_Function');
     }
+
+    public function courses()
+    {
+        return view('frontend.pages.training.courses');
+    }
+    public function courseDetails($slug)
+    {
+        return view('frontend.pages.training.course_details');
+    }
 }

@@ -46,8 +46,12 @@ class LawSectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required_without:title_bn',
+            'title_bn' => 'required_without:title',
+            'section_no' => 'required_without:section_no_bn',
+            'section_no_bn' => 'required_without:section_no',
+            'description' => 'required_without:description_bn',
+            'description_bn' => 'required_without:description',
             'sort' => 'numeric|min:0',
         ]);
 
@@ -115,8 +119,12 @@ class LawSectionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required_without:title_bn',
+            'title_bn' => 'required_without:title',
+            'section_no' => 'required_without:section_no_bn',
+            'section_no_bn' => 'required_without:section_no',
+            'description' => 'required_without:description_bn',
+            'description_bn' => 'required_without:description',
             'sort' => 'numeric|min:0',
         ]);
 

@@ -150,7 +150,7 @@
                                         <input type="hidden" name="law_id" value="{{ $law->id }}">
                                         <div class="input-group">
                                             <input class="form-control form-control-sm" type="text" id="search"
-                                                name="search" placeholder="Search..." autocomplete="off">
+                                                name="search" placeholder="Search..." autocomplete="off" required>
                                             <div class="input-group-prepend">
                                                 <button type="submit" class="btn service-nsbtn"><i
                                                         class="fa fa-search"></i></button>

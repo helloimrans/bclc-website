@@ -50,7 +50,7 @@ $route = Route::currentRouteName();
           <ul>
             <li><a href="{{url('/')}}">Home</a></li>
             <li><a href="{{route('service')}}">Service</a></li>
-            <li><a href="training.html">Training</a></li>
+            <li><a href="{{ route('training.courses') }}">Training</a></li>
             <li class="dd-btn1">
               <a href="#!">
                 Legal Knowledge
@@ -192,7 +192,7 @@ $route = Route::currentRouteName();
         </div>
         <div class="menu-box">
           <div class="menu-link">
-            <a href="training.html">
+            <a href="{{ route('training.courses') }}">
               Training
             </a>
           </div>
