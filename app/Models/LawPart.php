@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class LawChapter extends Model
+class LawPart extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -14,13 +14,12 @@ class LawChapter extends Model
 
     protected $fillable = [
         'law_id',
-        'law_part_id',
-        'chapter_no',
+        'part_no',
         'title',
         'slug',
         'sort',
         'status',
-        'chapter_no_bn',
+        'part_no_bn',
         'title_bn',
         'is_act',
         'is_rules',
@@ -28,15 +27,4 @@ class LawChapter extends Model
         'updated_by',
         'deleted_by',
     ];
-
-    public function section()
-    {
-        return $this->hasMany(LawSection::class)->orderBy('sort', 'ASC');
-    }
-    public function law()
-    {
-        return $this->belongsTo(Law::class)->withDefault([
-            'title' => '--',
-        ]);
-    }
 }

@@ -15,6 +15,7 @@ class LawSection extends Model
     protected $fillable = [
         'parent_id',
         'law_id',
+        'law_part_id',
         'law_chapter_id',
         'title',
         'slug',
