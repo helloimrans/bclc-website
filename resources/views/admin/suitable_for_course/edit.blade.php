@@ -36,6 +36,7 @@
                         <div class="card-body">
                             <form action="{{ route('course.suitables.update', $suitable->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="mb-1">
                                     <label class="form-label" for="">Name</label>
                                     <input type="text" name="name" placeholder="Enter name"
