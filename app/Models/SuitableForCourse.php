@@ -11,4 +11,16 @@ class SuitableForCourse extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'status',
+        'created_by',
+        'updated_by',
+        'deleted_by'
+    ];
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id');
+    }
 }
