@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\LawController;
 use App\Http\Controllers\Admin\LawSectionController;
 use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
-use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -80,11 +80,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     //Law
     Route::resource('law', LawController::class);
 
-    // SuitableForCourse Routes
-    Route::get('course/suitables', [CourseController::class, 'suitableForCourse'])->name('course.suitables.index');
-    Route::get('course/suitables/create', [CourseController::class, 'suitableCreate'])->name('course.suitables.create');
-    Route::post('course/suitables/store', [CourseController::class, 'suitableStore'])->name('course.suitables.store');
-    Route::get('course/suitables/edit/{id}', [CourseController::class, 'suitableEdit'])->name('course.suitables.edit');
-    Route::post('course/suitables/update/{id}', [CourseController::class, 'suitableUpdate'])->name('course.suitables.update');
-    Route::get('course/suitables/delete/{id}', [CourseController::class, 'suitableDelete'])->name('course.suitables.delete');
+    // SuitableForCourse Route
+    Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
 });

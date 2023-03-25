@@ -69,12 +69,13 @@
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
-                                                    <a class="me-1" href="
-                                                    {{ route('course.suitables.delete',$suitable->id) }}
-                                                    " data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Delete">
-                                                        <i class="far fa-trash-alt text-danger"></i>
-                                                    </a>
+                                                    <form class="d-inline" id="delForm" action="{{ route('course.suitables.destroy',$suitable->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button id="delete" type="submit" class="me-1 dlt-btn" data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Delete"><i class="far fa-trash-alt text-danger"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
