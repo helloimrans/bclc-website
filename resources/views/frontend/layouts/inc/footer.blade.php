@@ -117,16 +117,16 @@
   <section class="copyright-section wow fadeInDown" data-wow-duration="1s">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <div class="copyright-txt text-center text-md-left mb-3 mb-md-0">
+        <div class="col">
+          <div class="copyright-txt text-center mb-3 mb-md-0">
             <span>© 2021 Copyright Bangladesh Centre for Legal Compliance. All Rights Reserved</span>
           </div>
         </div>
-        <div class="col-md-6 align-self-center">
+        {{-- <div class="col-md-6 align-self-center">
           <div class="copyright-developed text-center text-md-right">
-            <span>Design and Develop by <a href="#!">Zaimah Technologies Ltd.</a></span>
+            <span>Design and Develop by <a href="#!">Imran Ahmed</a></span>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>
