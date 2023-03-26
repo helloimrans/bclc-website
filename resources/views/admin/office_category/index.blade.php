@@ -29,7 +29,7 @@
                                 <h5 class="mb-0">Add Office Category</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{route('office.create')}}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{route('office.category.create')}}"
                                  class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New</a></div>
                             </div>
                         </div>
@@ -46,16 +46,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       
+
                                             <tr>
                                                 <td>1</td>
                                                 <td>Manik</td>
-                                                
+
                                                 <td>12</td>
                                                 <td>
-                                                        <span class="badge badge-light-success">Active</span>                                                
+                                                        <span class="badge badge-light-success">Active</span>
                                                         <span class="badge badge-light-warning">Deactive</span>
-                                                   
+
                                                 </td>
                                                 <td>
                                                     <a class="me-1"
@@ -64,14 +64,14 @@
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="" method="POST">
-                                                         
+
 
                                                         <button id="delete" type="submit" class="me-1 dlt-btn" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Delete"><i class="far fa-trash-alt text-danger"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
-                                   
+
                                     </tbody>
                                 </table>
                             </div>

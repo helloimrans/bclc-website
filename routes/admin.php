@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\LawChapterController;
 use App\Http\Controllers\Admin\LawController;
 use App\Http\Controllers\Admin\LawSectionController;
 use App\Http\Controllers\Admin\ServiceCatController;
-use App\Http\Controllers\Admin\OfficeFunctionController;
+use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
 
 use App\Http\Controllers\Admin\SuitableCourseController;
@@ -82,11 +82,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     //Law
     Route::resource('law', LawController::class);
 
-    // office-function
-
-
-    Route::resource('office/function', OfficeFunctionController::class, ['as' => 'office'])->except(['show']);
-
+    //Office-category
+    Route::resource('office/category', OfficeCategoryController::class, ['names' => 'office.category'])->except(['show']);
 
     // SuitableForCourse Route
     Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
