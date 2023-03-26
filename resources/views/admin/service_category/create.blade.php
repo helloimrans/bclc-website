@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('service.category.store') }}" method="POST"
+                            <form action="{{ route('office.category.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-1">

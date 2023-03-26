@@ -14,6 +14,7 @@ class OfficeCategory extends Model
 
     protected $fillable = [
         'name',
+        'sort',
         'status',
         'created_by',
         'updated_by',
