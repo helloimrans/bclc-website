@@ -13,9 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('office_categories', function (Blueprint $table) {
+        Schema::create('law_parts', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->bigInteger('law_id')->unsigned();
+            $table->string('part_no')->nullable();
+            $table->string('part_no_bn')->nullable();
+            $table->string('title')->nullable();
+            $table->string('title_bn')->nullable();
+            $table->string('slug')->unique();
+            $table->integer('sort')->nullable();
+            $table->tinyInteger('is_act')->nullable();
+            $table->tinyInteger('is_rules')->nullable();
             $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();
             $table->bigInteger('updated_by')->unsigned()->nullable();
@@ -32,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('office_categories');
+        Schema::dropIfExists('law_parts');
     }
 };

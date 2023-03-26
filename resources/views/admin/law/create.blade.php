@@ -2,6 +2,12 @@
 @section('title', 'Create Laws & Rules')
 @section('content')
 
+    <style>
+        .default_lang_show {
+            display: none;
+        }
+    </style>
+
     <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-2">
@@ -213,6 +219,102 @@
                                         <div class="card border">
                                             <div class="card-body">
                                                 <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch10"><strong>Law Format</strong></label>
+                                                            <div class="form-check mb-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="format" id="part_chapter_section"
+                                                                    value="part_chapter_section" checked>
+                                                                <label class="form-check-label"
+                                                                    for="part_chapter_section">
+                                                                    Part > Chapter > Section
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check mb-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="format" id="part_section"
+                                                                    value="part_section" {{old('format')=="part_section" ? 'checked' : '' }}>
+                                                                <label class="form-check-label" for="part_section">
+                                                                    Part > Section
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="format" id="chapter_section"
+                                                                    value="chapter_section" {{old('format')=="chapter_section" ? 'checked' : '' }}>
+                                                                <label class="form-check-label" for="chapter_section">
+                                                                    Chapter > Section
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex flex-column mb-2">
+                                                            <label class="form-check-label mb-50"
+                                                                for="customSwitch10"><strong>Language</strong></label>
+                                                            <div class="form-check mb-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="lang" id="en" value="en" checked>
+                                                                <label class="form-check-label" for="en">
+                                                                    English
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check mb-1">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="lang" id="bn" value="bn" {{old('lang')=="bn" ? 'checked' : '' }}>
+                                                                <label class="form-check-label" for="bn">
+                                                                    Bangla
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="lang" id="both" value="both" {{old('lang')=="both" ? 'checked' : '' }}>
+                                                                <label class="form-check-label" for="both">
+                                                                    Both
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="default_lang_show"
+                                                        @if (old('lang') == 'both') style="display:block;" @else style="display:none;" @endif>
+                                                            <div class="d-flex flex-column mb-2">
+                                                                <label class="form-check-label mb-50"
+                                                                    for="customSwitch10"><strong>Default
+                                                                        Language</strong></label>
+                                                                <div class="form-check mb-1">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="default_lang" id="den"
+                                                                        value="en" checked>
+                                                                    <label class="form-check-label" for="den">
+                                                                        English
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check mb-1">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="default_lang" id="dbn"
+                                                                        value="bn" {{old('default_lang')=="bn" ? 'checked' : '' }}>
+                                                                    <label class="form-check-label" for="dbn">
+                                                                        Bangla
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card border">
+                                            <div class="card-body">
+                                                <div class="row">
                                                     <div class="col-12">
                                                         <div class="d-flex flex-column mb-2">
                                                             <label class="form-check-label mb-50"
@@ -337,6 +439,17 @@
 
 
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('input[name="lang"]').click(function() {
+                if ($(this).val() == 'both') {
+                    $(".default_lang_show").show();
+                } else {
+                    $(".default_lang_show").hide();
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $(".rules_status").click(function() {

@@ -37,6 +37,10 @@ return new class extends Migration
 
             $table->longText('description')->nullable();
             $table->string('total_views')->default(0);
+            $table->enum('format', ['part_chapter_section', 'part_section','chapter_section'])->nullable()->default(['part_chapter_section']);
+
+            $table->enum('lang', ['en', 'bn','both'])->nullable()->default(['en']);
+            $table->enum('default_lang', ['en', 'bn'])->nullable()->default(['en']);
             $table->integer('sort')->nullable();
             $table->tinyInteger('is_rules')->default(0);
             $table->tinyInteger('status');

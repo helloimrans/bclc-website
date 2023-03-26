@@ -55,6 +55,8 @@
         href="{{ asset('admin') }}/app-assets/css/pages/dashboard-ecommerce.min.css">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('admin') }}/app-assets/css/plugins/charts/chart-apex.min.css">
+        <!-- Core CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->

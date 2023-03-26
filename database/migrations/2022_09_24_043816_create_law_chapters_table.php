@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('law_chapters', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('law_id')->unsigned();
+            $table->bigInteger('law_part_id')->unsigned()->nullable();
             $table->string('chapter_no')->nullable();
             $table->string('chapter_no_bn')->nullable();
             $table->string('title')->nullable();

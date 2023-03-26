@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('office_categories', function (Blueprint $table) {
+        Schema::create('service_facility_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->integer('sort')->nullable();
             $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();
             $table->bigInteger('updated_by')->unsigned()->nullable();
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('office_categories');
+        Schema::dropIfExists('service_facility_categories');
     }
 };
