@@ -78,12 +78,232 @@
                                     <label class="form-label" for="">Course Title</label>
                                     <input type="text" name="title" placeholder="Enter title"
                                         class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
-
                                     @error('title')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-
                                 </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Course Id</label>
+                                    <input type="text" name="course_id" id="course_id" placeholder="Generate course id"
+                                        class="form-control @error('course_id') is-invalid @enderror" value="{{ old('course_id') }}" disabled>
+                                    <a href="javascript:void(0)" onclick="generateId()" class="btn btn-sm btn-outline-warning waves-effect mt-1">Course ID</a>
+
+                                    @error('course_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Select Expert</label>
+                                    <select name="expert_id"
+                                        class="form-control @error('expert_id') is-invalid @enderror">
+                                        <option value="" selected hidden>
+                                            Expert
+                                        </option>
+                                        <option value="1">Expert-1</option>
+                                        <option value="2">Expert-2</option>
+                                        <option value="3">Expert-3</option>
+                                    </select>
+                                    @error('expert_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Course Duration</label>
+                                    <input type="text" name="duration" placeholder="Enter course duration"
+                                        class="form-control @error('duration') is-invalid @enderror" value="{{ old('duration') }}">
+                                    @error('duration')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Select Schedules</label>
+                                    <select name="schedule[]" class="select2 form-select" multiple>
+                                        <optgroup label="Select Schedules">
+                                                <option value="Saturday">Saturday</option>
+                                                <option value="Saturday">Sunday</option>
+                                                <option value="Saturday">Monday</option>
+                                                <option value="Saturday">Tuesday</option>
+                                                <option value="Saturday">Wednesday</option>
+                                                <option value="Saturday">Thursday</option>
+                                                <option value="Saturday">Friday</option>
+                                        </optgroup>
+                                    </select>
+                                    @error('schedule')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                    @enderror
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label for="class_start_time">Class Time</label>
+
+                                        <div class="input-group input-daterange">
+                                            <input type="time" name="class_start_time" class="form-control @error('class_start_time') is-invalid @enderror" value="{{ old('class_start_time') }}">
+                                        <div class="input-group-append"><div class="input-group-text">to</div></div>
+                                            <input type="time" name="class_end_time" class="form-control @error('class_end_time') is-invalid @enderror" value="{{ old('class_end_time') }}">
+                                        </div>
+                                        @error('class_start_time')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                        @error('class_end_time')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Venue</label>
+                                    <input type="text" name="venue" placeholder="Enter venue"
+                                        class="form-control @error('venue') is-invalid @enderror" value="{{ old('venue') }}">
+                                    @error('venue')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Boarding</label>
+                                    <select name="boarding"
+                                        class="form-control @error('boarding') is-invalid @enderror">
+                                        <option value="" selected hidden>Select boarding</option>
+                                        <option value="Virtual Class Room">Virtual Class Room </option>
+                                        <option value="Physical Class Room">Physical Class Room</option>
+                                        <option value="Distance  Learning">Distance  Learning</option>
+                                        <option value="Remote Learning">Remote Learning</option>
+                                    </select>
+                                    @error('boarding')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group mb-1">
+                                    <label for="total_hours">Total Hours</label>
+                                    <div class="d-flex">
+                                        <input type="number" step="0.01" name="total_hours" placeholder="Enter total hours"
+                                        class="form-control @error('total_hours') is-invalid @enderror" value="{{ old('total_hours') }}" min="0.00">
+                                        <div class="input-group-append">
+                                            <select name="hour_minute" class="form-control @error('hour_minute') is-invalid @enderror">
+                                                <option value="1"
+                                                    @if (old('hour_minute') == 1) selected @endif>Hours</option>
+                                                <option value="2"
+                                                    @if (old('hour_minute') == 2) selected @endif>Minutes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    @error('total_hours')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    @error('hour_minute')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Class Start Date</label>
+                                    <input type="date" name="class_start_date"
+                                        class="form-control @error('class_start_date') is-invalid @enderror" value="{{ old('class_start_date') }}">
+                                    @error('class_start_date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Class End Date</label>
+                                    <input type="date" name="class_end_date"
+                                        class="form-control @error('class_end_date') is-invalid @enderror" value="{{ old('class_end_date') }}">
+                                    @error('class_end_date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Last Registration Date</label>
+                                    <input type="date" name="last_reg_date"
+                                        class="form-control @error('last_reg_date') is-invalid @enderror" value="{{ old('last_reg_date') }}">
+                                    @error('last_reg_date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Course Fee</label>
+                                    <input type="number" step="any" name="fee"
+                                        class="form-control @error('fee') is-invalid @enderror" value="{{ old('fee') }}" placeholder="Enter course fee">
+                                    @error('fee')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Meeting Link</label>
+                                    <input type="text" name="meeting_link"
+                                        class="form-control @error('meeting_link') is-invalid @enderror" value="{{ old('meeting_link') }}" placeholder="Enter meeting link">
+                                    @error('meeting_link')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Short Description</label>
+                                    <textarea name="short_description" rows="2" class="summernote @error('short_description') is-invalid @enderror"
+                                        placeholder="Enter short_description">{{ old('short_description') }}</textarea>
+                                    @error('short_description')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Key Takeways</label>
+                                    <textarea name="key_takeaways" rows="2" class="summernote @error('key_takeaways') is-invalid @enderror"
+                                        placeholder="Enter key_takeaways">{{ old('key_takeaways') }}</textarea>
+                                    @error('key_takeaways')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Curriculum</label>
+                                    <textarea name="curriculum" rows="2" class="summernote @error('curriculum') is-invalid @enderror"
+                                        placeholder="Enter curriculum">{{ old('curriculum') }}</textarea>
+                                    @error('curriculum')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label">Course Thumbnail Image</label>
+                                    <input type="file" id="upImgInput1" name="image"
+                                        class="form-control @error('image') is-invalid @enderror">
+                                    @error('image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <img src="{{ asset('defaults/noimage/no_img.jpg') }}" id="upImg1"
+                                        class="upImg1 rounded me-50 border" alt="profile image" height="100">
+                                </div>
+                                <div class="mb-1">
+                                    <button type="button" id="upImgReset1"
+                                        class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="mb-1">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-control">
@@ -108,6 +328,7 @@
     </div>
     @section('scripts')
     <script>
+        // Service Category to Servoce onChange
         $(function() {
             $(document).on('change', '#service_category_id', function() {
                 var id = $(this).val();
@@ -134,6 +355,13 @@
 
             });
         });
+    </script>
+    <script>
+        // Generate course id onClick
+        function generateId() {
+            var uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+            document.getElementById("course_id").value = uniqueId;
+        }
     </script>
 
 @endsection
