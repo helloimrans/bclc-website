@@ -61,7 +61,7 @@
                                                         <span class="badge badge-light-warning">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $suitable->createdBy->name }}</td>
+                                                <td>{{ $suitable->created_by->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
                                                     {{ route('course.suitables.edit',$suitable->id) }}

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\LawController;
 use App\Http\Controllers\Admin\LawSectionController;
 use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
 
@@ -19,6 +20,8 @@ use App\Http\Controllers\Defaults\DefaultController;
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
 //Ajax - Get ABRWN (Article,Blog,Review,Write Up,News)
 Route::get('/get/abrwn/category/{id}', [DefaultController::class, 'getAbrwnCat']);
+//Ajax - Get service category & service
+Route::get('/get/category/service/{id}', [DefaultController::class, 'getCatService']);
 
 //Admin auth route
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -80,6 +83,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     //Law
     Route::resource('law', LawController::class);
 
+    // Training Course
+    Route::resource('courses', CourseController::class);
+    
     // SuitableForCourse Route
     Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
 });

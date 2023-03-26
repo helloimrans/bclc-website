@@ -44,4 +44,32 @@ class Course extends Model
         'updated_by',
         'deleted_by'
     ];
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function suitables()
+    {
+        return $this->belongsToMany(SuitableForCourse::class, 'suitable_course')->where('status', 1);
+    }
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function serviceCategory()
+    {
+        return $this->belongsTo(Service::class, 'service_category_id', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
 }
