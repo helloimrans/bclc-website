@@ -1,17 +1,18 @@
 @extends('admin.layouts.master')
-@section('title', 'Law office_function')
+@section('title', 'office_category')
 @section('content')
 <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Create Law Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Office Category</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ route('office.category.store') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create Law Category
+                                <li class="breadcrumb-item active">Create Office Category
+
                                 </li>
                             </ol>
                         </div>
@@ -25,7 +26,7 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Create Law Category</h5>
+                                <h5 class="mb-0">Create Office Category</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex"><a href=""
@@ -33,17 +34,17 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="" method="POST">
+                            <form action="{{ route('office.category.store') }}" method="POST" e>
                                 @csrf
                                 <div class="mb-1">
                                     <label class="form-label" for="">Name</label>
                                     <input type="text" name="name" placeholder="Enter name"
-                                        class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name') }}">
+                                        class="form-control"
+                                        value="">
 
-                                    @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    
+                                        <div class="invalid-feedback"></div>
+                                  
 
                                 </div>
 
@@ -52,11 +53,11 @@
                                         <div class="mb-1">
                                             <label class="form-label">Sort</label>
                                             <input type="number" min="0" placeholder="[0,1,2,3]"
-                                                class="form-control @error('sort') is-invalid @enderror" name="sort"
-                                                value="{{ old('sort') }}">
-                                            @error('sort')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                                class="form-control " name="sort"
+                                                value="">
+                                           
+                                                <div class="invalid-feedback"></div>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">

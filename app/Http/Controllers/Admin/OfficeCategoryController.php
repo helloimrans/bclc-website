@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
+use App\Models\OfficeCategory;
 use Illuminate\Http\Request;
-
 class OfficeCategoryController extends Controller
 {
         /**
@@ -28,5 +29,21 @@ class OfficeCategoryController extends Controller
         return view('admin.office_category.create');
 
     }
+
+
+    public function store(Request $request)
+    {
+        
+        $category = new OfficeCategory();
+
+        $category->name = $request->name;
+        $category->sort = $request->sort;
+        $category->status = $request->status;
+        
+        $category->save();
+
+       // return redirect()->route('office.category.index')->with($notification);
+    }
+
 
 }
