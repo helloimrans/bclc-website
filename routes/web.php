@@ -102,4 +102,6 @@ Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
     Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
 });
 
+
+
 require __DIR__ . '/auth.php';

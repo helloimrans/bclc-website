@@ -99,6 +99,31 @@ $route = Route::currentRouteName();
                     </li>
                 </ul>
             </li>
+
+
+
+            
+            <li class="nav-item @if ($route == 'office.index' || $route == 'office.edit' || $route == 'office.index' || $route == 'office.edit' || $route == 'office.show' || $route == 'office.create') open @endif"><a class="d-flex align-items-center"
+                    href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"
+                        data-i18n="Laws & Rules">Office & Function</span></a>
+                <ul class="menu-content">
+                    <li class=" @if ($route == 'office.index' || $route == 'office.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('office.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Category</span></a>
+                    </li>
+                    <li class=" @if ($route == 'office.index' || $route == 'office.edit' || $route == 'office.show'|| $route == 'office.create') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('office.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Permission">Office & Function</span></a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="shield"></i><span
                         class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Roles &amp;
                         Permission</span></a>

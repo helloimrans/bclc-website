@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\LawChapterController;
 use App\Http\Controllers\Admin\LawController;
 use App\Http\Controllers\Admin\LawSectionController;
 use App\Http\Controllers\Admin\ServiceCatController;
+use App\Http\Controllers\Admin\OfficeFunctionController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
+
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -78,5 +80,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     //Law
     Route::resource('law', LawController::class);
+
+    // office-function
+
+
+    Route::resource('office/function', OfficeFunctionController::class, ['as' => 'office'])->except(['show']);
 
 });

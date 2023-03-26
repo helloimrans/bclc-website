@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class OfficeCategory extends Model
 {
     use HasFactory;
+    
+    
+
+    protected $fillable = [
+        'name',
+        'status',
+        'created_by',
+        'updated_by',
+        'deleted_by'
+        
+        
+    ];
 }

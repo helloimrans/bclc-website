@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('office_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->boolean('status')->nullable()->default(1);
+            $table->bigInteger('created_by')->unsigned()->nullable();
+            $table->bigInteger('updated_by')->unsigned()->nullable();
+            $table->bigInteger('deleted_by')->unsigned()->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
