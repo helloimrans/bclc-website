@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('parent_id')->unsigned()->default(0);
             $table->bigInteger('law_id')->unsigned();
-            $table->bigInteger('law_chapter_id')->unsigned();
+            $table->bigInteger('law_part_id')->unsigned()->nullable();
+            $table->bigInteger('law_chapter_id')->unsigned()->nullable();
             $table->string('section_no')->nullable();
             $table->string('section_no_bn')->nullable();
             $table->string('title')->nullable();

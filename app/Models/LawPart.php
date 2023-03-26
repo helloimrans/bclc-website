@@ -6,21 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SuitableForCourse extends Model
+class LawPart extends Model
 {
+    use HasFactory;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    use HasFactory;
 
     protected $fillable = [
-        'name',
+        'law_id',
+        'part_no',
+        'title',
+        'slug',
+        'sort',
         'status',
+        'part_no_bn',
+        'title_bn',
+        'is_act',
+        'is_rules',
         'created_by',
         'updated_by',
-        'deleted_by'
+        'deleted_by',
     ];
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class, 'created_by', 'id');
-    }
 }

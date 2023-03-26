@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('law_chapters', function (Blueprint $table) {
+        Schema::create('law_parts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('law_id')->unsigned();
-            $table->bigInteger('law_part_id')->unsigned()->nullable();
-            $table->string('chapter_no')->nullable();
-            $table->string('chapter_no_bn')->nullable();
+            $table->string('part_no')->nullable();
+            $table->string('part_no_bn')->nullable();
             $table->string('title')->nullable();
             $table->string('title_bn')->nullable();
             $table->string('slug')->unique();
             $table->integer('sort')->nullable();
             $table->tinyInteger('is_act')->nullable();
             $table->tinyInteger('is_rules')->nullable();
-            $table->tinyInteger('status');
+            $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();
             $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->bigInteger('deleted_by')->unsigned()->nullable();
@@ -41,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('law_chapters');
+        Schema::dropIfExists('law_parts');
     }
 };

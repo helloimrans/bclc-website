@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Admin\OfficeFunctionController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
 
+use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -86,4 +87,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     Route::resource('office/function', OfficeFunctionController::class, ['as' => 'office'])->except(['show']);
 
+
+    // SuitableForCourse Route
+    Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
 });
