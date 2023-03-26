@@ -89,7 +89,9 @@ Route::get('section/form/search', [SearchController::class, 'sectionFormSearch']
 Route::get('search/result/one/{slug}', [SearchController::class, 'searchResultOne'])->name('search.result.one');
 
 //Office and Functions
-Route::get('office-&-function', [FrontendController::class, 'officeFunction'])->name('office.function');
+Route::get('office-&-functions', [FrontendController::class, 'officeFunction'])->name('office.function');
+//Service & Facilities
+Route::get('service-&-facilities', [FrontendController::class, 'serviceFacility'])->name('service.facility');
 
 // Training
 Route::group(['prefix' => 'training', 'as' => 'training.'], function () {

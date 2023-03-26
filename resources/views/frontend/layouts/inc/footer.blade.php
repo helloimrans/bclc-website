@@ -72,14 +72,14 @@
             <div class="media">
               <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
               <div class="media-body">
-                <a href="#">Office and Functions</a>
+                <a href="{{route('office.function')}}">Office and Functions</a>
               </div>
             </div>
             <!-- footer link -->
             <div class="media">
               <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
               <div class="media-body">
-                <a href="#">Services and Facilities</a>
+                <a href="{{route('service.facility')}}">Services and Facilities</a>
               </div>
             </div>
             <!-- footer link -->
@@ -149,7 +149,7 @@
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Legal Updates</a></li>
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Convention & Treaty</a></li>
             <li><a href="{{ route('office.function') }}"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Office and Functions</a></li>
-            <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Services and Facilities</a></li>
+            <li><a href="{{ route('service.facility') }}"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Services and Facilities</a></li>
             <li><a href="#"><img src="{{asset('frontend')}}/images/footer-linik.png" alt="img"> Career in Legal Sector</a></li>
           </ul>
         </div>

@@ -10,6 +10,8 @@ use App\Models\LawCategory;
 use App\Models\LawChapter;
 use App\Models\Service;
 use App\Models\ServiceCategory;
+use App\Models\OfficeCategory;
+use App\Models\ServiceFacilityCategory;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -166,7 +168,13 @@ class FrontendController extends Controller
 
 
     public function officeFunction(){
-        return view('frontend.pages.office_function');
+        $data['officeCategories'] = OfficeCategory::where('status',1)->get();
+        return view('frontend.pages.office_function',$data);
+    }
+
+    public function serviceFacility(){
+        $data['serviceCategories'] = ServiceFacilityCategory::where('status',1)->get();
+        return view('frontend.pages.service_facility',$data);
     }
 
     public function courses()

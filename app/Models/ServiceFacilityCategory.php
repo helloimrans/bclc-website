@@ -20,4 +20,9 @@ class ServiceFacilityCategory extends Model
         'updated_by',
         'deleted_by',
     ];
+    
+    public function  serviceFacilities()
+    {
+        return $this->hasMany(ServiceFacility::class);
+    }
 }
