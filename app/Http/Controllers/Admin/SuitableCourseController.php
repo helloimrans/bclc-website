@@ -10,22 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class SuitableCourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['suitables'] = SuitableForCourse::with('admin')->latest()->get();
+        $data['suitables'] = SuitableForCourse::with('createdBy')->latest()->get();
         return view('admin.suitable_for_course.index', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $data['suitables'] = SuitableForCourse::all();

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->bigInteger('service_category_id')->unsigned();
             $table->bigInteger('service_id')->unsigned();
-            $table->tinyInteger('duration_hours')->nullable();
+            $table->string('duration')->nullable();
             $table->bigInteger('expert_id')->unsigned()->nullable();
             $table->json('schedule')->nullable();
             $table->json('suitable_course')->nullable();
@@ -31,7 +31,9 @@ return new class extends Migration
             $table->date('class_end_date')->nullable();
             $table->time('class_start_time')->nullable();
             $table->time('class_end_time')->nullable();
-            $table->integer('total_hours')->nullable();
+            // $table->integer('total_hours')->nullable();
+            $table->float('total_hours')->nullable();
+            $table->enum('hour_minute', [1, 2])->default(2)->nullable();
             $table->date('last_reg_date')->nullable();
             $table->string('provide_certificate')->nullable();
             $table->text('short_description')->nullable();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Defaults;
 use App\Http\Controllers\Controller;
 use App\Models\AbrwnCategory;
 use App\Models\ServiceCategory;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class DefaultController extends Controller
@@ -33,6 +34,13 @@ class DefaultController extends Controller
             $data = AbrwnCategory::where('is_news',1)->where('status',1)->get();
         }
 
+        return response()->json($data);
+    }
+    public function getCatService($id)
+    {
+        if ($id) {
+            $data = Service::where('service_category_id', $id)->where('status', 1)->get();
+        }
         return response()->json($data);
     }
 }
