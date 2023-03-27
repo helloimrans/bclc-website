@@ -134,7 +134,7 @@
                                 class="nav-login-btn">Login</span></a>
                     </li>
                     <li>
-                        <a href="#" class="pl-0 pr-0"><span class="nav-login-btn">Register</span></a>
+                        <a href="#" class="pl-0 pr-0"  data-toggle="modal" data-target="#exampleModalRegister"><span class="nav-login-btn">Register</span></a>
                     </li>
                     @endif
                 </ul>
@@ -198,6 +198,35 @@
         </div>
     </div>
 </div>
+
+<!--Register Modal -->
+<div class="service-cunsult-modal">
+    <div class="modal fade" id="exampleModalRegister" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="sm-body">
+                        <h5>Register Options</h5>
+                        <div class="nav-login-options">
+                            <a href="{{ route('learner.login') }}"><i class="fa fa-user-plus mr-2"></i> Register as a
+                                Learner</a>
+                            <a href="{{ route('expert.login') }}"><i class="fa fa-user-plus mr-2"></i> Register as a
+                                Expert</a>
+                            <a href="#"><i class="fa fa-user-plus mr-2"></i> Register as a Subscriber</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--start mobile menu-->
 <div class="mobile-menu">
