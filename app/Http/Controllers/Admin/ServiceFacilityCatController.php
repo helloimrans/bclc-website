@@ -41,7 +41,7 @@ class ServiceFacilityCatController extends Controller
             'message' => 'Successfully service & facility category created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('service-&-facility.category.index')->with($notification);
+        return redirect()->route('sf.category.index')->with($notification);
     }
     public function show($id)
     {
@@ -75,7 +75,7 @@ class ServiceFacilityCatController extends Controller
             'message' => 'Successfully service & facility category updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('service-&-facility.category.index')->with($notification);
+        return redirect()->route('sf.category.index')->with($notification);
     }
     public function destroy($id)
     {

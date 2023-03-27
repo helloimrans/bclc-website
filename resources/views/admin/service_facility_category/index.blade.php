@@ -31,7 +31,7 @@
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="
-                                    {{ route('service-&-facility.category.create') }}"
+                                    {{ route('sf.category.create') }}"
                                      class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
                                     </a>
                                 </div>
@@ -66,13 +66,13 @@
                                                 <td>{{ $sf_cat->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{ route('service-&-facility.category.edit',$sf_cat->id) }}
+                                                    {{ route('sf.category.edit',$sf_cat->id) }}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="
-                                                    {{ route('service-&-facility.category.destroy',$sf_cat->id) }}
+                                                    {{ route('sf.category.destroy',$sf_cat->id) }}
                                                     " method="POST">
                                                         @csrf
                                                         @method('DELETE')

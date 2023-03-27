@@ -18,7 +18,7 @@ class ServiceFacilityController extends Controller
     }
     public function create()
     {
-        $data['service_facility_cats'] = ServiceFacilityCategory::where('status', 1)->all();
+        $data['service_facility_cats'] = ServiceFacilityCategory::where('status', 1)->get();
         return view('admin.service_facility.create', $data);
     }
     public function store(Request $request)
@@ -66,14 +66,14 @@ class ServiceFacilityController extends Controller
             'message' => 'Successfully service & facility created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('service-&-facility.index')->with($notification);
+        return redirect()->route('service.facility.index')->with($notification);
     }
     public function show($id)
     {
     }
     public function edit($id)
     {
-        $data['service_facility_cats'] = ServiceFacilityCategory::where('status', 1)->all();
+        $data['service_facility_cats'] = ServiceFacilityCategory::where('status', 1)->get();
         $data['service_facility'] = ServiceFacility::findOrFail($id);
         return view('admin.service_facility.edit', $data);
     }
@@ -87,8 +87,7 @@ class ServiceFacilityController extends Controller
             'authority' => 'required',
             'contact_info' => 'required',
             'source_link' => 'required',
-            // 'file' => 'required|csv,txt,xlx,xls,pdf|max:2048',
-            'file' => 'required|mimes:pdf',
+            'file' => 'mimes:pdf',
         ]);
 
         if ($validator->fails()) {
@@ -108,7 +107,7 @@ class ServiceFacilityController extends Controller
         $data->contact_info                 = $request->contact_info;
         $data->source_link                  = $request->source_link;
         $data->status                       = $request->status;
-        $data->created_by                   = Auth::guard('admin')->user()->id;
+        $data->updated_by                   = Auth::guard('admin')->user()->id;
 
         $file = $request->file('file');
         if ($file) {
@@ -124,7 +123,7 @@ class ServiceFacilityController extends Controller
             'message' => 'Successfully service & facility updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('service-&-facility.index')->with($notification);
+        return redirect()->route('service.facility.index')->with($notification);
     }
     public function destroy($id)
     {

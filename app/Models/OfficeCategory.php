@@ -25,4 +25,17 @@ class OfficeCategory extends Model
     {
         return $this->hasMany(OfficeFunction::class);
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function updatedBy()
+    {
+        return $this->belongsTo(Admin::class, 'updated_by', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
 }

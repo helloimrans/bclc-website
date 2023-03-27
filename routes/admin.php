@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\OfficeFunctionController;
 use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\ServiceFacilityController;
 
@@ -89,16 +90,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     // Training Course
     Route::resource('courses', CourseController::class);
-    
+
     //Office-category
-    Route::resource('office/category', OfficeCategoryController::class, ['names' => 'office.category'])->except(['show']);
+    Route::resource('office/function/category', OfficeCategoryController::class, ['names' => 'office.category'])->except(['show']);
+
+    // Office & Function
+    Route::resource('office/function', OfficeFunctionController::class, ['names' => 'office.function']);
 
     // SuitableForCourse Route
     Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
 
-    // Service & Facilitics Category Route
-    Route::resource('service-&-facility/category', ServiceFacilityCatController::class, ['as' => 'service-&-facility'])->except(['show']);
+    // Service & Facilitics Category
+    Route::resource('service/facility/category', ServiceFacilityCatController::class, ['names' => 'sf.category'])->except(['show']);
 
-    // Service & Facility Route
-    Route::resource('service-&-facility', ServiceFacilityController::class);
+    // Service & Facility
+    Route::resource('service/facility', ServiceFacilityController::class, ['names' => 'service.facility']);
 });

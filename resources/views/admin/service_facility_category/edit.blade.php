@@ -29,12 +29,12 @@
                                 <h5 class="mb-0">Edit Service & Facility Category</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('service-&-facility.category.index') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('sf.category.index') }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('service-&-facility.category.update', $sf_cat->id) }}" method="POST">
+                            <form action="{{ route('sf.category.update', $sf_cat->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-1">
