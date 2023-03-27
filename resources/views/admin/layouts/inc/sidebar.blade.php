@@ -66,6 +66,37 @@ $route = Route::currentRouteName();
                     </li>
                 </ul>
             </li>
+
+
+
+
+            <li class="nav-item @if ($route == 'service-&-facility.category.index' ||
+                $route == 'service-&-facility.category.edit' ||
+                $route == 'service-&-facility.category.create') open @endif"><a class="d-flex align-items-center"
+                    href="#"><i class="fas fa-signature"></i>
+                    <span class="menu-title text-truncate"
+                        data-i18n="Roles &amp; Permission">Service & Facilitics</span></a>
+                <ul class="menu-content">
+                    <li class=" @if ($route == 'service-&-facility.category.index' || $route == 'service-&-facility.category.edit' || $route == 'service-&-facility.category.create') active @endif"><a class="d-flex align-items-center"
+                            href="{{ route('service-&-facility.category.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles">Categpry</span></a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <li class="nav-item @if ($route == 'course.suitables.index' ||
                 $route == 'course.suitables.edit' ||
                 $route == 'course.suitables.create') open @endif"><a class="d-flex align-items-center"

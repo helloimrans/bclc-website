@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ServiceFacilityCatController;
 
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
@@ -93,4 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     // SuitableForCourse Route
     Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
+
+    // Service & Facility Category Route
+    Route::resource('service-&-facility/category', ServiceFacilityCatController::class, ['as' => 'service-&-facility'])->except(['show']);
 });

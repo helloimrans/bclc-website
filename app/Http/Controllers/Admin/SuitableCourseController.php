@@ -17,8 +17,7 @@ class SuitableCourseController extends Controller
     }
     public function create()
     {
-        $data['suitables'] = SuitableForCourse::all();
-        return view('admin.suitable_for_course.create', $data);
+        return view('admin.suitable_for_course.create');
     }
     public function store(Request $request)
     {
