@@ -46,12 +46,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                    @foreach ($categories as $category)
                                             <tr>
-                                                <td>12</td>
-                                                <td>Manik</td>
+                                                <td>{{ $category->id }}</td>
+                                                <td>{{ $category->name }}</td>
+                                                <td>{{ $category->sort }}</td>
 
-                                                <td>12</td>
+                                                <td>{{ $category->status }}</td>
                                                 <td>
                                                         <span class="badge badge-light-success">Active</span>
                                                         <span class="badge badge-light-warning">Deactive</span>
@@ -64,14 +65,15 @@
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="" method="POST">
-
+                                                    @csrf
+                                                        @method('DELETE')
 
                                                         <button id="delete" type="submit" class="me-1 dlt-btn" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Delete"><i class="far fa-trash-alt text-danger"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
-
+                                              @endforeach
                                     </tbody>
                                 </table>
                             </div>
