@@ -16,7 +16,8 @@ class OfficeCategoryController extends Controller
     public function index()
     {
         // $data['categories'] = LawCategory::latest()->get();
-         return view('admin.office_category.index');
+        $categories= OfficeCategory::all();
+         return view('admin.office_category.index',compact('categories'));
     }
 
     /**
@@ -42,8 +43,10 @@ class OfficeCategoryController extends Controller
         
         $category->save();
 
-       // return redirect()->route('office.category.index')->with($notification);
+       return redirect()->back();
+
     }
+
 
 
 }
