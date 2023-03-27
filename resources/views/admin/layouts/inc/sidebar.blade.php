@@ -26,6 +26,9 @@ $route = Route::currentRouteName();
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
+            {{-------------------------------
+                Legal Insights 
+            --------------------------------}}
             <li class="nav-item @if ($route == 'associated.service.index' ||
                 $route == 'associated.service.edit' ||
                 $route == 'keywordss.index' ||
@@ -43,6 +46,9 @@ $route = Route::currentRouteName();
                     </li>
                 </ul>
             </li>
+            {{-------------------------------
+                Service & Pro-Bono 
+            --------------------------------}}
             <li class="nav-item @if ($route == 'service.category.index' ||
                 $route == 'service.category.edit' ||
                 $route == 'service.index' ||
@@ -66,13 +72,17 @@ $route = Route::currentRouteName();
                     </li>
                 </ul>
             </li>
-
-
-
-
-            <li class="nav-item @if ($route == 'service-&-facility.category.index' ||
+            {{-------------------------------
+                Service & Facilitics 
+            --------------------------------}}
+            <li class="nav-item @if (
+                $route == 'service-&-facility.category.index' ||
                 $route == 'service-&-facility.category.edit' ||
-                $route == 'service-&-facility.category.create') open @endif"><a class="d-flex align-items-center"
+                $route == 'service-&-facility.category.create' ||
+                $route == 'service-&-facility.index' ||
+                $route == 'service-&-facility.edit' ||
+                $route == 'service-&-facility.create'
+                ) open @endif"><a class="d-flex align-items-center"
                     href="#"><i class="fas fa-signature"></i>
                     <span class="menu-title text-truncate"
                         data-i18n="Roles &amp; Permission">Service & Facilitics</span></a>
@@ -81,22 +91,15 @@ $route = Route::currentRouteName();
                             href="{{ route('service-&-facility.category.index') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Roles">Categpry</span></a>
                     </li>
+                    <li class=" @if ($route == 'service-&-facility.index' || $route == 'service-&-facility.edit' || $route == 'service-&-facility.create') active @endif"><a class="d-flex align-items-center"
+                        href="{{ route('service-&-facility.index') }}"><i data-feather="circle"></i><span
+                            class="menu-item text-truncate" data-i18n="Roles">Service & Facility</span></a>
+                    </li>
                 </ul>
             </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            {{-------------------------------
+                Course Management 
+            --------------------------------}}
             <li class="nav-item @if ($route == 'course.suitables.index' ||
                 $route == 'course.suitables.edit' ||
                 $route == 'course.suitables.create') open @endif"><a class="d-flex align-items-center"
@@ -110,6 +113,9 @@ $route = Route::currentRouteName();
                     </li>
                 </ul>
             </li>
+            {{-------------------------------
+                Article,Blog,Others 
+            --------------------------------}}
             <li class="nav-item @if ($route == 'abrwn.category.index' ||
                 $route == 'abrwn.category.edit' ||
                 $route == 'abrwn.index' ||
@@ -127,6 +133,9 @@ $route = Route::currentRouteName();
                     </li>
                 </ul>
             </li>
+            {{-------------------------------
+                Laws & Rules 
+            --------------------------------}}
             <li class="nav-item @if ($route == 'law.category.index' || $route == 'law.category.edit' || $route == 'law.index' || $route == 'law.edit' || $route == 'law.show' || $route == 'law.create') open @endif"><a class="d-flex align-items-center"
                     href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"
                         data-i18n="Laws & Rules">Laws & Rules</span></a>
@@ -146,7 +155,9 @@ $route = Route::currentRouteName();
 
 
 
-
+            {{-------------------------------
+                Office & Function
+            --------------------------------}}
             <li class="nav-item @if ($route == 'office.category.index' || $route == 'office.category.edit' || $route == 'office.category.index' || $route == 'office.category.edit' || $route == 'office.category.show' || $route == 'office.category.create') open @endif"><a class="d-flex align-items-center"
                     href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"
                         data-i18n="Laws & Rules">Office & Function</span></a>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Service & Facility Category')
+@section('title', 'Service & Facility')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Service & Facility Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Service & Facility</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Service & Facility Category
+                                <li class="breadcrumb-item active">Service & Facility
                                 </li>
                             </ol>
                         </div>
@@ -26,12 +26,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Service & Facility Category</h5>
+                                <h5 class="mb-0">Service & Facility</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="
-                                    {{ route('service-&-facility.category.create') }}"
+                                    {{ route('service-&-facility.create') }}"
                                      class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
                                     </a>
                                 </div>
@@ -43,36 +43,49 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Name</th>
-                                            <th>Short</th>
+                                            <th>Service Facility Category</th>
+                                            <th>Service</th>
+                                            <th>Title</th>
+                                            <th>Authority</th>
+                                            <th>Contact</th>
+                                            <th>Source Link</th>
+                                            <th>File</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($service_facility_cats as $sf_cat)
+                                        @foreach ($service_facilitics as $sf)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $sf_cat->name }}</td>
-                                                <td>{{ $sf_cat->sort }}</td>
                                                 <td>
-                                                    @if($sf_cat->status == 1)
+                                                    {{$sf->serviceFacilityCategory->name}}
+                                                </td>
+                                                <td>{{ $sf->service }}</td>
+                                                <td>{{ $sf->title }}</td>
+                                                <td>{{ $sf->authority }}</td>
+                                                <td>{{ $sf->contact_info }}</td>
+                                                <td>{{ $sf->source_link }}</td>
+                                                <td>File</td>
+
+                                                <td>
+                                                    @if($sf->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
                                                     @else
                                                         <span class="badge badge-light-warning">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $sf_cat->createdBy->name }}</td>
+                                                <td>{{ $sf->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{ route('service-&-facility.category.edit',$sf_cat->id) }}
+                                                    {{ route('service-&-facility.edit',$sf->id) }}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="
-                                                    {{ route('service-&-facility.category.destroy',$sf_cat->id) }}
+                                                    {{ route('service-&-facility.destroy',$sf->id) }}
                                                     " method="POST">
                                                         @csrf
                                                         @method('DELETE')
