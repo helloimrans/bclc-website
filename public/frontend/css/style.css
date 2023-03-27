@@ -208,6 +208,22 @@ header {
     border-radius: 5px;
 }
 
+.header-dd-btn {
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+.header-dd-menu a {
+    font-weight: 400 !important;
+    font-size: 15px !important;
+}
+.header-dd-menu a:focus{
+    background: none !important;
+}
+.header-dd-btn img {
+    width: 26px;
+}
 /* menu bars icon styles */
 .menu-icon {
     position: relative;

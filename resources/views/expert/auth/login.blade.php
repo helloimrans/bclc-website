@@ -10,9 +10,9 @@
     <meta name="description"
         content="Bangladesh Centre for Legal Compliance (BCLC) is a platform aiming to escalate the standard of legal and compliance services and advancing potential legal and compliance professionals.">
     <meta name="keywords"
-        content="bclc admin login">
+        content="bclc expert login">
     <meta name="author" content="BCLC">
-    <title>Admin Login | BCLC</title>
+    <title>Expert Login | BCLC</title>
     <link rel="apple-touch-icon" href="{{ asset('admin') }}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin') }}/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
@@ -71,10 +71,10 @@
                                     <h2 class="brand-text text-primary">BCLC</h2>
                                 </a>
 
-                                <h4 class="card-title mb-1">Admin Login</h4>
+                                <h4 class="card-title mb-1">Expert Login</h4>
                                 <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
-                                <form class="auth-login-form mt-2" action="{{ route('admin.login.store') }}"
+                                <form class="auth-login-form mt-2" action="{{ route('expert.login.store') }}"
                                     method="POST">
                                     @csrf
                                     <div class="mb-1">
@@ -108,6 +108,9 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                                    <div class="text-center">
+                                        <a href="{{url('/')}}" class="mt-2 d-inline-block text-center"> Back to Home</a>
+                                    </div>
                                 </form>
 
                             </div>
