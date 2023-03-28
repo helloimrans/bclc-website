@@ -34,7 +34,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('service.facility.update',$service_facility->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('service.facility.update', $service_facility->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -43,19 +44,11 @@
                                             <label class="form-label">Service & Facility Category</label>
                                             <select name="service_facility_category_id"
                                                 class="form-control @error('service_facility_category_id') is-invalid @enderror">
+                                                <option value="Select Category"></option>
                                                 @foreach ($service_facility_cats as $sf_cat)
-                                                <option
-                                                @if($service_facility->service_facility_category_id == $sf_cat->id)
-                                                value="{{ $sf_cat->id }}" selected
-                                                @else
-                                                value=""
-                                                @endif
-                                                >@if($service_facility->service_facility_category_id == $sf_cat->id)
-                                                {{ $sf_cat->name }}
-                                                @else
-                                                Select Category
-                                                @endif
-                                                </option>
+                                                    <option value="{{$sf_cat->id}}" @if($service_facility->service_facility_category_id == $sf_cat->id)  selected @else>
+                                                       {{ $sf_cat->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('service_facility_category_id')
@@ -67,7 +60,8 @@
                                         <div class="mb-1">
                                             <label class="form-label" for="">Service</label>
                                             <input type="text" name="service" placeholder="Enter service"
-                                                class="form-control @error('service') is-invalid @enderror" value="{{ $service_facility->service}}">
+                                                class="form-control @error('service') is-invalid @enderror"
+                                                value="{{ $service_facility->service }}">
 
                                             @error('service')
                                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -79,7 +73,8 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="">Title</label>
                                     <input type="text" name="title" placeholder="Enter title"
-                                        class="form-control @error('title') is-invalid @enderror" value="{{ $service_facility->title }}">
+                                        class="form-control @error('title') is-invalid @enderror"
+                                        value="{{ $service_facility->title }}">
 
                                     @error('title')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -88,7 +83,8 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="">Authority</label>
                                     <input type="text" name="authority" placeholder="Enter authority"
-                                        class="form-control @error('authority') is-invalid @enderror" value="{{ $service_facility->authority }}">
+                                        class="form-control @error('authority') is-invalid @enderror"
+                                        value="{{ $service_facility->authority }}">
 
                                     @error('authority')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -97,7 +93,8 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="">Contact Info</label>
                                     <input type="text" name="contact_info" placeholder="Enter contact info"
-                                        class="form-control @error('contact_info') is-invalid @enderror" value="{{ $service_facility->contact_info }}">
+                                        class="form-control @error('contact_info') is-invalid @enderror"
+                                        value="{{ $service_facility->contact_info }}">
 
                                     @error('contact_info')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -106,7 +103,8 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="">Source Link</label>
                                     <input type="text" name="source_link" placeholder="Enter source link"
-                                        class="form-control @error('source_link') is-invalid @enderror" value="{{ $service_facility->source_link }}">
+                                        class="form-control @error('source_link') is-invalid @enderror"
+                                        value="{{ $service_facility->source_link }}">
 
                                     @error('source_link')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -141,7 +139,8 @@
 
 
                                 <div class="mt-2 text-end">
-                                    <button type="submit" class="btn btn-info sub-btn"><i class="fa fa-save"></i> Save</button>
+                                    <button type="submit" class="btn btn-info sub-btn"><i class="fa fa-save"></i>
+                                        Save</button>
                                 </div>
                             </form>
                         </div>
