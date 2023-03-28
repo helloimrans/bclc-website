@@ -44,19 +44,11 @@
                                             <label class="form-label">Service & Facility Category</label>
                                             <select name="service_facility_category_id"
                                                 class="form-control @error('service_facility_category_id') is-invalid @enderror">
+                                                <option value="">Select Category</option>
                                                 @foreach ($service_facility_cats as $sf_cat)
-                                                <option
-                                                @if($service_facility->service_facility_category_id == $sf_cat->id)
-                                                value="{{ $sf_cat->id }}" selected
-                                                @else
-                                                value=""
-                                                @endif
-                                                >@if($service_facility->service_facility_category_id == $sf_cat->id)
-                                                {{ $sf_cat->name }}
-                                                @else
-                                                Select Category
-                                                @endif
-                                                </option>
+                                                    <option value="{{$sf_cat->id}}" @if($service_facility->service_facility_category_id == $sf_cat->id)  selected @endif>
+                                                       {{ $sf_cat->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('service_facility_category_id')
