@@ -77,7 +77,14 @@
             {{-- -----------------------------
                 Course Management
             ------------------------------ --}}
-            <li class="nav-item @if ($route == 'course.suitables.index' || $route == 'course.suitables.edit' || $route == 'course.suitables.create') open @endif"><a class="d-flex align-items-center"
+            <li class="nav-item @if (
+            $route == 'course.suitables.index' || 
+            $route == 'course.suitables.edit' || 
+            $route == 'course.suitables.create' ||
+            $route == 'courses.index' || 
+            // $route == 'courses.edit' || 
+            $route == 'courses.create'
+            ) open @endif"><a class="d-flex align-items-center"
                     href="#"><i class="fas fa-signature"></i>
                     <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Course
                         Management</span></a>
@@ -86,6 +93,15 @@
                             class="d-flex align-items-center" href="{{ route('course.suitables.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Roles">Suitables For Course</span></a>
+                    </li>
+                    <li class=" @if (
+                    $route == 'courses.index' || 
+                    // $route == 'courses.edit' || 
+                    $route == 'courses.create'
+                    ) active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('courses.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Course</span></a>
                     </li>
                 </ul>
             </li>

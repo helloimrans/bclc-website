@@ -57,10 +57,6 @@ class Course extends Model
             'name' => 'None',
         ]);
     }
-    public function suitables()
-    {
-        return $this->belongsToMany(SuitableForCourse::class, 'suitable_course')->where('status', 1);
-    }
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id', 'id')->withDefault([
@@ -69,7 +65,7 @@ class Course extends Model
     }
     public function serviceCategory()
     {
-        return $this->belongsTo(Service::class, 'service_category_id', 'id')->withDefault([
+        return $this->belongsTo(ServiceCategory::class, 'service_category_id', 'id')->withDefault([
             'name' => 'None',
         ]);
     }

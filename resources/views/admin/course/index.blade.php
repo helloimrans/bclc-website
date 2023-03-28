@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Suitable For Course')
+@section('title', 'Training Course')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Suitable For Course</h2>
+                        <h2 class="content-header-title float-start mb-0">Training Course</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Suitable For Course
+                                <li class="breadcrumb-item active">Training Course
                                 </li>
                             </ol>
                         </div>
@@ -26,12 +26,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Suitable For Course</h5>
+                                <h5 class="mb-0">Training Course</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="
-                                    {{ route('course.suitables.create') }}"
+                                    {{ route('courses.create') }}"
                                      class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
                                     </a>
                                 </div>
@@ -43,33 +43,46 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Name</th>
+                                            <th>Course Title</th>
+                                            <th>Image</th>
+                                            <th>Service</th>
+                                            <th>Service Category</th>
+                                            <th>Fee</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($suitables as $suitable)
+                                        @foreach ($courses as $course)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $suitable->name }}</td>
+                                                <td>{{ $course->title }}</td>
+                                                <td><img class="rounded" width="60"
+                                                    src="@if ($course->image) {{ asset($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                    alt="{{ $course->title }}">
+                                                </td>
+                                                <td>{{ $course->service->title }}</td>
+                                                <td>{{ $course->serviceCategory->name }}</td>
+                                                <td>{{ $course->fee }}</td>
                                                 <td>
-                                                    @if($suitable->status == 1)
+                                                    @if($course->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
                                                     @else
                                                         <span class="badge badge-light-warning">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $suitable->created_by->name }}</td>
+                                                <td>{{ $course->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{ route('course.suitables.edit',$suitable->id) }}
+                                                    {{-- {{ route('course.courses.edit',$course->id) }} --}}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
-                                                    <form class="d-inline" id="delForm" action="{{ route('course.suitables.destroy',$suitable->id) }}" method="POST">
+                                                    <form class="d-inline" id="delForm" action="
+                                                    {{-- {{ route('course.courses.destroy',$course->id) }} --}}
+                                                        " method="POST">
                                                         @csrf
                                                         @method('DELETE')
 

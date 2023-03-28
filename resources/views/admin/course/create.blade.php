@@ -36,8 +36,8 @@
                         </div>
                         <div class="card-body">
                             <form action="
-                            {{-- {{ route('course.suitables.store') }} --}}
-                            " method="POST">
+                            {{ route('courses.store') }}
+                            " method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
@@ -120,12 +120,12 @@
                                     <select name="schedule[]" class="select2 form-select" multiple>
                                         <optgroup label="Select Schedules">
                                                 <option value="Saturday">Saturday</option>
-                                                <option value="Saturday">Sunday</option>
-                                                <option value="Saturday">Monday</option>
-                                                <option value="Saturday">Tuesday</option>
-                                                <option value="Saturday">Wednesday</option>
-                                                <option value="Saturday">Thursday</option>
-                                                <option value="Saturday">Friday</option>
+                                                <option value="Sunday">Sunday</option>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                                <option value="Thursday">Thursday</option>
+                                                <option value="Friday">Friday</option>
                                         </optgroup>
                                     </select>
                                     @error('schedule')
@@ -233,7 +233,7 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="">Short Description</label>
                                     <textarea name="short_description" rows="2" class="summernote @error('short_description') is-invalid @enderror"
-                                        placeholder="Enter short_description">{{ old('short_description') }}</textarea>
+                                        placeholder="Enter short description">{{ old('short_description') }}</textarea>
                                     @error('short_description')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -241,7 +241,7 @@
                                 <div class="mb-1">
                                     <label class="form-label" for="">Key Takeways</label>
                                     <textarea name="key_takeaways" rows="2" class="summernote @error('key_takeaways') is-invalid @enderror"
-                                        placeholder="Enter key_takeaways">{{ old('key_takeaways') }}</textarea>
+                                        placeholder="Enter key takeaways">{{ old('key_takeaways') }}</textarea>
                                     @error('key_takeaways')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -269,6 +269,49 @@
                                 <div class="mb-1">
                                     <button type="button" id="upImgReset1"
                                         class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
+                                </div>
+
+                                <div class="form-group mb-1">
+                                    <div class="col-sm-2">
+                                        <label for="editor" class="control-label mb-1">Suitable Course</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            @foreach($suitables as $key => $row)
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label" for="suitable_course{{$key}}">
+                                                        <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}">
+                                                        {{$row->name}} 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            @error('suitable_course')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="provide_certificate" type="checkbox" value="" id="provide_certificate">
+                                    <label class="form-check-label" for="provide_certificate">
+                                        Provide Certificate
+                                    </label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="comming_soon" type="checkbox" value="" id="comming_soon">
+                                    <label class="form-check-label" for="comming_soon">
+                                        Comming Soon
+                                    </label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="home_slider" type="checkbox" value="" id="home_slider">
+                                    <label class="form-check-label" for="home_slider">
+                                        Home Slider
+                                    </label>
                                 </div>
 
 
@@ -361,6 +404,7 @@
         function generateId() {
             var uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
             document.getElementById("course_id").value = uniqueId;
+            document.getElementById("course_id").disabled = false;
         }
     </script>
 
