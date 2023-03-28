@@ -52,23 +52,87 @@
                                 <tr>
                                     <th>Title/Name</th>
                                     <th>Description</th>
+                                    <th>Activities/Services/Functions</th>
                                     <th>Ministry/Dept./Authority</th>
                                     <th>Address/Remarks</th>
                                     <th>Communications</th>
                                     <th>Source Link</th>
+                                    <th>File</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($officeCategory->officeFunctions as $officeFunction)
                                     <tr>
                                         <td>{{ $officeFunction->title }}</td>
-                                        <td>{{ $officeFunction->description }}</td>
+                                        <td>{!! substr(strip_tags($officeFunction->description), 0, 45) !!}...</td>
+                                        <td>{{ $officeFunction->service }}</td>
                                         <td>{{ $officeFunction->ministry_dept_authority }}</td>
                                         <td>{{ $officeFunction->address }}</td>
                                         <td>{{ $officeFunction->contact_info }}</td>
                                         <td><a href="{{ $officeFunction->source_lin }}"
                                                 target="_blank">{{ $officeFunction->source_link }}</a></td>
+                                        <td class="text-center">
+                                            @if ($officeFunction->file)
+                                            <a href="{{ $officeFunction->file }}" class="sfof-action-btn" download><i
+                                                    class="fa fa-file-pdf-o"></i></a>
+                                                    @endif
+                                                </td>
+                                        <td class="text-center">
+                                            <a href="javascript:;" data-toggle="modal" class="sfof-action-btn" data-target="#exampleModal_{{$officeFunction->id}}"><i class="fa fa-eye"></i></a>
+                                        </td>
+
                                     </tr>
+
+                                    <!--View Modal -->
+                                    <div class="service-cunsult-modal">
+                                        <div class="modal fade" id="exampleModal_{{$officeFunction->id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body pt-0">
+                                                        <div class="sm-body">
+                                                            <h5>{{$officeFunction->title}}</h5>
+                                                            <div class="sfof-details">
+                                                                <h6>Title/Name</h6>
+                                                                <p>{{$officeFunction->title}}</p>
+
+                                                                <h6>Description</h6>
+                                                                <p>{!!$officeFunction->description!!}</p>
+
+                                                                <h6>Service</h6>
+                                                                <p>{{$officeFunction->service}}</p>
+
+                                                                <h6>Ministry/Dept./Authority</h6>
+                                                                <p>{{$officeFunction->ministry_dept_authority}}</p>
+
+                                                                <h6>Address/Remarks</h6>
+                                                                <p>{{$officeFunction->address}}</p>
+
+                                                                <h6>Communications</h6>
+                                                                <p>{{$officeFunction->contact_info}}</p>
+
+                                                                <h6>Source Link</h6>
+                                                                <p><a href="{{$officeFunction->source_link}}" target="_blank">{{$officeFunction->source_link}}</a></p>
+
+                                                                <h6>File</h6>
+                                                                @if ($officeFunction->file)
+                                                                <p><a href="{{$officeFunction->file}}" download><i class="fa fa-download"></i> Download</a></p>
+                                                                @else
+                                                                <p>No file</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>

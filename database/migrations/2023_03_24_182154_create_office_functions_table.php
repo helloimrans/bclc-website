@@ -18,11 +18,13 @@ return new class extends Migration
 
             $table->bigInteger('office_category_id')->unsigned();
             $table->string('title');
-            $table->text('description');
-            $table->string('ministry_dept_authority');
-            $table->string('address');
-            $table->string('contact_info');
-            $table->string('source_link');
+            $table->text('description')->nullable();
+            $table->string('service')->nullable();
+            $table->string('ministry_dept_authority')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact_info')->nullable();
+            $table->string('source_link')->nullable();
+            $table->string('file')->nullable();
 
             $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();

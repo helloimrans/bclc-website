@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Service & Facility Category')
+@section('title', 'Create Office & Function')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Service & Facility Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Create Office & Function</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Service & Facility Category
+                                <li class="breadcrumb-item active">Create Office & Function
                                 </li>
                             </ol>
                         </div>
@@ -26,61 +26,69 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Service & Facility Category</h5>
+                                <h5 class="mb-0">Create Office & Function</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('service.facility.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('office.function.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('service.facility.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('office.function.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label">Service & Facility Category</label>
-                                            <select id="service_facility_category_id" name="service_facility_category_id"
-                                                class="form-control @error('service_facility_category_id') is-invalid @enderror">
-                                                <option value="" selected hidden>
-                                                    Select Service & Facility Category
+                                            <label class="form-label">Office Category</label>
+                                            <select id="office_category_id" name="office_category_id"
+                                                class="form-control @error('office_category_id') is-invalid @enderror">
+                                                <option value="">
+                                                    Select Category
                                                 </option>
-                                                @foreach ($service_facility_cats as $sf_cat)
-                                                <option value="{{ $sf_cat->id }}">{{ $sf_cat->name }}</option>
+                                                @foreach ($office_function_cats as $of_cat)
+                                                <option value="{{ $of_cat->id }}">{{ $of_cat->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('service_facility_category_id')
+                                            @error('office_category_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label" for="">Service</label>
-                                            <input type="text" name="service" placeholder="Enter service"
-                                                class="form-control @error('service') is-invalid @enderror" value="{{ old('service') }}">
+                                            <label class="form-label" for="">Title</label>
+                                            <input type="text" name="title" placeholder="Enter title"
+                                                class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
 
-                                            @error('service')
+                                            @error('title')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
-
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Title</label>
-                                    <input type="text" name="title" placeholder="Enter title"
-                                        class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
+                                    <label class="form-label" for=""><th>Activities/Services/Functions</th></label>
+                                    <input type="text" name="service" placeholder="Enter activities/service/functions"
+                                        class="form-control @error('service') is-invalid @enderror" value="{{ old('service') }}">
 
-                                    @error('title')
+                                    @error('service')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Authority</label>
-                                    <input type="text" name="authority" placeholder="Enter authority"
-                                        class="form-control @error('authority') is-invalid @enderror" value="{{ old('authority') }}">
+                                    <label class="form-label" for="">Ministry/Dept./Authority</label>
+                                    <input type="text" name="ministry_dept_authority" placeholder="Enter authority"
+                                        class="form-control @error('ministry_dept_authority') is-invalid @enderror" value="{{ old('ministry_dept_authority') }}">
 
-                                    @error('authority')
+                                    @error('ministry_dept_authority')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Address</label>
+                                    <input type="text" name="address" placeholder="Enter address"
+                                        class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
+
+                                    @error('address')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
