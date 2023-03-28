@@ -57,8 +57,8 @@ class ServiceFacilityController extends Controller
         $file = $request->file('file');
         if ($file) {
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploaded/service_&_facility'), $fileName);
-            $data->file = '/uploaded/service_&_facility/' . $fileName;
+            $file->move(public_path('uploaded/service_facility'), $fileName);
+            $data->file = '/uploaded/service_facility/' . $fileName;
         }
         $data->save();
 
@@ -114,8 +114,8 @@ class ServiceFacilityController extends Controller
             $file_path = public_path($data->file);
             @unlink($file_path);
             $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploaded/service_&_facility'), $fileName);
-            $data->file = '/uploaded/service_&_facility/' . $fileName;
+            $file->move(public_path('uploaded/service_facility'), $fileName);
+            $data->file = '/uploaded/service_facility/' . $fileName;
         }
         $data->update();
 

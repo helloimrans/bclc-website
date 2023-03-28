@@ -64,11 +64,11 @@
                                     <tr>
                                         <td>{{ $serviceFacility->service }}</td>
                                         <td>{{ $serviceFacility->title }}</td>
-                                        <td>{{ $serviceFacility->description }}</td>
+                                        <td>{!! substr(strip_tags($serviceFacility->description), 0, 45) !!}...</td>
                                         <td>{{ $serviceFacility->authority }}</td>
                                         <td>{{ $serviceFacility->contact_info }}</td>
                                         <td>{{ $serviceFacility->source_link }}</td>
-                                        <td class="text-center"><a href="{{ $serviceFacility->file }}"><i
+                                        <td class="text-center"><a href="{{ $serviceFacility->file }}" download><i
                                                     class="fa fa-file-pdf-o"></i></a></td>
                                     </tr>
                                 @endforeach

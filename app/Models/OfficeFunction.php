@@ -16,6 +16,7 @@ class OfficeFunction extends Model
         'office_category_id',
         'title',
         'description',
+        'service',
         'ministry_dept_authority',
         'address',
         'contact_info',
@@ -24,6 +25,19 @@ class OfficeFunction extends Model
         'created_by',
         'updated_by',
         'deleted_by'
-        
+
     ];
+
+    public function officeFunctionCategory()
+    {
+        return $this->belongsTo(OfficeCategory::class, 'office_category_id', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
 }

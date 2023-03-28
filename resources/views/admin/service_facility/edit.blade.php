@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Edit Service & Facility Category')
+@section('title', 'Edit Service & Facility')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Edit Service & Facility Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Edit Service & Facility</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Edit Service & Facility Category
+                                <li class="breadcrumb-item active">Edit Service & Facility
                                 </li>
                             </ol>
                         </div>
@@ -26,7 +26,7 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Edit Service & Facility Category</h5>
+                                <h5 class="mb-0">Edit Service & Facility</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex"><a href="{{ route('service.facility.index') }}"
@@ -53,7 +53,7 @@
                                                 >@if($service_facility->service_facility_category_id == $sf_cat->id)
                                                 {{ $sf_cat->name }}
                                                 @else
-                                                Select Service & Facility Category
+                                                Select Category
                                                 @endif
                                                 </option>
                                                 @endforeach

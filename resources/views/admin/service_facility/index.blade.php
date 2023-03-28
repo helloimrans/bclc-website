@@ -46,6 +46,7 @@
                                             <th>Service Facility Category</th>
                                             <th>Service</th>
                                             <th>Title</th>
+                                            <th>Description</th>
                                             <th>Authority</th>
                                             <th>Contact</th>
                                             <th>Source Link</th>
@@ -64,10 +65,11 @@
                                                 </td>
                                                 <td>{{ $sf->service }}</td>
                                                 <td>{{ $sf->title }}</td>
+                                                <td>{!! substr(strip_tags($sf->description), 0, 45) !!}...</td>
                                                 <td>{{ $sf->authority }}</td>
                                                 <td>{{ $sf->contact_info }}</td>
                                                 <td>{{ $sf->source_link }}</td>
-                                                <td>File</td>
+                                                <td><a  title="Download" href="{{$sf->file}}" download><i class="fa fa-download"></i> Download</a></td>
 
                                                 <td>
                                                     @if($sf->status == 1)
