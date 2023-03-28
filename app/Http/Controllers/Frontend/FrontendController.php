@@ -181,8 +181,36 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.training.courses');
     }
+
+
     public function courseDetails($slug)
     {
         return view('frontend.pages.training.course_details');
     }
+
+    
+    public function Registerlearner(){
+    
+        return view('frontend.pages.register');
+     }
+    
+
+     
+    public function ExpertRegistration(){
+    
+        return view('frontend.pages.expart_registration');
+     }
+
+      
+    public function SubscriberRegistration(){
+    
+        return view('frontend.pages.subscrib_registration');
+     }
+
+    // public function Registerlearner($slug)
+    // {
+    //     return view('');
+    // }
+
+
 }
