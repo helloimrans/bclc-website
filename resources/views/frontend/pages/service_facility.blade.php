@@ -3,8 +3,8 @@
 @section('content')
 
 @section('styles')
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap4.min.css">
 @endsection
 
 <!-- start page header -->
@@ -45,7 +45,7 @@
         @foreach ($serviceCategories as $serviceCategory)
             <div class="row mt-4" id="cat_{{ $serviceCategory->id }}">
                 <div class="col">
-                    <div class="office_function article-details bg-white table-responsive">
+                    <div class="office_function article-details bg-white">
                         <h5 class="ad-titles mb-4" style="text-transform: inherit">{{ $serviceCategory->name }}</h5>
                         <table class="table table-striped table-bordered table-sm dataTable">
                             <thead>
@@ -57,6 +57,7 @@
                                     <th>Communications</th>
                                     <th>Source Link</th>
                                     <th>File</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,7 +71,59 @@
                                         <td>{{ $serviceFacility->source_link }}</td>
                                         <td class="text-center"><a href="{{ $serviceFacility->file }}" download><i
                                                     class="fa fa-file-pdf-o"></i></a></td>
+                                                    <td class="text-center">
+                                                        <a href="javascript:;" data-toggle="modal" class="sfof-action-btn" data-target="#exampleModal_{{$serviceFacility->id}}"><i class="fa fa-eye"></i></a>
+                                                    </td>
                                     </tr>
+
+                                    <!--View Modal -->
+                                    <div class="service-cunsult-modal">
+                                        <div class="modal fade" id="exampleModal_{{$serviceFacility->id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body pt-0">
+                                                        <div class="sm-body">
+                                                            <h5>{{$serviceFacility->title}}</h5>
+                                                            <div class="sfof-details">
+                                                                <h6>Service</h6>
+                                                                <p>{{$serviceFacility->service}}</p>
+
+                                                                <h6>Title/Name</h6>
+                                                                <p>{{$serviceFacility->title}}</p>
+
+                                                                <h6>Description/ Key Points /Services</h6>
+                                                                <p>{!!$serviceFacility->description!!}</p>
+
+
+
+                                                                <h6>Authority</h6>
+                                                                <p>{{$serviceFacility->ministry_dept_authority}}</p>
+
+                                                                <h6>Communications</h6>
+                                                                <p>{{$serviceFacility->contact_info}}</p>
+
+                                                                <h6>Source Link</h6>
+                                                                <p><a href="{{$serviceFacility->source_link}}" target="_blank">{{$serviceFacility->source_link}}</a></p>
+
+                                                                <h6>File</h6>
+                                                                @if ($serviceFacility->file)
+                                                                <p><a href="{{$serviceFacility->file}}" download><i class="fa fa-download"></i> Download</a></p>
+                                                                @else
+                                                                <p>No file</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -85,6 +138,8 @@
 @section('scripts')
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.dataTable').DataTable({
