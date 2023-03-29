@@ -75,13 +75,19 @@
                                                 <td>{{ $course->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{-- {{ route('course.courses.edit',$course->id) }} --}}
+                                                    {{ route('courses.show',$course->id) }}
+                                                    " data-bs-toggle="tooltip"
+                                                        data-bs-original-title="Edit">
+                                                        <i class="far fa-eye text-dark"></i>
+                                                    </a>
+                                                    <a class="me-1" href="
+                                                    {{ route('courses.edit',$course->id) }}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="
-                                                    {{-- {{ route('course.courses.destroy',$course->id) }} --}}
+                                                    {{ route('courses.destroy',$course->id) }}
                                                         " method="POST">
                                                         @csrf
                                                         @method('DELETE')

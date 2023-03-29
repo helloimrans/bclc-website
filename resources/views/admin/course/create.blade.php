@@ -30,7 +30,7 @@
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex"><a href="
-                                    {{-- {{ route('course.suitables.index') }} --}}
+                                    {{ route('courses.index') }}
                                     " class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
@@ -296,57 +296,23 @@
                                 <hr>
 
                                 <div class="form-check mb-1">
-                                    <input class="form-check-input" name="provide_certificate" type="checkbox" value="" id="provide_certificate">
+                                    <input class="form-check-input" name="provide_certificate" type="checkbox" value="1" id="provide_certificate">
                                     <label class="form-check-label" for="provide_certificate">
                                         Provide Certificate
                                     </label>
                                 </div>
                                 <div class="form-check mb-1">
-                                    <input class="form-check-input" name="comming_soon" type="checkbox" value="" id="comming_soon">
+                                    <input class="form-check-input" name="comming_soon" type="checkbox" value="1" id="comming_soon">
                                     <label class="form-check-label" for="comming_soon">
                                         Comming Soon
                                     </label>
                                 </div>
                                 <div class="form-check mb-1">
-                                    <input class="form-check-input" name="home_slider" type="checkbox" value="" id="home_slider">
+                                    <input class="form-check-input" name="home_slider" type="checkbox" value="1" id="home_slider">
                                     <label class="form-check-label" for="home_slider">
                                         Home Slider
                                     </label>
                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <div class="mb-1">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-control">
