@@ -37,20 +37,6 @@
             <div class="media">
               <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
               <div class="media-body">
-                <a href="{{ route('blog') }}"> Legal Blog</a>
-              </div>
-            </div>
-            <!-- footer link -->
-            <div class="media">
-              <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
-              <div class="media-body">
-                <a href="{{ route('news') }}">Legal News</a>
-              </div>
-            </div>
-            <!-- footer link -->
-            <div class="media">
-              <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
-              <div class="media-body">
                 <a href="{{ route('laws.rules') }}">Laws & Rules</a>
               </div>
             </div>
@@ -86,7 +72,14 @@
             <div class="media">
               <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
               <div class="media-body">
-                <a href="#">Career in Legal Sector</a>
+                <a href="{{route('terms.condition')}}">Terms & Conditions</a>
+              </div>
+            </div>
+            <!-- footer link -->
+            <div class="media">
+              <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
+              <div class="media-body">
+                <a href="{{route('privacy.policy')}}">Privacy Policy</a>
               </div>
             </div>
           </div>

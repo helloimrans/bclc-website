@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('terms_conditions', function (Blueprint $table) {
             $table->id();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

@@ -1974,3 +1974,49 @@ header.scrolled .logo {
     text-decoration: none !important;
 }
 
+/* contact section styles */
+
+.contact-us-form form .form-control {
+    padding: 1.3rem .75rem;
+    border-radius: 2px;
+    background: #f1f1f1;
+    border: none;
+}
+
+.contact-us .section-title2 h2::after {
+    width: 100%;
+}
+
+.contact-us-details {
+    padding: 15px;
+    padding-top: 30px;
+}
+
+.ad-icons {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.office-address .ad-hotline {
+
+    background: #42b6ff;
+}
+
+.office-address .ad-phone {
+    background: #0a0;
+}
+
+.office-address .ad-email {
+    background: #f95732;
+}
+
+.office-address {
+    font-size: 15px;
+}
+
+

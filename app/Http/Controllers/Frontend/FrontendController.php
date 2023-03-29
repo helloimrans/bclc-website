@@ -11,7 +11,9 @@ use App\Models\LawChapter;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\OfficeCategory;
+use App\Models\PrivacyPolicy;
 use App\Models\ServiceFacilityCategory;
+use App\Models\TermsCondition;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -182,10 +184,25 @@ class FrontendController extends Controller
         return view('frontend.training.courses');
     }
 
-
     public function courseDetails($slug)
     {
         return view('frontend.training.course_details');
+    }
+
+    public function termsCondition()
+    {
+        $data['termsCondition'] = TermsCondition::latest()->first();
+        return view('frontend.terms_condition.trams_condition',$data);
+    }
+    public function privacyPolicy()
+    {
+        $data['privacyPolicy'] = PrivacyPolicy::latest()->first();
+        return view('frontend.privacy_policy.privacy_policy', $data);
+    }
+
+    public function contactUs()
+    {
+        return view('frontend.contact_us.contact_us');
     }
 
 }

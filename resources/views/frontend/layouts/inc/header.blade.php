@@ -80,7 +80,7 @@
                                 <li><a href="gallery.html">Gallery</a></li>
                                 <li><a href="video.html">Video</a></li>
                                 <li><a href="career.html">Career</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="{{route('contact.us')}}">Contact Us</a></li>
                             </ul>
                         </div>
                     </li>
@@ -329,7 +329,7 @@
             </div>
             <div class="menu-box">
                 <div class="menu-link">
-                    <a href="contact.html">Contact Us</a>
+                    <a href="{{route('contact.us')}}">Contact Us</a>
                 </div>
             </div>
 

@@ -72,13 +72,13 @@ Route::get('/legal/insights', [FrontendController::class,'insights'])->name('ins
 //Insights details
 Route::get('/legal/insights/details/{slug}', [FrontendController::class,'insightsDetails'])->name('insights.details');
 //Laws & Rules
-Route::get('/laws-&-rules', [FrontendController::class,'lawsRules'])->name('laws.rules');
+Route::get('/laws-and-rules', [FrontendController::class,'lawsRules'])->name('laws.rules');
 //Laws & Rules View
-Route::get('/laws-&-rules/view/{slug}', [FrontendController::class, 'lawsRulesView'])->name('laws.rules.view');
+Route::get('/laws-and-rules/view/{slug}', [FrontendController::class, 'lawsRulesView'])->name('laws.rules.view');
 //Laws & Rules Details
-Route::get('/laws-&-rules/details/{slug}', [FrontendController::class, 'lawsRulesDetails'])->name('laws.rules.details');
+Route::get('/laws-and-rules/details/{slug}', [FrontendController::class, 'lawsRulesDetails'])->name('laws.rules.details');
 //Laws Chapter Chapter
-Route::get('/laws-&-rules/chapter/{slug}', [FrontendController::class, 'lawsRulesChapter'])->name('laws.rules.chapter');
+Route::get('/laws-and-rules/chapter/{slug}', [FrontendController::class, 'lawsRulesChapter'])->name('laws.rules.chapter');
 
 //Consultation request
 Route::post('/consultation/request', [ConsultationRequestController::class,'store'])->name('consultation.request');
@@ -90,9 +90,9 @@ Route::get('search/result/one/{slug}', [SearchController::class, 'searchResultOn
 
 
 //Office and Functions
-Route::get('office-&-functions', [FrontendController::class, 'officeFunction'])->name('office.function');
+Route::get('office-and-functions', [FrontendController::class, 'officeFunction'])->name('office.function');
 //Service & Facilities
-Route::get('service-&-facilities', [FrontendController::class, 'serviceFacility'])->name('service.facility');
+Route::get('service-and-facilities', [FrontendController::class, 'serviceFacility'])->name('service.facility');
 
 
 // Training
@@ -100,6 +100,15 @@ Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
     Route::get('courses', [FrontendController::class, 'courses'])->name('courses');
     Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
 });
+
+//Terms Condition
+Route::get('terms-and-conditions', [FrontendController::class, 'termsCondition'])->name('terms.condition');
+
+//Privacy Policy
+Route::get('privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy.policy');
+
+//Privacy Policy
+Route::get('contact-us', [FrontendController::class, 'contactUs'])->name('contact.us');
 
 
 require __DIR__ . '/auth.php';
