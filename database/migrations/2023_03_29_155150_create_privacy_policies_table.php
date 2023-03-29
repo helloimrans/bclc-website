@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('privacy_policies', function (Blueprint $table) {
             $table->id();
             $table->longText('description')->nullable();
+            $table->bigInteger('created_by')->unsigned()->nullable();
+            $table->bigInteger('updated_by')->unsigned()->nullable();
+            $table->bigInteger('deleted_by')->unsigned()->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
