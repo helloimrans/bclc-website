@@ -6,6 +6,8 @@ use App\Http\Controllers\Learner\LearnerController;
 //Admin auth route
 Route::group(['prefix' => 'learner', 'as' => 'learner.'], function () {
     Route::get('login', [LearnerController::class, 'loginForm'])->name('login')->middleware('learner.guest');
+    Route::get('registration', [LearnerController::class, 'registrationForm'])->name('registration');
+    Route::post('registration/store', [LearnerController::class, 'registration'])->name('registration.store');
     Route::post('login/store', [LearnerController::class, 'login'])->name('login.store');
     Route::get('dashboard', [LearnerController::class, 'dashboard'])->name('dashboard')->middleware('learner.auth');
     Route::get('logout', [LearnerController::class, 'logout'])->name('logout')->middleware('learner.auth');

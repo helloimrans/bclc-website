@@ -214,11 +214,11 @@
                     <div class="sm-body">
                         <h5>Register Options</h5>
                         <div class="nav-login-options">
-                            <a href="{{route('Register.learner')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
+                            <a href="{{route('learner.registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
                                 Learner</a>
-                            <a href="{{route('Expert.Registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
+                            <a href="{{route('expert.registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
                                 Expert</a>
-                            <a href="{{route('Subscriber.Registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a Subscriber</a>
+                            <a href="#!"><i class="fa fa-user-plus mr-2"></i> Register as a Subscriber</a>
                         </div>
                     </div>
                 </div>

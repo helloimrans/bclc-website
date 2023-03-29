@@ -101,11 +101,5 @@ Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
     Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
 });
 
-//Register
-
-Route::get('register-&-learner', [FrontendController::class, 'Registerlearner'])->name('Register.learner');
-Route::get('expert-&-registration', [FrontendController::class, 'ExpertRegistration'])->name('Expert.Registration');
-Route::get('subscriber-&-registration', [FrontendController::class, 'SubscriberRegistration'])->name('Subscriber.Registration');
-
 
 require __DIR__ . '/auth.php';

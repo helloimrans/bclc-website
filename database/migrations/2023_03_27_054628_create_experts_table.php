@@ -17,9 +17,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('mobile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->tinyInteger('status')->default(0);
+
+            $table->string('is_lawyer')->nullable();
+            $table->string('is_consultant')->nullable();
+            $table->string('is_trainer')->nullable();
+            $table->string('is_writer')->nullable();
+
+            $table->boolean('is_approved')->default(0);
+            $table->boolean('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

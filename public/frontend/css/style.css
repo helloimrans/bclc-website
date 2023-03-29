@@ -52,7 +52,7 @@
 /*header area styles*/
 
 .logo {
-    width: 100px;
+    width: 90px;
     transition: 0.5s;
 }
 
@@ -94,7 +94,7 @@ header {
 .menu-area > ul > li > a {
     text-decoration: none;
     color: #000000;
-    padding: 32px 15px;
+    padding: 28px 15px;
     display: block;
     transition: 0.5s;
 }
@@ -1951,5 +1951,26 @@ header.scrolled .logo {
     line-height: 30px;
     font-size: 15px;
     text-align: center;
+}
+
+/* learner registration styles */
+.login-registration-box form label {
+    font-size: 15px;
+    font-weight: 500;
+}
+.login-registration-box form input {
+    font-size: 15px;
+    background: #fafdff;
+    border: 1px solid #e9e9e9;
+}
+.login-registration-box h4{
+    font-size: 18px;
+    color: var(--td);
+}
+.regi-expert-role {
+    margin-bottom: 10px;
+}
+.already-registered-txt{
+    text-decoration: none !important;
 }
 
