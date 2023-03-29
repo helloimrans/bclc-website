@@ -45,7 +45,7 @@
         @foreach ($officeCategories as $officeCategory)
             <div class="row mt-4" id="cat_{{ $officeCategory->id }}">
                 <div class="col">
-                    <div class="office_function article-details bg-white table-responsive">
+                    <div class="office_function article-details bg-white">
                         <h5 class="ad-titles mb-4" style="text-transform: inherit">{{ $officeCategory->name }}</h5>
                         <table class="table table-striped table-bordered table-sm dataTable">
                             <thead>
