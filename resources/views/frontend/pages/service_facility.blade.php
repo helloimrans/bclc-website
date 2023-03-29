@@ -103,7 +103,7 @@
 
 
                                                                 <h6>Authority</h6>
-                                                                <p>{{$serviceFacility->ministry_dept_authority}}</p>
+                                                                <p>{{$serviceFacility->authority}}</p>
 
                                                                 <h6>Communications</h6>
                                                                 <p>{{$serviceFacility->contact_info}}</p>
