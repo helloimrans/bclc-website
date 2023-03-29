@@ -13,7 +13,7 @@ class LearnerController extends Controller
     public function registrationForm()
     {
         $data['userType'] = "Learner";
-        return view('frontend.pages.auth.registration', $data);
+        return view('frontend.auth.registration', $data);
     }
 
     public function registration(Request $request)
@@ -53,7 +53,7 @@ class LearnerController extends Controller
     public function loginForm()
     {
         $data['userType'] = "Learner";
-        return view('frontend.pages.auth.login', $data);
+        return view('frontend.auth.login', $data);
     }
 
     public function login(Request $request)
