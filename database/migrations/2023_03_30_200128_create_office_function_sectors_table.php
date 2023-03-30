@@ -13,19 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_facilities', function (Blueprint $table) {
+        Schema::create('office_function_sectors', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('service_facility_sector_id')->unsigned();
-            $table->bigInteger('service_facility_category_id')->unsigned()->nullable();
-            $table->string('service')->nullable();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('authority')->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('contact_mobile')->nullable();
-            $table->string('contact_link')->nullable();
-            $table->string('file')->nullable();
-
+            $table->string('name')->unique();
             $table->integer('sort')->nullable();
             $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();
@@ -43,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_facilities');
+        Schema::dropIfExists('office_function_sectors');
     }
 };

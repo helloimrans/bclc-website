@@ -6,29 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ServiceFacility extends Model
+class ServiceFacilitySector extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'service_facility_sector_id',
-        'service_facility_category_id',
-        'service',
-        'title',
-        'description',
-        'authority',
-        'contact_email',
-        'contact_mobile',
-        'contact_link',
-        'file',
+        'name',
         'sort',
         'status',
         'created_by',
         'updated_by',
         'deleted_by',
     ];
+
+    public function  serviceFacilities()
+    {
+        return $this->hasMany(ServiceFacility::class);
+    }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
@@ -38,12 +34,6 @@ class ServiceFacility extends Model
     public function updatedBy()
     {
         return $this->belongsTo(Admin::class, 'updated_by', 'id')->withDefault([
-            'name' => 'None',
-        ]);
-    }
-    public function category()
-    {
-        return $this->belongsTo(ServiceFacilityCategory::class)->withDefault([
             'name' => 'None',
         ]);
     }

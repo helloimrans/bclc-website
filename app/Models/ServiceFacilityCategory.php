@@ -21,10 +21,6 @@ class ServiceFacilityCategory extends Model
         'deleted_by',
     ];
     
-    public function  serviceFacilities()
-    {
-        return $this->hasMany(ServiceFacility::class);
-    }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([

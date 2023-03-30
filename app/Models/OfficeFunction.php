@@ -13,24 +13,32 @@ class OfficeFunction extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'office_category_id',
+        'office_function_sector_id',
+        'office_function_category_id',
         'title',
         'description',
         'service',
         'ministry_dept_authority',
         'address',
-        'contact_info',
-        'source_link',
+        'contact_email',
+        'contact_mobile',
+        'contact_link',
         'status',
+        'sort',
         'created_by',
         'updated_by',
         'deleted_by'
-
     ];
 
-    public function officeFunctionCategory()
+    public function category()
     {
-        return $this->belongsTo(OfficeCategory::class, 'office_category_id', 'id')->withDefault([
+        return $this->belongsTo(OfficeFunctionCategory::class, 'office_function_category_id', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function sector()
+    {
+        return $this->belongsTo(OfficeFunctionSector::class, 'office_function_sector_id','id')->withDefault([
             'name' => 'None',
         ]);
     }

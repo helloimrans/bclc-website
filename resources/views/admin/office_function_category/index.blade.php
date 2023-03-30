@@ -31,7 +31,7 @@
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="
-                                    {{ route('office.category.create') }}"
+                                    {{ route('of.category.create') }}"
                                      class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
                                     </a>
                                 </div>
@@ -44,35 +44,35 @@
                                         <tr>
                                             <th>SL</th>
                                             <th>Name</th>
-                                            <th>Short</th>
+                                            <th>Sort</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($office_function_cats as $of_cat)
+                                        @foreach ($of_categories as $of_category)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $of_cat->name }}</td>
-                                                <td>{{ $of_cat->sort }}</td>
+                                                <td>{{ $of_category->name }}</td>
+                                                <td>{{ $of_category->sort }}</td>
                                                 <td>
-                                                    @if($of_cat->status == 1)
+                                                    @if($of_category->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
                                                     @else
                                                         <span class="badge badge-light-warning">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $of_cat->createdBy->name }}</td>
+                                                <td>{{ $of_category->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{ route('office.category.edit',$of_cat->id) }}
+                                                    {{ route('of.category.edit',$of_category->id) }}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="
-                                                    {{ route('office.category.destroy',$of_cat->id) }}
+                                                    {{ route('of.category.destroy',$of_category->id) }}
                                                     " method="POST">
                                                         @csrf
                                                         @method('DELETE')

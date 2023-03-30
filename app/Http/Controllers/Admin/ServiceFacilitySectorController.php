@@ -3,27 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServiceFacilitySector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\ServiceFacilityCategory;
 
-
-class ServiceFacilityCatController extends Controller
+class ServiceFacilitySectorController extends Controller
 {
     public function index()
     {
-        $data['sf_categories'] = ServiceFacilityCategory::with('createdBy')->latest()->get();
-        return view('admin.service_facility_category.index', $data);
+        $data['sf_sectors'] = ServiceFacilitySector::with('createdBy')->latest()->get();
+        return view('admin.service_facility_sector.index', $data);
     }
     public function create()
     {
-        return view('admin.service_facility_category.create');
+        return view('admin.service_facility_sector.create');
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:service_facility_categories,name',
+            'name' => 'required|unique:service_facility_sectors,name',
         ]);
 
         if ($validator->fails()) {
@@ -35,25 +34,25 @@ class ServiceFacilityCatController extends Controller
         }
         $input = $request->all();
         $input['created_by'] = Auth::guard('admin')->user()->id;
-        ServiceFacilityCategory::create($input);
+        ServiceFacilitySector::create($input);
         $notification = array(
-            'message' => 'Successfully service & facility category created.',
+            'message' => 'Successfully service & facility sector created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('sf.category.index')->with($notification);
+        return redirect()->route('sf.sector.index')->with($notification);
     }
     public function show($id)
     {
     }
     public function edit($id)
     {
-        $data['sf_category'] = ServiceFacilityCategory::findOrFail($id);
-        return view('admin.service_facility_category.edit', $data);
+        $data['sf_sector'] = ServiceFacilitySector::findOrFail($id);
+        return view('admin.service_facility_sector.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:service_facility_categories,name,' . $id,
+            'name' => 'required|unique:service_facility_sectors,name,' . $id,
         ]);
 
         if ($validator->fails()) {
@@ -65,19 +64,19 @@ class ServiceFacilityCatController extends Controller
         }
 
         $input = $request->all();
-        $data = ServiceFacilityCategory::find($id);
+        $data = ServiceFacilitySector::find($id);
         $input['updated_by'] = Auth::guard('admin')->user()->id;
 
         $data->update($input);
         $notification = array(
-            'message' => 'Successfully service & facility category updated.',
+            'message' => 'Successfully service & facility sector updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('sf.category.index')->with($notification);
+        return redirect()->route('sf.sector.index')->with($notification);
     }
     public function destroy($id)
     {
-        ServiceFacilityCategory::find($id)->delete();
+        ServiceFacilitySector::find($id)->delete();
         $notification = array(
             'message' => 'Successfully data deleted.',
             'alert-type' => 'success'

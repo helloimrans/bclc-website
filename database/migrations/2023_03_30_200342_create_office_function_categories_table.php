@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('office_categories', function (Blueprint $table) {
+        Schema::create('office_function_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->integer('sort')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('office_categories');
+        Schema::dropIfExists('office_function_categories');
     }
 };

@@ -16,16 +16,19 @@ return new class extends Migration
         Schema::create('office_functions', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('office_category_id')->unsigned();
+            $table->bigInteger('office_function_sector_id')->unsigned();
+            $table->bigInteger('office_function_category_id')->unsigned()->nullable();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('service')->nullable();
+            $table->longText('service')->nullable();
             $table->string('ministry_dept_authority')->nullable();
             $table->string('address')->nullable();
-            $table->string('contact_info')->nullable();
-            $table->string('source_link')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->string('contact_mobile')->nullable();
+            $table->string('contact_link')->nullable();
             $table->string('file')->nullable();
 
+            $table->integer('sort')->nullable();
             $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();
             $table->bigInteger('updated_by')->unsigned()->nullable();

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Service & Facility Category')
+@section('title', 'Office & Function Sector')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Service & Facility Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Office & Function Sector</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Service & Facility Category
+                                <li class="breadcrumb-item active">Office & Function Sector
                                 </li>
                             </ol>
                         </div>
@@ -26,12 +26,12 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Service & Facility Category</h5>
+                                <h5 class="mb-0">Office & Function Sector</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="
-                                    {{ route('sf.category.create') }}"
+                                    {{ route('of.sector.create') }}"
                                      class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
                                     </a>
                                 </div>
@@ -51,28 +51,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sf_categories as $sf_category)
+                                        @foreach ($of_sectors as $of_sector)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $sf_category->name }}</td>
-                                                <td>{{ $sf_category->sort }}</td>
+                                                <td>{{ $of_sector->name }}</td>
+                                                <td>{{ $of_sector->sort }}</td>
                                                 <td>
-                                                    @if($sf_category->status == 1)
+                                                    @if($of_sector->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
                                                     @else
                                                         <span class="badge badge-light-warning">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $sf_category->createdBy->name }}</td>
+                                                <td>{{ $of_sector->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{ route('sf.category.edit',$sf_category->id) }}
+                                                    {{ route('of.sector.edit',$of_sector->id) }}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="
-                                                    {{ route('sf.category.destroy',$sf_category->id) }}
+                                                    {{ route('of.sector.destroy',$of_sector->id) }}
                                                     " method="POST">
                                                         @csrf
                                                         @method('DELETE')

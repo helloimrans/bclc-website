@@ -3,27 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\OfficeFunctionCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\ServiceFacilityCategory;
 
-
-class ServiceFacilityCatController extends Controller
+class OfficeFunctionCatController extends Controller
 {
     public function index()
     {
-        $data['sf_categories'] = ServiceFacilityCategory::with('createdBy')->latest()->get();
-        return view('admin.service_facility_category.index', $data);
+        $data['of_categories'] = OfficeFunctionCategory::with('createdBy')->latest()->get();
+        return view('admin.office_function_category.index', $data);
     }
     public function create()
     {
-        return view('admin.service_facility_category.create');
+        return view('admin.office_function_category.create');
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:service_facility_categories,name',
+            'name' => 'required|unique:office_function_categories,name',
         ]);
 
         if ($validator->fails()) {
@@ -35,25 +34,25 @@ class ServiceFacilityCatController extends Controller
         }
         $input = $request->all();
         $input['created_by'] = Auth::guard('admin')->user()->id;
-        ServiceFacilityCategory::create($input);
+        OfficeFunctionCategory::create($input);
         $notification = array(
-            'message' => 'Successfully service & facility category created.',
+            'message' => 'Successfully office & function category created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('sf.category.index')->with($notification);
+        return redirect()->route('of.category.index')->with($notification);
     }
     public function show($id)
     {
     }
     public function edit($id)
     {
-        $data['sf_category'] = ServiceFacilityCategory::findOrFail($id);
-        return view('admin.service_facility_category.edit', $data);
+        $data['of_category'] = OfficeFunctionCategory::findOrFail($id);
+        return view('admin.office_function_category.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:service_facility_categories,name,' . $id,
+            'name' => 'required|unique:office_function_categories,name,' . $id,
         ]);
 
         if ($validator->fails()) {
@@ -65,23 +64,25 @@ class ServiceFacilityCatController extends Controller
         }
 
         $input = $request->all();
-        $data = ServiceFacilityCategory::find($id);
+        $data = OfficeFunctionCategory::find($id);
         $input['updated_by'] = Auth::guard('admin')->user()->id;
 
         $data->update($input);
         $notification = array(
-            'message' => 'Successfully service & facility category updated.',
+            'message' => 'Successfully office & function category updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('sf.category.index')->with($notification);
+        return redirect()->route('of.category.index')->with($notification);
     }
     public function destroy($id)
     {
-        ServiceFacilityCategory::find($id)->delete();
+        OfficeFunctionCategory::find($id)->delete();
         $notification = array(
-            'message' => 'Successfully data deleted.',
+            'message' => 'Successfully deleted.',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
     }
+
+
 }

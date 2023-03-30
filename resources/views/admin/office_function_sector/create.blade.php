@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Creat Office & Function Category')
+@section('title', 'Creat Office & Function Sector')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Create Office & Function Category</h2>
+                        <h2 class="content-header-title float-start mb-0">Create Office & Function Sector</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create Office & Function Category
+                                <li class="breadcrumb-item active">Create Office & Function Sector
                                 </li>
                             </ol>
                         </div>
@@ -26,14 +26,14 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Create Office & Function Category</h5>
+                                <h5 class="mb-0">Create Office & Function Sector</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('of.category.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('of.sector.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('of.category.store') }}" method="POST">
+                            <form action="{{ route('of.sector.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-1">
                                     <label class="form-label" for="">Name</label>
