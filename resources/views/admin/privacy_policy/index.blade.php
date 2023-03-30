@@ -29,8 +29,12 @@
                                 <h5 class="mb-0">Privacy Policy</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('PrivacyPolicy.settings.create') }}" class="btn btn-info btn-sm"><i
-                                            data-feather='plus-square'></i> Add New</a></div>
+                                <div class="dt-buttons d-inline-flex">
+                                    @if ($privacy_policies->count() <= 0)
+                                    <a href="{{ route('privacy.policy.create') }}" class="btn btn-info btn-sm"><i
+                                        data-feather='plus-square'></i> Add New</a>
+                                    </div>
+                                    @endif
                             </div>
                         </div>
                         <div class="card-body">
@@ -40,30 +44,21 @@
                                         <tr>
                                             <th>SL</th>
                                              <th>Description</th>
-                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                   
-                                    @foreach($categories as $category)
+
+                                    @foreach($privacy_policies as $privacy_policy)
                                             <tr>
                                                 <td>{{ $loop->iteration}}</td>
-                                                 <td>{!! $category->description!!}</td>
+                                                 <td>{!! substr(strip_tags($privacy_policy->description), 0, 45) !!}...</td>
                                                 <td>
-                                                @if ($category->status == 1)
-                                                        <span class="badge badge-light-success">Active</span>
-                                                    @else
-                                                        <span class="badge badge-light-warning">Deactive</span>
-                                                    @endif
-                                                  
-                                                 </td>
-                                                <td>
-                                                    <a class="me-1" href="{{ route('PrivacyPolicy.settings.edit', $category->id) }}" data-bs-toggle="tooltip"
+                                                    <a class="me-1" href="{{ route('privacy.policy.edit', $privacy_policy->id) }}" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
-                                                    <form class="d-inline" id="delForm" action=" {{ route('PrivacyPolicy.settings.destroy',$category->id) }}" method="POST">
+                                                    <form class="d-inline" id="delForm" action=" {{ route('privacy.policy.destroy',$privacy_policy->id) }}" method="POST">
                                                     @csrf
                                                         @method('DELETE')
 
@@ -74,7 +69,7 @@
                                             </tr>
 
                                           @endforeach
-                                      
+
                                     </tbody>
                                 </table>
                             </div>

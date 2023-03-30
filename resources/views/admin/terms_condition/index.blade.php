@@ -29,8 +29,12 @@
                                 <h5 class="mb-0">Terms & Conditions</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('TermsCondition.settings.create') }}" class="btn btn-info btn-sm"><i
-                                            data-feather='plus-square'></i> Add New</a></div>
+                                <div class="dt-buttons d-inline-flex">
+                                    @if ($terms_conditions->count() <= 0)
+                                        <a href="{{ route('terms.condition.create') }}" class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New</a>
+                                    @endif
+
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -39,40 +43,34 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                             <th>Description</th>
-                                            <th>Status</th>
+                                            <th>Description</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                          @foreach($categories as $category)
+                                        @foreach ($terms_conditions as $terms_condition)
                                             <tr>
-                                                <td>{{ $loop->iteration}}</td>
-                                                 <td>{!! $category->description !!}</td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{!! substr(strip_tags($terms_condition->description), 0, 45) !!}...</td>
                                                 <td>
-                                                @if ($category->status == 1)
-                                                        <span class="badge badge-light-success">Active</span>
-                                                    @else
-                                                        <span class="badge badge-light-warning">Deactive</span>
-                                                    @endif
-                                                  
-                                                 </td>
-                                                <td>
-                                                    <a class="me-1" href="{{ route('TermsCondition.settings.edit', $category->id) }}" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Edit">
+                                                    <a class="me-1"
+                                                        href="{{ route('terms.condition.edit', $terms_condition->id) }}"
+                                                        data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
-                                                    <form class="d-inline" id="delForm" action=" {{ route('TermsCondition.settings.destroy',$category->id) }}" method="POST">
-                                                    @csrf
+                                                    <form class="d-inline" id="delForm"
+                                                        action=" {{ route('terms.condition.destroy', $terms_condition->id) }}"
+                                                        method="POST">
+                                                        @csrf
                                                         @method('DELETE')
 
-                                                        <button id="delete" type="submit" class="me-1 dlt-btn" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Delete"><i class="far fa-trash-alt text-danger"></i></button>
+                                                        <button id="delete" type="submit" class="me-1 dlt-btn"
+                                                            data-bs-toggle="tooltip" data-bs-original-title="Delete"><i
+                                                                class="far fa-trash-alt text-danger"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
-
-                                          @endforeach
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -18,8 +18,8 @@ class PrivacyPolicyController extends Controller
      */
     public function index()
     {
-          $data['categories'] = privacyPolicy::latest()->get();
-        return view('admin.privacy_policy_settings.index',$data);
+          $data['privacy_policies'] = PrivacyPolicy::latest()->get();
+        return view('admin.privacy_policy.index',$data);
     }
 
     /**
@@ -29,7 +29,7 @@ class PrivacyPolicyController extends Controller
      */
     public function create()
     {
-         return view('admin.privacy_policy_settings.create');
+         return view('admin.privacy_policy.create');
     }
 
 
@@ -43,9 +43,7 @@ class PrivacyPolicyController extends Controller
      public function store(Request $request)
      {
         $validator = Validator::make($request->all(),[
-
             'description' => 'required',
-            
         ]);
 
         if($validator->fails()){
@@ -58,12 +56,12 @@ class PrivacyPolicyController extends Controller
 
         $input = $request->all();
         $input['created_by'] = Auth::guard('admin')->user()->id;
-        privacyPolicy::create($input);
+        PrivacyPolicy::create($input);
         $notification = array(
-            'message' => 'Successfully PrivacyPolicy service created.',
+            'message' => 'Successfully privacy policy created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('PrivacyPolicy.settings.index')->with($notification);
+        return redirect()->route('privacy.policy.index')->with($notification);
 
 
 
@@ -88,8 +86,8 @@ class PrivacyPolicyController extends Controller
      */
     public function edit($id)
     {
-        $data['service'] = privacyPolicy::find($id);
-        return view('admin.privacy_policy_settings.edit',$data);
+        $data['privacy_policy'] = PrivacyPolicy::find($id);
+        return view('admin.privacy_policy.edit',$data);
     }
 
 
@@ -115,16 +113,15 @@ class PrivacyPolicyController extends Controller
         }
 
         $input = $request->all();
-        $data = privacyPolicy::find($id);
-        $input['slug'] = Str::slug($request->title);
+        $data = PrivacyPolicy::find($id);
         $input['updated_by'] = Auth::guard('admin')->user()->id;
 
         $data->update($input);
         $notification = array(
-            'message' => 'Successfully Privacy Policy service updated.',
+            'message' => 'Successfully privacy policy updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('PrivacyPolicy.settings.index')->with($notification);
+        return redirect()->route('privacy.policy.index')->with($notification);
     }
 
     /**
@@ -135,9 +132,9 @@ class PrivacyPolicyController extends Controller
      */
     public function destroy($id)
     {
-        privacyPolicy::find($id)->delete();
+        PrivacyPolicy::find($id)->delete();
         $notification = array(
-            'message' => 'Successfully deleted.',
+            'message' => 'Successfully data deleted.',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);

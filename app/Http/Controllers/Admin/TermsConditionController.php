@@ -18,8 +18,8 @@ class TermsConditionController extends Controller
      */
     public function index()
     {
-          $data['categories'] = TermsCondition::latest()->get();
-        return view('admin.termscondition_settings.index',$data);
+          $data['terms_conditions'] = TermsCondition::latest()->get();
+        return view('admin.terms_condition.index',$data);
     }
 
     /**
@@ -29,7 +29,7 @@ class TermsConditionController extends Controller
      */
     public function create()
     {
-         return view('admin.termscondition_settings.create');
+         return view('admin.terms_condition.create');
     }
 
 
@@ -43,9 +43,7 @@ class TermsConditionController extends Controller
      public function store(Request $request)
      {
         $validator = Validator::make($request->all(),[
-
             'description' => 'required',
-            
         ]);
 
         if($validator->fails()){
@@ -60,10 +58,10 @@ class TermsConditionController extends Controller
         $input['created_by'] = Auth::guard('admin')->user()->id;
         TermsCondition::create($input);
         $notification = array(
-            'message' => 'Successfully TermsCondition service created.',
+            'message' => 'Successfully terms condition created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('TermsCondition.settings.index')->with($notification);
+        return redirect()->route('terms.condition.index')->with($notification);
 
 
 
@@ -88,8 +86,8 @@ class TermsConditionController extends Controller
      */
     public function edit($id)
     {
-        $data['service'] = TermsCondition::find($id);
-        return view('admin.termscondition_settings.edit',$data);
+        $data['terms_condition'] = TermsCondition::find($id);
+        return view('admin.terms_condition.edit',$data);
     }
 
 
@@ -116,15 +114,14 @@ class TermsConditionController extends Controller
 
         $input = $request->all();
         $data = TermsCondition::find($id);
-        $input['slug'] = Str::slug($request->title);
         $input['updated_by'] = Auth::guard('admin')->user()->id;
 
         $data->update($input);
         $notification = array(
-            'message' => 'Successfully TermsCondition service updated.',
+            'message' => 'Successfully terms condition updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('TermsCondition.settings.index')->with($notification);
+        return redirect()->route('terms.condition.index')->with($notification);
     }
 
     /**
@@ -137,7 +134,7 @@ class TermsConditionController extends Controller
     {
         TermsCondition::find($id)->delete();
         $notification = array(
-            'message' => 'Successfully deleted.',
+            'message' => 'Successfully data deleted.',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);

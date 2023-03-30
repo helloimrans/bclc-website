@@ -109,8 +109,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     // Service & Facility
     Route::resource('service/facility', ServiceFacilityController::class, ['names' => 'service.facility']);
 
-//settings
-    Route::resource('terms/condition/settings', TermsConditionController::class, ['names' => 'TermsCondition.settings']);
-    Route::resource('Privacy/Policy/settings', PrivacyPolicyController::class, ['names' => 'PrivacyPolicy.settings']);
+    //Terms & Condition
+    Route::resource('terms-and-condition', TermsConditionController::class, ['names' => 'terms.condition']);
 
+    //Privacy Policy
+    Route::resource('privacy-policy', PrivacyPolicyController::class, ['names' => 'privacy.policy']);
 });
