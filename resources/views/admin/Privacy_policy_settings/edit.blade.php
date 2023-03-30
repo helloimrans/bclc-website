@@ -29,27 +29,16 @@
                                 <h5 class="mb-0">Edit Terms & Conditions</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('associated.service.index') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('PrivacyPolicy.settings.index') }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('associated.service.update', $service->id) }}" method="POST"
+                            <form action="{{ route('PrivacyPolicy.settings.update', $service->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
-                                <!-- <div class="mb-1">
-                                    <label class="form-label" for="">Title</label>
-                                    <input type="text" name="title" placeholder="Enter title"
-                                        class="form-control @error('title') is-invalid @enderror"
-                                        value="{{ old('title', $service->title) }}">
-
-                                    @error('title')
-                                        <div class="invalid-feedback">{{ $message }}
-                                        </div>
-                                    @enderror
-
-                                </div> -->
+                               
 
                                 <div class="mb-1">
                                     <label class="form-label" for="">Description</label>

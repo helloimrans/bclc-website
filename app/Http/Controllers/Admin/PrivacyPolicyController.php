@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\privacyPolicy;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PrivacyPolicyController extends Controller
 {
@@ -17,8 +18,8 @@ class PrivacyPolicyController extends Controller
      */
     public function index()
     {
-        //  $data['services'] = TermsCondition::latest()->get();
-        return view('admin.privacy_policy_settings.index');
+          $data['categories'] = privacyPolicy::latest()->get();
+        return view('admin.privacy_policy_settings.index',$data);
     }
 
     /**
@@ -42,7 +43,9 @@ class PrivacyPolicyController extends Controller
      public function store(Request $request)
      {
         $validator = Validator::make($request->all(),[
+
             'description' => 'required',
+            
         ]);
 
         if($validator->fails()){
@@ -54,14 +57,16 @@ class PrivacyPolicyController extends Controller
         }
 
         $input = $request->all();
-        $input['slug'] = Str::slug($request->title);
         $input['created_by'] = Auth::guard('admin')->user()->id;
         privacyPolicy::create($input);
         $notification = array(
-            'message' => 'Successfully associated service created.',
+            'message' => 'Successfully PrivacyPolicy service created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('associated.service.index')->with($notification);
+        return redirect()->route('PrivacyPolicy.settings.index')->with($notification);
+
+
+
      }
 
     /**
@@ -83,8 +88,8 @@ class PrivacyPolicyController extends Controller
      */
     public function edit($id)
     {
-        // $data['service'] = TermsCondition::find($id);
-        // return view('admin.associated_service.edit',$data);
+        $data['service'] = privacyPolicy::find($id);
+        return view('admin.privacy_policy_settings.edit',$data);
     }
 
 
@@ -97,29 +102,29 @@ class PrivacyPolicyController extends Controller
      */
     public function update(Request $request, $id)
     {
-    //     $validator = Validator::make($request->all(),[
-    //         'description' => 'required',
-    //     ]);
+        $validator = Validator::make($request->all(),[
+            'description' => 'required',
+        ]);
 
-    //     if($validator->fails()){
-    //         $notification = array(
-    //             'message' => 'Something went wront!, Please try again.',
-    //             'alert-type' => 'error'
-    //         );
-    //         return redirect()->back()->withErrors($validator)->withInput()->with($notification);
-    //     }
+        if($validator->fails()){
+            $notification = array(
+                'message' => 'Something went wront!, Please try again.',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->withErrors($validator)->withInput()->with($notification);
+        }
 
-    //     $input = $request->all();
-    //     $data = privacyPolicy::find($id);
-    //     $input['slug'] = Str::slug($request->title);
-    //     $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input = $request->all();
+        $data = privacyPolicy::find($id);
+        $input['slug'] = Str::slug($request->title);
+        $input['updated_by'] = Auth::guard('admin')->user()->id;
 
-    //     $data->update($input);
-    //     $notification = array(
-    //         'message' => 'Successfully associated service updated.',
-    //         'alert-type' => 'success'
-    //     );
-    //     return redirect()->route('associated.service.index')->with($notification);
+        $data->update($input);
+        $notification = array(
+            'message' => 'Successfully Privacy Policy service updated.',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('PrivacyPolicy.settings.index')->with($notification);
     }
 
     /**
@@ -130,11 +135,11 @@ class PrivacyPolicyController extends Controller
      */
     public function destroy($id)
     {
-        // privacyPolicy::find($id)->delete();
-        // $notification = array(
-        //     'message' => 'Successfully deleted.',
-        //     'alert-type' => 'success'
-        // );
-        // return redirect()->back()->with($notification);
+        privacyPolicy::find($id)->delete();
+        $notification = array(
+            'message' => 'Successfully deleted.',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

@@ -39,30 +39,30 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <!-- <th>Title</th> -->
-                                            <th>Description</th>
+                                             <th>Description</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                           
+                                          @foreach($categories as $category)
                                             <tr>
-                                                <td></td>
-                                                 <td></td>
+                                                <td>{{ $loop->iteration}}</td>
+                                                 <td>{!! $category->description !!}</td>
                                                 <td>
-                                           
+                                                @if ($category->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
-                                                    
+                                                    @else
                                                         <span class="badge badge-light-warning">Deactive</span>
+                                                    @endif
                                                   
                                                  </td>
                                                 <td>
-                                                    <a class="me-1" href="" data-bs-toggle="tooltip"
+                                                    <a class="me-1" href="{{ route('TermsCondition.settings.edit', $category->id) }}" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
-                                                    <form class="d-inline" id="delForm" action=" " method="POST">
+                                                    <form class="d-inline" id="delForm" action=" {{ route('TermsCondition.settings.destroy',$category->id) }}" method="POST">
                                                     @csrf
                                                         @method('DELETE')
 
@@ -71,6 +71,8 @@
                                                     </form>
                                                 </td>
                                             </tr>
+
+                                          @endforeach
                                     </tbody>
                                 </table>
                             </div>

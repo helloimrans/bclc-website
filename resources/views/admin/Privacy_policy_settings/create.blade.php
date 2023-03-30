@@ -29,11 +29,11 @@
                                 <h5 class="mb-0">Create Privacy & Policy</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('associated.service.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('PrivacyPolicy.settings.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('TermsCondition.settings.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('PrivacyPolicy.settings.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-1">

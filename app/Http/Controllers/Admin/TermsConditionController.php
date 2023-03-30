@@ -18,8 +18,8 @@ class TermsConditionController extends Controller
      */
     public function index()
     {
-        //  $data['services'] = TermsCondition::latest()->get();
-        return view('admin.termscondition_settings.index');
+          $data['categories'] = TermsCondition::latest()->get();
+        return view('admin.termscondition_settings.index',$data);
     }
 
     /**
@@ -57,14 +57,16 @@ class TermsConditionController extends Controller
         }
 
         $input = $request->all();
-        $input['slug'] = Str::slug($request->Description);
         $input['created_by'] = Auth::guard('admin')->user()->id;
         TermsCondition::create($input);
         $notification = array(
-            'message' => 'Successfully associated service created.',
+            'message' => 'Successfully TermsCondition service created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('associated.service.index')->with($notification);
+        return redirect()->route('TermsCondition.settings.index')->with($notification);
+
+
+
      }
 
     /**
@@ -86,8 +88,8 @@ class TermsConditionController extends Controller
      */
     public function edit($id)
     {
-        // $data['service'] = TermsCondition::find($id);
-        // return view('admin.associated_service.edit',$data);
+        $data['service'] = TermsCondition::find($id);
+        return view('admin.termscondition_settings.edit',$data);
     }
 
 
@@ -100,29 +102,29 @@ class TermsConditionController extends Controller
      */
     public function update(Request $request, $id)
     {
-    //     $validator = Validator::make($request->all(),[
-    //         'description' => 'required',
-    //     ]);
+        $validator = Validator::make($request->all(),[
+            'description' => 'required',
+        ]);
 
-    //     if($validator->fails()){
-    //         $notification = array(
-    //             'message' => 'Something went wront!, Please try again.',
-    //             'alert-type' => 'error'
-    //         );
-    //         return redirect()->back()->withErrors($validator)->withInput()->with($notification);
-    //     }
+        if($validator->fails()){
+            $notification = array(
+                'message' => 'Something went wront!, Please try again.',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->withErrors($validator)->withInput()->with($notification);
+        }
 
-    //     $input = $request->all();
-    //     $data = TermsCondition::find($id);
-    //     $input['slug'] = Str::slug($request->title);
-    //     $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input = $request->all();
+        $data = TermsCondition::find($id);
+        $input['slug'] = Str::slug($request->title);
+        $input['updated_by'] = Auth::guard('admin')->user()->id;
 
-    //     $data->update($input);
-    //     $notification = array(
-    //         'message' => 'Successfully associated service updated.',
-    //         'alert-type' => 'success'
-    //     );
-    //     return redirect()->route('associated.service.index')->with($notification);
+        $data->update($input);
+        $notification = array(
+            'message' => 'Successfully TermsCondition service updated.',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('TermsCondition.settings.index')->with($notification);
     }
 
     /**
@@ -133,11 +135,11 @@ class TermsConditionController extends Controller
      */
     public function destroy($id)
     {
-        // TermsCondition::find($id)->delete();
-        // $notification = array(
-        //     'message' => 'Successfully deleted.',
-        //     'alert-type' => 'success'
-        // );
-        // return redirect()->back()->with($notification);
+        TermsCondition::find($id)->delete();
+        $notification = array(
+            'message' => 'Successfully deleted.',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
     }
 }

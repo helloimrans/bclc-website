@@ -29,7 +29,7 @@
                                 <h5 class="mb-0">Create Terms & Conditions</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('associated.service.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('TermsCondition.settings.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
