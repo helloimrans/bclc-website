@@ -17,6 +17,9 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\OfficeFunctionController;
 use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\ServiceFacilityController;
+use App\Http\Controllers\Admin\TermsConditionController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
+
 
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
@@ -105,4 +108,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     // Service & Facility
     Route::resource('service/facility', ServiceFacilityController::class, ['names' => 'service.facility']);
+
+//settings
+    Route::resource('terms/condition/settings', TermsConditionController::class, ['names' => 'TermsCondition.settings']);
+    Route::resource('Privacy/Policy/settings', PrivacyPolicyController::class, ['names' => 'PrivacyPolicy.settings']);
+
 });
