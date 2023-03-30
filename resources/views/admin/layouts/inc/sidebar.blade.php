@@ -213,6 +213,25 @@
                 </ul>
             </li>
 
+
+            <!-- settings -->
+
+
+            <li class="nav-item"><a class="d-flex align-items-center"
+                    href="#"><i class="fa fa-cog"></i><span class="menu-title text-truncate"
+                        data-i18n="Roles &amp; Permission">settings</span></a>
+                <ul class="menu-content">
+                    <li class=" "><a class="d-flex align-items-center"
+                            href="{{ route('TermsCondition.settings.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles">Terms Condition</span></a>
+                    </li>
+                    <li class=""><a class="d-flex align-items-center"
+                            href="{{ route('PrivacyPolicy.settings.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Permission">Privacy Policy</span></a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
