@@ -47,6 +47,7 @@
                                             <th>Image</th>
                                             <th>Service</th>
                                             <th>Service Category</th>
+                                            <th>Expert</th>
                                             <th>Fee</th>
                                             <th>Status</th>
                                             <th>Created By</th>
@@ -64,6 +65,7 @@
                                                 </td>
                                                 <td>{{ $course->service->title }}</td>
                                                 <td>{{ $course->serviceCategory->name }}</td>
+                                                <td>{{ $course->expert->name }}</td>
                                                 <td>{{ $course->fee }}</td>
                                                 <td>
                                                     @if($course->status == 1)

@@ -71,24 +71,26 @@
                                         <tr>
                                             <th>Expert</th>
                                             <th>:</th>
-                                            <td>{{ $course->expert_id ?? 'N/A' }}</td>
+                                            <td>{{ $course->expert->name ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Course Schedule</th>
                                             <th>:</th>
                                             <td>
-                                                @foreach (json_decode($course->schedule) as $schedule)
+                                                @forelse (json_decode($course->schedule) as $schedule)
                                                     <span class="badge bg-secondary">{{ $schedule }}</span>
-                                                @endforeach
+                                                @empty
+                                                @endforelse
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Suitable Course</th>
                                             <th>:</th>
                                             <td>
-                                                @foreach (json_decode($course->suitable_course) as $suitable_course)
+                                                @forelse (json_decode($course->suitable_course) as $suitable_course)
                                                     <span class="badge bg-secondary">{{ $suitable_course }}</span>
-                                                @endforeach
+                                                @empty
+                                                @endforelse
                                             </td>
                                         </tr>
                                         <tr>

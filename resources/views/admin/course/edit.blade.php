@@ -94,12 +94,9 @@
                                     <label class="form-label">Select Expert</label>
                                     <select name="expert_id"
                                         class="form-control @error('expert_id') is-invalid @enderror">
-                                        <option value="{{ $course->expert_id }}" selected hidden>
-                                            Expert-edit
-                                        </option>
-                                        <option value="1">Expert-1</option>
-                                        <option value="2">Expert-2</option>
-                                        <option value="3">Expert-3</option>
+                                        @foreach ($experts as $expert)
+                                            <option value="{{ $expert->id }}" @if($expert->id == $course->expert_id) selected @endif>{{ $expert->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('expert_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -281,7 +278,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-check">
                                                     <label class="control-label" for="suitable_course{{$key}}">
-                                                        <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}" @if (@in_array($row->name, json_decode($course->suitable_course))) checked @endif >
+                                                        <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}" @if (@in_array($row->name, json_decode($course->suitable_course))) checked @else  @endif >
                                                         {{$row->name}} 
                                                     </label>
                                                     </div>
