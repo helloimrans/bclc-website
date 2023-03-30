@@ -97,11 +97,11 @@
                                     <select name="expert_id"
                                         class="form-control @error('expert_id') is-invalid @enderror">
                                         <option value="" selected hidden>
-                                            Expert
+                                            Select Expert
                                         </option>
-                                        <option value="1">Expert-1</option>
-                                        <option value="2">Expert-2</option>
-                                        <option value="3">Expert-3</option>
+                                        @foreach ($experts as $expert)
+                                            <option value="{{ $expert->id }}">{{ $expert->name }}</option>
+                                        @endforeach
                                     </select>
                                     @error('expert_id')
                                         <div class="invalid-feedback">{{ $message }}</div>

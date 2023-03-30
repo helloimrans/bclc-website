@@ -7,6 +7,7 @@ use App\Models\SuitableForCourse;
 use App\Models\ServiceCategory;
 use App\Models\Service;
 use App\Models\Course;
+use App\Models\Expert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -17,12 +18,13 @@ class CourseController extends Controller
 
     public function index()
     {
-        $data['courses'] = Course::with(['createdBy', 'service', 'serviceCategory'])->get();
+        $data['courses'] = Course::with(['createdBy', 'service', 'serviceCategory', 'expert'])->get();
         return view('admin.course.index', $data);
     }
 
     public function create()
     {
+        $data['experts'] = Expert::where('status', 1)->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();
         $data['services'] = Service::where('status', 1)->get();
         $data['service_categories'] = ServiceCategory::where('status', 1)->get();
@@ -81,6 +83,7 @@ class CourseController extends Controller
     {
         $data['course'] = Course::findOrFail($id);
         // return $data['course']->schedule;
+        $data['experts'] = Expert::where('status', 1)->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();
         $data['services'] = Service::where('status', 1)->get();
         $data['service_categories'] = ServiceCategory::where('status', 1)->get();
@@ -91,10 +94,10 @@ class CourseController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'course_id' => 'required',
-            'title' => 'required|unique:courses,title,' . $request->title,
+            'title' => 'required|unique:courses,title,' . $id,
             'fee' => 'required',
-            'service_category_id' => 'required:suitable_for_courses,id,' . $request->service_category_id,
-            'service_id' => 'required:services,id,' . $request->service_id,
+            'service_category_id' => 'required:suitable_for_courses,id,' . $id,
+            'service_id' => 'required:services,id,' . $id,
             'expert_id' => 'required',
         ]);
 

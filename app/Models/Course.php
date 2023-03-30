@@ -69,4 +69,10 @@ class Course extends Model
             'name' => 'None',
         ]);
     }
+    public function expert()
+    {
+        return $this->belongsTo(Expert::class, 'expert_id', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
 }
