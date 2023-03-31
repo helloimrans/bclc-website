@@ -23,21 +23,19 @@ $route = Route::currentRouteName();
                     href="{{ route('learner.dashboard') }}"><i data-feather="home"></i><span
                         class="menu-title text-truncate" data-i18n="Email">Dashboard</span></a>
             </li>
-            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
+            <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class="nav-item "><a class="d-flex align-items-center"
-                    href="#"><i class="far fa-eye"></i><span class="menu-title text-truncate"
-                        data-i18n="Roles &amp; Permission">Legal Insights</span></a>
-                <ul class="menu-content">
-                    <li class=""><a class="d-flex align-items-center"
-                            href=""><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="Roles">Associated Service</span></a>
-                    </li>
-                </ul>
+            <li class="@if ($route == 'learner.profile') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('learner.profile') }}"><i data-feather="user"></i><span
+                        class="menu-title text-truncate" data-i18n="Email">View Profile</span></a>
+            </li>
+            <li class="@if ($route == 'learner.edit.profile') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('learner.edit.profile') }}"><i data-feather="edit"></i><span
+                        class="menu-title text-truncate" data-i18n="Email">Update Profile</span></a>
+            </li>
+            <li class="@if ($route == 'learner.security') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('learner.security') }}"><i data-feather="lock"></i><span
+                        class="menu-title text-truncate" data-i18n="Email"> Security</span></a>
             </li>
 
-            
         </ul>
     </div>
 </div>

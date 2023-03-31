@@ -105,7 +105,7 @@
                     @if (Auth::guard('learner')->check())
                     <li>
                         <div class="btn-group">
-                            <button type="button" class="header-dd-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="header-dd-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="fs-6 fw-bold text-shuttle me-2">{{Auth::guard('learner')->user()->name}}</span>
                                 <img src="{{asset('defaults/avatar/avatar.png')}}" alt="user">
                                 <i class="fa fa-angle-down d-none" aria-hidden="true"></i>
@@ -118,7 +118,7 @@
                     </li>
                     @elseif ( Auth::guard('expert')->check())
                     <div class="btn-group">
-                        <button type="button" class="header-dd-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="header-dd-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="fs-6 fw-bold text-shuttle me-2">{{Auth::guard('expert')->user()->name}}</span>
                             <img src="{{asset('defaults/avatar/avatar.png')}}" alt="user">
                             <i class="fa fa-angle-down d-none" aria-hidden="true"></i>
