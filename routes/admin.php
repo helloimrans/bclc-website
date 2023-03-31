@@ -11,13 +11,17 @@ use App\Http\Controllers\Admin\LawChapterController;
 use App\Http\Controllers\Admin\LawController;
 use App\Http\Controllers\Admin\LawSectionController;
 use App\Http\Controllers\Admin\ServiceCatController;
-use App\Http\Controllers\Admin\OfficeCategoryController;
 use App\Http\Controllers\Admin\ServiceProBonoController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\OfficeFunctionCatController;
 use App\Http\Controllers\Admin\OfficeFunctionController;
+use App\Http\Controllers\Admin\OfficeFunctionSectorController;
 use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\ServiceFacilityController;
-
+use App\Http\Controllers\Admin\TermsConditionController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
+use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
 
@@ -75,6 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::post('update/{id}', [LawChapterController::class, 'update'])->name('update');
         Route::get('destroy/{id}', [LawChapterController::class, 'destroy'])->name('destroy');
     });
+
     //Law Section
     Route::group(['prefix' => 'law/section', 'as' => 'law.section.'], function () {
         Route::post('store', [LawSectionController::class, 'store'])->name('store');
@@ -91,18 +96,33 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     // Training Course
     Route::resource('courses', CourseController::class);
 
-    //Office-category
-    Route::resource('office/function/category', OfficeCategoryController::class, ['names' => 'office.category'])->except(['show']);
+    //Office Function Sector
+    Route::resource('office/function/sector', OfficeFunctionSectorController::class, ['names' => 'of.sector'])->except(['show']);
+
+    //Office Function Category
+    Route::resource('office/function/category', OfficeFunctionCatController::class, ['names' => 'of.category'])->except(['show']);
 
     // Office & Function
     Route::resource('office/function', OfficeFunctionController::class, ['names' => 'office.function']);
 
-    // SuitableForCourse Route
+    // Suitable For Course
     Route::resource('course/suitables', SuitableCourseController::class, ['as' => 'course'])->except(['show']);
 
     // Service & Facilitics Category
     Route::resource('service/facility/category', ServiceFacilityCatController::class, ['names' => 'sf.category'])->except(['show']);
 
+    // Service & Facilitics Sector
+    Route::resource('service/facility/sector', ServiceFacilitySectorController::class, ['names' => 'sf.sector'])->except(['show']);
+
     // Service & Facility
     Route::resource('service/facility', ServiceFacilityController::class, ['names' => 'service.facility']);
+
+    //Terms & Condition
+    Route::resource('terms-and-condition', TermsConditionController::class, ['names' => 'terms.condition']);
+
+    //Privacy Policy
+    Route::resource('privacy-policy', PrivacyPolicyController::class, ['names' => 'privacy.policy']);
+
+    //Profession
+    Route::resource('profession', ProfessionController::class)->except('show');
 });

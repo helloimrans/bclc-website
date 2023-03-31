@@ -3,28 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
-use App\Models\OfficeCategory;
+use App\Models\OfficeFunctionSector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class OfficeCategoryController extends Controller
+class OfficeFunctionSectorController extends Controller
 {
     public function index()
     {
-        $data['office_function_cats'] = OfficeCategory::with('createdBy')->latest()->get();
-        return view('admin.office_function_category.index', $data);
+        $data['of_sectors'] = OfficeFunctionSector::with('createdBy')->latest()->get();
+        return view('admin.office_function_sector.index', $data);
     }
     public function create()
     {
-        return view('admin.office_function_category.create');
+        return view('admin.office_function_sector.create');
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:office_categories,name',
-            'sort' => 'required'
+            'name' => 'required|unique:office_function_sectors,name',
         ]);
 
         if ($validator->fails()) {
@@ -36,26 +34,25 @@ class OfficeCategoryController extends Controller
         }
         $input = $request->all();
         $input['created_by'] = Auth::guard('admin')->user()->id;
-        OfficeCategory::create($input);
+        OfficeFunctionSector::create($input);
         $notification = array(
-            'message' => 'Successfully office & function category created.',
+            'message' => 'Successfully office & function sector created.',
             'alert-type' => 'success'
         );
-        return redirect()->route('office.category.index')->with($notification);
+        return redirect()->route('of.sector.index')->with($notification);
     }
     public function show($id)
     {
     }
     public function edit($id)
     {
-        $data['of_cat'] = OfficeCategory::findOrFail($id);
-        return view('admin.office_function_category.edit', $data);
+        $data['of_sector'] = OfficeFunctionSector::findOrFail($id);
+        return view('admin.office_function_sector.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:office_categories,name,' . $id,
-            'sort' => 'required'
+            'name' => 'required|unique:office_function_sectors,name,' . $id,
         ]);
 
         if ($validator->fails()) {
@@ -67,25 +64,23 @@ class OfficeCategoryController extends Controller
         }
 
         $input = $request->all();
-        $data = OfficeCategory::find($id);
+        $data = OfficeFunctionSector::find($id);
         $input['updated_by'] = Auth::guard('admin')->user()->id;
 
         $data->update($input);
         $notification = array(
-            'message' => 'Successfully office & function category updated.',
+            'message' => 'Successfully office & function sector updated.',
             'alert-type' => 'success'
         );
-        return redirect()->route('office.category.index')->with($notification);
+        return redirect()->route('of.sector.index')->with($notification);
     }
     public function destroy($id)
     {
-        OfficeCategory::find($id)->delete();
+        OfficeFunctionSector::find($id)->delete();
         $notification = array(
-            'message' => 'Successfully deleted.',
+            'message' => 'Successfully data deleted.',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
     }
-
-
 }

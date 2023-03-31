@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class OfficeCategory extends Model
+class OfficeFunctionSector extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,7 +18,7 @@ class OfficeCategory extends Model
         'status',
         'created_by',
         'updated_by',
-        'deleted_by'
+        'deleted_by',
     ];
 
     public function officeFunctions()

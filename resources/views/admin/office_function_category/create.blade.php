@@ -29,11 +29,11 @@
                                 <h5 class="mb-0">Create Office & Function Category</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('office.category.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('of.category.index') }}" class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('office.category.store') }}" method="POST">
+                            <form action="{{ route('of.category.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-1">
                                     <label class="form-label" for="">Name</label>

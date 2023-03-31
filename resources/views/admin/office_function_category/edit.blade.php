@@ -29,19 +29,19 @@
                                 <h5 class="mb-0">Edit Office & Function Category</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('office.category.index') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('of.category.index') }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('office.category.update', $of_cat->id) }}" method="POST">
+                            <form action="{{ route('of.category.update', $of_category->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-1">
                                     <label class="form-label" for="">Name</label>
                                     <input type="text" name="name" placeholder="Enter name"
                                         class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name', $of_cat->name) }}">
+                                        value="{{ old('name', $of_category->name) }}">
 
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}
@@ -53,7 +53,7 @@
                                     <label class="form-label" for="">Sort</label>
                                     <input type="number" name="sort" placeholder="Enter sort"
                                         class="form-control @error('sort') is-invalid @enderror"
-                                        value="{{ old('sort', $of_cat->sort) }}">
+                                        value="{{ old('sort', $of_category->sort) }}">
 
                                     @error('sort')
                                         <div class="invalid-feedback">{{ $message }}
@@ -64,10 +64,10 @@
                                 <div class="mb-1">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-control">
-                                        <option value="1" @if (old('status', $of_cat->status) == '1') selected @endif>
+                                        <option value="1" @if (old('status', $of_category->status) == '1') selected @endif>
                                             Active
                                         </option>
-                                        <option value="0" @if (old('status', $of_cat->status) == '0') selected @endif>
+                                        <option value="0" @if (old('status', $of_category->status) == '0') selected @endif>
                                             Deactive
                                         </option>
                                     </select>

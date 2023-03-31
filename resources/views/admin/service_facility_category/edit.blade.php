@@ -34,14 +34,14 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('sf.category.update', $sf_cat->id) }}" method="POST">
+                            <form action="{{ route('sf.category.update', $sf_category->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-1">
                                     <label class="form-label" for="">Name</label>
                                     <input type="text" name="name" placeholder="Enter name"
                                         class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name', $sf_cat->name) }}">
+                                        value="{{ old('name', $sf_category->name) }}">
 
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}
@@ -53,7 +53,7 @@
                                     <label class="form-label" for="">Sort</label>
                                     <input type="number" name="sort" placeholder="Enter sort"
                                         class="form-control @error('sort') is-invalid @enderror"
-                                        value="{{ old('sort', $sf_cat->sort) }}">
+                                        value="{{ old('sort', $sf_category->sort) }}">
 
                                     @error('sort')
                                         <div class="invalid-feedback">{{ $message }}
@@ -64,10 +64,10 @@
                                 <div class="mb-1">
                                     <label class="form-label">Status</label>
                                     <select name="status" class="form-control">
-                                        <option value="1" @if (old('status', $sf_cat->status) == '1') selected @endif>
+                                        <option value="1" @if (old('status', $sf_category->status) == '1') selected @endif>
                                             Active
                                         </option>
-                                        <option value="0" @if (old('status', $sf_cat->status) == '0') selected @endif>
+                                        <option value="0" @if (old('status', $sf_category->status) == '0') selected @endif>
                                             Deactive
                                         </option>
                                     </select>

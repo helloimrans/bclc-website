@@ -8,31 +8,28 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ServiceFacilityCategory;
 use App\Models\ServiceFacility;
+use App\Models\ServiceFacilitySector;
 
 class ServiceFacilityController extends Controller
 {
     public function index()
     {
-        $data['service_facilitics'] = ServiceFacility::with(['createdBy', 'serviceFacilityCategory'])->latest()->get();
+        $data['service_facilitics'] = ServiceFacility::with(['createdBy', 'category'])->latest()->get();
         return view('admin.service_facility.index', $data);
     }
     public function create()
     {
-        $data['service_facility_cats'] = ServiceFacilityCategory::where('status', 1)->get();
+        $data['sf_categories'] = ServiceFacilityCategory::where('status', 1)->get();
+        $data['sf_sectors'] = ServiceFacilitySector::where('status', 1)->get();
         return view('admin.service_facility.create', $data);
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'service_facility_sector_id' => 'required',
             'service_facility_category_id' => 'required',
-            'service' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'authority' => 'required',
-            'contact_info' => 'required',
-            'source_link' => 'required',
-            // 'file' => 'required|csv,txt,xlx,xls,pdf|max:2048',
-            'file' => 'required|mimes:pdf',
         ]);
         if ($validator->fails()) {
             $notification = array(
@@ -44,13 +41,16 @@ class ServiceFacilityController extends Controller
 
         $data = new ServiceFacility();
 
+        $data->service_facility_sector_id   = $request->service_facility_sector_id;
         $data->service_facility_category_id = $request->service_facility_category_id;
         $data->service                      = $request->service;
         $data->title                        = $request->title;
         $data->description                  = $request->description;
         $data->authority                    = $request->authority;
-        $data->contact_info                 = $request->contact_info;
-        $data->source_link                  = $request->source_link;
+
+        $data->communications               = $request->communications;
+        $data->sort                         = $request->sort;
+
         $data->status                       = $request->status;
         $data->created_by                   = Auth::guard('admin')->user()->id;
 
@@ -73,21 +73,18 @@ class ServiceFacilityController extends Controller
     }
     public function edit($id)
     {
-        $data['service_facility_cats'] = ServiceFacilityCategory::where('status', 1)->get();
+        $data['sf_categories'] = ServiceFacilityCategory::where('status', 1)->get();
+        $data['sf_sectors'] = ServiceFacilitySector::where('status', 1)->get();
         $data['service_facility'] = ServiceFacility::findOrFail($id);
         return view('admin.service_facility.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
+            'service_facility_sector_id' => 'required',
             'service_facility_category_id' => 'required',
-            'service' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'authority' => 'required',
-            'contact_info' => 'required',
-            'source_link' => 'required',
-            'file' => 'mimes:pdf',
         ]);
 
         if ($validator->fails()) {
@@ -104,8 +101,10 @@ class ServiceFacilityController extends Controller
         $data->title                        = $request->title;
         $data->description                  = $request->description;
         $data->authority                    = $request->authority;
-        $data->contact_info                 = $request->contact_info;
-        $data->source_link                  = $request->source_link;
+
+        $data->communications               = $request->communications;
+        $data->sort                         = $request->sort;
+
         $data->status                       = $request->status;
         $data->updated_by                   = Auth::guard('admin')->user()->id;
 
@@ -129,7 +128,7 @@ class ServiceFacilityController extends Controller
     {
         ServiceFacility::find($id)->delete();
         $notification = array(
-            'message' => 'Successfully deleted.',
+            'message' => 'Successfully data deleted.',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);

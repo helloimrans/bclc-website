@@ -34,47 +34,55 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('office.function.update',$office_function->id) }}" method="POST"
+                            <form action="{{ route('office.function.update', $office_function->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label">Office Category</label>
-                                            <select id="office_category_id" name="office_category_id"
-                                                class="form-control @error('office_category_id') is-invalid @enderror">
+                                            <label class="form-label">Sector</label>
+                                            <select id="office_function_sector_id" name="office_function_sector_id"
+                                                class="form-control @error('office_function_sector_id') is-invalid @enderror">
                                                 <option value="">
-                                                    Select Category
+                                                    Select Sector
                                                 </option>
-                                                @foreach ($office_function_cats as $of_cat)
-                                                    <option value="{{ $of_cat->id }}" @if ($of_cat->id == $office_function->office_category_id) selected @endif>{{ $of_cat->name }}</option>
+                                                @foreach ($of_sectors as $of_sector)
+                                                    <option value="{{ $of_sector->id }}"@if ($of_sector->id == $office_function->office_function_sector_id) selected @endif>{{ $of_sector->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('office_category_id')
+                                            @error('office_function_sector_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label" for="">Title</label>
-                                            <input type="text" name="title" placeholder="Enter title"
-                                                class="form-control @error('title') is-invalid @enderror"
-                                                value="{{ old('title', $office_function->title) }}">
-
-                                            @error('title')
+                                            <label class="form-label">Category</label>
+                                            <select id="office_function_category_id" name="office_function_category_id"
+                                                class="form-control @error('office_function_category_id') is-invalid @enderror">
+                                                <option value="">
+                                                    Select Category
+                                                </option>
+                                                @foreach ($of_categories as $of_category)
+                                                    <option value="{{ $of_category->id }}"
+                                                        @if ($of_category->id == $office_function->office_function_category_id) selected @endif>
+                                                        {{ $of_category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('office_function_category_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for=""><th>Activities/Services/Functions</th></label>
-                                    <input type="text" name="service" placeholder="Enter activities/service/functions"
-                                        class="form-control @error('service') is-invalid @enderror" value="{{ old('service',$office_function->service) }}">
+                                    <label class="form-label" for="">Title</label>
+                                    <input type="text" name="title" placeholder="Enter title"
+                                        class="form-control @error('title') is-invalid @enderror"
+                                        value="{{ old('title', $office_function->title) }}">
 
-                                    @error('service')
+                                    @error('title')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -89,7 +97,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Address</label>
+                                    <label class="form-label" for="">Address/Remarks</label>
                                     <input type="text" name="address" placeholder="Enter address"
                                         class="form-control @error('address') is-invalid @enderror"
                                         value="{{ old('address', $office_function->address) }}">
@@ -99,22 +107,18 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Contact Info</label>
-                                    <input type="text" name="contact_info" placeholder="Enter contact info"
-                                        class="form-control @error('contact_info') is-invalid @enderror"
-                                        value="{{ old('contact_info', $office_function->contact_info) }}">
-
-                                    @error('contact_info')
+                                    <label class="form-label" for="">Communications</label>
+                                    <textarea name="communications" rows="2" class="summernote @error('communications') is-invalid @enderror"
+                                        placeholder="Enter...">{{ old('communications',$office_function->communications) }}</textarea>
+                                    @error('communications')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Source Link</label>
-                                    <input type="text" name="source_link" placeholder="Enter source link"
-                                        class="form-control @error('source_link') is-invalid @enderror"
-                                        value="{{ old('source_link', $office_function->source_link) }}">
-
-                                    @error('source_link')
+                                    <label class="form-label" for="">Activities/Services/Functions</label>
+                                    <textarea name="service" rows="2" class="summernote @error('service') is-invalid @enderror"
+                                        placeholder="Enter activities/service/functions">{{ old('service', $office_function->service) }}</textarea>
+                                    @error('service')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -133,6 +137,17 @@
                                     @error('file')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Sort</label>
+                                    <input type="number" name="sort" placeholder="Enter sort"
+                                        class="form-control @error('sort') is-invalid @enderror"
+                                        value="{{ old('sort', $office_function->sort) }}">
+
+                                    @error('sort')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
                                 <div class="mb-1">
                                     <label class="form-label">Status</label>

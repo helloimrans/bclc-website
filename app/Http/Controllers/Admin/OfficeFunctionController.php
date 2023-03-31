@@ -3,37 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\OfficeCategory;
 use App\Models\OfficeFunction;
+use App\Models\OfficeFunctionCategory;
+use App\Models\OfficeFunctionSector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class OfficeFunctionController extends Controller
 {
         public function index()
     {
-        $data['office_functions'] = OfficeFunction::with(['createdBy', 'officeFunctionCategory'])->latest()->get();
+        $data['office_functions'] = OfficeFunction::with(['createdBy', 'category'])->latest()->get();
         return view('admin.office_function.index', $data);
     }
     public function create()
     {
-        $data['office_function_cats'] = OfficeCategory::where('status', 1)->get();
+        $data['of_sectors'] = OfficeFunctionSector::where('status', 1)->get();
+        $data['of_categories'] = OfficeFunctionCategory::where('status', 1)->get();
         return view('admin.office_function.create', $data);
     }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'office_category_id' => 'required',
-            'service' => 'required',
+            'office_function_sector_id' => 'required',
+            'office_function_category_id' => 'required',
             'title' => 'required',
-            'description' => 'required',
-            'ministry_dept_authority' => 'required',
-            'address' => 'required',
-            'contact_info' => 'required',
-            'source_link' => 'required',
-            'file' => 'required|mimes:pdf',
+            'service' => 'required',
         ]);
         if ($validator->fails()) {
             $notification = array(
@@ -44,14 +40,16 @@ class OfficeFunctionController extends Controller
         }
 
         $data = new OfficeFunction();
-        $data->office_category_id           = $request->office_category_id;
+
+        $data->office_function_sector_id    = $request->office_function_sector_id;
+        $data->office_function_category_id  = $request->office_function_category_id;
         $data->title                        = $request->title;
         $data->description                  = $request->description;
         $data->service                      = $request->service;
         $data->ministry_dept_authority      = $request->ministry_dept_authority;
-        $data->contact_info                 = $request->contact_info;
+        $data->communications               = $request->communications;
+        $data->sort                         = $request->sort;
         $data->address                      = $request->address;
-        $data->source_link                  = $request->source_link;
         $data->status                       = $request->status;
         $data->created_by                   = Auth::guard('admin')->user()->id;
 
@@ -74,22 +72,18 @@ class OfficeFunctionController extends Controller
     }
     public function edit($id)
     {
-        $data['office_function_cats'] = OfficeCategory::where('status', 1)->get();
+        $data['of_sectors'] = OfficeFunctionSector::where('status', 1)->get();
+        $data['of_categories'] = OfficeFunctionCategory::where('status', 1)->get();
         $data['office_function'] = OfficeFunction::findOrFail($id);
         return view('admin.office_function.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'office_category_id' => 'required',
-            'service' => 'required',
+            'office_function_sector_id' => 'required',
+            'office_function_category_id' => 'required',
             'title' => 'required',
-            'description' => 'required',
-            'ministry_dept_authority' => 'required',
-            'address' => 'required',
-            'contact_info' => 'required',
-            'source_link' => 'required',
-            'file' => 'mimes:pdf',
+            'service' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -99,16 +93,18 @@ class OfficeFunctionController extends Controller
             );
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
+
         $data = OfficeFunction::findOrFail($id);
 
-        $data->office_category_id           = $request->office_category_id;
+        $data->office_function_sector_id    = $request->office_function_sector_id;
+        $data->office_function_category_id  = $request->office_function_category_id;
         $data->title                        = $request->title;
         $data->description                  = $request->description;
         $data->service                      = $request->service;
         $data->ministry_dept_authority      = $request->ministry_dept_authority;
-        $data->contact_info                 = $request->contact_info;
+        $data->communications               = $request->communications;
+        $data->sort                         = $request->sort;
         $data->address                      = $request->address;
-        $data->source_link                  = $request->source_link;
         $data->status                       = $request->status;
         $data->updated_by                   = Auth::guard('admin')->user()->id;
 

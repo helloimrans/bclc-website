@@ -3,8 +3,9 @@
 /* bootstrap css modify */
 .table-sm td, .table-sm th {
     padding: .5rem;
-    font-size: 15px;
+    font-size: 13.5px;
 }
+
 
 /*header top area styles*/
 .header-top {
@@ -22,17 +23,15 @@
 }
 
 .ht-social a {
-    background: #fff;
-    color: #515151;
+    color: var(--td);
     height: 30px;
     line-height: 30px;
     width: 30px;
-    font-size: 17px;
     margin-left: 5px;
     text-align: center;
     display: inline-block;
+    border: 1px solid var(--td);
     border-radius: 50%;
-    border: 2px solid #515151;
 }
 
 .ht-social a:hover {
@@ -1935,22 +1934,31 @@ header.scrolled .logo {
 }
 .sfof-details h6 {
     font-weight: 700;
-    margin-bottom: 5px;
-    margin-top: 25px;
+    margin-bottom: 4px;
+    margin-top: 20px;
+    font-size: 15px;
 }
 .sfof-details p {
     font-size: 15px;
 }
 .sfof-action-btn {
-    color: #fff !important;
+    color: #777777;
     display: inline-block;
-    background: var(--bd);
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 25px;
     border-radius: 5px;
-    line-height: 30px;
-    font-size: 15px;
+    line-height: 20px;
+    font-size: 11px;
     text-align: center;
+    border: 1px solid #777777;
+}
+
+.office_function blockquote {
+    font-size: 13.5px;
+    font-style: inherit;
+}
+.office_function .ad-titles {
+    font-size: 18px !important;
 }
 
 /* learner registration styles */
@@ -1978,25 +1986,50 @@ header.scrolled .logo {
 
 .contact-us-form form .form-control {
     padding: 1.3rem .75rem;
-    border-radius: 2px;
-    background: #f1f1f1;
-    border: none;
+    background: #f9f9f9;
+    /* border-color: #f1f1f1; */
+    font-size: 15px;
 }
 
 .contact-us .section-title2 h2::after {
     width: 100%;
 }
+.contact-form .sub-btn {
+    border: none;
+    background: var(--bd);
+    color: #fff;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 7px 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
 
 .contact-us-details {
     padding: 15px;
-    padding-top: 30px;
+    padding-top: 36px;
 }
-
-.ad-icons {
+.contact-social a {
+    color: var(--td);
+    border: 2px solid var(--td);
+    display: inline-block;
     height: 30px;
     width: 30px;
     line-height: 30px;
-    font-size: 15px;
+    text-align: center;
+    margin: 0 5px;
+    transition: .4s;
+}
+.contact-social a:hover{
+    background: var(--bd);
+    color: #fff;
+}
+
+.ad-icons {
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    font-size: 12px;
     text-align: center;
     border-radius: 50%;
     color: #fff;

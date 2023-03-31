@@ -13,18 +13,33 @@ class ServiceFacility extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'office_category_id',
+        'service_facility_sector_id',
+        'service_facility_category_id',
+        'service',
         'title',
         'description',
-        'ministry_dept_authority',
-        'address',
-        'contact_info',
-        'source_link',
+        'authority',
+        'communications',
+        'file',
+        'sort',
         'status',
         'created_by',
         'updated_by',
         'deleted_by',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(ServiceFacilityCategory::class, 'service_facility_category_id', 'id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
+    public function sector()
+    {
+        return $this->belongsTo(ServiceFacilitySector::class, 'service_facility_sector_id','id')->withDefault([
+            'name' => 'None',
+        ]);
+    }
     public function createdBy()
     {
         return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
@@ -34,12 +49,6 @@ class ServiceFacility extends Model
     public function updatedBy()
     {
         return $this->belongsTo(Admin::class, 'updated_by', 'id')->withDefault([
-            'name' => 'None',
-        ]);
-    }
-    public function serviceFacilityCategory()
-    {
-        return $this->belongsTo(ServiceFacilityCategory::class, 'service_facility_category_id', 'id')->withDefault([
             'name' => 'None',
         ]);
     }

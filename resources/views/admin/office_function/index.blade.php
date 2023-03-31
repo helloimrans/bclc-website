@@ -43,15 +43,16 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Office Category</th>
+                                            <th>Sector</th>
+                                            <th>Category</th>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Activities/Services/Functions</th>
                                             <th>Ministry/Dept./Authority</th>
-                                            <th>Address</th>
-                                            <th>Source Link</th>
+                                            <th>Address/Remarks</th>
+                                            <th>Communications</th>
                                             <th>File</th>
-                                            <th>Contact Info</th>
+                                            <th>Sort</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
@@ -61,15 +62,22 @@
                                         @foreach ($office_functions as $of)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{$of->officeFunctionCategory->name}}</td>
+                                                <td>{{$of->sector->name}}</td>
+                                                <td>{{$of->category->name}}</td>
                                                 <td>{{ $of->title }}</td>
                                                 <td>{!! substr(strip_tags($of->description), 0, 45) !!}...</td>
-                                                <td>{{ $of->service }}</td>
+                                                <td>{!! substr(strip_tags($of->service), 0, 45) !!}...</td>
                                                 <td>{{ $of->ministry_dept_authority }}</td>
                                                 <td>{{ $of->address }}</td>
-                                                <td>{{ $of->source_link }}</td>
-                                                <td><a  title="Download" href="{{$of->file}}" download><i class="fa fa-download"></i> Download</a></td>
-                                                <td>{{ $of->contact_info }}</td>
+                                                <td>
+                                                    {!!$of->communications!!}
+                                                </td>
+                                                <td>
+                                                    @if ($of->file)
+                                                    <a  title="Download" href="{{$of->file}}" download><i class="fa fa-download"></i> Download</a>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $of->sort }}</td>
 
                                                 <td>
                                                     @if($of->status == 1)

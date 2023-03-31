@@ -26,6 +26,19 @@
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
+
+            {{-- users --}}
+            <li class="nav-item @if ($route == 'profession.index' || $route == 'profession.edit' || $route == 'profession.create') open @endif"><a class="d-flex align-items-center"
+                    href="#"><i class="fas fa-signature"></i>
+                    <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">System Users</span></a>
+                <ul class="menu-content">
+                    <li class=" @if ($route == 'profession.index' || $route == 'profession.edit' || $route == 'profession.create') active @endif"><a class="d-flex align-items-center"
+                            href="{{ route('profession.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles">Profession</span></a>
+                    </li>
+                </ul>
+            </li>
+
             {{-- -----------------------------
                 Legal Insights
             ------------------------------ --}}
@@ -78,27 +91,24 @@
                 Course Management
             ------------------------------ --}}
             <li class="nav-item @if (
-            $route == 'course.suitables.index' || 
-            $route == 'course.suitables.edit' || 
-            $route == 'course.suitables.create' ||
-            $route == 'courses.index' || 
-            // $route == 'courses.edit' || 
-            $route == 'courses.create'
-            ) open @endif"><a class="d-flex align-items-center"
+                $route == 'course.suitables.index' ||
+                    $route == 'course.suitables.edit' ||
+                    $route == 'course.suitables.create' ||
+                    $route == 'courses.index' ||
+                    // $route == 'courses.edit' ||
+                    $route == 'courses.create') open @endif"><a class="d-flex align-items-center"
                     href="#"><i class="fas fa-signature"></i>
                     <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Course
                         Management</span></a>
                 <ul class="menu-content">
-                    <li class=" @if ($route == 'course.suitables.index' || $route == 'course.suitables.edit' || $route == 'course.suitables.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('course.suitables.index') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Roles">Suitables For Course</span></a>
+                    <li class=" @if ($route == 'course.suitables.index' || $route == 'course.suitables.edit' || $route == 'course.suitables.create') active @endif"><a class="d-flex align-items-center"
+                            href="{{ route('course.suitables.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles">Suitables For Course</span></a>
                     </li>
                     <li class=" @if (
-                    $route == 'courses.index' || 
-                    // $route == 'courses.edit' || 
-                    $route == 'courses.create'
-                    ) active @endif"><a
+                        $route == 'courses.index' ||
+                            // $route == 'courses.edit' ||
+                            $route == 'courses.create') active @endif"><a
                             class="d-flex align-items-center" href="{{ route('courses.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Roles">Course</span></a>
@@ -160,17 +170,25 @@
                 Office & Function
             ------------------------------ --}}
             <li class="nav-item @if (
-                $route == 'office.function.index' ||
-                    $route == 'office.function.edit' ||
-                    $route == 'office.category.index' ||
-                    $route == 'office.category.edit' ||
+                $route == 'of.sector.index' ||
+                    $route == 'of.sector.edit' ||
+                    $route == 'of.sector.create' ||
+                    $route == 'office.function.index' ||
                     $route == 'office.function.create' ||
-                    $route == 'office.category.create') open @endif"><a class="d-flex align-items-center"
+                    $route == 'office.function.edit' ||
+                    $route == 'of.category.index' ||
+                    $route == 'of.category.edit' ||
+                    $route == 'of.category.create') open @endif"><a class="d-flex align-items-center"
                     href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"
                         data-i18n="Laws & Rules">Office & Function</span></a>
                 <ul class="menu-content">
-                    <li class=" @if ($route == 'office.category.index' || $route == 'office.category.edit') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('office.category.index') }}"><i
+                    <li class=" @if ($route == 'of.sector.index' || $route == 'of.sector.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('of.sector.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Sector</span></a>
+                    </li>
+                    <li class=" @if ($route == 'of.category.index' || $route == 'of.category.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('of.category.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Roles">Category</span></a>
                     </li>
@@ -190,7 +208,10 @@
                 Service & Facilitics
             ------------------------------ --}}
             <li class="nav-item @if (
-                $route == 'sf.category.index' ||
+                $route == 'sf.sector.index' ||
+                    $route == 'sf.sector.edit' ||
+                    $route == 'sf.sector.create' ||
+                    $route == 'sf.category.index' ||
                     $route == 'sf.category.edit' ||
                     $route == 'sf.category.create' ||
                     $route == 'service.facility.index' ||
@@ -200,6 +221,11 @@
                     <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Service &
                         Facilitics</span></a>
                 <ul class="menu-content">
+                    <li class=" @if ($route == 'sf.sector.index' || $route == 'sf.sector.edit' || $route == 'sf.sector.create') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('sf.sector.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Sector</span></a>
+                    </li>
                     <li class=" @if ($route == 'sf.category.index' || $route == 'sf.category.edit' || $route == 'sf.category.create') active @endif"><a
                             class="d-flex align-items-center" href="{{ route('sf.category.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
@@ -209,6 +235,25 @@
                             class="d-flex align-items-center" href="{{ route('service.facility.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Roles">Service & Facility</span></a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <!-- settings -->
+
+
+            <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-cog"></i><span
+                        class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Website
+                        Settings</span></a>
+                <ul class="menu-content">
+                    <li class=" "><a class="d-flex align-items-center"
+                            href="{{ route('terms.condition.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles">Terms & Conditions</span></a>
+                    </li>
+                    <li class=""><a class="d-flex align-items-center"
+                            href="{{ route('privacy.policy.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Permission">Privacy Policy</span></a>
                     </li>
                 </ul>
             </li>

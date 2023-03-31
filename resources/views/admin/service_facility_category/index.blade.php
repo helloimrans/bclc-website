@@ -44,35 +44,35 @@
                                         <tr>
                                             <th>SL</th>
                                             <th>Name</th>
-                                            <th>Short</th>
+                                            <th>Sort</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($service_facility_cats as $sf_cat)
+                                        @foreach ($sf_categories as $sf_category)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $sf_cat->name }}</td>
-                                                <td>{{ $sf_cat->sort }}</td>
+                                                <td>{{ $sf_category->name }}</td>
+                                                <td>{{ $sf_category->sort }}</td>
                                                 <td>
-                                                    @if($sf_cat->status == 1)
+                                                    @if($sf_category->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
                                                     @else
                                                         <span class="badge badge-light-warning">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $sf_cat->createdBy->name }}</td>
+                                                <td>{{ $sf_category->createdBy->name }}</td>
                                                 <td>
                                                     <a class="me-1" href="
-                                                    {{ route('sf.category.edit',$sf_cat->id) }}
+                                                    {{ route('sf.category.edit',$sf_category->id) }}
                                                     " data-bs-toggle="tooltip"
                                                         data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
                                                     <form class="d-inline" id="delForm" action="
-                                                    {{ route('sf.category.destroy',$sf_cat->id) }}
+                                                    {{ route('sf.category.destroy',$sf_category->id) }}
                                                     " method="POST">
                                                         @csrf
                                                         @method('DELETE')

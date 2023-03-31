@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ConsultationRequestController;
+use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SearchController;
 use Illuminate\Support\Facades\Artisan;
@@ -107,8 +108,11 @@ Route::get('terms-and-conditions', [FrontendController::class, 'termsCondition']
 //Privacy Policy
 Route::get('privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy.policy');
 
-//Privacy Policy
+//Contact us
 Route::get('contact-us', [FrontendController::class, 'contactUs'])->name('contact.us');
+
+//Contact store
+Route::post('contact/store', [ContactUsController::class, 'store'])->name('contact.store');
 
 
 require __DIR__ . '/auth.php';

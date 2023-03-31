@@ -13,7 +13,7 @@ class ServiceFacilityCatController extends Controller
 {
     public function index()
     {
-        $data['service_facility_cats'] = ServiceFacilityCategory::with('createdBy')->latest()->get();
+        $data['sf_categories'] = ServiceFacilityCategory::with('createdBy')->latest()->get();
         return view('admin.service_facility_category.index', $data);
     }
     public function create()
@@ -24,7 +24,6 @@ class ServiceFacilityCatController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:service_facility_categories,name',
-            'sort' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -48,14 +47,13 @@ class ServiceFacilityCatController extends Controller
     }
     public function edit($id)
     {
-        $data['sf_cat'] = ServiceFacilityCategory::findOrFail($id);
+        $data['sf_category'] = ServiceFacilityCategory::findOrFail($id);
         return view('admin.service_facility_category.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:service_facility_categories,name,' . $id,
-            'sort' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -81,7 +79,7 @@ class ServiceFacilityCatController extends Controller
     {
         ServiceFacilityCategory::find($id)->delete();
         $notification = array(
-            'message' => 'Successfully deleted.',
+            'message' => 'Successfully data deleted.',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
