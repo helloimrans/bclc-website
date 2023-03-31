@@ -10,9 +10,9 @@ use App\Models\LawCategory;
 use App\Models\LawChapter;
 use App\Models\Service;
 use App\Models\ServiceCategory;
-use App\Models\OfficeCategory;
+use App\Models\OfficeFunctionSector;
 use App\Models\PrivacyPolicy;
-use App\Models\ServiceFacilityCategory;
+use App\Models\ServiceFacilitySector;
 use App\Models\TermsCondition;
 use Illuminate\Http\Request;
 
@@ -170,12 +170,12 @@ class FrontendController extends Controller
 
 
     public function officeFunction(){
-        $data['officeCategories'] = OfficeCategory::where('status',1)->get();
+        $data['of_sectors'] = OfficeFunctionSector::where('status',1)->orderBy('sort', 'ASC')->get();
         return view('frontend.office_function.office_function',$data);
     }
 
     public function serviceFacility(){
-        $data['serviceCategories'] = ServiceFacilityCategory::where('status',1)->get();
+        $data['sf_sectors'] = ServiceFacilitySector::where('status',1)->orderBy('sort', 'ASC')->get();
         return view('frontend.service_facility.service_facility',$data);
     }
 

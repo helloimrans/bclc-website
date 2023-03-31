@@ -3,7 +3,7 @@
 /* bootstrap css modify */
 .table-sm td, .table-sm th {
     padding: .5rem;
-    font-size: 15px;
+    font-size: 13.5px;
 }
 
 /*header top area styles*/
@@ -1935,22 +1935,28 @@ header.scrolled .logo {
 }
 .sfof-details h6 {
     font-weight: 700;
-    margin-bottom: 5px;
-    margin-top: 25px;
+    margin-bottom: 4px;
+    margin-top: 20px;
+    font-size: 15px;
 }
 .sfof-details p {
     font-size: 15px;
 }
 .sfof-action-btn {
-    color: #fff !important;
+    color: #777777;
     display: inline-block;
-    background: var(--bd);
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 25px;
     border-radius: 5px;
-    line-height: 30px;
-    font-size: 15px;
+    line-height: 20px;
+    font-size: 11px;
     text-align: center;
+    border: 1px solid #777777;
+}
+
+.office_function blockquote {
+    font-size: 13.5px;
+    font-style: inherit;
 }
 
 /* learner registration styles */

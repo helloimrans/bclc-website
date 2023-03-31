@@ -3,8 +3,8 @@
 @section('content')
 
 @section('styles')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap4.min.css">
 @endsection
 
 <!-- start page header -->
@@ -25,16 +25,16 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h5 class="ad-titles mb-4" style="text-transform: inherit">Categories</h5>
+                <h5 class="ad-titles mb-4" style="text-transform: inherit">Sectors</h5>
             </div>
         </div>
         <div class="row">
-            @foreach ($serviceCategories as $serviceCategory)
+            @foreach ($sf_sectors as $sf_sector)
                 <div class="col-md-4">
                     <div class="service-cat-box mb-3">
-                        <a href="#cat_{{ $serviceCategory->id }}">
+                        <a href="#cat_{{ $sf_sector->id }}">
                             <div class="sc-txt">
-                                {{ $serviceCategory->name }}
+                                {{ $sf_sector->name }}
                             </div>
                         </a>
                     </div>
@@ -42,80 +42,84 @@
             @endforeach
         </div>
 
-        @foreach ($serviceCategories as $serviceCategory)
-            <div class="row mt-4" id="cat_{{ $serviceCategory->id }}">
+        @foreach ($sf_sectors as $sf_sector)
+            <div class="row mt-4" id="cat_{{ $sf_sector->id }}">
                 <div class="col">
                     <div class="office_function article-details bg-white">
-                        <h5 class="ad-titles mb-4" style="text-transform: inherit">{{ $serviceCategory->name }}</h5>
+                        <h5 class="ad-titles mb-4" style="text-transform: inherit">{{ $sf_sector->name }}</h5>
                         <table class="table table-striped table-bordered table-sm dataTable">
                             <thead>
                                 <tr>
                                     <th>Service</th>
+                                    <th>Category</th>
                                     <th>Title/Name</th>
-                                    <th>Description/ Key Points /Services</th>
+                                    <th>Description/Key Points/Services</th>
                                     <th>Authority</th>
                                     <th>Communications</th>
-                                    <th>Source Link</th>
-                                    <th>File</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($serviceCategory->serviceFacilities as $serviceFacility)
+                                @foreach ($sf_sector->serviceFacilities as $serviceFacility)
                                     <tr>
                                         <td>{{ $serviceFacility->service }}</td>
+                                        <td>{{ $serviceFacility->category->name }}</td>
                                         <td>{{ $serviceFacility->title }}</td>
-                                        <td>{!! substr(strip_tags($serviceFacility->description), 0, 45) !!}...</td>
+                                        <td>{!! substr(strip_tags($serviceFacility->description), 0, 35) !!}...</td>
                                         <td>{{ $serviceFacility->authority }}</td>
-                                        <td>{{ $serviceFacility->contact_info }}</td>
-                                        <td>{{ $serviceFacility->source_link }}</td>
-                                        <td class="text-center"><a href="{{ $serviceFacility->file }}" download><i
-                                                    class="fa fa-file-pdf-o"></i></a></td>
-                                                    <td class="text-center">
-                                                        <a href="javascript:;" data-toggle="modal" class="sfof-action-btn" data-target="#exampleModal_{{$serviceFacility->id}}"><i class="fa fa-eye"></i></a>
-                                                    </td>
+                                        <td>{!! $serviceFacility->communications !!}</td>
+                                        <td class="text-center">
+                                            @if ($serviceFacility->file)
+                                            <a class="sfof-action-btn" title="Download file" href="{{ $serviceFacility->file }}" download><i
+                                                class="fa fa-file-pdf-o"></i></a>
+                                                @endif
+                                                <a title="View details" href="javascript:;" data-toggle="modal" class="sfof-action-btn"
+                                                data-target="#exampleModal_{{ $serviceFacility->id }}"><i
+                                                    class="fa fa-eye"></i></a>
+                                        </td>
                                     </tr>
 
                                     <!--View Modal -->
                                     <div class="service-cunsult-modal">
-                                        <div class="modal fade" id="exampleModal_{{$serviceFacility->id}}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal_{{ $serviceFacility->id }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                            aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body pt-0">
                                                         <div class="sm-body">
-                                                            <h5>{{$serviceFacility->title}}</h5>
+                                                            <h5>{{ $serviceFacility->title }}</h5>
                                                             <div class="sfof-details">
                                                                 <h6>Service</h6>
-                                                                <p>{{$serviceFacility->service}}</p>
+                                                                <p>{{ $serviceFacility->service }}</p>
 
                                                                 <h6>Title/Name</h6>
-                                                                <p>{{$serviceFacility->title}}</p>
+                                                                <p>{{ $serviceFacility->title }}</p>
 
                                                                 <h6>Description/ Key Points /Services</h6>
-                                                                <p>{!!$serviceFacility->description!!}</p>
+                                                                <p>{!! $serviceFacility->description !!}</p>
 
 
 
                                                                 <h6>Authority</h6>
-                                                                <p>{{$serviceFacility->authority}}</p>
+                                                                <p>{{ $serviceFacility->authority }}</p>
 
                                                                 <h6>Communications</h6>
-                                                                <p>{{$serviceFacility->contact_info}}</p>
-
-                                                                <h6>Source Link</h6>
-                                                                <p><a href="{{$serviceFacility->source_link}}" target="_blank">{{$serviceFacility->source_link}}</a></p>
+                                                                <p>{!! $serviceFacility->communications !!}</p>
 
                                                                 <h6>File</h6>
                                                                 @if ($serviceFacility->file)
-                                                                <p><a href="{{$serviceFacility->file}}" download><i class="fa fa-download"></i> Download</a></p>
+                                                                    <p><a href="{{ $serviceFacility->file }}"
+                                                                            download><i class="fa fa-download"></i>
+                                                                            Download</a></p>
                                                                 @else
-                                                                <p>No file</p>
+                                                                    <p>No file</p>
                                                                 @endif
                                                             </div>
                                                         </div>
