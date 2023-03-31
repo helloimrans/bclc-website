@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\SuitableCourseController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -125,4 +126,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     //Profession
     Route::resource('profession', ProfessionController::class)->except('show');
+
+   // Contact Message
+    Route::get('contact/message', [ ContactMessageController::class, 'index'])->name('Contact.Message');
+
 });
