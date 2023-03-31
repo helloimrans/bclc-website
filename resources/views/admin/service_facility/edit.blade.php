@@ -41,11 +41,28 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label">Service & Facility Category</label>
+                                            <label class="form-label">Sector</label>
+                                            <select id="service_facility_sector_id" name="service_facility_sector_id"
+                                                class="form-control @error('service_facility_sector_id') is-invalid @enderror">
+                                                <option value="">
+                                                    Select Sector
+                                                </option>
+                                                @foreach ($sf_sectors as $sf_sector)
+                                                    <option value="{{ $sf_sector->id }}"@if ($sf_sector->id == $service_facility->service_facility_sector_id) selected @endif>{{ $sf_sector->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('service_facility_sector_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label">Category</label>
                                             <select name="service_facility_category_id"
                                                 class="form-control @error('service_facility_category_id') is-invalid @enderror">
                                                 <option value="">Select Category</option>
-                                                @foreach ($service_facility_cats as $sf_cat)
+                                                @foreach ($sf_categories as $sf_cat)
                                                     <option value="{{$sf_cat->id}}" @if($service_facility->service_facility_category_id == $sf_cat->id)  selected @endif>
                                                        {{ $sf_cat->name }}
                                                     </option>
@@ -56,19 +73,17 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="">Service</label>
-                                            <input type="text" name="service" placeholder="Enter service"
-                                                class="form-control @error('service') is-invalid @enderror"
-                                                value="{{ $service_facility->service }}">
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Service</label>
+                                    <input type="text" name="service" placeholder="Enter service"
+                                        class="form-control @error('service') is-invalid @enderror"
+                                        value="{{ $service_facility->service }}">
 
-                                            @error('service')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                    @error('service')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
 
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Title</label>
@@ -91,27 +106,15 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Contact Info</label>
-                                    <input type="text" name="contact_info" placeholder="Enter contact info"
-                                        class="form-control @error('contact_info') is-invalid @enderror"
-                                        value="{{ $service_facility->contact_info }}">
-
-                                    @error('contact_info')
+                                    <label class="form-label" for="">Communications</label>
+                                    <textarea name="communications" rows="2" class="summernote @error('communications') is-invalid @enderror"
+                                        placeholder="Enter...">{{ $service_facility->communications }}</textarea>
+                                    @error('communications')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Source Link</label>
-                                    <input type="text" name="source_link" placeholder="Enter source link"
-                                        class="form-control @error('source_link') is-invalid @enderror"
-                                        value="{{ $service_facility->source_link }}">
-
-                                    @error('source_link')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-1">
-                                    <label class="form-label" for="">Description</label>
+                                    <label class="form-label" for="">Description/KeyPoints/Services</label>
                                     <textarea name="description" rows="2" class="summernote @error('description') is-invalid @enderror"
                                         placeholder="Enter description">{{ $service_facility->description }}</textarea>
                                     @error('description')
@@ -126,6 +129,17 @@
                                     @error('file')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Sort</label>
+                                    <input type="number" name="sort" placeholder="Enter sort"
+                                        class="form-control @error('sort') is-invalid @enderror"
+                                        value="{{ old('sort', $service_facility->sort) }}">
+
+                                    @error('sort')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+
                                 </div>
                                 <div class="mb-1">
                                     <label class="form-label">Status</label>

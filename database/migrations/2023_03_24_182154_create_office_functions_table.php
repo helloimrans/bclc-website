@@ -23,9 +23,7 @@ return new class extends Migration
             $table->longText('service')->nullable();
             $table->string('ministry_dept_authority')->nullable();
             $table->string('address')->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('contact_mobile')->nullable();
-            $table->string('contact_link')->nullable();
+            $table->text('communications')->nullable();
             $table->string('file')->nullable();
 
             $table->integer('sort')->nullable();

@@ -47,9 +47,7 @@ class OfficeFunctionController extends Controller
         $data->description                  = $request->description;
         $data->service                      = $request->service;
         $data->ministry_dept_authority      = $request->ministry_dept_authority;
-        $data->contact_email                = $request->contact_email;
-        $data->contact_mobile               = $request->contact_mobile;
-        $data->contact_link                 = $request->contact_link;
+        $data->communications               = $request->communications;
         $data->sort                         = $request->sort;
         $data->address                      = $request->address;
         $data->status                       = $request->status;
@@ -104,9 +102,7 @@ class OfficeFunctionController extends Controller
         $data->description                  = $request->description;
         $data->service                      = $request->service;
         $data->ministry_dept_authority      = $request->ministry_dept_authority;
-        $data->contact_email                = $request->contact_email;
-        $data->contact_mobile               = $request->contact_mobile;
-        $data->contact_link                 = $request->contact_link;
+        $data->communications               = $request->communications;
         $data->sort                         = $request->sort;
         $data->address                      = $request->address;
         $data->status                       = $request->status;

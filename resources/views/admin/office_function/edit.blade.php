@@ -41,7 +41,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label">Office Function Sector</label>
+                                            <label class="form-label">Sector</label>
                                             <select id="office_function_sector_id" name="office_function_sector_id"
                                                 class="form-control @error('office_function_sector_id') is-invalid @enderror">
                                                 <option value="">
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label">Office Category</label>
+                                            <label class="form-label">Category</label>
                                             <select id="office_function_category_id" name="office_function_category_id"
                                                 class="form-control @error('office_function_category_id') is-invalid @enderror">
                                                 <option value="">
@@ -97,7 +97,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Address</label>
+                                    <label class="form-label" for="">Address/Remarks</label>
                                     <input type="text" name="address" placeholder="Enter address"
                                         class="form-control @error('address') is-invalid @enderror"
                                         value="{{ old('address', $office_function->address) }}">
@@ -107,32 +107,10 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Contact Email</label>
-                                    <input type="text" name="contact_email" placeholder="Enter contact email"
-                                        class="form-control @error('contact_email') is-invalid @enderror"
-                                        value="{{ old('contact_email', $office_function->contact_email) }}">
-
-                                    @error('contact_email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-1">
-                                    <label class="form-label" for="">Contact Mobile</label>
-                                    <input type="text" name="contact_mobile" placeholder="Enter contact mobile"
-                                        class="form-control @error('contact_mobile') is-invalid @enderror"
-                                        value="{{ old('contact_mobile', $office_function->contact_mobile) }}">
-
-                                    @error('contact_mobile')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-1">
-                                    <label class="form-label" for="">Contact Link</label>
-                                    <input type="text" name="contact_link" placeholder="Enter contact link"
-                                        class="form-control @error('contact_link') is-invalid @enderror"
-                                        value="{{ old('contact_link', $office_function->contact_link) }}">
-
-                                    @error('contact_link')
+                                    <label class="form-label" for="">Communications</label>
+                                    <textarea name="communications" rows="2" class="summernote @error('communications') is-invalid @enderror"
+                                        placeholder="Enter...">{{ old('communications',$office_function->communications) }}</textarea>
+                                    @error('communications')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

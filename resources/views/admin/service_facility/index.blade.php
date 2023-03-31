@@ -43,14 +43,15 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Service Facility Category</th>
                                             <th>Service</th>
+                                            <th>Sector</th>
+                                            <th>Category</th>
                                             <th>Title</th>
-                                            <th>Description</th>
+                                            <th>Description/KeyPoints/Services</th>
                                             <th>Authority</th>
-                                            <th>Contact</th>
-                                            <th>Source Link</th>
+                                            <th>Communications</th>
                                             <th>File</th>
+                                            <th>Sort</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
@@ -59,18 +60,22 @@
                                     <tbody>
                                         @foreach ($service_facilitics as $sf)
                                             <tr>
+                                                <td>{{ $sf->service }}</td>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    {{$sf->serviceFacilityCategory->name}}
+                                                    {{$sf->sector->name}}
                                                 </td>
-                                                <td>{{ $sf->service }}</td>
+                                                <td>
+                                                    {{$sf->category->name}}
+                                                </td>
                                                 <td>{{ $sf->title }}</td>
                                                 <td>{!! substr(strip_tags($sf->description), 0, 45) !!}...</td>
                                                 <td>{{ $sf->authority }}</td>
-                                                <td>{{ $sf->contact_info }}</td>
-                                                <td>{{ $sf->source_link }}</td>
+                                                <td>
+                                                    {!!$sf->communications!!}
+                                                </td>
                                                 <td><a  title="Download" href="{{$sf->file}}" download><i class="fa fa-download"></i> Download</a></td>
-
+                                                <td>{{ $sf->sort }}</td>
                                                 <td>
                                                     @if($sf->status == 1)
                                                         <span class="badge badge-light-success">Active</span>

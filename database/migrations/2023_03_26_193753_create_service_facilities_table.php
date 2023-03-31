@@ -21,9 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('authority')->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('contact_mobile')->nullable();
-            $table->string('contact_link')->nullable();
+            $table->text('communications')->nullable();
             $table->string('file')->nullable();
 
             $table->integer('sort')->nullable();

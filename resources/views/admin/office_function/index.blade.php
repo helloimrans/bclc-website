@@ -49,7 +49,7 @@
                                             <th>Description</th>
                                             <th>Activities/Services/Functions</th>
                                             <th>Ministry/Dept./Authority</th>
-                                            <th>Address</th>
+                                            <th>Address/Remarks</th>
                                             <th>Communications</th>
                                             <th>File</th>
                                             <th>Sort</th>
@@ -70,9 +70,7 @@
                                                 <td>{{ $of->ministry_dept_authority }}</td>
                                                 <td>{{ $of->address }}</td>
                                                 <td>
-                                                    <span class="d-block">{{ $of->contact_email }}</span>
-                                                    <span class="d-block">{{ $of->contact_mobile }}</span>
-                                                    <span class="d-block"><a href="{{ $of->contact_link }}" target="_blank">{{ $of->contact_link }}</a></span>
+                                                    {!!$of->communications!!}
                                                 </td>
                                                 <td>
                                                     @if ($of->file)
