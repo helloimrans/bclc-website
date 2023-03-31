@@ -26,6 +26,19 @@
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
+
+            {{-- users --}}
+            <li class="nav-item @if ($route == 'profession.index' || $route == 'profession.edit' || $route == 'profession.create') open @endif"><a class="d-flex align-items-center"
+                    href="#"><i class="fas fa-signature"></i>
+                    <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">System Users</span></a>
+                <ul class="menu-content">
+                    <li class=" @if ($route == 'profession.index' || $route == 'profession.edit' || $route == 'profession.create') active @endif"><a class="d-flex align-items-center"
+                            href="{{ route('profession.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles">Profession</span></a>
+                    </li>
+                </ul>
+            </li>
+
             {{-- -----------------------------
                 Legal Insights
             ------------------------------ --}}
@@ -95,9 +108,10 @@
                     <li class=" @if (
                         $route == 'courses.index' ||
                             // $route == 'courses.edit' ||
-                            $route == 'courses.create') active @endif"><a class="d-flex align-items-center"
-                            href="{{ route('courses.index') }}"><i data-feather="circle"></i><span
-                                class="menu-item text-truncate" data-i18n="Roles">Course</span></a>
+                            $route == 'courses.create') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('courses.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Course</span></a>
                     </li>
                 </ul>
             </li>

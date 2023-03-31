@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\ServiceFacilityController;
 use App\Http\Controllers\Admin\TermsConditionController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
+use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Defaults\DefaultController;
@@ -121,4 +122,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     //Privacy Policy
     Route::resource('privacy-policy', PrivacyPolicyController::class, ['names' => 'privacy.policy']);
+
+    //Profession
+    Route::resource('profession', ProfessionController::class)->except('show');
 });
