@@ -128,6 +128,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::resource('profession', ProfessionController::class)->except('show');
 
    // Contact Message
-    Route::get('contact/message', [ ContactMessageController::class, 'index'])->name('Contact.Message');
+    Route::get('contact/message', [ ContactMessageController::class, 'index'])->name('contact.message');
 
 });
