@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'show contact message')
+@section('title', 'Show Contact Message')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -36,6 +36,8 @@
                                             <th>email</th>
                                             <th>subject</th>
                                             <th>message</th>
+                                            <th>Status </th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -46,11 +48,19 @@
                                                 <td>{{ $contact_message->mobile }}</td>
                                                 <td>{{ $contact_message->email }}</td>
                                                 <td>{{ $contact_message->subject }}</td>
-                                                <td>{{ $contact_message->message }}</td>
+                                                <td>{{ $contact_message->message }}</td>    
+                                                
+                                                
 
-                                               
+                                                
+                                               <td>                                                
+                                                    <span class=" "></span>
+                                              
+                                                </td>
                                             </tr>
+
                                         @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
