@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Expert\ExpertController;
 
-//Admin auth route
+//Expert auth route
 Route::group(['prefix' => 'expert', 'as' => 'expert.'], function () {
     Route::get('login', [ExpertController::class, 'loginForm'])->name('login')->middleware('expert.guest');
     Route::get('registration', [ExpertController::class, 'registrationForm'])->name('registration');
