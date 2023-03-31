@@ -192,6 +192,11 @@ class FrontendController extends Controller
         return view('frontend.training.course_details', compact('course'));
     }
 
+    public function course_enroll()
+    {
+        return view('frontend.enroll.enroll');
+    }
+
     public function termsCondition()
     {
         $data['termsCondition'] = TermsCondition::latest()->first();

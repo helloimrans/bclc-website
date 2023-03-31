@@ -102,6 +102,11 @@ Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
     Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
 });
 
+// Course Enroll
+Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
+    Route::get('enroll', [FrontendController::class, 'course_enroll'])->name('enrill');
+});
+
 //Terms Condition
 Route::get('terms-and-conditions', [FrontendController::class, 'termsCondition'])->name('terms.condition');
 
