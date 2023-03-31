@@ -20,9 +20,9 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="td-image">
-                    <img src="{{asset('frontend')}}/images/training1.png" class="img-fluid" alt="">
+                    <img src="{{asset($course->expert->image)}}" class="img-fluid" alt="">
                     <div class="td-img-txt">
-                        <h4>Fundamentals of Labour Law & Rules</h4>
+                        <h4>{{ $course->title }}</h4>
                     </div>
                 </div>
             </div>
@@ -39,18 +39,12 @@
                             </div>
                         </div>
                     </div>
-                    <p>This Fundamentals of Labour Law & Rules training program is designed to give the young
-                        learner an immersive, transformational experience, equipping him/her with the practical
-                        skills to deliver on the ground. It not only familiarizes you with the art and science of
-                        project management and global best practices but also affirms your ability to participate,
-                        lead, and manage complex projects.
+                    <p>
+                        {{ $course->short_description }}
                     </p>
                     <h5>Key Takeaways</h5>
                     <ul>
-                        <li>Understand the Project Management Life Cycle and its relevance to practice </li>
-                        <li>Get insights to world class Project Management practices</li>
-                        <li>Helps you get a holistic view of business and not just technical aspects</li>
-                        <li>Understand the concepts of each of Project Management knowledge areas</li>
+                        {{ $course->key_takeaways }}
                     </ul>
                 </div>
             </div>
@@ -63,31 +57,47 @@
                     <div class="media">
                         <p><i class="fa fa-calendar-o"></i></p>
                         <div class="media-body">
-                            <p> Date : 6 August 2021 to 10 August 2021</p>
+                            <p> Date : 
+                                {{date('jS, F, Y', strtotime($course->class_start_date)) }} 
+                                to 
+                                {{date('jS, F, Y', strtotime($course->class_end_date)) }}
+                            </p>
                         </div>
                     </div>
                     <div class="media">
                         <p><i class="fa fa-calendar-o"></i></p>
                         <div class="media-body">
-                            <p>Class Schedule : Saturday, Sunday, Monday, Tuesday, Friday</p>
+                            <p>Class Schedule : 
+                                @forelse (json_decode($course->schedule) as $schedule)
+                                    <span class="badge badge-secondary">{{ $schedule }}</span>
+                                @empty
+                                @endforelse
+                            </p>
                         </div>
                     </div>
                     <div class="media">
                         <p><i class="fa fa-clock-o"></i> </p>
                         <div class="media-body">
-                            <p>Class Time : 8:00PM - 11:00 PM</p>
+                            <p>Class Time : 
+                                {{\Carbon\Carbon::createFromFormat('H:i:s',$course->class_start_time)->format('h:i A')}}
+                                to 
+                                {{\Carbon\Carbon::createFromFormat('H:i:s',$course->class_end_time)->format('h:i A')}}
+                            </p>
                         </div>
                     </div>
                     <div class="media">
                         <p><i class="fa fa-clock-o"></i></p>
                         <div class="media-body">
-                            <p> Total Hours : 15 Hour</p>
+                            <p> Total Hours : 
+                                {{ $course->duration }} 
+                                Hour
+                            </p>
                         </div>
                     </div>
                     <div class="media">
                         <p><i class="fa fa-map-marker"></i></p>
                         <div class="media-body">
-                            <p> Venue : Virtual Platform</p>
+                            <p> Venue : {{ $course->venue }}</p>
                         </div>
                     </div>
                 </div>
@@ -97,22 +107,7 @@
                 </div>
                 <div class="td-curriculum wow fadeInDown" data-wow-duration="1s">
                     <div class="tdr-height">
-                        <p>Synopsis of the Training:</p>
-                        <p><strong>Abc</strong></p>
-                        <p> Interective discussion sessions
-                            ; Practical examples and experience sharing
-                            ; Relevant Case Study and possible solutions
-                            ; Assignment</p>
-
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum, illo aut modi
-                            cupiditate iusto iste quisquam dolorem ullam esse maxime! Voluptatum distinctio
-                            blanditiis voluptatem nulla officia, repellendus odio, nihil sint necessitatibus, enim
-                            assumenda quod itaque beatae laudantium optio qui magnam illum. Quam, tenetur aut ut
-                            quos consequatur cupiditate excepturi in deleniti consequuntur alias laborum itaque id
-                            illo modi amet omnis magnam impedit doloribus corporis nemo. A nulla animi, itaque quod,
-                            voluptatibus voluptatem dicta delectus quasi ad quibusdam, reprehenderit illo
-                            temporibus. Accusamus quo, qui, aliquid, animi porro sed aut alias at corrupti vel natus
-                            nesciunt eligendi laborum. Porro esse quam minima.</p>
+                        {{ $course->curriculum }}
                     </div>
                     <a href="javascript:;" class="mt-2 tdr-show">Show More</a>
                 </div>
@@ -160,8 +155,8 @@
                 <div class="row mt-4 mt-md-0 wow fadeInDown" data-wow-duration="1s">
                     <div class="col-lg-6">
                         <div class="td-course-id">
-                            <span>Course ID: 2108FLLR01</span>
-                            <span>Registration Fee: BDT 5,000/=</span>
+                            <span>Course ID: {{ $course->course_id }}</span>
+                            <span>Registration Fee: {{ $course->fee }}/=</span>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -171,8 +166,12 @@
                                     <h6>Contact For Training</h6>
                                 </div>
                                 <div class="card-body">
-                                    <span>Cell: +880 1886 456688</span>
-                                    <span>Email: training@bclcbd.com</span>
+                                    <span>
+                                        Cell: {{ $course->expert->mobile }}
+                                    </span>
+                                    <span>
+                                        Email: {{ $course->expert->email }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +189,7 @@
                                 <img src="{{asset('frontend')}}/images/resource-peron.png" alt="image">
                             </div>
                             <div class="media-body">
-                                <h6 class="mt-3">Md. Niamul Kabir</h6>
+                                <h6 class="mt-3">{{ $course->expert->name }}</h6>
                                 <span>Advocate</span>
                                 <span>Supreme Court of Bangladesh</span>
                             </div>

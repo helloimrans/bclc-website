@@ -11,6 +11,7 @@ use App\Models\LawChapter;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\OfficeFunctionSector;
+use App\Models\Course;
 use App\Models\PrivacyPolicy;
 use App\Models\ServiceFacilitySector;
 use App\Models\TermsCondition;
@@ -181,12 +182,19 @@ class FrontendController extends Controller
 
     public function courses()
     {
-        return view('frontend.training.courses');
+        $data['courses'] = Course::all();
+        return view('frontend.training.courses', $data);
     }
 
     public function courseDetails($slug)
     {
-        return view('frontend.training.course_details');
+        $course = Course::where('slug', $slug)->first();
+        return view('frontend.training.course_details', compact('course'));
+    }
+
+    public function course_enroll()
+    {
+        return view('frontend.enroll.enroll');
     }
 
     public function termsCondition()
@@ -205,5 +213,4 @@ class FrontendController extends Controller
         
         return view('frontend.contact_us.contact_us');
     }
-
 }
