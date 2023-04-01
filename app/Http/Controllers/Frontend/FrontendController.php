@@ -220,7 +220,7 @@ class FrontendController extends Controller
 
     public function contactUs()
     {
-        
+
         return view('frontend.contact_us.contact_us');
     }
 }

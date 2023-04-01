@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Learner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class LearnerController extends Controller
@@ -47,11 +48,12 @@ class LearnerController extends Controller
             'message' => 'Registration Successfully!',
             'alert-type' => 'success'
         );
-        return redirect()->route('learner.dashboard')->with($notification);
+        return redirect()->intended(route('learner.dashboard'))->with($notification);
     }
 
     public function loginForm()
     {
+        Redirect::setIntendedUrl(url()->previous());
         $data['userType'] = "Learner";
         return view('frontend.auth.login', $data);
     }
@@ -77,7 +79,7 @@ class LearnerController extends Controller
                 'message' => 'Successfully Logged In!',
                 'alert-type' => 'success'
             );
-            return redirect()->route('learner.dashboard')->with($notification);
+            return redirect()->intended(route('learner.dashboard'))->with($notification);
         } else {
             $notification = array(
                 'message' => 'Invalid Email or Password!',

@@ -71,4 +71,13 @@ class Law extends Model
     {
         return $this->hasMany(LawChapter::class)->where('is_rules', 1)->orderBy('sort', 'ASC');
     }
+
+    public function actPart()
+    {
+        return $this->hasMany(LawPart::class)->where('is_act', 1)->orderBy('sort', 'ASC');
+    }
+    public function rulesPart()
+    {
+        return $this->hasMany(LawPart::class)->where('is_rules', 1)->orderBy('sort', 'ASC');
+    }
 }

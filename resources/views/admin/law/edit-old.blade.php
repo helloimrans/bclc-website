@@ -7,16 +7,11 @@
             display: block;
             border: 1px solid #ddd;
         }
-
         .chapter-with {
             text-transform: lowercase;
         }
-
         .chapter-with::first-line {
             text-transform: capitalize
-        }
-        .tab-content .card-header{
-            padding: 10px;
         }
     </style>
 
@@ -473,7 +468,6 @@
                                             aria-selected="false">{{ $law->rules_title }}</button>
                                     </li>
                                 @endif
-
                             </ul>
 
                             <div class="tab-content" id="pills-tabContent">
@@ -484,7 +478,7 @@
                                     <div class="card-body rounded" style="background: #f5f5f5; border:1px dotted #7367f0">
                                         <h4 class="text-center">{{ $law->title }}</h4>
 
-                                        {{-- start add part for law act --}}
+                                        {{-- start add part for law act--}}
                                         <div class="card-header px-0">
                                             <div class="head-label">
                                                 <h5 class="mb-0 text-success"><strong>Parts</strong></h5>
@@ -553,19 +547,18 @@
 
                                             </div>
                                         </div>
-                                        {{-- end add part for law act --}}
+                                        {{-- end add part for law act--}}
 
-                                        {{-- start add chapter for law act --}}
+                                        {{-- start add chapter for law act--}}
                                         <div class="card-header px-0">
                                             <div class="head-label">
                                                 <h5 class="mb-0 text-success"><strong>Chapters</strong></h5>
                                             </div>
                                             <div class="dt-action-buttons text-end">
                                                 <div class="dt-buttons d-inline-flex"><a href="#!"
-                                                        class="btn btn-success btn-sm cAddBtn" bla="1"
-                                                        law_id="{{ $law->id }}" blr=""
-                                                        data-bs-toggle="modal" data-bs-target="#cAddModal"><i
-                                                            data-feather='plus-square'></i> Add
+                                                        class="btn btn-success btn-sm cAddBtn" bla="1" law_id="{{$law->id}}"
+                                                        blr="" data-bs-toggle="modal"
+                                                        data-bs-target="#cAddModal"><i data-feather='plus-square'></i> Add
                                                         Chapter</a></div>
                                             </div>
                                         </div>
@@ -625,31 +618,29 @@
 
                                             </div>
                                         </div>
-                                        {{-- end add chapter for law act --}}
+                                        {{-- end add chapter for law act--}}
 
-                                        {{-- start part with chapter with section for law act --}}
+                                        {{-- start chapter with section for law act--}}
                                         <div class="card-header px-0">
                                             <div class="head-label">
-                                                <h5 class="mb-0 text-success"><strong>Part, Chapter, Section</strong></h5>
+                                                <h5 class="mb-0 text-success"><strong>Chapter with Section</strong></h5>
                                             </div>
                                         </div>
                                         <div id="loadSection">
-                                            @foreach ($law->actPart as $part)
+                                            @foreach ($law->actChapter as $chapter)
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5 class="text-primary">{{ $part->part_no }} :
-                                                            {{ $part->title }}</h5>
+                                                        <h5 class="text-primary">{{ $chapter->chapter_no }} :
+                                                            {{ $chapter->title }}</h5>
                                                         <div class="heading-elements">
                                                             <ul class="list-inline mb-0">
                                                                 <li>
-                                                                    <a href="#!"
-                                                                        class="btn btn-success btn-sm cAddBtn"
-                                                                        bla="1" law_id="{{ $law->id }}"
-                                                                        part_id="{{ $part->id }}" blr=""
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#cAddModal"><i
-                                                                            data-feather='plus-square'></i> Add
-                                                                        Chapter</a>
+                                                                    <a class="btn btn-success btn-sm sAddBtn"
+                                                                        href="#!" bla="1" blr=""
+                                                                        data-id="{{ $chapter->id }}"><i
+                                                                            data-feather='plus-square'></i>
+                                                                        Add
+                                                                        Section</a>
                                                                 </li>
                                                                 <li>
                                                                     <a data-action="collapse"><i
@@ -660,154 +651,118 @@
                                                         </div>
                                                     </div>
                                                     <div class="card-content collapse">
-                                                        @foreach ($part->chapter as $chapter)
-                                                            <div class="card border" style="margin:5px">
-                                                                <div class="card-header">
-                                                                    <h5 class="text-primary">{{ $chapter->chapter_no }} :
-                                                                        {{ $chapter->title }}</h5>
-                                                                    <div class="heading-elements">
-                                                                        <ul class="list-inline mb-0">
-                                                                            <li>
-                                                                                <a class="btn btn-success btn-sm sAddBtn"
-                                                                                    href="#!" bla="1"
-                                                                                    blr=""
-                                                                                    data-id="{{ $chapter->id }}"><i
-                                                                                        data-feather='plus-square'></i>
-                                                                                    Add
-                                                                                    Section</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a data-action="collapse"><i
-                                                                                        data-feather="chevron-down"></i></a>
-                                                                            </li>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-borderless example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>SL</th>
+                                                                            <th>Title</th>
+                                                                            <th>Parent</th>
+                                                                            <th>Description</th>
+                                                                            <th>Sort</th>
+                                                                            <th>Status</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
 
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-content collapse">
-                                                                    <div class="card-body">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table table-borderless example">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th>SL</th>
-                                                                                        <th>Title</th>
-                                                                                        <th>Parent</th>
-                                                                                        <th>Description</th>
-                                                                                        <th>Sort</th>
-                                                                                        <th>Status</th>
-                                                                                        <th>Actions</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
+                                                                        @foreach ($chapter->section->where('parent_id', 0) as $section)
+                                                                            <tr>
+                                                                                <td>
+                                                                                    {{ $loop->iteration }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{ $section->title }}
+                                                                                </td>
+                                                                                <td>
 
-                                                                                    @foreach ($chapter->section->where('parent_id', 0) as $section)
-                                                                                        <tr>
-                                                                                            <td>
-                                                                                                {{ $loop->iteration }}
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                {{ $section->title }}
-                                                                                            </td>
-                                                                                            <td>
+                                                                                    {{ @$section->parent->title }}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                    <a class="text-primary" type="button"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#sectionDesc2_{{ $section->id }}">Read
+                                                                                        more</a>
 
-                                                                                                {{ @$section->parent->title }}
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                {!! substr(strip_tags($section->description), 0, 50) !!}
-                                                                                                <a class="text-primary"
-                                                                                                    type="button"
-                                                                                                    data-bs-toggle="modal"
-                                                                                                    data-bs-target="#sectionDesc2_{{ $section->id }}">Read
-                                                                                                    more</a>
-
-                                                                                                <div class="modal fade"
-                                                                                                    id="sectionDesc2_{{ $section->id }}"
-                                                                                                    tabindex="-1"
-                                                                                                    aria-labelledby="exampleModalLabel"
-                                                                                                    aria-hidden="true">
-                                                                                                    <div
-                                                                                                        class="modal-dialog modal-lg">
-                                                                                                        <div
-                                                                                                            class="modal-content">
-                                                                                                            <div
-                                                                                                                class="modal-header">
-                                                                                                                <h5 class="modal-title"
-                                                                                                                    id="exampleModalLabel">
-                                                                                                                    {{ $section->title }}
-                                                                                                                </h5>
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    class="btn-close"
-                                                                                                                    data-bs-dismiss="modal"
-                                                                                                                    aria-label="Close"></button>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="modal-body">
-                                                                                                                {!! $section->description !!}
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="modal-footer">
-                                                                                                                <button
-                                                                                                                    type="button"
-                                                                                                                    class="btn btn-secondary"
-                                                                                                                    data-bs-dismiss="modal">Close</button>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
+                                                                                    <div class="modal fade"
+                                                                                        id="sectionDesc2_{{ $section->id }}"
+                                                                                        tabindex="-1"
+                                                                                        aria-labelledby="exampleModalLabel"
+                                                                                        aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-lg">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title"
+                                                                                                        id="exampleModalLabel">
+                                                                                                        {{ $section->title }}
+                                                                                                    </h5>
+                                                                                                    <button type="button"
+                                                                                                        class="btn-close"
+                                                                                                        data-bs-dismiss="modal"
+                                                                                                        aria-label="Close"></button>
                                                                                                 </div>
-                                                                                            </td>
-                                                                                            <td>{{ $section->sort }}</td>
-                                                                                            <td>
-                                                                                                @if ($section->status == 1)
-                                                                                                    <span
-                                                                                                        class="badge badge-light-success">Active</span>
-                                                                                                @else
-                                                                                                    <span
-                                                                                                        class="badge badge-light-warning">Deactive</span>
-                                                                                                @endif
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                <a class="me-1 editSection"
-                                                                                                    href="javascript:;"
-                                                                                                    id="{{ $section->id }}"
-                                                                                                    data-bs-toggle="tooltip"
-                                                                                                    data-bs-original-title="Edit">
-                                                                                                    <i
-                                                                                                        class="far fa-edit text-dark"></i>
-                                                                                                </a>
-                                                                                                <a class="me-1 deleteSection"
-                                                                                                    id="{{ $section->id }}"
-                                                                                                    href="javascript:;"
-                                                                                                    data-bs-toggle="tooltip"
-                                                                                                    data-bs-original-title="Delete">
-                                                                                                    <i
-                                                                                                        class="far fa-trash-alt text-danger"></i>
-                                                                                                </a>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        @if (count($section->childs))
-                                                                                            @include(
-                                                                                                'admin.law.child_section',
-                                                                                                [
-                                                                                                    'childs' =>
-                                                                                                        $section->childs,
-                                                                                                ]
-                                                                                            )
-                                                                                        @endif
-                                                                                    @endforeach
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    {!! $section->description !!}
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button"
+                                                                                                        class="btn btn-secondary"
+                                                                                                        data-bs-dismiss="modal">Close</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>{{ $section->sort }}</td>
+                                                                                <td>
+                                                                                    @if ($section->status == 1)
+                                                                                        <span
+                                                                                            class="badge badge-light-success">Active</span>
+                                                                                    @else
+                                                                                        <span
+                                                                                            class="badge badge-light-warning">Deactive</span>
+                                                                                    @endif
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a class="me-1 editSection"
+                                                                                        href="javascript:;"
+                                                                                        id="{{ $section->id }}"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-original-title="Edit">
+                                                                                        <i
+                                                                                            class="far fa-edit text-dark"></i>
+                                                                                    </a>
+                                                                                    <a class="me-1 deleteSection"
+                                                                                        id="{{ $section->id }}"
+                                                                                        href="javascript:;"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-bs-original-title="Delete">
+                                                                                        <i
+                                                                                            class="far fa-trash-alt text-danger"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            @if (count($section->childs))
+                                                                                @include(
+                                                                                    'admin.law.child_section',
+                                                                                    [
+                                                                                        'childs' =>
+                                                                                            $section->childs,
+                                                                                    ]
+                                                                                )
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
-                                                        @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             @endforeach
                                         </div>
-                                        {{-- end chapter with section for law act --}}
+                                        {{-- end chapter with section for law act--}}
 
                                     </div>
                                 </div>
@@ -821,7 +776,7 @@
                                             style="background: #f5f5f5; border:1px dotted #7367f0">
                                             <h4 class="text-center">{{ $law->rules_title }}</h4>
 
-                                            {{-- start add part for law rules --}}
+                                            {{-- start add part for law rules--}}
                                             <div class="card-header px-0">
                                                 <div class="head-label">
                                                     <h5 class="mb-0 text-success"><strong>Parts</strong></h5>
@@ -830,8 +785,7 @@
                                                     <div class="dt-buttons d-inline-flex"><a href="#!"
                                                             class="btn btn-success btn-sm pAddBtn" bla=""
                                                             blr="1" data-bs-toggle="modal"
-                                                            data-bs-target="#pAddModal"><i data-feather='plus-square'></i>
-                                                            Add
+                                                            data-bs-target="#pAddModal"><i data-feather='plus-square'></i> Add
                                                             Part</a></div>
                                                 </div>
                                             </div>
@@ -880,8 +834,7 @@
                                                                                 href="{{ $part->id }}"
                                                                                 data-bs-toggle="tooltip"
                                                                                 data-bs-original-title="Delete">
-                                                                                <i
-                                                                                    class="far fa-trash-alt text-danger"></i>
+                                                                                <i class="far fa-trash-alt text-danger"></i>
                                                                             </a>
                                                                         </td>
                                                                     </tr>
@@ -892,9 +845,9 @@
 
                                                 </div>
                                             </div>
-                                            {{-- end add part for law rules --}}
+                                            {{-- end add part for law rules--}}
 
-                                            {{-- start add chapter for law rules --}}
+                                            {{-- start add chapter for law rules--}}
                                             <div class="card-header px-0">
                                                 <div class="head-label">
                                                     <h5 class="mb-0 text-success"><strong>Chapters</strong></h5>
@@ -965,9 +918,9 @@
 
                                                 </div>
                                             </div>
-                                            {{-- end add chapter for law rules --}}
+                                            {{-- end add chapter for law rules--}}
 
-                                            {{-- start chapter with section for law rules --}}
+                                            {{-- start chapter with section for law rules--}}
                                             <div class="card-header px-0">
                                                 <div class="head-label">
                                                     <h5 class="mb-0 text-success"><strong>Chapter with Rules</strong></h5>
@@ -1103,7 +1056,7 @@
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            {{-- end chapter with section for law rules --}}
+                                            {{-- end chapter with section for law rules--}}
 
                                         </div>
                                     </div>
@@ -1467,8 +1420,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
                                 data-feather='x'></i> Close</button>
-                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i>
-                            Save</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Save</button>
                     </div>
                 </form>
             </div>

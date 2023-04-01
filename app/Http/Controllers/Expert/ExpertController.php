@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Expert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class ExpertController extends Controller
@@ -52,10 +53,11 @@ class ExpertController extends Controller
             'message' => 'Registration Successfully!',
             'alert-type' => 'success'
         );
-        return redirect()->route('expert.dashboard')->with($notification);
+         return redirect()->intended(route('expert.dashboard'))->with($notification);
     }
     public function loginForm()
     {
+        Redirect::setIntendedUrl(url()->previous());
         $data['userType'] = "Expert";
         return view('frontend.auth.login', $data);
     }
@@ -80,7 +82,7 @@ class ExpertController extends Controller
                 'message' => 'Successfully Logged In!',
                 'alert-type' => 'success'
             );
-            return redirect()->route('expert.dashboard')->with($notification);
+            return redirect()->intended(route('expert.dashboard'))->with($notification);
         } else {
             $notification = array(
                 'message' => 'Invalid Email or Password!',
