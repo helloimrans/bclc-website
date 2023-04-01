@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="td-image">
-                    <img src="{{asset($course->expert->image)}}" class="img-fluid" alt="">
+                    <img src="{{asset($course->image)}}" class="img-fluid" alt="">
                     <div class="td-img-txt">
                         <h4>{{ $course->title }}</h4>
                     </div>
@@ -157,6 +157,9 @@
                         <div class="td-course-id">
                             <span>Course ID: {{ $course->course_id }}</span>
                             <span>Registration Fee: {{ $course->fee }}/=</span>
+                            <a href="{{ route('training.course.checkout',$course->slug) }}" class="btn btn-success w-100" style="padding: 14px 5px; border-radius: 10px">
+                                <strong>Enroll Now</strong>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-6">

@@ -25,30 +25,32 @@
                             <div class="col-md-12">
                                 <div class="d-flex justify-content-between align-items-center w-100">
                                     <h5 class="m-0 font-weight-bold">YOUR SELECTED COURSES</h5>
-                                    <a class="btn btn-sm btn-info text-white" href="#"><i class="fa fa-angle-left mr-1"></i>Continue Buying</a>
+                                    <a class="btn btn-sm btn-info text-white" href="{{ route('training.course.details',$course->slug) }}"><i class="fa fa-angle-left mr-1"></i>Continue Buying</a>
                                 </div>
                                 <hr>
                             </div>
                             <div class="col-md-4">
-                                <img style="height:10em" class="w-100" src="{{ asset('frontend') }}/images/page-header.jpg" alt="img">
+                                <img style="height:10em" class="w-100" src="{{asset($course->image)}}" alt="img">
                             </div>
                             <div class="col-md-6">
-                                <p style="font-size: 18px;" class="m-0"><strong>This is course title</strong></p>
-                                <span class="d-block" style="margin-bottom:-.4em; "><small>Course Expert name</small></span>
-                                <span class="d-block"><small>Designation</small></span>
+                                <p style="font-size: 18px;" class="m-0"><strong>{{ $course->title }}</strong></p>
+                                <span class="d-block" style="margin-bottom:-.4em; "><small>{{ $course->expert->name }}</small></span>
+                                <span class="d-block"><small>{{ $course->expert->designation }}</small></span>
                                 <ul style="list-style: none" class="p-0 mt-2">
                                     <li style="font-size: 14px;" class="text-muted">
                                         <i class="fa fa-clock-o mr-1"></i>
-                                        Course Duration
+                                        {{ $course->duration }}
                                     </li>
                                     <li style="font-size: 14px;" class="text-muted"> 
                                         <i class="fa fa-podcast mr-1"></i>
-                                        Boarding
+                                        {{ $course->boarding }}
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-md-2">
-                                <div class="price font-weight-bold" style="color:#ce5a2c">300Tk</div>
+                                <div class="price font-weight-bold" style="color:#ce5a2c">
+                                    {{ $course->fee }}Tk
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,7 +65,9 @@
                                     <tr>
                                         <td>Price</td>
                                         <td>:</td>
-                                        <td>300tk</td>
+                                        <td>
+                                            {{ $course->fee }}tk
+                                        </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid rgba(0,0,0,.1)">
                                         <td>Platform Charge (15%)</td>
@@ -90,7 +94,7 @@
                                       </div>
                                 </form>
                                 <a href="#" class="btn btn-md btn-outline-info w-100 mt-3"> Checkout Now</a>
-                                <a href="#" class="btn btn-md btn-outline-danger w-100 mt-3"> Cancle</a>
+                                <a href="{{ route('training.course.details',$course->slug) }}" class="btn btn-md btn-outline-danger w-100 mt-3"> Cancle</a>
                             </div>
                         </div>
                     </div>

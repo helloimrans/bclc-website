@@ -15,6 +15,7 @@ use App\Models\Course;
 use App\Models\PrivacyPolicy;
 use App\Models\ServiceFacilitySector;
 use App\Models\TermsCondition;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -192,9 +193,18 @@ class FrontendController extends Controller
         return view('frontend.training.course_details', compact('course'));
     }
 
-    public function course_enroll()
+    public function courseCheckout($slug)
     {
-        return view('frontend.enroll.enroll');
+        if (Auth::guard('learner')->check()) {
+            $data['course'] = Course::where('slug', $slug)->first();
+            return view('frontend.enroll.enroll', $data);
+        } else {
+            $notification = array(
+                'message' => 'Please at first login as a learner.',
+                'alert-type' => 'info'
+            );
+            return redirect()->route('learner.login')->with($notification);
+        }
     }
 
     public function termsCondition()

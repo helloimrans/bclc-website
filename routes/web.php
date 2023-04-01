@@ -100,11 +100,7 @@ Route::get('service-and-facilities', [FrontendController::class, 'serviceFacilit
 Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
     Route::get('courses', [FrontendController::class, 'courses'])->name('courses');
     Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
-});
-
-// Course Enroll
-Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
-    Route::get('enroll', [FrontendController::class, 'course_enroll'])->name('enrill');
+    Route::get('course/checkout/{slug}', [FrontendController::class, 'courseCheckout'])->name('course.checkout');
 });
 
 //Terms Condition
