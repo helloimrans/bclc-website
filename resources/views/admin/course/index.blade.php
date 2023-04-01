@@ -49,6 +49,7 @@
                                             <th>Service Category</th>
                                             <th>Expert</th>
                                             <th>Fee</th>
+                                            <th>Discount Fee</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Actions</th>
@@ -67,6 +68,7 @@
                                                 <td>{{ $course->serviceCategory->name }}</td>
                                                 <td>{{ $course->expert->name }}</td>
                                                 <td>{{ $course->fee }}</td>
+                                                <td>{{ $course->discount_fee ?? 'N/A' }}</td>
                                                 <td>
                                                     @if($course->status == 1)
                                                         <span class="badge badge-light-success">Active</span>

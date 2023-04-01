@@ -96,7 +96,7 @@
                                         <tr>
                                             <th>Venue</th>
                                             <th>:</th>
-                                            <td>{{ $course->venu ?? 'N/A'}}</td>
+                                            <td>{{ $course->venue ?? 'N/A'}}</td>
                                         </tr>
                                         <tr>
                                             <th>Class Start Date</th>
@@ -147,6 +147,36 @@
                                             <th>Fee</th>
                                             <th>:</th>
                                             <td>{{ $course->fee ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Discount</th>
+                                            <th>:</th>
+                                            <td>
+                                                @if($course->discount)
+                                                        {{ $course->discount }}
+                                                    @if($course->discount_type == 1) 
+                                                        TK 
+                                                    @else  
+                                                        %
+                                                    @endif
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Discount Fee</th>
+                                            <th>:</th>
+                                            <td>{{ $course->discount_fee ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Active Fee</th>
+                                            <th>:</th>
+                                            <td>
+                                                @if($course->active_fee == 1) 
+                                                        Main Fee 
+                                                @else  
+                                                        Discount Fee
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>Provide Certificate</th>

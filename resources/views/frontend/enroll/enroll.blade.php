@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="article-details bg-white p-sm-5">
+                    <div class="article-details bg-white">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="d-flex justify-content-between align-items-center w-100">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="article-details bg-white p-sm-5">
+                    <div class="article-details bg-white">
                         <div class="row">
                             <h5 class="m-0 font-weight-bold">PROCEED</h5>
                             <hr class="w-100">
@@ -66,34 +66,46 @@
                                         <td>Price</td>
                                         <td>:</td>
                                         <td>
-                                            {{ $course->fee }}tk
+                                            {{ $course->fee }}Tk
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount</td>
+                                        <td>:</td>
+                                        <td>
+                                            @if($course->active_fee == 1)
+                                                0
+                                            @else
+                                                {{ $course->discount }}{{ $course->discount_type == 1 ? 'Tk' : '%'}}
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid rgba(0,0,0,.1)">
-                                        <td>Platform Charge (15%)</td>
+                                        <td>Platform Charge (0%)</td>
                                         <td>:</td>
-                                        <td>45tk</td>
+                                        <td>0</td>
                                     </tr>
                                     <tr>
                                         <td>Total Price</td>
                                         <td>:</td>
-                                        <td>345tk</td>
+                                        <td>
+                                            {{ $course->discount_type == 1 ? $course->fee : $course->discount_fee }}Tk
+                                        </td>
                                     </tr>
                                 </table>
                                 <form action="" method="post">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">
-                                            <small style="color:#ce5a2c">
-                                                <span class="text-muted">I agree to </span>
-                                                terms & conditions. Privacy & Policy
-                                                <span class="text-muted"> and </span>
-                                                Refund Policy.
+                                            <small class="text-muted">
+                                                By clicking Pay Now,
+                                                <span>I agree to the</span>
+                                                <a href="{{ route('terms.condition') }}" target="_blank" style="color:#ce5a2c">Terms of Use</a> and <a href="{{ route('privacy.policy') }}" target="_blank" style="color:#ce5a2c">Privacy Policy</a>.
                                             </small>
                                         </label>
                                       </div>
                                 </form>
-                                <a href="#" class="btn btn-md btn-outline-info w-100 mt-3"> Checkout Now</a>
+                                <a href="#" class="btn btn-md btn-outline-info w-100 mt-3"> Pay Now</a>
                                 <a href="{{ route('training.course.details',$course->slug) }}" class="btn btn-md btn-outline-danger w-100 mt-3"> Cancle</a>
                             </div>
                         </div>

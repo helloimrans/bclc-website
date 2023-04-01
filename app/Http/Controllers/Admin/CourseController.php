@@ -35,11 +35,10 @@ class CourseController extends Controller
     {
         // dd($request->all());
         $validator = Validator::make($request->all(), [
-            'course_id' => 'required',
-            'title' => 'required|unique:courses,title,' . $request->title,
+            'title' => 'required|unique:courses,title',
             'fee' => 'required',
-            'service_category_id' => 'required:suitable_for_courses,id,' . $request->service_category_id,
-            'service_id' => 'required:services,id,' . $request->service_id,
+            'service_category_id' => 'required',
+            'service_id' => 'required',
             'expert_id' => 'required',
         ]);
 
@@ -51,6 +50,16 @@ class CourseController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
         $input = $request->all();
+
+        /*Course ID number*/
+        $lastCourse = Course::latest()->first();
+        if ($lastCourse) {
+            $lastIncreament = substr($lastCourse->course_id, -2);
+            $newId = 'BCLC-' . date('dmy') . str_pad($lastIncreament + 1, 2, 0, STR_PAD_LEFT);
+        } else {
+            $newId = 'BCLC-' . date('dmy') . str_pad(0 + 1, 2, 0, STR_PAD_LEFT);
+        }
+        $input['course_id'] = $newId;
 
         $image = $request->file('image');
         if ($image) {
@@ -93,11 +102,10 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'course_id' => 'required',
             'title' => 'required|unique:courses,title,' . $id,
             'fee' => 'required',
-            'service_category_id' => 'required:suitable_for_courses,id,' . $id,
-            'service_id' => 'required:services,id,' . $id,
+            'service_category_id' => 'required',
+            'service_id' => 'required',
             'expert_id' => 'required',
         ]);
 

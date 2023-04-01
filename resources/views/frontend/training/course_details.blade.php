@@ -156,7 +156,20 @@
                     <div class="col-lg-6">
                         <div class="td-course-id">
                             <span>Course ID: {{ $course->course_id }}</span>
-                            <span>Registration Fee: {{ $course->fee }}/=</span>
+                            <span>Course Fee: 
+                                @if($course->active_fee == 1)
+                                {{ $course->fee }}Tk
+                                @else
+                                <span class="d-inline">
+                                    {{ $course->discount_fee }}Tk
+                                    <sup><del>
+                                        {{ $course->fee }}Tk
+                                    </del></sup>
+                                </span> 
+                                @endif
+                            
+                            
+                            </span>
                             <a href="{{ route('training.course.checkout',$course->slug) }}" class="btn btn-success w-100" style="padding: 14px 5px; border-radius: 10px">
                                 <strong>Enroll Now</strong>
                             </a>

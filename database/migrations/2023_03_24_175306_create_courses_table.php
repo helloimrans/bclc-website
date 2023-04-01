@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('course_id');
             $table->string('title')->unique();
             $table->double('fee')->nullable();
+            $table->string('discount_type')->nullable();
+            $table->double('discount')->nullable();
+            $table->double('discount_fee')->nullable();
+            $table->string('active_fee')->nullable();
             $table->string('slug')->unique();
             $table->bigInteger('service_category_id')->unsigned();
             $table->bigInteger('service_id')->unsigned();

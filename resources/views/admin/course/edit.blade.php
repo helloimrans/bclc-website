@@ -35,9 +35,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="
-                            {{ route('courses.update',$course->id) }}
-                            " method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('courses.update',$course->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
@@ -77,16 +75,6 @@
                                     <input type="text" name="title" placeholder="Enter title"
                                         class="form-control @error('title') is-invalid @enderror" value="{{ $course->title }}">
                                     @error('title')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="mb-1">
-                                    <label class="form-label" for="">Course Id</label>
-                                    <input type="text" name="course_id" id="course_id" placeholder="Generate course id"
-                                        class="form-control @error('course_id') is-invalid @enderror" value="{{ $course->course_id }}">
-                                    <a href="javascript:void(0)" onclick="generateId()" class="btn btn-sm btn-outline-warning waves-effect mt-1">Course ID</a>
-
-                                    @error('course_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -166,6 +154,14 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Meeting Link</label>
+                                    <input type="text" name="meeting_link"
+                                        class="form-control @error('meeting_link') is-invalid @enderror" value="{{ $course->meeting_link }}" placeholder="Enter meeting link">
+                                    @error('meeting_link')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 <div class="form-group mb-1">
                                     <label for="total_hours">Total Hours</label>
                                     <div class="d-flex">
@@ -213,19 +209,56 @@
                                 </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Course Fee</label>
-                                    <input type="number" step="any" name="fee"
+                                    <input type="number" step="any" name="fee" id="fee"
                                         class="form-control @error('fee') is-invalid @enderror" value="{{ $course->fee }}" placeholder="Enter course fee">
                                     @error('fee')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <label class="form-label" for="">Meeting Link</label>
-                                    <input type="text" name="meeting_link"
-                                        class="form-control @error('meeting_link') is-invalid @enderror" value="{{ $course->meeting_link }}" placeholder="Enter meeting link">
-                                    @error('meeting_link')
+                                    <div class="form-group">
+                                        <label for="">Discount Type</label>
+                                        <select name="discount_type" id="discount_type" onchange="offer()"
+                                            class="form-control @error('discount_type') is-invalid @enderror">
+                                            <option value="1" @if($course->discount_type == 1) selected @endif>Tk</option>
+                                            <option value="2" @if($course->discount_type == 2) selected @endif>Percentage (%)</option>
+                                        </select>
+                                    @error('discount_type')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-1">
+                                    <div class="form-group">
+                                        <label for="">Discount</label>
+                                        <input type="number" name="discount" id="discount" value="{{ $course->discount }}"
+                                            min="0" class="form-control @error('discount') is-invalid @enderror" placeholder="Enter Discount">
+                                        @error('discount')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <div class="form-group">
+                                        <label for="">Discount Price</label>
+                                        <input type="number" name="discount_fee" value="{{ $course->discount_fee }}"
+                                            id="discount_fee" class="form-control @error('discount_fee') is-invalid @enderror" placeholder="Discount Price"
+                                            readonly>
+                                        @error('discount_fee')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-1">
+                                    <div class="form-group">
+                                        <label for="">Active Price</label>
+                                        <select name="active_fee" id="" class="form-control @error('active_fee') is-invalid @enderror">
+                                            <option value="1" @if($course->active_fee == 1) selected @endif>Main Fee</option>
+                                            <option value="2" @if($course->active_fee == 2) selected @endif > Discount Fee</option>
+                                        </select>
+                                        @error('active_fee')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Short Description</label>
@@ -361,11 +394,29 @@
         });
     </script>
     <script>
-        // Generate course id onClick
-        function generateId() {
-            var uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            document.getElementById("course_id").value = uniqueId;
+        function offer() {
+            var fee = $('#fee').val();
+            var discount_type = $('#discount_type').val();
+            var discount = $('#discount').val();
+    
+            if (discount_type == 1) {
+                var discount_fee = fee - discount;
+            } else if (discount_type == 2) {
+                var price_cal = ((fee * discount) / 100);
+                var discount_fee = fee - price_cal;
+            } else {
+                var discount_fee = 0;
+            }
+    
+            if (!isNaN(discount_fee)) {
+                $('#discount_fee').val(discount_fee);
+            }
         }
+    
+        $('#fee, #discount_type, #discount, #discount_fee').on('keyup change', function() {
+            offer();
+        });
+    
     </script>
 
 @endsection

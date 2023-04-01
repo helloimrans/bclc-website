@@ -83,6 +83,4 @@ class OfficeFunctionCatController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-
-
 }
