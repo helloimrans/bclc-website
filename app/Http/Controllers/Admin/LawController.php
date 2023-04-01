@@ -126,7 +126,7 @@ class LawController extends Controller
     public function edit($id)
     {
         $data['categories'] = LawCategory::where('status', 1)->get();
-        $data['law'] = Law::with(['actChapter', 'rulesChapter'])->find($id);
+        $data['law'] = Law::with(['actChapter', 'rulesChapter','actPart','rulesPart'])->find($id);
         return view('admin.law.edit', $data);
     }
 

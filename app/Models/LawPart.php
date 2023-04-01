@@ -27,4 +27,20 @@ class LawPart extends Model
         'updated_by',
         'deleted_by',
     ];
+
+    public function section()
+    {
+        return $this->hasMany(LawSection::class)->orderBy('sort', 'ASC');
+    }
+    public function law()
+    {
+        return $this->belongsTo(Law::class)->withDefault([
+            'title' => '--',
+        ]);
+    }
+
+    public function chapter()
+    {
+        return $this->hasMany(LawChapter::class)->orderBy('sort', 'ASC');
+    }
 }

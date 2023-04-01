@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\LawChapter;
+use App\Models\LawPart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class LawChapterController extends Controller
 {
+
+    public function getPart($id){
+        $data = LawPart::where('law_id',$id)->where('status',1)->get();
+        return response()->json($data);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -52,6 +58,7 @@ class LawChapterController extends Controller
 
         $data->law_id        = $request->law_id;
         $data->chapter_no    = $request->chapter_no;
+        $data->law_part_id   = $request->law_part_id;
         $data->chapter_no_bn = $request->chapter_no_bn;
         $data->title         = $request->title;
         $data->title_bn      = $request->title_bn;
@@ -90,7 +97,11 @@ class LawChapterController extends Controller
     public function edit($id)
     {
         $data = LawChapter::find($id);
-        return response()->json($data);
+        $part = LawPart::where('law_id',$data->law_id)->where('status',1)->get();
+        return response()->json([
+            'chapter' => $data,
+            'part' => $part
+        ]);
     }
 
 
@@ -113,6 +124,7 @@ class LawChapterController extends Controller
 
         $data = LawChapter::find($id);
         $data->chapter_no    = $request->chapter_no;
+        $data->law_part_id   = $request->law_part_id;
         $data->chapter_no_bn = $request->chapter_no_bn;
         $data->title         = $request->title;
         $data->title_bn      = $request->title_bn;

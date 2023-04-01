@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\LawPartController;
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -73,12 +74,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     Route::resource('law/chapter', LawChapterController::class, ['as' => 'law'])->except(['show']);
 
+    //Law Part
+    Route::group(['prefix' => 'law/part', 'as' => 'law.part.'], function () {
+        Route::post('store', [LawPartController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [LawPartController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [LawPartController::class, 'update'])->name('update');
+        Route::get('destroy/{id}', [LawPartController::class, 'destroy'])->name('destroy');
+    });
+
     //Law Chapter
     Route::group(['prefix' => 'law/chapter', 'as' => 'law.chapter.'], function () {
         Route::post('store', [LawChapterController::class, 'store'])->name('store');
         Route::get('edit/{id}', [LawChapterController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [LawChapterController::class, 'update'])->name('update');
         Route::get('destroy/{id}', [LawChapterController::class, 'destroy'])->name('destroy');
+
+        Route::get('get/part/{id}', [LawChapterController::class, 'getPart'])->name('get.part');
     });
 
     //Law Section
@@ -127,7 +138,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     //Profession
     Route::resource('profession', ProfessionController::class)->except('show');
 
-   // Contact Message
-    Route::get('contact/message', [ ContactMessageController::class, 'index'])->name('contact.message');
-
+    // Contact Message
+    Route::get('contact/message', [ContactMessageController::class, 'index'])->name('contact.message');
 });
