@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Show Contact Message')
+@section('title', 'Contact Message')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Show Contact Message</h2>
+                        <h2 class="content-header-title float-start mb-0">Contact Message</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Show Contact Message
+                                <li class="breadcrumb-item active">Contact Message
                                 </li>
                             </ol>
                         </div>
@@ -24,7 +24,7 @@
             <div class="row" id="basic-table">
                 <div class="col-12">
                     <div class="card">
-                       
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table text-nowrap">
@@ -46,17 +46,12 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $contact_message->name }}</td>
                                                 <td>{{ $contact_message->mobile }}</td>
-                                                <td>{{ $contact_message->email }}</td>
-                                                <td>{{ $contact_message->subject }}</td>
-                                                <td>{{ $contact_message->message }}</td>    
-                                                
-                                                
-
-                                                
-                                               <td>                                                
-                                                    <span class=" "></span>
-                                              
+                                                <td>
+                                                    <a title="Reply" href="mailto:{{ $contact_message->email }}">{{ $contact_message->email }}</a>
                                                 </td>
+                                                <td>{{ $contact_message->subject }}</td>
+                                                <td>{{ $contact_message->message }}</td>
+                                                <td>{{ $contact_message->read_status }}</td>
                                             </tr>
 
                                         @endforeach
