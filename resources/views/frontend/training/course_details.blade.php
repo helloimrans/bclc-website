@@ -40,11 +40,11 @@
                         </div>
                     </div>
                     <p>
-                        {{ $course->short_description }}
+                        {!! $course->short_description !!}
                     </p>
                     <h5>Key Takeaways</h5>
                     <ul>
-                        {{ $course->key_takeaways }}
+                        {!! $course->key_takeaways !!}
                     </ul>
                 </div>
             </div>
@@ -57,9 +57,9 @@
                     <div class="media">
                         <p><i class="fa fa-calendar-o"></i></p>
                         <div class="media-body">
-                            <p> Date : 
-                                {{date('jS, F, Y', strtotime($course->class_start_date)) }} 
-                                to 
+                            <p> Date :
+                                {{date('jS, F, Y', strtotime($course->class_start_date)) }}
+                                to
                                 {{date('jS, F, Y', strtotime($course->class_end_date)) }}
                             </p>
                         </div>
@@ -67,7 +67,7 @@
                     <div class="media">
                         <p><i class="fa fa-calendar-o"></i></p>
                         <div class="media-body">
-                            <p>Class Schedule : 
+                            <p>Class Schedule :
                                 @forelse (json_decode($course->schedule) as $schedule)
                                     <span class="badge badge-secondary">{{ $schedule }}</span>
                                 @empty
@@ -78,9 +78,9 @@
                     <div class="media">
                         <p><i class="fa fa-clock-o"></i> </p>
                         <div class="media-body">
-                            <p>Class Time : 
+                            <p>Class Time :
                                 {{\Carbon\Carbon::createFromFormat('H:i:s',$course->class_start_time)->format('h:i A')}}
-                                to 
+                                to
                                 {{\Carbon\Carbon::createFromFormat('H:i:s',$course->class_end_time)->format('h:i A')}}
                             </p>
                         </div>
@@ -88,8 +88,8 @@
                     <div class="media">
                         <p><i class="fa fa-clock-o"></i></p>
                         <div class="media-body">
-                            <p> Total Hours : 
-                                {{ $course->duration }} 
+                            <p> Total Hours :
+                                {{ $course->duration }}
                                 Hour
                             </p>
                         </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="td-curriculum wow fadeInDown" data-wow-duration="1s">
                     <div class="tdr-height">
-                        {{ $course->curriculum }}
+                        {!! $course->curriculum !!}
                     </div>
                     <a href="javascript:;" class="mt-2 tdr-show">Show More</a>
                 </div>
