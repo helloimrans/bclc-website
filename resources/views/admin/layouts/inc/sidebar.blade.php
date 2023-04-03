@@ -37,6 +37,18 @@
                                 class="menu-item text-truncate" data-i18n="Roles">Profession</span></a>
                     </li>
                 </ul>
+                <ul class="menu-content">
+                <li class=" "><a class="d-flex align-items-center"
+                            href="{{ route('learner.list.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles"> Learner List</span></a>
+                    </li>
+                </ul>
+                <ul class="menu-content">
+                <li class=" "><a class="d-flex align-items-center"
+                            href="{{ route('expart.list.index') }}"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate" data-i18n="Roles"> Expart List</span></a>
+                    </li>
+                </ul>
             </li>
 
             {{-- -----------------------------

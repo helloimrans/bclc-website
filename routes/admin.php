@@ -25,6 +25,9 @@ use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\LawPartController;
+use App\Http\Controllers\Admin\LearnerController;
+use App\Http\Controllers\Admin\ExpartController;
+
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -140,4 +143,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     // Contact Message
     Route::get('contact/message', [ContactMessageController::class, 'index'])->name('contact.message');
+
+    //Learner List
+     Route::resource('/learner', LearnerController::class, ['names' => 'learner.list']);
+
+    //Expart List
+     Route::resource('/expart', ExpartController::class, ['names' => 'expart.list']);
+
+
+
+
+
+    
+  
 });
