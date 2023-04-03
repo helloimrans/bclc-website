@@ -54,6 +54,14 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th>Certificate image</th>
+                                            <th>:</th>
+                                            <td><img class="rounded" width="60"
+                                                src="@if ($course->certificate_image) {{ asset($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                alt="{{ $course->title }}">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>Service</th>
                                             <th>:</th>
                                             <td>{{ $course->service->title ?? 'N/A' }}</td>
@@ -129,11 +137,6 @@
                                             <td>{{ $course->last_reg_date ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Last Reg. Date</th>
-                                            <th>:</th>
-                                            <td>{{ $course->last_reg_date ?? 'N/A' }}</td>
-                                        </tr>
-                                        <tr>
                                             <th>Boarding</th>
                                             <th>:</th>
                                             <td>{{ $course->boarding ?? 'N/A' }}</td>
@@ -142,6 +145,21 @@
                                             <th>Meeting Link</th>
                                             <th>:</th>
                                             <td>{{ $course->meeting_link ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Contact Mobile</th>
+                                            <th>:</th>
+                                            <td>{{ $course->contact_mobile ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Contact Whatsapp</th>
+                                            <th>:</th>
+                                            <td>{{ $course->contact_whatsapp ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Contact Email</th>
+                                            <th>:</th>
+                                            <td>{{ $course->contact_email ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Fee</th>
