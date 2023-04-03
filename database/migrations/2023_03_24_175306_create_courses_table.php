@@ -35,11 +35,21 @@ return new class extends Migration
             $table->date('class_end_date')->nullable();
             $table->time('class_start_time')->nullable();
             $table->time('class_end_time')->nullable();
-            // $table->integer('total_hours')->nullable();
             $table->float('total_hours')->nullable();
             $table->enum('hour_minute', [1, 2])->default(2)->nullable();
             $table->date('last_reg_date')->nullable();
             $table->string('provide_certificate')->nullable();
+
+            // new added
+            $table->string('certificate_image')->nullable();
+            $table->string('contact_mobile')->nullable();
+            $table->string('contact_whatsapp')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->text('training_offering')->nullable();
+            $table->text('consulting_offering')->nullable();
+            // new added
+
+
             $table->text('short_description')->nullable();
             $table->text('key_takeaways')->nullable();
             $table->longText('curriculum')->nullable();
