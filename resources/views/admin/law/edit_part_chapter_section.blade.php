@@ -584,7 +584,7 @@
                                         {{-- start part with chapter with section for law act --}}
                                         <div class="card-header px-0">
                                             <div class="head-label">
-                                                <h5 class="mb-0 text-success"><strong>Part, Chapter, Section</strong></h5>
+                                                <h5 class="mb-0 text-success"><strong>Part > Chapter > Section</strong></h5>
                                             </div>
                                         </div>
                                         <div id="loadSection">
@@ -973,13 +973,13 @@
 
                                                 </div>
                                             </div>
-                                            {{-- end add part for law act --}}
+                                            {{-- end add part for law rules --}}
 
 
-                                            {{-- start part with chapter with section for law act --}}
+                                            {{-- start part with chapter with section for law rules --}}
                                             <div class="card-header px-0">
                                                 <div class="head-label">
-                                                    <h5 class="mb-0 text-success"><strong>Part, Chapter, Section</strong>
+                                                    <h5 class="mb-0 text-success"><strong>Part > Chapter > Section</strong>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -1265,7 +1265,7 @@
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            {{-- end chapter with section for law act --}}
+                                            {{-- end chapter with section for law rules --}}
 
                                         </div>
                                     </div>

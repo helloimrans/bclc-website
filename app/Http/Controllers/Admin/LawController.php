@@ -127,7 +127,14 @@ class LawController extends Controller
     {
         $data['categories'] = LawCategory::where('status', 1)->get();
         $data['law'] = Law::with(['actChapter', 'rulesChapter','actPart','rulesPart'])->find($id);
-        return view('admin.law.edit', $data);
+
+        if($data['law']->format == 'part_chapter_section'){
+            return view('admin.law.edit_part_chapter_section', $data);
+        }elseif($data['law']->format == 'part_section'){
+            return view('admin.law.edit_part_section', $data);
+        }elseif($data['law']->format == 'chapter_section'){
+            return view('admin.law.edit_chapter_section', $data);
+        }
     }
 
 
