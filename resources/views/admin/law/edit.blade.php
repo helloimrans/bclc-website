@@ -728,14 +728,14 @@
                                                                                             </td>
                                                                                             <td>
                                                                                                 @if ($law->lang == 'en')
-                                                                                                    {{ $section->title->title }}
+                                                                                                    {{ $section->parent->title }}
                                                                                                     @elseif ($law->lang == 'bn')
-                                                                                                    {{ $section->title->title_bn }}
+                                                                                                    {{ $section->parent->title_bn }}
                                                                                                     @elseif ($law->lang == 'both')
                                                                                                     @if ($law->default_lang == 'en')
-                                                                                                        {{ $section->title->title }}
+                                                                                                        {{ $section->parent->title }}
                                                                                                         @elseif ($law->default_lang == 'bn')
-                                                                                                        {{ $section->title->title_bn }}
+                                                                                                        {{ $section->parent->title_bn }}
                                                                                                     @endif
                                                                                                 @endif
                                                                                             </td>
@@ -771,7 +771,17 @@
                                                                                                                 class="modal-header">
                                                                                                                 <h5 class="modal-title"
                                                                                                                     id="exampleModalLabel">
-                                                                                                                    {{ $section->title }}
+                                                                                                                    @if ($law->lang == 'en')
+                                                                                                                        {{ $section->title }}
+                                                                                                                        @elseif ($law->lang == 'bn')
+                                                                                                                        {{ $section->title_bn }}
+                                                                                                                        @elseif ($law->lang == 'both')
+                                                                                                                        @if ($law->default_lang == 'en')
+                                                                                                                            {{ $section->title }}
+                                                                                                                            @elseif ($law->default_lang == 'bn')
+                                                                                                                            {{ $section->title_bn }}
+                                                                                                                        @endif
+                                                                                                                    @endif
                                                                                                                 </h5>
                                                                                                                 <button
                                                                                                                     type="button"
@@ -781,7 +791,17 @@
                                                                                                             </div>
                                                                                                             <div
                                                                                                                 class="modal-body">
-                                                                                                                {!! $section->description !!}
+                                                                                                                @if ($law->lang == 'en')
+                                                                                                                    {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                                                    @elseif ($law->lang == 'bn')
+                                                                                                                    {!! substr(strip_tags($section->description_bn), 0, 50) !!}
+                                                                                                                    @elseif ($law->lang == 'both')
+                                                                                                                    @if ($law->default_lang == 'en')
+                                                                                                                        {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                                                        @elseif ($law->default_lang == 'bn')
+                                                                                                                        {!! substr(strip_tags($section->description_bn), 0, 50) !!}
+                                                                                                                    @endif
+                                                                                                                @endif
                                                                                                             </div>
                                                                                                             <div
                                                                                                                 class="modal-footer">
@@ -1101,21 +1121,21 @@
                                                                                                         @elseif ($law->lang == 'both')
                                                                                                         @if ($law->default_lang == 'en')
                                                                                                             {{ $section->title }}
-                                                                                                            @elseif ($law>default_lang == 'bn')
+                                                                                                            @elseif ($law->default_lang == 'bn')
                                                                                                             {{ $section->title_bn }}
                                                                                                         @endif
                                                                                                     @endif
                                                                                                 </td>
                                                                                                 <td>
                                                                                                     @if ($law->lang == 'en')
-                                                                                                        {{ $section->title->title }}
+                                                                                                        {{ $section->parent->title }}
                                                                                                         @elseif ($law->lang == 'bn')
-                                                                                                        {{ $section->title->title_bn }}
+                                                                                                        {{ $section->parent->title_bn }}
                                                                                                         @elseif ($law->lang == 'both')
                                                                                                         @if ($law->default_lang == 'en')
-                                                                                                            {{ $section->title->title }}
-                                                                                                            @elseif ($law>default_lang == 'bn')
-                                                                                                            {{ $section->title->title_bn }}
+                                                                                                            {{ $section->parent->title }}
+                                                                                                            @elseif ($law->default_lang == 'bn')
+                                                                                                            {{ $section->parent->title_bn }}
                                                                                                         @endif
                                                                                                     @endif
                                                                                                 </td>
@@ -1127,7 +1147,7 @@
                                                                                                         @elseif ($law->lang == 'both')
                                                                                                         @if ($law->default_lang == 'en')
                                                                                                             {!! substr(strip_tags($section->description), 0, 50) !!}
-                                                                                                            @elseif ($law>default_lang == 'bn')
+                                                                                                            @elseif ($law->default_lang == 'bn')
                                                                                                             {!! substr(strip_tags($section->description_bn), 0, 50) !!}
                                                                                                         @endif
                                                                                                     @endif
@@ -1151,7 +1171,17 @@
                                                                                                                     class="modal-header">
                                                                                                                     <h5 class="modal-title"
                                                                                                                         id="exampleModalLabel">
-                                                                                                                        {{ $section->title }}
+                                                                                                                        @if ($law->lang == 'en')
+                                                                                                                            {{ $section->title }}
+                                                                                                                            @elseif ($law->lang == 'bn')
+                                                                                                                            {{ $section->title_bn }}
+                                                                                                                            @elseif ($law->lang == 'both')
+                                                                                                                            @if ($law->default_lang == 'en')
+                                                                                                                                {{ $section->title }}
+                                                                                                                                @elseif ($law->default_lang == 'bn')
+                                                                                                                                {{ $section->title_bn }}
+                                                                                                                            @endif
+                                                                                                                        @endif
                                                                                                                     </h5>
                                                                                                                     <button
                                                                                                                         type="button"
@@ -1161,7 +1191,17 @@
                                                                                                                 </div>
                                                                                                                 <div
                                                                                                                     class="modal-body">
-                                                                                                                    {!! $section->description !!}
+                                                                                                                    @if ($law->lang == 'en')
+                                                                                                                        {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                                                        @elseif ($law->lang == 'bn')
+                                                                                                                        {!! substr(strip_tags($section->description_bn), 0, 50) !!}
+                                                                                                                        @elseif ($law->lang == 'both')
+                                                                                                                        @if ($law->default_lang == 'en')
+                                                                                                                            {!! substr(strip_tags($section->description), 0, 50) !!}
+                                                                                                                            @elseif ($law->default_lang == 'bn')
+                                                                                                                            {!! substr(strip_tags($section->description_bn), 0, 50) !!}
+                                                                                                                        @endif
+                                                                                                                    @endif
                                                                                                                 </div>
                                                                                                                 <div
                                                                                                                     class="modal-footer">
