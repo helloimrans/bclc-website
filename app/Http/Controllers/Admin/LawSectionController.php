@@ -59,6 +59,7 @@ class LawSectionController extends Controller
 
         $data->parent_id      = $request->parent_id;
         $data->law_id         = $request->law_id;
+        $data->law_part_id    = $request->part_id;
         $data->law_chapter_id = $request->chapter_id;
         $data->section_no     = $request->section_no;
         $data->section_no_bn  = $request->section_no_bn;
