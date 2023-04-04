@@ -36,6 +36,14 @@ class Course extends Model
         'hour_minute',
         'last_reg_date',
         'provide_certificate',
+
+        'certificate_image',
+        'contact_mobile',
+        'contact_whatsapp',
+        'contact_email',
+        'training_offering',
+        'consulting_offering',
+        
         'short_description',
         'key_takeaways',
         'curriculum',

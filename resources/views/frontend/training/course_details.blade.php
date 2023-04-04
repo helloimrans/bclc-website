@@ -126,7 +126,7 @@
                             <div id="collapse-1" class="collapse" data-parent="#accordion"
                                 aria-labelledby="heading-1" style="">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa perspiciatis excepturi, vel porro nam aperiam ad molestiae iusto recusandae officiis saepe quis repellendus illo sint quam laboriosam a animi placeat!
+                                    {{ $course->training_offering }}
                                 </div>
                             </div>
                         </div>
@@ -142,12 +142,18 @@
                             <div id="collapse-2" class="collapse" data-parent="#accordion"
                                 aria-labelledby="heading-2">
                                 <div class="card-body">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum beatae vel, inventore quasi dolor earum officia eum cum aliquid molestiae esse, expedita maxime commodi voluptatum in deleniti tempore consequuntur eos!
+                                    {{ $course->consulting_offering }}
                                 </div>
                             </div>
                         </div>
 
                     </div>
+                </div>
+                <div class="section-title mt-4 pt-3 mb-3 wow fadeInDown" data-wow-duration="1s">
+                    <h2><span>Certificate Image</span></h2>
+                </div>
+                <div class="certificate_image mt-4">
+                    <img style="height: 200px; width:100%;" src="{{asset($course->certificate_image)}}" class="img-fluid" alt="">
                 </div>
             </div>
 
@@ -183,10 +189,13 @@
                                 </div>
                                 <div class="card-body">
                                     <span>
-                                        Cell: {{ $course->expert->mobile }}
+                                        <b>Cell:</b> {{ $course->contact_mobile }}
                                     </span>
                                     <span>
-                                        Email: {{ $course->expert->email }}
+                                        <b>WhatsApp:</b> {{ $course->contact_whatsapp }}
+                                    </span>
+                                    <span>
+                                        <b>Email:</b> {{ $course->contact_email }}
                                     </span>
                                 </div>
                             </div>
@@ -231,6 +240,56 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row wow fadeInDown mt-4" data-wow-duration="1s">
+
+            <div class="col">
+                <div class="slider-box">
+
+                    <i class="fa fa-angle-left trn-prv prv ps-control"></i>
+                    <i class="fa fa-angle-right trn-nxt nxt ps-control"></i>
+
+                    <div class="my-slider-width">
+                        <div class="training-slider my-slider">
+
+                            <!-- slider item -->
+                            @foreach ($related_courses as $related_course)
+                            @if($related_course->id == $course->id)
+                                @continue;
+                            @else
+                            <div class="slider-item">
+                                <!-- training box -->
+                                <div class="course-box">
+                                    <div class="course-img">
+                                        <img src="{{asset($related_course->image)}}" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="course-desc">
+                                        <div class="course-author">
+                                            <div class="ta-img">
+                                                <div class="ta-img-main">
+                                                    <img src="{{ asset('frontend') }}/images/tauthor1.png"
+                                                        alt="image">
+                                                </div>
+                                                <a href="#">{{ $related_course->expert->name }}</a>
+                                            </div>
+                                        </div>
+                                        <h5><a href="{{ route('training.course.details',$related_course->slug) }}">{{ $related_course->title }}</a></h5>
+                                        <span>{{ $related_course->serviceCategory->name }}</span>
+                                        <p><i class="fa fa-calendar"></i> {{date('jS, F, Y', strtotime($related_course->class_start_date)) }} ({{ $related_course->duration }}) Hours</p>
+                                        <p><img src="{{asset('frontend')}}/images/trached.png" alt="image">{{ $related_course->boarding }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @endforeach
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

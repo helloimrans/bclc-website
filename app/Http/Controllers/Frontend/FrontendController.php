@@ -190,7 +190,8 @@ class FrontendController extends Controller
     public function courseDetails($slug)
     {
         $course = Course::where('slug', $slug)->first();
-        return view('frontend.training.course_details', compact('course'));
+        $related_courses = Course::where('service_category_id', $course->service_category_id)->get();
+        return view('frontend.training.course_details', compact('course', 'related_courses'));
     }
 
     public function courseCheckout($slug)

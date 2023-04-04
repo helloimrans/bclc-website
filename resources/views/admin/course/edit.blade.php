@@ -283,6 +283,36 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Training Offering</label>
+                                    <textarea name="training_offering" rows="2" class="summernote @error('training_offering') is-invalid @enderror"
+                                        placeholder="Enter training offering">{{ $course->training_offering}}</textarea>
+                                    @error('training_offering')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Consulting Offering</label>
+                                    <textarea name="consulting_offering" rows="2" class="summernote @error('consulting_offering') is-invalid @enderror"
+                                        placeholder="Enter training offering">{{ $course->consulting_offering }}</textarea>
+                                    @error('consulting_offering')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="mb-1">
                                     <label class="form-label">Course Thumbnail Image</label>
                                     <input type="file" id="upImgInput1" name="image"
@@ -331,6 +361,62 @@
                                         Provide Certificate
                                     </label>
                                 </div>
+
+
+
+
+                                <div class="mb-1">
+                                    <label class="form-label">Certificate Image</label>
+                                    <input type="file" id="upImgInput1" name="certificate_image"
+                                        class="form-control @error('certificate_image') is-invalid @enderror">
+                                    @error('certificate_image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <img src="@if ($course->certificate_image) {{ asset($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
+                                        class="upImg1 rounded me-50 border" alt="certificate image" height="100">
+                                </div>
+                                <div class="mb-1">
+                                    <button type="button" id="upImgReset1"
+                                        class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Contact Mobile</label>
+                                    <input type="number" name="contact_mobile"
+                                        class="form-control @error('contact_mobile') is-invalid @enderror" value="{{ $course->contact_mobile }}" placeholder="Enter mobile number">
+                                    @error('contact_mobile')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Contact Whatsapp</label>
+                                    <input type="text" name="contact_whatsapp"
+                                        class="form-control @error('contact_whatsapp') is-invalid @enderror" value="{{ $course->contact_whatsapp }}" placeholder="Enter whatsapp number">
+                                    @error('contact_whatsapp')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-1">
+                                    <label class="form-label" for="">Contact Email</label>
+                                    <input type="email" name="contact_email"
+                                        class="form-control @error('contact_email') is-invalid @enderror" value="{{ $course->contact_email }}" placeholder="Enter whatsapp number">
+                                    @error('contact_email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="form-check mb-1">
                                     <input class="form-check-input" name="comming_soon" type="checkbox" value="{{ $course->comming_soon }}" @if($course->comming_soon == 1) checked @endif id="comming_soon">
                                     <label class="form-check-label" for="comming_soon">

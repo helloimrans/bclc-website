@@ -67,6 +67,12 @@ class CourseController extends Controller
             $image->move(public_path('uploaded/courses'), $imageName);
             $input['image'] = '/uploaded/courses/' . $imageName;
         }
+        $image = $request->file('certificate_image');
+        if ($image) {
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploaded/courses/'), $imageName);
+            $input['certificate_image'] = '/uploaded/courses/' . $imageName;
+        }
 
         $input['slug'] = Str::slug($request->title);
         $input['schedule'] = json_encode($request->schedule);
@@ -126,6 +132,14 @@ class CourseController extends Controller
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('uploaded/courses'), $imageName);
             $input['image'] = '/uploaded/courses/' . $imageName;
+        }
+        $image = $request->file('certificate_image');
+        if ($image) {
+            $image_path = public_path($data->image);
+            @unlink($image_path);
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploaded/courses'), $imageName);
+            $input['certificate_image'] = '/uploaded/courses/' . $imageName;
         }
 
         $input['slug'] = Str::slug($request->title);
