@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CourseFaq extends Model
+class LawFaq extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'course_id',
+        'law_id',
         'title',
         'description',
         'status',
