@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\SuitableForCourse;
-use App\Models\ServiceCategory;
-use App\Models\Service;
 use App\Models\Course;
 use App\Models\Expert;
+use App\Models\Service;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ServiceCategory;
+use App\Models\SuitableForCourse;
+use App\Models\CourseFaq;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
@@ -97,6 +98,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $data['course'] = Course::findOrFail($id);
+        $data['faqs'] = CourseFaq::where('course_id', $id)->get();
         // return $data['course']->schedule;
         $data['experts'] = Expert::where('status', 1)->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();

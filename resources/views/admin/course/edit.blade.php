@@ -444,13 +444,177 @@
                                     <button type="submit" class="btn btn-info sub-btn"><i class="fa fa-save"></i> Update</button>
                                 </div>
                             </form>
-                        </div>
+                            <!--Start FAQ -->
+                            <div class="tab-content mt-4" id="pills-tabContent">
+                                {{-- start  act tab content --}}
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="card-body rounded" style="background: #f5f5f5; border:1px dotted #7367f0">
+                                        <h4 class="text-center">{{ $course->title }}</h4>
 
+                                        {{-- start add faqs for course --}}
+                                        <div class="card-header px-0">
+                                            <div class="head-label">
+                                                <h5 class="mb-0 text-success"><strong>Course FAQS</strong></h5>
+                                            </div>
+                                            <div class="dt-action-buttons text-end">
+                                                <div class="dt-buttons d-inline-flex"><a href="#!"
+                                                        class="btn btn-success btn-sm AddBtn" bla="1"
+                                                        blr="" data-bs-toggle="modal"
+                                                        data-bs-target="#AddModal"><i data-feather='plus-square'></i> Add
+                                                        FAQ</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="card rounded">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless example" id="loadPart">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>SL</th>
+                                                                <th>Title</th>
+                                                                <th>Description</th>
+                                                                <th>Status</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($faqs as $faq)
+                                                                <tr>
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ \Str::limit($faq->title,30) }}</td>
+                                                                    <td>{!!  substr(strip_tags($faq->description), 0, 40) !!}...</td>
+                                                                    <td>
+                                                                        @if ($faq->status == 1)
+                                                                            <span class="badge badge-light-success">Active</span>
+                                                                        @else
+                                                                            <span class="badge badge-light-warning">Deactive</span>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="me-1 editFaq" href="#!" data-id='{{ $faq->id }}' data-bs-toggle="tooltip"
+                                                                            data-bs-original-title="Edit">
+                                                                            <i class="far fa-edit text-dark"></i>
+                                                                        </a>
+                                                                        <a class="me-1 deleteFaq"
+                                                                            data-id="{{ $faq->id }}"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-original-title="Delete">
+                                                                            <i class="far fa-trash-alt text-danger"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        {{-- end add faqs for course --}}
+                                    </div>
+                                </div>
+                                {{-- end  act tab content --}}
+                            </div>
+                            <!--End FAQ-->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--Start Add Chapter Modal -->
+    <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Chapter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="AddForm">
+                    @csrf
+                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="validation-errors"></div>
+                        <div class="alert alert-success" id="validation-success"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title</label>
+                            <input type="text" name="title" placeholder="Enter faq title" class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description</label>
+                            <input type="text" name="description" placeholder="Enter faq description"
+                                class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="1">
+                                    Active
+                                </option>
+                                <option value="0">
+                                    Deactive
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End Add Chapter Modal -->
+
+    <!--Start Edit Chapter Modal -->
+        <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Chapter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="EditForm">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="alert alert-danger" id="edit-errors"></div>
+                            <div class="alert alert-success" id="edit-success"></div>
+
+                            <div class="mb-1">
+                                <label class="form-label" for="">Title</label>
+                                <input type="text" name="title" placeholder="Enter faq title" id="faq_title"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label" for="">Description</label>
+                                <input type="text" name="description" placeholder="Enter faq description"
+                                    id="faq_description" class="form-control">
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label">Status</label>
+                                <select name="status" id="faq_status" class="form-control">
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                    data-feather='x'></i> Close</button>
+                            <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <!--Start Edit Chapter Modal -->
     @section('scripts')
     <script>
         // Service Category to Servoce onChange
@@ -504,6 +668,156 @@
         });
     
     </script>
+
+    {{-- Start Course FAQ ajax --}}
+    <script>
+        //FAQ Add button
+        $('.AddBtn').on('click', function() {
+            $('#validation-errors').html('');
+            $('#validation-success').html('');
+        });
+        //FAQ ADD DATA
+        $("#AddForm").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('course.faq.store') }}",
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#AddModal').modal('hide');
+                    $('#validation-errors').html('');
+                    $('#validation-errors').hide();
+                    $('#AddForm')[0].reset();
+                    $('#validation-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data inserted !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#validation-errors').html('');
+                    $('#validation-errors').fadeOut(100);
+                    $('#validation-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#validation-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+        //Chapter EDIT DATA
+        $(document).on('click', '.editFaq', function(e) {
+            e.preventDefault();
+            $('#EditModal').modal('show');
+            $('#edit-errors').html('');
+            $('#faq_status').html('');
+            $('#edit-errors').fadeOut(100);
+            $('#EditForm')[0].reset();
+            var id = $(this).data('id');
+            var url = "{{ route('course.faq.edit', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    if (data != "") {
+                        $('#faq_title').val(data.title);
+                        $('#faq_description').val(data.description);
+                        $('#faq_status').append(`
+                            <option value="1" ${data.status == 1 ? 'selected' : ''}> Active</option>
+                            <option value="0" ${data.status == 0 ? 'selected' : ''}> Deactive </option>
+                        `);
+
+                        $('#EditModal').attr('data_id', data.id);
+
+                    }
+                },
+            });
+        });
+        //Chapter UPDATE DATA
+        $("#EditForm").on("submit", function(e) {
+            e.preventDefault();
+            var id = $('#EditModal').attr('data_id');
+            var url = "{{ route('course.faq.update', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#EditModal').modal('hide');
+                    $('#edit-errors').html('');
+                    $('#edit-errors').hide();
+                    $('#edit-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data updated !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#edit-errors').html('');
+                    $('#edit-errors').fadeOut(100);
+                    $('#edit-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#edit-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+
+        //Chapter DELETE DATA
+        $(document).on('click', '.deleteFaq', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var url = "{{ route('course.faq.destroy', ':id') }}";
+            url = url.replace(':id', id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        success: function(data) {
+                            toastr.success('Successfully data Deleted !', 'Success', {
+                                timeOut: 3000
+                            });
+                            location.reload();
+                            // $('#loadChapter').load(location.href + " #loadChapter");
+                            // $('#loadSection').load(location.href + " #loadSection");
+                        },
+                    });
+                }
+            });
+
+
+        });
+    </script>
+    {{-- End Course FAQ ajax --}}
 
 @endsection
 @endsection

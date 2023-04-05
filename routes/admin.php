@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\CourseFaqController;
 use App\Http\Controllers\Admin\LawPartController;
 use App\Http\Controllers\Defaults\DefaultController;
 
@@ -107,6 +108,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     // Training Course
     Route::resource('courses', CourseController::class);
+
+    //Course FAQ
+    Route::group(['prefix' => 'course/faq', 'as' => 'course.faq.'], function () {
+        Route::post('store', [CourseFaqController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [CourseFaqController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [CourseFaqController::class, 'update'])->name('update');
+        Route::get('destroy/{id}', [CourseFaqController::class, 'destroy'])->name('destroy');
+    });
+
+
 
     //Office Function Sector
     Route::resource('office/function/sector', OfficeFunctionSectorController::class, ['names' => 'of.sector'])->except(['show']);
