@@ -153,7 +153,7 @@
                     <h2><span>Certificate Image</span></h2>
                 </div>
                 <div class="certificate_image mt-4">
-                    <img style="height: 200px; width:100%;" src="{{asset($course->certificate_image)}}" class="img-fluid" alt="">
+                    <img src="{{asset($course->certificate_image)}}" class="w-100" alt="">
                 </div>
             </div>
 
@@ -241,8 +241,20 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="row wow fadeInDown mt-4" data-wow-duration="1s">
+<!-- start related course section -->
+<section class="training-section py-5">
+    <div class="container">
+        <div class="row wow fadeInDown" data-wow-duration="1s">
+            <div class="col">
+                <div class="section-title">
+                    <h2><span>Related Courses</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row wow fadeInDown" data-wow-duration="1s">
 
             <div class="col">
                 <div class="slider-box">
@@ -293,6 +305,8 @@
         </div>
     </div>
 </section>
+<!-- end related course section -->
+
 <!-- end training details section -->
   <!-- end service section -->
 {{-- @section('scripts')

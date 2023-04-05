@@ -105,7 +105,8 @@
                                         </label>
                                       </div>
                                 </form>
-                                <a href="#" class="btn btn-md btn-outline-info w-100 mt-3"> Pay Now</a>
+                                <a href="#!" class="btn btn-md btn-outline-info w-100 mt-3" data-toggle="modal" data-target="#addModal"
+                                id="addBtn"> Pay Now</a>
                                 <a href="{{ route('training.course.details',$course->slug) }}" class="btn btn-md btn-outline-danger w-100 mt-3"> Cancle</a>
                             </div>
                         </div>
@@ -116,4 +117,107 @@
     </section>
     <!--end contact section-->
 
+     <!-- Payment Modal -->
+     <div class="enroll-payment-modal">
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span class="bg-transparent text-dark" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sm-body">
+                            <h5>Payment Confirmation</h5>
+                            <p class="text-danger w-75 mx-auto mt-2">To buy <strong>"{{ $course->title }}"</strong> this course you need to send money of <strong>{{ $course->fee}}Tk.</strong> to below given Bkash number. </p>
+                            <div class="alert alert-danger p-1" id="validation-errors"></div>
+                            <form id="addForm">
+                                @csrf
+
+                                <input type="hidden" name="service_id"
+                                    value="{{ base64_encode($course->id) }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bkashNumber">Bkash Number</label>
+                                            <input type="text" value="01792980503" class="form-control" id="bkashNumber" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="accountType">Account Type</label>
+                                            <input type="text" id="accountType" value="Personal"
+                                                class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userBkash">Your Bkash Number</label>
+                                    <input type="text" placeholder="Enter your bkash number" id="userBkash" class="form-control" name="user_bkash">
+                                </div>
+                                <div class="form-group">
+                                    <label for="transactionId">Money Transaction ID</label>
+                                    <input type="text" placeholder="Enter your money trabsaction ID" id="transactionId" name="user_tid"
+                                        class="form-control" name="subject">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <input type="submit" value="Confirm Payment">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+
+
+    @section('scripts')
+    <script>
+        //Add button
+        $('#addBtn').on('click', function() {
+            $('#validation-errors').html('');
+            $('#validation-errors').fadeOut(100);
+        });
+
+        //ADD DATA
+        $("#addForm").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "",
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#addModal').modal('hide');
+                    $('#addForm')[0].reset();
+                    $('.toast-error').hide();
+                    $('#validation-errors').html('');
+                    $('#validation-errors').hide();
+                    toastr.success('Successfully request sent !', 'Success', {
+                        timeOut: 3000
+                    });
+                },
+                error: function(xhr) {
+                    $('#validation-errors').html('');
+                    $('#validation-errors').fadeOut(100);
+                    $('#validation-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#validation-errors').append('<ul class="m-0"><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+    </script>
+@endsection
 @endsection
