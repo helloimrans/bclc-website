@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Law;
 use App\Models\LawCategory;
 use App\Models\LawFaq;
+use App\Models\LawSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -126,6 +127,7 @@ class LawController extends Controller
      */
     public function edit($id)
     {
+        $data['law_schedules'] = LawSchedule::where('law_id', $id)->get();
         $data['faqs'] = LawFaq::where('law_id', $id)->get();
         $data['categories'] = LawCategory::where('status', 1)->get();
         $data['law'] = Law::with(['actChapter', 'rulesChapter','actPart','rulesPart'])->find($id);
