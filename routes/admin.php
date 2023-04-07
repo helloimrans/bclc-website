@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\CourseFaqController;
 use App\Http\Controllers\Admin\LawPartController;
+use App\Http\Controllers\Admin\LawFaqController;
 use App\Http\Controllers\Defaults\DefaultController;
 
 //Ajax - Get service & pro-bono category
@@ -115,6 +116,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::get('edit/{id}', [CourseFaqController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [CourseFaqController::class, 'update'])->name('update');
         Route::get('destroy/{id}', [CourseFaqController::class, 'destroy'])->name('destroy');
+    });
+
+
+    //Law FAQ
+    Route::group(['prefix' => 'law/faq', 'as' => 'law.faq.'], function () {
+        Route::post('store', [LawFaqController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [LawFaqController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [LawFaqController::class, 'update'])->name('update');
+        Route::get('destroy/{id}', [LawFaqController::class, 'destroy'])->name('destroy');
     });
 
 

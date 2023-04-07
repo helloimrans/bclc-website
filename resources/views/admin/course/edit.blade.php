@@ -445,7 +445,7 @@
                                 </div>
                             </form>
                             <!--Start FAQ -->
-                            <div class="tab-content mt-4" id="pills-tabContent">
+                            <div class="tab-content mt-4" id="pills-tabContent">FAQ
                                 {{-- start  act tab content --}}
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                     aria-labelledby="pills-home-tab">
@@ -524,7 +524,7 @@
         </div>
     </div>
 
-    <!--Start Add Chapter Modal -->
+    <!--Start Add FAQ Modal -->
     <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -571,9 +571,9 @@
             </div>
         </div>
     </div>
-    <!--End Add Chapter Modal -->
+    <!--End Add FAQ Modal -->
 
-    <!--Start Edit Chapter Modal -->
+    <!--Start Edit FAQ Modal -->
         <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -614,7 +614,7 @@
                 </div>
             </div>
         </div>
-    <!--Start Edit Chapter Modal -->
+    <!--Start Edit FAQ Modal -->
     @section('scripts')
     <script>
         // Service Category to Servoce onChange
