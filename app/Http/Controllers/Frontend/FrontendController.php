@@ -6,9 +6,11 @@ use App\Models\Law;
 use App\Models\Abrwn;
 use App\Models\Course;
 use App\Models\LawFaq;
+use App\Models\LawForm;
 use App\Models\Service;
 use App\Models\LawChapter;
 use App\Models\LawCategory;
+use App\Models\LawSchedule;
 use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsCondition;
@@ -155,6 +157,8 @@ class FrontendController extends Controller
 
     public function lawsRulesDetails($slug){
         $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
+        $data['law_forms'] = LawForm::where('law_id', $data['law']->id)->where('status', 1)->get();
+        $data['law_schedules'] = LawSchedule::where('law_id', $data['law']->id)->where('status', 1)->get();
         // $data['law']->increment('total_views');
         // $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
         return view('frontend.laws_and_rules.laws_rules_details',$data);

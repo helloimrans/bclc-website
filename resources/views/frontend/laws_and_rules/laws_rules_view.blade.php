@@ -327,6 +327,9 @@
                     </div>
 
                     <!--Law Faqs-->
+                    <div class="section-title mb-3">
+                        <h2><span>Law FAQs</span></h2>
+                    </div>
                     <div class="td-accordions wow fadeInDown" data-wow-duration="1s">
                         <div id="accordion" class="service-accordion">
                             @forelse ($law_faqs as $key=>$lf)
@@ -334,7 +337,7 @@
                                 <div class="card-header" id="heading-{{ $key }}">
                                     <h5 class="mb-0">
                                         <a role="button" data-toggle="collapse" href="#collapse-{{ $key }}" aria-expanded="false"
-                                            aria-controls="collapse-{{ $key }}" class="collapsed">
+                                            aria-controls="collapse-{{ $key }}" class="collapsed w-100">
                                             {{ $lf->title }}
                                         </a>
                                     </h5>
