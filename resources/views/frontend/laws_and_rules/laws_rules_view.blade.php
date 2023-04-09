@@ -325,6 +325,31 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <!--Law Faqs-->
+                    <div class="td-accordions wow fadeInDown" data-wow-duration="1s">
+                        <div id="accordion" class="service-accordion">
+                            @forelse ($law_faqs as $key=>$lf)
+                            <div class="card">
+                                <div class="card-header" id="heading-{{ $key }}">
+                                    <h5 class="mb-0">
+                                        <a role="button" data-toggle="collapse" href="#collapse-{{ $key }}" aria-expanded="false"
+                                            aria-controls="collapse-{{ $key }}" class="collapsed">
+                                            {{ $lf->title }}
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapse-{{ $key }}" class="collapse" data-parent="#accordion"
+                                    aria-labelledby="heading-{{ $key }}" style="">
+                                    <div class="card-body">
+                                        {{ $lf->description }}
+                                    </div>
+                                </div>
+                            </div>
+                            @empty  
+                            @endforelse
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
