@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\LawFaq;
 use App\Models\LawForm;
 use App\Models\Service;
+use App\Models\CourseFaq;
 use App\Models\LawChapter;
 use App\Models\LawCategory;
 use App\Models\LawSchedule;
@@ -195,9 +196,10 @@ class FrontendController extends Controller
 
     public function courseDetails($slug)
     {
-        $course = Course::where('slug', $slug)->first();
-        $related_courses = Course::where('service_category_id', $course->service_category_id)->get();
-        return view('frontend.training.course_details', compact('course', 'related_courses'));
+        $data['course'] = Course::where('slug', $slug)->first();
+        $data['course_faqs'] = CourseFaq::where('course_id', $data['course']->id)->where('status', 1)->get();
+        $data['related_courses'] = Course::where('service_category_id', $data['course']->service_category_id)->get();
+        return view('frontend.training.course_details', $data);
     }
 
     public function courseCheckout($slug)
