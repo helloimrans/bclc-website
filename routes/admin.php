@@ -1,34 +1,35 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AbrwnCategoryController;
+use App\Http\Controllers\Admin\LawController;
 use App\Http\Controllers\Admin\AbrwnController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AssociatedServiceController;
-use App\Http\Controllers\Admin\KeywordController;
-use App\Http\Controllers\Admin\LawCategoryController;
-use App\Http\Controllers\Admin\LawChapterController;
-use App\Http\Controllers\Admin\LawController;
-use App\Http\Controllers\Admin\LawSectionController;
-use App\Http\Controllers\Admin\ServiceCatController;
-use App\Http\Controllers\Admin\ServiceProBonoController;
 use App\Http\Controllers\Admin\CourseController;
-use App\Http\Controllers\Admin\OfficeFunctionCatController;
-use App\Http\Controllers\Admin\OfficeFunctionController;
-use App\Http\Controllers\Admin\OfficeFunctionSectorController;
-use App\Http\Controllers\Admin\ServiceFacilityCatController;
-use App\Http\Controllers\Admin\ServiceFacilityController;
-use App\Http\Controllers\Admin\TermsConditionController;
-use App\Http\Controllers\Admin\PrivacyPolicyController;
-use App\Http\Controllers\Admin\ProfessionController;
-use App\Http\Controllers\Admin\ServiceFacilitySectorController;
-use App\Http\Controllers\Admin\SuitableCourseController;
-use App\Http\Controllers\Admin\ContactMessageController;
-use App\Http\Controllers\Admin\CourseFaqController;
-use App\Http\Controllers\Admin\LawPartController;
 use App\Http\Controllers\Admin\LawFaqController;
-use App\Http\Controllers\Admin\LawScheduleController;
+use App\Http\Controllers\Admin\KeywordController;
+use App\Http\Controllers\Admin\LawFormController;
+use App\Http\Controllers\Admin\LawPartController;
+use App\Http\Controllers\Admin\CourseFaqController;
+use App\Http\Controllers\Admin\LawChapterController;
+use App\Http\Controllers\Admin\LawSectionController;
+use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Defaults\DefaultController;
+use App\Http\Controllers\Admin\LawCategoryController;
+use App\Http\Controllers\Admin\LawScheduleController;
+use App\Http\Controllers\Admin\AbrwnCategoryController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
+use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\OfficeFunctionController;
+use App\Http\Controllers\Admin\ServiceProBonoController;
+use App\Http\Controllers\Admin\SuitableCourseController;
+use App\Http\Controllers\Admin\TermsConditionController;
+use App\Http\Controllers\Admin\ServiceFacilityController;
+use App\Http\Controllers\Admin\AssociatedServiceController;
+use App\Http\Controllers\Admin\OfficeFunctionCatController;
+use App\Http\Controllers\Admin\ServiceFacilityCatController;
+use App\Http\Controllers\Admin\OfficeFunctionSectorController;
+use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 
 //Ajax - Get service & pro-bono category
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
@@ -133,6 +134,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
         Route::get('edit/{id}', [LawScheduleController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [LawScheduleController::class, 'update'])->name('update');
         Route::get('destroy/{id}', [LawScheduleController::class, 'destroy'])->name('destroy');
+    });
+    //Law Form
+    Route::group(['prefix' => 'law/lf', 'as' => 'law.lf.'], function () {
+        Route::post('store', [LawFormController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [LawFormController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [LawFormController::class, 'update'])->name('update');
+        Route::get('destroy/{id}', [LawFormController::class, 'destroy'])->name('destroy');
     });
 
 

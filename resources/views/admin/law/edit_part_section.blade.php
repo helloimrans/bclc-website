@@ -524,7 +524,7 @@
                             </div>
                             <!--End FAQ-->
                             <!--Start Law Schedule -->
-                            <div class="tab-content" style="margin-top: 7em" id="pills-tabContent">
+                            <div class="tab-content" style="margin-top: 4em" id="pills-tabContent">
                                 {{-- start  Law Schedule content --}}
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                     aria-labelledby="pills-home-tab">
@@ -598,6 +598,81 @@
                                 {{-- end  Law Schedule content --}}
                             </div>
                             <!--End Law Schedule-->
+                            <!--Start Law Form -->
+                            <div class="tab-content" style="margin-top: 4em" id="pills-tabContent">
+                                {{-- start  Law Form content --}}
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="card-body rounded" style="background: #f5f5f5; border:1px dotted #7367f0">
+                                        <h4 class="text-center">{{ $law->title }}</h4>
+
+                                        {{-- start add Law Forms for Law --}}
+                                        <div class="card-header px-0">
+                                            <div class="head-label">
+                                                <h5 class="mb-0 text-success"><strong>Law Forms</strong></h5>
+                                            </div>
+                                            <div class="dt-action-buttons text-end">
+                                                <div class="dt-buttons d-inline-flex"><a href="#!"
+                                                        class="btn btn-success btn-sm AddLFBtn" bla="1"
+                                                        blr="" data-bs-toggle="modal"
+                                                        data-bs-target="#AddLFModal"><i data-feather='plus-square'></i> Add
+                                                        Law Form</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="card rounded">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless example" id="loadPart">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>SL</th>
+                                                                <th>Title</th>
+                                                                <th>File</th>
+                                                                <th>Status</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($law_forms as $lf)
+                                                                <tr>
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ \Str::limit($lf->title,30) }}</td>
+                                                                    <td>
+                                                                        <a  title="Download" href="{{$lf->file}}" download><i class="fa fa-download"></i> Download</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        @if ($lf->status == 1)
+                                                                            <span class="badge badge-light-success">Active</span>
+                                                                        @else
+                                                                            <span class="badge badge-light-warning">Deactive</span>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>
+                                                                        <a class="me-1 editLawForm" href="#!" data-id='{{ $lf->id }}' data-bs-toggle="tooltip"
+                                                                            data-bs-original-title="Edit">
+                                                                            <i class="far fa-edit text-dark"></i>
+                                                                        </a>
+                                                                        <a class="me-1 deleteLawForm"
+                                                                            data-id="{{ $lf->id }}"
+                                                                            data-bs-toggle="tooltip"
+                                                                            data-bs-original-title="Delete">
+                                                                            <i class="far fa-trash-alt text-danger"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        {{-- end add Law Schedules for Law --}}
+                                    </div>
+                                </div>
+                                {{-- end  Law Schedule content --}}
+                            </div>
+                            <!--End Law Form-->
                         </div>
                         {{-- end main law update part --}}
 
@@ -1400,7 +1475,7 @@
             </div>
         </div>
     </div>
-<!--Start Edit FAQ Modal -->
+<!--End Edit FAQ Modal -->
     <!--Start Add Law Schedule Modal -->
     <div class="modal fade" id="AddLSModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -1489,7 +1564,96 @@
             </div>
         </div>
     </div>
-    <!--Start Edit Law Schedule Modal -->
+    <!--End Edit Law Schedule Modal -->
+    <!--Start Add Law Form Modal -->
+    <div class="modal fade" id="AddLFModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Law Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="AddLFForm" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="law_id" value="{{ $law->id }}">
+
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="lf-validation-errors"></div>
+                        <div class="alert alert-success" id="lf-validation-success"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title</label>
+                            <input type="text" name="title" placeholder="Enter law form title" class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="">File</label>
+                            <input type="file" name="file" class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" class="form-control">
+                                <option value="1">
+                                    Active
+                                </option>
+                                <option value="0">
+                                    Deactive
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End Add Law Form Modal -->
+
+    <!--Start Edit Law Form Modal -->
+    <div class="modal fade" id="EditLFModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Law Form</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="EditLFForm" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="lf-edit-errors"></div>
+                        <div class="alert alert-success" id="lf-edit-success"></div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Title</label>
+                            <input type="text" name="title" placeholder="Enter faq title" id="law_Form_title"
+                                class="form-control">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="">File</label>
+                            <input type="file" name="file" class="form-control" id="law_form_file">
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label">Status</label>
+                            <select name="status" id="law_form_status" class="form-control">
+
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
+                                data-feather='x'></i> Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End Edit Law Form Modal -->
 
     <!--Add Part Modal -->
     <div class="modal fade" id="pAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2017,155 +2181,304 @@
         });
     </script>
     {{-- End Law FAQ ajax --}}
-        {{-- Start Law Schedule ajax --}}
-        <script>
-            //FAQ Add button
-            $('.AddLSBtn').on('click', function() {
-                $('#ls-validation-errors').html('');
-                $('#ls-validation-success').html('');
+    {{-- Start Law Schedule ajax --}}
+    <script>
+        //FAQ Add button
+        $('.AddLSBtn').on('click', function() {
+            $('#ls-validation-errors').html('');
+            $('#ls-validation-success').html('');
+        });
+        //FAQ ADD DATA
+        $("#AddLSForm").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('law.ls.store') }}",
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#AddLSModal').modal('hide');
+                    $('#ls-validation-errors').html('');
+                    $('#ls-validation-errors').hide();
+                    $('#AddLSForm')[0].reset();
+                    $('#ls-validation-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data inserted !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#ls-validation-errors').html('');
+                    $('#ls-validation-errors').fadeOut(100);
+                    $('#ls-validation-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#ls-validation-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
             });
-            //FAQ ADD DATA
-            $("#AddLSForm").on("submit", function(e) {
-                e.preventDefault();
-                $.ajax({
-                    url: "{{ route('law.ls.store') }}",
-                    data: new FormData(this),
-                    type: "POST",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: "JSON",
-                    success: function(data) {
-                        $('#AddLSModal').modal('hide');
-                        $('#ls-validation-errors').html('');
-                        $('#ls-validation-errors').hide();
-                        $('#AddLSForm')[0].reset();
-                        $('#ls-validation-success').append('<ul><li>Success</li></ul>');
-                        toastr.success('Successfully data inserted !', 'Success', {
-                            timeOut: 3000
-                        });
-                        location.reload();
-                        // $('#loadChapter').load(location.href + " #loadChapter");
-                        // $('#loadSection').load(location.href + " #loadSection");
-                    },
-                    error: function(xhr) {
-                        $('#ls-validation-errors').html('');
-                        $('#ls-validation-errors').fadeOut(100);
-                        $('#ls-validation-errors').fadeIn(100);
-                        toastr.error('Something went wrong. Please try again later.', 'Opps!', {
-                            timeOut: 3000
-                        });
-                        $.each(xhr.responseJSON.errors, function(key, value) {
-                            $('#ls-validation-errors').append('<ul><li>' + value[0] + '</li></ul>');
-                        });
-                    },
-                });
-            });
-            //Chapter EDIT DATA
-            $(document).on('click', '.editLawSchedule', function(e) {
-                e.preventDefault();
-                $('#EditLSModal').modal('show');
-                $('#ls-edit-errors').html('');
-                $('#ls-law_schedule_status').html('');
-                $('#ls-edit-errors').fadeOut(100);
-                $('#EditLSForm')[0].reset();
-                var id = $(this).data('id');
-                var url = "{{ route('law.ls.edit', ':id') }}";
-                url = url.replace(':id', id);
-                $.ajax({
-                    url: url,
-                    method: "GET",
-                    dataType: "JSON",
-                    success: function(data) {
-                        if (data != "") {
-                            $('#law_schedule_title').val(data.title);
-                            $('#law_schedule_file').val(data.file);
-                            $('#law_schedule_status').append(`
-                                <option value="1" ${data.status == 1 ? 'selected' : ''}> Active</option>
-                                <option value="0" ${data.status == 0 ? 'selected' : ''}> Deactive </option>
-                            `);
-    
-                            $('#EditLSModal').attr('data_id', data.id);
-    
-                        }
-                    },
-                });
-            });
-            //Chapter UPDATE DATA
-            $("#EditLSForm").on("submit", function(e) {
-                e.preventDefault();
-                var id = $('#EditLSModal').attr('data_id');
-                var url = "{{ route('law.ls.update', ':id') }}";
-                url = url.replace(':id', id);
-                $.ajax({
-                    url: url,
-                    data: new FormData(this),
-                    type: "POST",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: "JSON",
-                    success: function(data) {
-                        $('#EditLSModal').modal('hide');
-                        $('#ls-edit-errors').html('');
-                        $('#ls-edit-errors').hide();
-                        $('#ls-edit-success').append('<ul><li>Success</li></ul>');
-                        toastr.success('Successfully data updated !', 'Success', {
-                            timeOut: 3000
-                        });
-                        location.reload();
-                        // $('#loadChapter').load(location.href + " #loadChapter");
-                        // $('#loadSection').load(location.href + " #loadSection");
-                    },
-                    error: function(xhr) {
-                        $('#ls-edit-errors').html('');
-                        $('#ls-edit-errors').fadeOut(100);
-                        $('#ls-edit-errors').fadeIn(100);
-                        toastr.error('Something went wrong. Please try again later.', 'Opps!', {
-                            timeOut: 3000
-                        });
-                        $.each(xhr.responseJSON.errors, function(key, value) {
-                            $('#ls-edit-errors').append('<ul><li>' + value[0] + '</li></ul>');
-                        });
-                    },
-                });
-            });
-    
-            //Chapter DELETE DATA
-            $(document).on('click', '.deleteLawSchedule', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var url = "{{ route('law.ls.destroy', ':id') }}";
-                url = url.replace(':id', id);
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Delete this data!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: url,
-                            method: "GET",
-                            success: function(data) {
-                                toastr.success('Successfully data Deleted !', 'Success', {
-                                    timeOut: 3000
-                                });
-                                location.reload();
-                                // $('#loadChapter').load(location.href + " #loadChapter");
-                                // $('#loadSection').load(location.href + " #loadSection");
-                            },
-                        });
+        });
+        //Chapter EDIT DATA
+        $(document).on('click', '.editLawSchedule', function(e) {
+            e.preventDefault();
+            $('#EditLSModal').modal('show');
+            $('#ls-edit-errors').html('');
+            $('#ls-law_schedule_status').html('');
+            $('#ls-edit-errors').fadeOut(100);
+            $('#EditLSForm')[0].reset();
+            var id = $(this).data('id');
+            var url = "{{ route('law.ls.edit', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    if (data != "") {
+                        $('#law_schedule_title').val(data.title);
+                        $('#law_schedule_file').val(data.file);
+                        $('#law_schedule_status').append(`
+                            <option value="1" ${data.status == 1 ? 'selected' : ''}> Active</option>
+                            <option value="0" ${data.status == 0 ? 'selected' : ''}> Deactive </option>
+                        `);
+
+                        $('#EditLSModal').attr('data_id', data.id);
+
                     }
-                });
-    
-    
+                },
             });
-        </script>
-        {{-- End Law Schedule ajax --}}
+        });
+        //Chapter UPDATE DATA
+        $("#EditLSForm").on("submit", function(e) {
+            e.preventDefault();
+            var id = $('#EditLSModal').attr('data_id');
+            var url = "{{ route('law.ls.update', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#EditLSModal').modal('hide');
+                    $('#ls-edit-errors').html('');
+                    $('#ls-edit-errors').hide();
+                    $('#ls-edit-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data updated !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#ls-edit-errors').html('');
+                    $('#ls-edit-errors').fadeOut(100);
+                    $('#ls-edit-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#ls-edit-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+
+        //Chapter DELETE DATA
+        $(document).on('click', '.deleteLawSchedule', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var url = "{{ route('law.ls.destroy', ':id') }}";
+            url = url.replace(':id', id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        success: function(data) {
+                            toastr.success('Successfully data Deleted !', 'Success', {
+                                timeOut: 3000
+                            });
+                            location.reload();
+                            // $('#loadChapter').load(location.href + " #loadChapter");
+                            // $('#loadSection').load(location.href + " #loadSection");
+                        },
+                    });
+                }
+            });
+
+
+        });
+    </script>
+    {{-- End Law Schedule ajax --}}
+    {{-- Start Law Form ajax --}}
+    <script>
+        //Law Form Add button
+        $('.AddLFBtn').on('click', function() {
+            $('#lf-validation-errors').html('');
+            $('#lf-validation-success').html('');
+        });
+        //Law Form ADD DATA
+        $("#AddLFForm").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{ route('law.lf.store') }}",
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#AddLFModal').modal('hide');
+                    $('#lf-validation-errors').html('');
+                    $('#lf-validation-errors').hide();
+                    $('#AddLFForm')[0].reset();
+                    $('#lf-validation-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data inserted !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#lf-validation-errors').html('');
+                    $('#lf-validation-errors').fadeOut(100);
+                    $('#lf-validation-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#lf-validation-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+        //Law Form EDIT DATA
+        $(document).on('click', '.editLawSchedule', function(e) {
+            e.preventDefault();
+            $('#EditLFModal').modal('show');
+            $('#lf-edit-errors').html('');
+            $('#lf-law_schedule_status').html('');
+            $('#lf-edit-errors').fadeOut(100);
+            $('#EditLFForm')[0].reset();
+            var id = $(this).data('id');
+            var url = "{{ route('law.lf.edit', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "JSON",
+                success: function(data) {
+                    if (data != "") {
+                        $('#law_form_title').val(data.title);
+                        $('#law_form_file').val(data.file);
+                        $('#law_form_status').append(`
+                            <option value="1" ${data.status == 1 ? 'selected' : ''}> Active</option>
+                            <option value="0" ${data.status == 0 ? 'selected' : ''}> Deactive </option>
+                        `);
+
+                        $('#EditLFModal').attr('data_id', data.id);
+
+                    }
+                },
+            });
+        });
+        //Law Form UPDATE DATA
+        $("#EditLFForm").on("submit", function(e) {
+            e.preventDefault();
+            var id = $('#EditLFModal').attr('data_id');
+            var url = "{{ route('law.lf.update', ':id') }}";
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                data: new FormData(this),
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data) {
+                    $('#EditLFModal').modal('hide');
+                    $('#lf-edit-errors').html('');
+                    $('#lf-edit-errors').hide();
+                    $('#lf-edit-success').append('<ul><li>Success</li></ul>');
+                    toastr.success('Successfully data updated !', 'Success', {
+                        timeOut: 3000
+                    });
+                    location.reload();
+                    // $('#loadChapter').load(location.href + " #loadChapter");
+                    // $('#loadSection').load(location.href + " #loadSection");
+                },
+                error: function(xhr) {
+                    $('#lf-edit-errors').html('');
+                    $('#lf-edit-errors').fadeOut(100);
+                    $('#lf-edit-errors').fadeIn(100);
+                    toastr.error('Something went wrong. Please try again later.', 'Opps!', {
+                        timeOut: 3000
+                    });
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        $('#lf-edit-errors').append('<ul><li>' + value[0] + '</li></ul>');
+                    });
+                },
+            });
+        });
+
+        //Chapter DELETE DATA
+        $(document).on('click', '.deleteLawForm', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var url = "{{ route('law.lf.destroy', ':id') }}";
+            url = url.replace(':id', id);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        method: "GET",
+                        success: function(data) {
+                            toastr.success('Successfully data Deleted !', 'Success', {
+                                timeOut: 3000
+                            });
+                            location.reload();
+                            // $('#loadChapter').load(location.href + " #loadChapter");
+                            // $('#loadSection').load(location.href + " #loadSection");
+                        },
+                    });
+                }
+            });
+
+
+        });
+    </script>
+    {{-- End Law Form ajax --}}
     {{-- Start law part ajax --}}
     <script>
         //Part Add button

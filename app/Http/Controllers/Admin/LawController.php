@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Law;
-use App\Models\LawCategory;
 use App\Models\LawFaq;
+use App\Models\LawForm;
+use App\Models\LawCategory;
 use App\Models\LawSchedule;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class LawController extends Controller
 {
@@ -127,6 +128,7 @@ class LawController extends Controller
      */
     public function edit($id)
     {
+        $data['law_forms'] = LawForm::where('law_id', $id)->get();
         $data['law_schedules'] = LawSchedule::where('law_id', $id)->get();
         $data['faqs'] = LawFaq::where('law_id', $id)->get();
         $data['categories'] = LawCategory::where('status', 1)->get();
