@@ -30,10 +30,7 @@
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
-                                    @if ($terms_conditions->count() <= 0)
                                         <a href="{{ route('terms.condition.create') }}" class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New</a>
-                                    @endif
-
                                 </div>
                             </div>
                         </div>

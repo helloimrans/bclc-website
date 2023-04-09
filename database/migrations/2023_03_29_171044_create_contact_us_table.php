@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject')->nullable();
             $table->text('message');
-            $table->enum('read_status', ['Read', 'Unread'])->default('Unread');
+            $table->enum('read_status', ['Unread', 'Read','Replied'])->default('Unread');
             $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->bigInteger('deleted_by')->unsigned()->nullable();
             $table->softDeletes();

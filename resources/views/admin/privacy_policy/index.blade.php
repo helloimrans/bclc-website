@@ -30,11 +30,9 @@
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
-                                    @if ($privacy_policies->count() <= 0)
                                     <a href="{{ route('privacy.policy.create') }}" class="btn btn-info btn-sm"><i
                                         data-feather='plus-square'></i> Add New</a>
                                     </div>
-                                    @endif
                             </div>
                         </div>
                         <div class="card-body">
