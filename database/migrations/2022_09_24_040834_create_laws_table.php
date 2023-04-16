@@ -25,11 +25,20 @@ return new class extends Migration
             $table->string('act_date')->nullable();
             $table->string('last_amendment')->nullable();
 
+            $table->string('rules_no')->nullable();
             $table->string('rules_title')->nullable();
             $table->string('rules_short_form')->nullable();
             $table->string('rules_year')->nullable();
             $table->string('rules_date')->nullable();
+            $table->string('rules_last_amendment')->nullable();
 
+            $table->string('rules_total_part')->nullable();
+            $table->string('rules_total_chapter')->nullable();
+            $table->string('rules_total_section')->nullable();
+            $table->string('rules_total_schedule')->nullable();
+            $table->string('rules_total_form')->nullable();
+
+            $table->string('total_part')->nullable();
             $table->string('total_chapter')->nullable();
             $table->string('total_section')->nullable();
             $table->string('total_schedule')->nullable();

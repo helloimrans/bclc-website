@@ -158,6 +158,20 @@
 
                                     <div class="col-md-6">
                                         <div class="mb-1">
+                                            <label class="form-label" for="">Total Part</label>
+                                            <input type="text" name="total_part" placeholder="Enter total part"
+                                                class="form-control @error('total_part') is-invalid @enderror"
+                                                value="{{ old('total_part',$law->total_part) }}">
+
+                                            @error('total_part')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
                                             <label class="form-label" for="">Total Chapter</label>
                                             <input type="text" name="total_chapter" placeholder="Enter total chapter"
                                                 class="form-control @error('total_chapter') is-invalid @enderror"
@@ -169,7 +183,6 @@
 
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="mb-1">
                                             <label class="form-label" for="">Total Section</label>
@@ -212,15 +225,19 @@
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mb-1">
-                                    <label class="form-label">Sort</label>
-                                    <input type="number" min="0" placeholder="[0,1,2,3]"
-                                        class="form-control @error('sort') is-invalid @enderror" name="sort"
-                                        value="{{ old('sort', $law->sort) }}">
-                                    @error('sort')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label">Sort</label>
+                                            <input type="number" min="0" placeholder="[0,1,2,3]"
+                                                class="form-control @error('sort') is-invalid @enderror" name="sort"
+                                                value="{{ old('sort', $law->sort) }}">
+                                            @error('sort')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Description</label>
@@ -362,6 +379,22 @@
                                                                 <div class="col-md-6">
                                                                     <div class="mb-1">
                                                                         <label class="form-label" for="">Rules
+                                                                            No</label>
+                                                                        <input type="test" name="rules_no"
+                                                                            placeholder="Enter rules no"
+                                                                            class="form-control @error('rules_no') is-invalid @enderror"
+                                                                            value="{{ old('rules_no',$law->rules_no) }}">
+
+                                                                        @error('rules_no')
+                                                                            <div class="invalid-feedback">{{ $message }}
+                                                                            </div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules
                                                                             Title</label>
                                                                         <input type="test" name="rules_title"
                                                                             placeholder="Enter rules title"
@@ -423,6 +456,96 @@
 
                                                                     </div>
                                                                 </div>
+
+
+
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules Last Amendment</label>
+                                                                        <input type="date" name="rules_last_amendment"
+                                                                            class="form-control @error('rules_last_amendment') is-invalid @enderror"
+                                                                            value="{{ old('rules_last_amendment', $law->rules_last_amendment) }}">
+
+                                                                        @error('rules_last_amendment')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules Total Part</label>
+                                                                        <input type="text" name="rules_total_part" placeholder="Enter rules total part"
+                                                                            class="form-control @error('rules_total_part') is-invalid @enderror"
+                                                                            value="{{ old('rules_total_part',$law->rules_total_part) }}">
+
+                                                                        @error('rules_total_part')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules Total Chapter</label>
+                                                                        <input type="text" name="rules_total_chapter" placeholder="Enter rules total chapter"
+                                                                            class="form-control @error('rules_total_chapter') is-invalid @enderror"
+                                                                            value="{{ old('rules_total_chapter',$law->rules_total_chapter) }}">
+
+                                                                        @error('rules_total_chapter')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules Total Section</label>
+                                                                        <input type="text" name="rules_total_section" placeholder="Enter rules total section"
+                                                                            class="form-control @error('rules_total_section') is-invalid @enderror"
+                                                                            value="{{ old('rules_total_section',$law->rules_total_section) }}">
+
+                                                                        @error('rules_total_section')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules Total Schedule</label>
+                                                                        <input type="text" name="rules_total_schedule"
+                                                                            placeholder="Enter rules total schedule"
+                                                                            class="form-control @error('rules_total_schedule') is-invalid @enderror"
+                                                                            value="{{ old('rules_total_schedule',$law->rules_total_schedule) }}">
+
+                                                                        @error('rules_total_schedule')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="mb-1">
+                                                                        <label class="form-label" for="">Rules Total Form</label>
+                                                                        <input type="text" name="rules_total_form" placeholder="Enter rules total form"
+                                                                            class="form-control @error('rules_total_form') is-invalid @enderror"
+                                                                            value="{{ old('rules_total_form',$law->rules_total_form) }}">
+
+                                                                        @error('rules_total_form')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                        @enderror
+
+                                                                    </div>
+                                                                </div>
+
+
+
+
                                                             </div>
                                                         </div>
                                                     </div>
