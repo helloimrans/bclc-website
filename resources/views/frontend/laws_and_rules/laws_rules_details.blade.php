@@ -242,9 +242,82 @@
 
                 </div>
             </div>
+            <div class="row mt-4">
+                <div class="col-md-10 mx-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="law_schedules">
+                                <a href="#!" class="pr-1" data-toggle="modal" data-target="#LawScheduleModal"><span
+                                    class="schedule-btn btn w-100 btn-md btn-info">Law Schedules</span></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="law_forms">
+                                <a href="#!" class="pr-1" data-toggle="modal" data-target="#LawFormModal"><span
+                                    class="form-btn btn btn-md w-100 btn-info">Low Forms</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <!-- end laws section -->
+
+    <!--Law Schedules Modal-->
+    <div class="service-cunsult-modal">
+        <div class="modal fade" id="LawScheduleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body pt-0">
+                        <div class="sm-body">
+                            <h5>Law Schedules</h5>
+                            <div class="law-schedule-options text-center">
+                                @forelse ($law_schedules as $ls)
+                                    <a href="#!" class="btn btn-md btn-info w-100 mb-2">{{ $ls->title }}</a>
+                                @empty
+                                    <h5 class="text-danger">Empty</h5>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Law Forms Modal-->
+    <div class="service-cunsult-modal">
+        <div class="modal fade" id="LawFormModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body pt-0">
+                        <div class="sm-body">
+                            <h5>Law Forms</h5>
+                            <div class="law-schedule-options text-center">
+                                @forelse ($law_forms as $lf)
+                                    <a href="#!" class="btn btn-md btn-info w-100 mb-2">{{ $lf->title }}</a>
+                                @empty
+                                    <h5 class="text-danger">Empty</h5>
+                                @endforelse
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @section('scripts')
     <script>

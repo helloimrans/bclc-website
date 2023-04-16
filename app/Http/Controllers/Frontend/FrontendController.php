@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Abrwn;
-use App\Models\AssociatedService;
 use App\Models\Law;
-use App\Models\LawCategory;
-use App\Models\LawChapter;
-use App\Models\Service;
-use App\Models\ServiceCategory;
-use App\Models\OfficeFunctionSector;
+use App\Models\Abrwn;
 use App\Models\Course;
-use App\Models\PrivacyPolicy;
-use App\Models\ServiceFacilitySector;
-use App\Models\TermsCondition;
-use Illuminate\Support\Facades\Auth;
+use App\Models\LawFaq;
+use App\Models\LawForm;
+use App\Models\Service;
+use App\Models\CourseFaq;
+use App\Models\LawChapter;
+use App\Models\LawCategory;
+use App\Models\LawSchedule;
 use Illuminate\Http\Request;
+use App\Models\PrivacyPolicy;
+use App\Models\TermsCondition;
+use App\Models\ServiceCategory;
+use App\Models\AssociatedService;
+use App\Http\Controllers\Controller;
+use App\Models\OfficeFunctionSector;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ServiceFacilitySector;
 
 class FrontendController extends Controller
 {
@@ -154,12 +158,15 @@ class FrontendController extends Controller
 
     public function lawsRulesDetails($slug){
         $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
+        $data['law_forms'] = LawForm::where('law_id', $data['law']->id)->where('status', 1)->get();
+        $data['law_schedules'] = LawSchedule::where('law_id', $data['law']->id)->where('status', 1)->get();
         // $data['law']->increment('total_views');
         // $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
         return view('frontend.laws_and_rules.laws_rules_details',$data);
     }
     public function lawsRulesView($slug){
         $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
+        $data['law_faqs'] = LawFaq::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law']->increment('total_views');
         $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
         return view('frontend.laws_and_rules.laws_rules_view',$data);
@@ -189,9 +196,10 @@ class FrontendController extends Controller
 
     public function courseDetails($slug)
     {
-        $course = Course::where('slug', $slug)->first();
-        $related_courses = Course::where('service_category_id', $course->service_category_id)->get();
-        return view('frontend.training.course_details', compact('course', 'related_courses'));
+        $data['course'] = Course::where('slug', $slug)->first();
+        $data['course_faqs'] = CourseFaq::where('course_id', $data['course']->id)->where('status', 1)->get();
+        $data['related_courses'] = Course::where('service_category_id', $data['course']->service_category_id)->get();
+        return view('frontend.training.course_details', $data);
     }
 
     public function courseCheckout($slug)

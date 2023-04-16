@@ -153,8 +153,37 @@
                     <h2><span>Certificate Image</span></h2>
                 </div>
                 <div class="certificate_image mt-4">
-                    <img src="{{asset($course->certificate_image)}}" class="w-100" alt="">
+                    <img src="{{asset($course->certificate_image)}}" class="w-100" alt="Certificate">
                 </div>
+
+                <!--Start Course FAQs-->
+                <div class="section-title mb-3">
+                    <h2><span>Course FAQs</span></h2>
+                </div>
+                <div class="td-accordions wow fadeInDown" data-wow-duration="1s">
+                    <div id="accordion" class="service-accordion">
+                        @forelse ($course_faqs as $key=>$cf)
+                        <div class="card">
+                            <div class="card-header" id="heading-{{ $key }}">
+                                <h5 class="mb-0">
+                                    <a role="button" data-toggle="collapse" href="#collapse-{{ $key }}" aria-expanded="false"
+                                        aria-controls="collapse-{{ $key }}" class="collapsed w-100">
+                                        {{ $cf->title }}
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapse-{{ $key }}" class="collapse" data-parent="#accordion"
+                                aria-labelledby="heading-{{ $key }}" style="">
+                                <div class="card-body">
+                                    {{ $cf->description }}
+                                </div>
+                            </div>
+                        </div>
+                        @empty  
+                        @endforelse
+                    </div>
+                </div>
+                <!--End Course FAQs-->
             </div>
 
             <div class="col-lg-7">
