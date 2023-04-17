@@ -249,7 +249,7 @@
                                             <p>{!! $section->description !!}</p>
                                         </div>
                                         @if (count($section->childs))
-                                            @include('frontend.pages.child_section', [
+                                            @include('frontend.laws_and_rules.child_section', [
                                                 'childs' => $section->childs,
                                             ])
                                         @endif
@@ -290,7 +290,7 @@
                                             <p>{!! $section->description !!}</p>
                                         </div>
                                         @if (count($section->childs))
-                                            @include('frontend.pages.child_section', [
+                                            @include('frontend.laws_and_rules.child_section', [
                                                 'childs' => $section->childs,
                                             ])
                                         @endif
@@ -349,7 +349,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @empty  
+                            @empty
                             @endforelse
                         </div>
                     </div>

@@ -5,7 +5,7 @@
     </div>
 
     @if (count($child->childs->where('status',1)))
-        @include('frontend.pages.child_section', [
+        @include('frontend.laws_and_rules.child_section', [
             'childs' => $child->childs,
         ])
     @endif
