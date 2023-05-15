@@ -28,10 +28,9 @@
                             <h4 class="text-center m-0 mb-3">Login as a {{ $userType }} </h4>
                             <form
                                 @if ($userType == 'Expert') action="{{ route('expert.login.store') }}"
-                            @elseif ($userType == 'Learner')
-                            action="{{ route('learner.login.store') }}"
-                            @elseif ($userType == 'Subscriber')
-                            action="" @endif
+                            @elseif ($userType == 'User')
+                            action="{{ route('user.login.store') }}"
+                             @endif
                                 method="POST">
                                 @csrf
                                 <div class="form-group">
@@ -60,10 +59,9 @@
                                 <p class="text-center mb-0 text-15">Not registered yet? <a class="td"
                                     @if ($userType == 'Expert')
                                     href="{{ route('expert.registration') }}"
-                                    @elseif ($userType == 'Learner')
-                                    href="{{ route('learner.registration') }}"
-                                    @elseif ($userType == 'Subscriber')
-                                    href="#!" @endif
+                                    @elseif ($userType == 'User')
+                                    href="{{ route('user.registration') }}"
+                                     @endif
                                         >Register as a {{ $userType }}</a></p>
                             </form>
                         </div>

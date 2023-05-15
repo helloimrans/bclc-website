@@ -1,4 +1,4 @@
-@extends('learner.layouts.master')
+@extends('user.layouts.master')
 @section('title', 'Security')
 @section('content')
 
@@ -10,7 +10,7 @@
                         <h2 class="content-header-title float-start mb-0">Security</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('learner.dashboard') }}">Dashboard</a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item active">Security
                                 </li>
@@ -45,7 +45,7 @@
                                   </div>
                             @endif
                             <!-- form -->
-                            <form action="{{ route('learner.update.password') }}" method="POST">
+                            <form action="{{ route('user.update.password') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12 col-sm-6 mb-1">

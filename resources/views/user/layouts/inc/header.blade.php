@@ -22,26 +22,26 @@
                 id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <div class="user-nav d-sm-flex d-none"><span
-                        class="user-name fw-bolder">{{ Auth::guard('learner')->user()->name }}</span><span
-                        class="user-status">Learner</span></div><span class="avatar"><img class="round"
-                        src="@if (Auth::guard('learner')->user()->image) {{ asset(Auth::guard('learner')->user()->image) }}
+                        class="user-name fw-bolder">{{ Auth::user()->name }}</span><span
+                        class="user-status">User</span></div><span class="avatar"><img class="round"
+                        src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }}
                             @else
                             {{ asset('defaults/avatar/avatar.png') }} @endif"
                         alt="avatar" height="40" width="40"><span
                         class="avatar-status-online"></span></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                <a class="dropdown-item" href="{{ route('learner.dashboard') }}"><i class="me-50"
+                <a class="dropdown-item" href="{{ route('user.dashboard') }}"><i class="me-50"
                         data-feather="home"></i> Dashboard</a>
-                <a class="dropdown-item" href="{{ route('learner.profile') }}"><i class="me-50"
+                <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="me-50"
                         data-feather="user"></i> Profile</a>
-                <a class="dropdown-item" href="{{ route('learner.edit.profile') }}"><i class="me-50"
+                <a class="dropdown-item" href="{{ route('user.edit.profile') }}"><i class="me-50"
                         data-feather="edit"></i> Update Profile</a>
-                <a class="dropdown-item" href="{{ route('learner.security') }}"><i class="me-50"
+                <a class="dropdown-item" href="{{ route('user.security') }}"><i class="me-50"
                         data-feather="lock"></i> Security</a>
 
                     <a
-                    class="dropdown-item" href="{{ route('learner.logout') }}"><i class="me-50"
+                    class="dropdown-item" href="{{ route('user.logout') }}"><i class="me-50"
                         data-feather="power"></i> Logout</a>
             </div>
         </li>

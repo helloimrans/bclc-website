@@ -102,17 +102,17 @@
                             </div>
                         </div>
                     </li>
-                    @if (Auth::guard('learner')->check())
+                    @if (Auth::check())
                     <li>
                         <div class="btn-group">
                             <button type="button" class="header-dd-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fs-6 fw-bold text-shuttle me-2">{{Auth::guard('learner')->user()->name}}</span>
+                                <span class="fs-6 fw-bold text-shuttle me-2">{{Auth::user()->name}}</span>
                                 <img src="{{asset('defaults/avatar/avatar.png')}}" alt="user">
                                 <i class="fa fa-angle-down d-none" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu header-dd-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a href="{{route('learner.dashboard')}}" class="dropdown-item"><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</a>
-                                <a href="{{route('learner.logout')}}" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                                <a href="{{route('user.dashboard')}}" class="dropdown-item"><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</a>
+                                <a href="{{route('user.logout')}}" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
                             </div>
                         </div>
                     </li>
@@ -186,11 +186,10 @@
                     <div class="sm-body">
                         <h5>Login Options</h5>
                         <div class="nav-login-options">
-                            <a href="{{ route('learner.login') }}"><i class="fa fa-sign-in mr-2"></i> Login as a
-                                Learner</a>
+                            <a href="{{ route('user.login') }}"><i class="fa fa-sign-in mr-2"></i> Login as a
+                                User</a>
                             <a href="{{ route('expert.login') }}"><i class="fa fa-sign-in mr-2"></i> Login as a
                                 Expert</a>
-                            <a href="#"><i class="fa fa-sign-in mr-2"></i> Login as a Subscriber</a>
                         </div>
                     </div>
                 </div>
@@ -214,11 +213,10 @@
                     <div class="sm-body">
                         <h5>Register Options</h5>
                         <div class="nav-login-options">
-                            <a href="{{route('learner.registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
-                                Learner</a>
+                            <a href="{{route('user.registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
+                                User</a>
                             <a href="{{route('expert.registration')}}"><i class="fa fa-user-plus mr-2"></i> Register as a
                                 Expert</a>
-                            <a href="#!"><i class="fa fa-user-plus mr-2"></i> Register as a Subscriber</a>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-@extends('learner.layouts.master')
+@extends('user.layouts.master')
 @section('title', 'Profile')
 @section('content')
     <div class="content-wrapper container-xxl p-0">
@@ -9,7 +9,7 @@
                         <h2 class="content-header-title float-start mb-0">Profile</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('learner.dashboard') }}">Dashboard</a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a>
                                 </li>
                                 <li class="breadcrumb-item active">Profile
                                 </li>
@@ -30,12 +30,12 @@
                                 <div class="user-avatar-section">
                                     <div class="d-flex align-items-center flex-column">
                                         <img class="img-fluid rounded mt-3 mb-2"
-                                            src="@if ($learner->image) {{ asset($learner->image) }}
+                                            src="@if ($user->image) {{ asset($user->image) }}
                                             @else
                                             {{ asset('defaults/avatar/avatar.png') }} @endif"
                                             height="110" width="110" alt="User avatar" />
                                         <div class="user-info text-center">
-                                            <h4>{{ $learner->name }}</h4>
+                                            <h4>{{ $user->name }}</h4>
                                             <span class="badge bg-light-secondary">Tutor</span>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                             <i data-feather="eye" class="font-medium-2"></i>
                                         </span>
                                         <div class="ms-75">
-                                            <h4 class="mb-0">{{ $learner->total_view }}</h4>
+                                            <h4 class="mb-0">{{ $user->total_view }}</h4>
                                             <small>Total View</small>
                                         </div>
                                     </div>
@@ -65,15 +65,15 @@
                                     <ul class="list-unstyled">
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Username:</span>
-                                            <span>{{ $learner->slug }}</span>
+                                            <span>{{ $user->slug }}</span>
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Auth Email:</span>
-                                            <span>{{ $learner->email }}</span>
+                                            <span>{{ $user->email }}</span>
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Status:</span>
-                                            @if ($learner->status == 1)
+                                            @if ($user->status == 1)
                                                 <span class="badge bg-light-success">Active</span>
                                             @else
                                                 <span class="badge bg-light-danger">Inactive</span>
@@ -82,7 +82,7 @@
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Premium:</span>
                                             <span>
-                                                @if ($learner->is_premium == 1)
+                                                @if ($user->is_premium == 1)
                                                     Yes
                                                 @else
                                                     No
@@ -91,12 +91,12 @@
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Contact:</span>
-                                            <span>{{ $learner->mobile }}</span>
+                                            <span>{{ $user->mobile }}</span>
                                         </li>
                                         <li class="mb-75">
                                             <span class="fw-bolder me-25">Verified:</span>
                                             <span>
-                                                @if ($learner->is_verified == 1)
+                                                @if ($user->is_verified == 1)
                                                     Yes
                                                 @else
                                                     No
@@ -117,7 +117,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title mb-50">Personal Information</h4>
-                                <a href="{{ route('learner.edit.profile') }}" class="btn btn-primary btn-sm">
+                                <a href="{{ route('user.edit.profile') }}" class="btn btn-primary btn-sm">
                                     <i data-feather='edit-3'></i> Update Profile
                                 </a>
                             </div>
@@ -126,26 +126,26 @@
                                     <div class="col-xl-6 col-12">
                                         <dl class="row mb-0">
                                             <dt class="col-sm-4 fw-bolder mb-1">ID:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->id_number }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->id_number }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Name:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->name }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->name }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Email:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->email }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->email }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Mobile:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->mobile }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->mobile }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Gender:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->gender }}
+                                            <dd class="col-sm-8 mb-1">{{ $user->gender }}
                                             </dd>
                                             <dt class="col-sm-4 fw-bolder mb-1">Marital Status:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->marital_status }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->marital_status }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Date of Birth:</dt>
                                             <dd class="col-sm-8 mb-1">
-                                                {{ \Carbon\Carbon::parse($learner->dob)->format('d M Y') }}</dd>
+                                                {{ \Carbon\Carbon::parse($user->dob)->format('d M Y') }}</dd>
 
 
                                         </dl>
@@ -154,22 +154,22 @@
                                         <dl class="row mb-0">
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Institution:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->current_institution }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->current_institution }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Subject:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->current_subject }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->current_subject }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Qualification:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->highest_qualification }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->highest_qualification }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Present Location:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->present_location }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->present_location }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">Permanent Address:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->permanent_address }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->permanent_address }}</dd>
 
                                             <dt class="col-sm-4 fw-bolder mb-1">About:</dt>
-                                            <dd class="col-sm-8 mb-1">{{ $learner->about }}</dd>
+                                            <dd class="col-sm-8 mb-1">{{ $user->about }}</dd>
 
                                         </dl>
                                     </div>

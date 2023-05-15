@@ -204,15 +204,15 @@ class FrontendController extends Controller
 
     public function courseCheckout($slug)
     {
-        if (Auth::guard('learner')->check()) {
+        if (Auth::check()) {
             $data['course'] = Course::where('slug', $slug)->first();
             return view('frontend.enroll.enroll', $data);
         } else {
             $notification = array(
-                'message' => 'Please at first login as a learner.',
+                'message' => 'Please at first login as a user.',
                 'alert-type' => 'info'
             );
-            return redirect()->route('learner.login')->with($notification);
+            return redirect()->route('user.login')->with($notification);
         }
     }
 
