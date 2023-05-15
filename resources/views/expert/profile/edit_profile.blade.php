@@ -229,6 +229,26 @@
                                             <div class="text-danger"><small>{{ $message }}</small></div>
                                         @enderror
                                     </div>
+                                    <div class="row">
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="password">Password</label>
+                                            <input type="password" id="password" name="password"
+                                                class="form-control flatpickr-basic @error('present_location') is-invalid @enderror"
+                                                placeholder="YYYY-MM-DD" value="{{ old('password', $expert->password) }}" />
+                                            @error('password')
+                                                <div class="text-danger"><small>{{ $message }}</small></div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-1 col-md-6">
+                                            <label class="form-label" for="con_password">Confirm Password</label>
+                                            <input type="password" id="con_password" name="con_password"
+                                                class="form-control flatpickr-basic @error('present_location') is-invalid @enderror"
+                                                placeholder="YYYY-MM-DD" value="{{ old('con_password', $expert->con_password) }}" />
+                                            @error('con_password')
+                                                <div class="text-danger"><small>{{ $message }}</small></div>
+                                            @enderror
+                                        </div>
+                                    </div>
 
                                 </div>
 
