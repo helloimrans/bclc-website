@@ -85,47 +85,49 @@ return new class extends Migration
             $table->date('job_to')->nullable();
             $table->string('profession_doc')->nullable();
 
-            //For Lawyer
+            //For Lawyer//
+
+            // bar council enrollment
             $table->date('bce_date')->nullable()->comment('bce=bar council enrollment');
             $table->string('bce_sanad_no')->nullable()->comment('bce=bar council enrollment');
             $table->string('bce_doc')->nullable()->comment('bce=bar council enrollment');
-
+            // mother bar association
             $table->bigInteger('mba_division')->unsigned()->nullable()->comment('mba=mother bar association');
             $table->bigInteger('mba_district')->unsigned()->nullable()->comment('mba=mother bar association');
             $table->string('mba_membership_no')->nullable()->comment('mba=mother bar association');
             $table->string('mba_doc')->nullable()->comment('mba=mother bar association');
-
+            // second bar association
             $table->bigInteger('sba_division')->unsigned()->nullable()->comment('sba=second bar association');
             $table->bigInteger('sba_district')->unsigned()->nullable()->comment('sba=second bar association');
             $table->string('sba_membership_no')->nullable()->comment('sba=second bar association');
             $table->string('sba_doc')->nullable()->comment('sba=second bar association');
-
+            // high court enrollment
             $table->date('hce_date')->nullable()->comment('hce=high court enrollment');
             $table->string('hce_sanad_no')->nullable()->comment('hce=high court enrollment');
             $table->string('hce_doc')->nullable()->comment('hce=high court enrollment');
-
+            // supreme court bar association
             $table->date('scba_date')->nullable()->comment('scba=supreme court bar association');
             $table->string('scba_membership_no')->nullable()->comment('scba=supreme court bar association');
             $table->string('scba_doc')->nullable()->comment('scba=supreme court bar association');
-
-            //Fee related info
+            // bar council fee
             $table->date('bcf_payment_date')->nullable()->comment('bcf=bar council fee');
             $table->string('bcf_receipt_no')->nullable()->comment('bcf=bar council fee');
             $table->string('bcf_doc')->nullable()->comment('bcf=bar council fee');
-
+            // practicing bar membership fee
             $table->date('pbmf_payment_date')->nullable()->comment('pbmf=practicing bar membership fee');
             $table->string('pbmf_receipt_no')->nullable()->comment('pbmf=practicing bar membership fee');
             $table->string('pbmf_doc')->nullable()->comment('pbmf=practicing bar membership fee');
-
+            // scba_mf=SCBA membership fee
             $table->date('scba_mf_payment_date')->nullable()->comment('scba_mf=SCBA membership fee');
             $table->string('scba_mf_receipt_no')->nullable()->comment('scba_mf=SCBA membership fee');
             $table->string('scba_mf_doc')->nullable()->comment('scba_mf=SCBA membership fee');
-
             //Chamber details
             $table->string('chamber_name')->nullable();
             $table->string('chamber_role')->nullable();
             $table->string('chamber_address')->nullable();
 
+
+            //Contact info
             $table->string('contact_number')->nullable();
             $table->string('contact_email')->nullable();
 

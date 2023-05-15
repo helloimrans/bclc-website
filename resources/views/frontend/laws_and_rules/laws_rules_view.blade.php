@@ -208,10 +208,10 @@
                                     aria-controls="home" aria-selected="true">{{ $law->title }}</a>
                             </li>
                             @if ($law->is_rules == 1)
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                aria-controls="profile" aria-selected="false">{{ $law->rules_title }}</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                        aria-controls="profile" aria-selected="false">{{ $law->rules_title }}</a>
+                                </li>
                             @endif
                         </ul>
                         <div class="tab-content" id="myTabContent">
@@ -219,89 +219,598 @@
                                 aria-labelledby="home-tab">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-sm mt-3">
-                                    <tr>
-                                        <th class="bg-light">Act No</th>
-                                        <td>{{ $law->act_no }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="bg-light">Act Year</th>
-                                        <td>{{ $law->act_year }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="bg-light">Act Date</th>
-                                        <td>{{ \Carbon\Carbon::parse($law->act_date)->format(' d M, Y') }}</td>
-                                    </tr>
-                                </table>
+                                        <tr>
+                                            <th class="bg-light">Act No</th>
+                                            <td>{{ $law->act_no }}</td>
+                                            <th class="bg-light">Part</th>
+                                            <td>{{ $law->total_part }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">Act Year</th>
+                                            <td>{{ $law->act_year }}</td>
+                                            <th class="bg-light">Chapter</th>
+                                            <td>{{ $law->total_chapter }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">Act Date</th>
+                                            <td>{{ \Carbon\Carbon::parse($law->act_date)->format(' d M, Y') }}</td>
+                                            <th class="bg-light">Section</th>
+                                            <td>{{$law->total_section}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">Amendment</th>
+                                            <td>{{ \Carbon\Carbon::parse($law->last_amendment)->format(' d M, Y') }}</td>
+                                            <th class="bg-light">Schedule</th>
+                                            <td>{{ $law->total_schedule }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light"></th>
+                                            <td></td>
+                                            <th class="bg-light">Form</th>
+                                            <td>{{ $law->total_form }}</td>
+                                        </tr>
+                                    </table>
                                 </div>
-                                <p>{{$law->description}}</p>
-                                @foreach ($law->actChapter->where('status', 1) as $chapter)
-                                    <div class="laws-chapters-one mt-4">
-                                        <h5>{{ $chapter->chapter_no }} : {{ $chapter->title }}</h5>
-                                    </div>
-                                    <div class="laws-chapters mt-4">
-                                        @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
-                                            <p class="text-danger text-14 text-center">Not found section!</p>
-                                        @endif
-                                    </div>
-                                    @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
-                                        <div class="laws-chapters-section">
-                                            <h5>{{ $section->title }}</h5>
-                                            <p>{!! $section->description !!}</p>
+                                <p>{!! $law->description !!}</p>
+                                @if ($law->format == 'part_chapter_section')
+                                    @foreach ($law->actPart as $part)
+                                        <div class="laws-chapters-one mt-4 mb-3">
+                                            <h5>
+                                                @if ($law->lang == 'en')
+                                                    {{ $part->part_no }}
+                                                @elseif ($law->lang == 'bn')
+                                                    {{ $part->part_no_bn }}
+                                                @elseif ($law->lang == 'both')
+                                                    @if ($law->default_lang == 'en')
+                                                        {{ $part->part_no }}
+                                                    @elseif ($law->default_lang == 'bn')
+                                                        {{ $part->part_no_bn }}
+                                                    @endif
+                                                @endif
+                                                :
+                                                @if ($law->lang == 'en')
+                                                    {{ $part->title }}
+                                                @elseif ($law->lang == 'bn')
+                                                    {{ $part->title_bn }}
+                                                @elseif ($law->lang == 'both')
+                                                    @if ($law->default_lang == 'en')
+                                                        {{ $part->title }}
+                                                    @elseif ($law->default_lang == 'bn')
+                                                        {{ $part->title_bn }}
+                                                    @endif
+                                                @endif
+
+                                            </h5>
                                         </div>
-                                        @if (count($section->childs))
-                                            @include('frontend.pages.child_section', [
-                                                'childs' => $section->childs,
-                                            ])
-                                        @endif
+                                        @foreach ($part->chapter->where('status', 1) as $chapter)
+                                            <div class="laws-chapters-one text-center mt-4">
+                                                <h5 class="d-inline">
+                                                    @if ($law->lang == 'en')
+                                                        {{ $chapter->chapter_no }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $chapter->chapter_no_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $chapter->chapter_no }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $chapter->chapter_no_bn }}
+                                                        @endif
+                                                    @endif
+                                                    :
+                                                    @if ($law->lang == 'en')
+                                                        {{ $chapter->title }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $chapter->title_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $chapter->title }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $chapter->title_bn }}
+                                                        @endif
+                                                    @endif
+                                                </h5>
+                                            </div>
+                                            <div class="laws-chapters mt-4">
+                                                @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
+                                                    <p class="text-danger text-14 text-center">Not found section!</p>
+                                                @endif
+                                            </div>
+                                            @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
+                                                <div class="laws-chapters-section">
+                                                    <h5>
+                                                        @if ($law->lang == 'en')
+                                                            {{ $section->title }}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {{ $section->title_bn }}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {{ $section->title }}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {{ $section->title_bn }}
+                                                            @endif
+                                                        @endif
+                                                    </h5>
+                                                    <p>
+                                                        @if ($law->lang == 'en')
+                                                            {!! $section->description !!}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {!! $section->description_bn !!}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {!! $section->description !!}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {!! $section->description_bn !!}
+                                                            @endif
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                                @if (count($section->childs))
+                                                    @include('frontend.laws_and_rules.child_section', [
+                                                        'childs' => $section->childs,
+                                                        'law' => $law,
+                                                    ])
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                        <div class="laws-chapters mt-4">
+                                            @if ($law->actPart->where('status', 1)->count() == 0)
+                                                <p class="text-danger text-14 text-center">Not found part!</p>
+                                            @endif
+                                        </div>
                                     @endforeach
-                                @endforeach
-                                <div class="laws-chapters mt-4">
-                                    @if ($law->actChapter->where('status', 1)->count() == 0)
-                                        <p class="text-danger text-14 text-center">Not found chapter!</p>
-                                    @endif
-                                </div>
+                                @elseif ($law->format == 'part_section')
+                                    @foreach ($law->actPart as $part)
+                                        <div class="laws-chapters-one mt-4">
+                                            <h5>
+                                                @if ($law->lang == 'en')
+                                                    {{ $part->part_no }}
+                                                @elseif ($law->lang == 'bn')
+                                                    {{ $part->part_no_bn }}
+                                                @elseif ($law->lang == 'both')
+                                                    @if ($law->default_lang == 'en')
+                                                        {{ $part->part_no }}
+                                                    @elseif ($law->default_lang == 'bn')
+                                                        {{ $part->part_no_bn }}
+                                                    @endif
+                                                @endif
+                                                :
+                                                @if ($law->lang == 'en')
+                                                    {{ $part->title }}
+                                                @elseif ($law->lang == 'bn')
+                                                    {{ $part->title_bn }}
+                                                @elseif ($law->lang == 'both')
+                                                    @if ($law->default_lang == 'en')
+                                                        {{ $part->title }}
+                                                    @elseif ($law->default_lang == 'bn')
+                                                        {{ $part->title_bn }}
+                                                    @endif
+                                                @endif
+
+                                            </h5>
+                                        </div>
+                                        <div class="laws-chapters mt-4">
+                                            @if ($part->section->where('status', 1)->where('parent_id', 0)->count() == 0)
+                                                <p class="text-danger text-14 text-center">Not found section!</p>
+                                            @endif
+                                        </div>
+                                        @foreach ($part->section->where('status', 1)->where('parent_id', 0) as $section)
+                                            <div class="laws-chapters-section">
+                                                <h5>
+                                                    @if ($law->lang == 'en')
+                                                        {{ $section->title }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $section->title_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $section->title }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $section->title_bn }}
+                                                        @endif
+                                                    @endif
+                                                </h5>
+                                                <p>
+                                                    @if ($law->lang == 'en')
+                                                        {!! $section->description !!}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {!! $section->description_bn !!}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {!! $section->description !!}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {!! $section->description_bn !!}
+                                                        @endif
+                                                    @endif
+                                                </p>
+                                            </div>
+                                            @if (count($section->childs))
+                                                @include('frontend.laws_and_rules.child_section', [
+                                                    'childs' => $section->childs,
+                                                    'law' => $law,
+                                                ])
+                                            @endif
+                                        @endforeach
+                                        <div class="laws-chapters mt-4">
+                                            @if ($law->actPart->where('status', 1)->count() == 0)
+                                                <p class="text-danger text-14 text-center">Not found part!</p>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @elseif ($law->format == 'chapter_section')
+                                    @foreach ($law->actChapter as $chapter)
+                                        <div class="laws-chapters-one mt-4">
+                                            <h5>
+                                                @if ($law->lang == 'en')
+                                                    {{ $chapter->chapter_no }}
+                                                @elseif ($law->lang == 'bn')
+                                                    {{ $chapter->chapter_no_bn }}
+                                                @elseif ($law->lang == 'both')
+                                                    @if ($law->default_lang == 'en')
+                                                        {{ $chapter->chapter_no }}
+                                                    @elseif ($law->default_lang == 'bn')
+                                                        {{ $chapter->chapter_no_bn }}
+                                                    @endif
+                                                @endif
+                                                :
+                                                @if ($law->lang == 'en')
+                                                    {{ $chapter->title }}
+                                                @elseif ($law->lang == 'bn')
+                                                    {{ $chapter->title_bn }}
+                                                @elseif ($law->lang == 'both')
+                                                    @if ($law->default_lang == 'en')
+                                                        {{ $chapter->title }}
+                                                    @elseif ($law->default_lang == 'bn')
+                                                        {{ $chapter->title_bn }}
+                                                    @endif
+                                                @endif
+                                            </h5>
+                                        </div>
+                                        <div class="laws-chapters mt-4">
+                                            @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
+                                                <p class="text-danger text-14 text-center">Not found section!</p>
+                                            @endif
+                                        </div>
+                                        @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
+                                            <div class="laws-chapters-section">
+                                                <h5>
+                                                    @if ($law->lang == 'en')
+                                                        {{ $section->title }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $section->title_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $section->title }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $section->title_bn }}
+                                                        @endif
+                                                    @endif
+                                                </h5>
+                                                <p>
+                                                    @if ($law->lang == 'en')
+                                                        {!! $section->description !!}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {!! $section->description_bn !!}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {!! $section->description !!}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {!! $section->description_bn !!}
+                                                        @endif
+                                                    @endif
+                                                </p>
+                                            </div>
+                                            @if (count($section->childs))
+                                                @include('frontend.laws_and_rules.child_section', [
+                                                    'childs' => $section->childs,
+                                                    'law' => $law,
+                                                ])
+                                            @endif
+                                        @endforeach
+                                        <div class="laws-chapters mt-4">
+                                            @if ($law->actChapter->where('status', 1)->count() == 0)
+                                                <p class="text-danger text-14 text-center">Not found chapter!</p>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                             @if ($law->is_rules == 1)
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-sm mt-3">
-                                    <tr>
-                                        <th class="bg-light">Rules Year</th>
-                                        <td>{{ $law->rules_year }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="bg-light">Rules Date</th>
-                                        <td>{{ \Carbon\Carbon::parse($law->rules_date)->format(' d M, Y') }}</td>
-                                    </tr>
-                                </table>
-                                </div>
-                                @foreach ($law->rulesChapter->where('status', 1) as $chapter)
-                                    <div class="laws-chapters-one mt-4">
-                                        <h5>{{ $chapter->chapter_no }} : {{ $chapter->title }}</h5>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-sm mt-3">
+                                            <tr>
+                                                <th class="bg-light">Rule No</th>
+                                                <td>{{ $law->rules_no }}</td>
+                                                <th class="bg-light">Part</th>
+                                                <td>{{ $law->rules_total_part }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">Rule Year</th>
+                                                <td>{{ $law->rule_year }}</td>
+                                                <th class="bg-light">Chapter</th>
+                                                <td>{{ $law->rules_total_chapter }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">Rule Date</th>
+                                                <td>{{ \Carbon\Carbon::parse($law->rules_date)->format(' d M, Y') }}</td>
+                                                <th class="bg-light">Section</th>
+                                                <td>{{$law->rules_total_section}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">Amendment</th>
+                                                <td>{{ \Carbon\Carbon::parse($law->rules_last_amendment)->format(' d M, Y') }}</td>
+                                                <th class="bg-light">Schedule</th>
+                                                <td>{{ $law->rules_total_schedule }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light"></th>
+                                                <td></td>
+                                                <th class="bg-light">Form</th>
+                                                <td>{{ $law->rules_total_form }}</td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                    <div class="laws-chapters mt-4">
-                                        @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
-                                            <p class="text-danger text-14 text-center">Not found section!</p>
-                                        @endif
-                                    </div>
-                                    @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
-                                        <div class="laws-chapters-section">
-                                            <h5>{{ $section->title }}</h5>
-                                            <p>{!! $section->description !!}</p>
-                                        </div>
-                                        @if (count($section->childs))
-                                            @include('frontend.pages.child_section', [
-                                                'childs' => $section->childs,
-                                            ])
-                                        @endif
-                                    @endforeach
-                                @endforeach
-                                <div class="laws-chapters mt-4">
-                                    @if ($law->rulesChapter->where('status', 1)->count() == 0)
-                                        <p class="text-danger text-14 text-center">Not found chapter!</p>
+                                    <p>{!! $law->description !!}</p>
+                                    @if ($law->format == 'part_chapter_section')
+                                        @foreach ($law->rulesPart as $part)
+                                            <div class="laws-chapters-one mt-4 mb-3">
+                                                <h5>
+                                                    @if ($law->lang == 'en')
+                                                        {{ $part->part_no }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $part->part_no_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $part->part_no }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $part->part_no_bn }}
+                                                        @endif
+                                                    @endif
+                                                    :
+                                                    @if ($law->lang == 'en')
+                                                        {{ $part->title }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $part->title_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $part->title }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $part->title_bn }}
+                                                        @endif
+                                                    @endif
+
+                                                </h5>
+                                            </div>
+                                            @foreach ($part->chapter->where('status', 1) as $chapter)
+                                                <div class="laws-chapters-one text-center mt-4">
+                                                    <h5 class="d-inline">
+                                                        @if ($law->lang == 'en')
+                                                            {{ $chapter->chapter_no }}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {{ $chapter->chapter_no_bn }}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {{ $chapter->chapter_no }}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {{ $chapter->chapter_no_bn }}
+                                                            @endif
+                                                        @endif
+                                                        :
+                                                        @if ($law->lang == 'en')
+                                                            {{ $chapter->title }}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {{ $chapter->title_bn }}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {{ $chapter->title }}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {{ $chapter->title_bn }}
+                                                            @endif
+                                                        @endif
+                                                    </h5>
+                                                </div>
+                                                <div class="laws-chapters mt-4">
+                                                    @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
+                                                        <p class="text-danger text-14 text-center">Not found section!</p>
+                                                    @endif
+                                                </div>
+                                                @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
+                                                    <div class="laws-chapters-section">
+                                                        <h5>
+                                                            @if ($law->lang == 'en')
+                                                                {{ $section->title }}
+                                                            @elseif ($law->lang == 'bn')
+                                                                {{ $section->title_bn }}
+                                                            @elseif ($law->lang == 'both')
+                                                                @if ($law->default_lang == 'en')
+                                                                    {{ $section->title }}
+                                                                @elseif ($law->default_lang == 'bn')
+                                                                    {{ $section->title_bn }}
+                                                                @endif
+                                                            @endif
+                                                        </h5>
+                                                        <p>
+                                                            @if ($law->lang == 'en')
+                                                                {!! $section->description !!}
+                                                            @elseif ($law->lang == 'bn')
+                                                                {!! $section->description_bn !!}
+                                                            @elseif ($law->lang == 'both')
+                                                                @if ($law->default_lang == 'en')
+                                                                    {!! $section->description !!}
+                                                                @elseif ($law->default_lang == 'bn')
+                                                                    {!! $section->description_bn !!}
+                                                                @endif
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                    @if (count($section->childs))
+                                                        @include('frontend.laws_and_rules.child_section', [
+                                                            'childs' => $section->childs,
+                                                            'law' => $law,
+                                                        ])
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                            <div class="laws-chapters mt-4">
+                                                @if ($law->rulesPart->where('status', 1)->count() == 0)
+                                                    <p class="text-danger text-14 text-center">Not found part!</p>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @elseif ($law->format == 'part_section')
+                                        @foreach ($law->rulesPart as $part)
+                                            <div class="laws-chapters-one mt-4">
+                                                <h5>
+                                                    @if ($law->lang == 'en')
+                                                        {{ $part->part_no }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $part->part_no_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $part->part_no }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $part->part_no_bn }}
+                                                        @endif
+                                                    @endif
+                                                    :
+                                                    @if ($law->lang == 'en')
+                                                        {{ $part->title }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $part->title_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $part->title }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $part->title_bn }}
+                                                        @endif
+                                                    @endif
+
+                                                </h5>
+                                            </div>
+                                            <div class="laws-chapters mt-4">
+                                                @if ($part->section->where('status', 1)->where('parent_id', 0)->count() == 0)
+                                                    <p class="text-danger text-14 text-center">Not found section!</p>
+                                                @endif
+                                            </div>
+                                            @foreach ($part->section->where('status', 1)->where('parent_id', 0) as $section)
+                                                <div class="laws-chapters-section">
+                                                    <h5>
+                                                        @if ($law->lang == 'en')
+                                                            {{ $section->title }}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {{ $section->title_bn }}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {{ $section->title }}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {{ $section->title_bn }}
+                                                            @endif
+                                                        @endif
+                                                    </h5>
+                                                    <p>
+                                                        @if ($law->lang == 'en')
+                                                            {!! $section->description !!}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {!! $section->description_bn !!}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {!! $section->description !!}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {!! $section->description_bn !!}
+                                                            @endif
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                                @if (count($section->childs))
+                                                    @include('frontend.laws_and_rules.child_section', [
+                                                        'childs' => $section->childs,
+                                                        'law' => $law,
+                                                    ])
+                                                @endif
+                                            @endforeach
+                                            <div class="laws-chapters mt-4">
+                                                @if ($law->rulesPart->where('status', 1)->count() == 0)
+                                                    <p class="text-danger text-14 text-center">Not found part!</p>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    @elseif ($law->format == 'chapter_section')
+                                        @foreach ($law->rulesChapter as $chapter)
+                                            <div class="laws-chapters-one mt-4">
+                                                <h5>
+                                                    @if ($law->lang == 'en')
+                                                        {{ $chapter->chapter_no }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $chapter->chapter_no_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $chapter->chapter_no }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $chapter->chapter_no_bn }}
+                                                        @endif
+                                                    @endif
+                                                    :
+                                                    @if ($law->lang == 'en')
+                                                        {{ $chapter->title }}
+                                                    @elseif ($law->lang == 'bn')
+                                                        {{ $chapter->title_bn }}
+                                                    @elseif ($law->lang == 'both')
+                                                        @if ($law->default_lang == 'en')
+                                                            {{ $chapter->title }}
+                                                        @elseif ($law->default_lang == 'bn')
+                                                            {{ $chapter->title_bn }}
+                                                        @endif
+                                                    @endif
+                                                </h5>
+                                            </div>
+                                            <div class="laws-chapters mt-4">
+                                                @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
+                                                    <p class="text-danger text-14 text-center">Not found section!</p>
+                                                @endif
+                                            </div>
+                                            @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
+                                                <div class="laws-chapters-section">
+                                                    <h5>
+                                                        @if ($law->lang == 'en')
+                                                            {{ $section->title }}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {{ $section->title_bn }}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {{ $section->title }}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {{ $section->title_bn }}
+                                                            @endif
+                                                        @endif
+                                                    </h5>
+                                                    <p>
+                                                        @if ($law->lang == 'en')
+                                                            {!! $section->description !!}
+                                                        @elseif ($law->lang == 'bn')
+                                                            {!! $section->description_bn !!}
+                                                        @elseif ($law->lang == 'both')
+                                                            @if ($law->default_lang == 'en')
+                                                                {!! $section->description !!}
+                                                            @elseif ($law->default_lang == 'bn')
+                                                                {!! $section->description_bn !!}
+                                                            @endif
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                                @if (count($section->childs))
+                                                    @include('frontend.laws_and_rules.child_section', [
+                                                        'childs' => $section->childs,
+                                                        'law' => $law,
+                                                    ])
+                                                @endif
+                                            @endforeach
+                                            <div class="laws-chapters mt-4">
+                                                @if ($law->rulesChapter->where('status', 1)->count() == 0)
+                                                    <p class="text-danger text-14 text-center">Not found chapter!</p>
+                                                @endif
+                                            </div>
+                                        @endforeach
                                     @endif
                                 </div>
-                            </div>
                             @endif
                         </div>
 
@@ -333,23 +842,24 @@
                     <div class="td-accordions wow fadeInDown" data-wow-duration="1s">
                         <div id="accordion" class="service-accordion">
                             @forelse ($law_faqs as $key=>$lf)
-                            <div class="card">
-                                <div class="card-header" id="heading-{{ $key }}">
-                                    <h5 class="mb-0">
-                                        <a role="button" data-toggle="collapse" href="#collapse-{{ $key }}" aria-expanded="false"
-                                            aria-controls="collapse-{{ $key }}" class="collapsed w-100">
-                                            {{ $lf->title }}
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapse-{{ $key }}" class="collapse" data-parent="#accordion"
-                                    aria-labelledby="heading-{{ $key }}" style="">
-                                    <div class="card-body">
-                                        {{ $lf->description }}
+                                <div class="card">
+                                    <div class="card-header" id="heading-{{ $key }}">
+                                        <h5 class="mb-0">
+                                            <a role="button" data-toggle="collapse"
+                                                href="#collapse-{{ $key }}" aria-expanded="false"
+                                                aria-controls="collapse-{{ $key }}" class="collapsed w-100">
+                                                {{ $lf->title }}
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse-{{ $key }}" class="collapse" data-parent="#accordion"
+                                        aria-labelledby="heading-{{ $key }}" style="">
+                                        <div class="card-body">
+                                            {{ $lf->description }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @empty  
+                            @empty
                             @endforelse
                         </div>
                     </div>
@@ -359,53 +869,53 @@
     </section>
     <!-- end laws section -->
 
-@section('scripts')
-<script>
-$(document).ready(function(){
-    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-        localStorage.setItem('activeTab', $(e.target).attr('href'));
-    });
-    var activeTab = localStorage.getItem('activeTab');
-    if(activeTab){
-        $('#myTab a[href="' + activeTab + '"]').tab('show');
-    }
-});
-</script>
-    <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    @section('scripts')
+        <script>
+            $(document).ready(function() {
+                $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                    localStorage.setItem('activeTab', $(e.target).attr('href'));
+                });
+                var activeTab = localStorage.getItem('activeTab');
+                if (activeTab) {
+                    $('#myTab a[href="' + activeTab + '"]').tab('show');
                 }
             });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-            function autoCom() {
-                alert(10);
-            }
-
-            $('#search').keyup(function() {
-                var search = $('#search').val();
-                var law_id = $('#law_id').val();
-                if (search == "") {
-                    $("#memList").html("");
-                    $('#result').hide();
-                } else {
-                    $.get("{{ URL::to('section/search') }}", {
-                        search: search,
-                        law_id: law_id
-                    }, function(data) {
-                        if (data == "") {
-                            $("#memList").html("");
-                            $('#result').hide();
-                        } else {
-                            $('#memList').empty().html(data);
-                            $('#result').show();
-                        }
-
-                    })
+                function autoCom() {
+                    alert(10);
                 }
+
+                $('#search').keyup(function() {
+                    var search = $('#search').val();
+                    var law_id = $('#law_id').val();
+                    if (search == "") {
+                        $("#memList").html("");
+                        $('#result').hide();
+                    } else {
+                        $.get("{{ URL::to('section/search') }}", {
+                            search: search,
+                            law_id: law_id
+                        }, function(data) {
+                            if (data == "") {
+                                $("#memList").html("");
+                                $('#result').hide();
+                            } else {
+                                $('#memList').empty().html(data);
+                                $('#result').show();
+                            }
+
+                        })
+                    }
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection
 @endsection

@@ -184,7 +184,7 @@
                                 <p>{!! $section->description !!}</p>
                             </div>
                             @if (count($section->childs->where('status', 1)))
-                                @include('frontend.pages.child_section', [
+                                @include('frontend.laws_and_rules.child_section', [
                                     'childs' => $section->childs,
                                 ])
                             @endif

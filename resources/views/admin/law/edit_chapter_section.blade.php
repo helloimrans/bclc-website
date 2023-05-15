@@ -183,7 +183,7 @@
 
                                         </div>
                                     </div>
-                                    
+
 
                                     <div class="col-md-6">
                                         <div class="mb-1">
@@ -239,7 +239,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-1">
                                     <label class="form-label" for="">Description</label>
                                     <textarea name="description" rows="2" class="summernote @error('description') is-invalid @enderror"
@@ -505,7 +505,7 @@
                                                                 </div>
 
 
-                                                                
+
 
 
                                                                 <div class="col-md-6">
@@ -1203,7 +1203,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach ($law->actChapter as $chapter)
+                                                                @foreach ($law->rulesChapter as $chapter)
                                                                     <tr>
                                                                         <td>
                                                                             {{ $loop->iteration }}
@@ -1278,7 +1278,7 @@
                                                 </div>
                                             </div>
                                             <div id="loadSection">
-                                                @foreach ($law->actChapter as $chapter)
+                                                @foreach ($law->rulesChapter as $chapter)
                                                     <div class="card">
                                                         <div class="card-header">
                                                             <h5 class="text-info">
