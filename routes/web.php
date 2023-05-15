@@ -29,12 +29,9 @@ Route::get('/clear', function () {
     return "Cache Cleared!";
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 // Home
-Route::get('/', [FrontendController::class,'index']);
+Route::get('/', [FrontendController::class,'index'])->name('frontend');
 
 //Service categories
 Route::get('/service/categories', [FrontendController::class,'serviceCategory'])->name('service');

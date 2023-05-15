@@ -69,8 +69,5 @@ class Kernel extends HttpKernel
 
         'expert.auth' => \App\Http\Middleware\ExpertAuthenticate::class,
         'expert.guest' => \App\Http\Middleware\ExpertRedirectIfAuthenticated::class,
-
-        'learner.auth' => \App\Http\Middleware\LearnerAuthenticate::class,
-        'learner.guest' => \App\Http\Middleware\LearnerRedirectIfAuthenticated::class,
     ];
 }

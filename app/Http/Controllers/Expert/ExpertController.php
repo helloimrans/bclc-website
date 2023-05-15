@@ -36,18 +36,18 @@ class ExpertController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
 
-        $learner = new Expert();
-        $learner->name = $request->name;
-        $learner->email = $request->email;
-        $learner->mobile = $request->mobile;
-        $learner->is_lawyer = $request->is_lawyer;
-        $learner->is_consultant = $request->is_consultant;
-        $learner->is_trainer = $request->is_trainer;
-        $learner->is_writer = $request->is_writer;
-        $learner->password = bcrypt($request->password);
-        $learner->save();
+        $user = new Expert();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->mobile = $request->mobile;
+        $user->is_lawyer = $request->is_lawyer;
+        $user->is_consultant = $request->is_consultant;
+        $user->is_trainer = $request->is_trainer;
+        $user->is_writer = $request->is_writer;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
-        Auth::guard('expert')->login($learner);
+        Auth::guard('expert')->login($user);
 
         $notification = array(
             'message' => 'Registration Successfully!',

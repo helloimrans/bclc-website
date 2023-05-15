@@ -143,12 +143,12 @@
     data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: Header-->
-    @include('learner.layouts.inc.header')
+    @include('user.layouts.inc.header')
     <!-- END: Header-->
 
 
     <!-- BEGIN: Main Menu-->
-    @include('learner.layouts.inc.sidebar')
+    @include('user.layouts.inc.sidebar')
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
@@ -161,14 +161,14 @@
 
 
     <!-- BEGIN: Customizer-->
-    {{-- @include('learner.layouts.inc.customizer') --}}
+    {{-- @include('user.layouts.inc.customizer') --}}
     <!-- End: Customizer-->
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    @include('learner.layouts.inc.footer')
+    @include('user.layouts.inc.footer')
     <!-- END: Footer-->
 
 

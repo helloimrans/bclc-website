@@ -6,7 +6,7 @@ $route = Route::currentRouteName();
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
-                <a href="{{ route('learner.dashboard') }}">
+                <a href="{{ route('user.dashboard') }}">
                     <img style="margin-top: 5px" src="{{ asset('admin/new/logo.png') }}" alt="img" width="70">
                 </a>
             </li>
@@ -19,20 +19,20 @@ $route = Route::currentRouteName();
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="@if ($route == 'learner.dashboard') active @endif nav-item"><a class="d-flex align-items-center"
-                    href="{{ route('learner.dashboard') }}"><i data-feather="home"></i><span
+            <li class="@if ($route == 'user.dashboard') active @endif nav-item"><a class="d-flex align-items-center"
+                    href="{{ route('user.dashboard') }}"><i data-feather="home"></i><span
                         class="menu-title text-truncate" data-i18n="Email">Dashboard</span></a>
             </li>
             <li class="navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class="@if ($route == 'learner.profile') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('learner.profile') }}"><i data-feather="user"></i><span
+            <li class="@if ($route == 'user.profile') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('user.profile') }}"><i data-feather="user"></i><span
                         class="menu-title text-truncate" data-i18n="Email">View Profile</span></a>
             </li>
-            <li class="@if ($route == 'learner.edit.profile') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('learner.edit.profile') }}"><i data-feather="edit"></i><span
+            <li class="@if ($route == 'user.edit.profile') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('user.edit.profile') }}"><i data-feather="edit"></i><span
                         class="menu-title text-truncate" data-i18n="Email">Update Profile</span></a>
             </li>
-            <li class="@if ($route == 'learner.security') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('learner.security') }}"><i data-feather="lock"></i><span
+            <li class="@if ($route == 'user.security') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('user.security') }}"><i data-feather="lock"></i><span
                         class="menu-title text-truncate" data-i18n="Email"> Security</span></a>
             </li>
 

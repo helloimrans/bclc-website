@@ -15,7 +15,7 @@
     </section>
     <!-- end page header -->
 
-    <!-- start learner registraiton section -->
+    <!-- start User registraiton section -->
     <section class="learner-registration my-5">
         <div class="container">
             <div class="row">
@@ -28,10 +28,9 @@
                             <h4 class="text-center m-0 mb-3">Register as a {{ $userType }} </h4>
                             <form
                                 @if ($userType == 'Expert') action="{{ route('expert.registration.store') }}"
-                            @elseif ($userType == 'Learner')
-                            action="{{ route('learner.registration.store') }}"
-                            @elseif ($userType == 'Subscriber')
-                            action="" @endif
+                            @elseif ($userType == 'User')
+                              action="{{ route('user.registration.store') }}"
+                             @endif
                                 method="POST">
                                 @csrf
                                 <div class="form-group">
@@ -135,10 +134,9 @@
                                 <p class="text-center mb-0 text-15">Already registered? <a class="td"
                                     @if ($userType == 'Expert')
                                     href="{{ route('expert.login') }}"
-                                    @elseif ($userType == 'Learner')
-                                    href="{{ route('learner.login') }}"
-                                    @elseif ($userType == 'Subscriber')
-                                    href="#!" @endif
+                                    @elseif ($userType == 'User')
+                                     href="{{ route('user.login') }}"
+                                     @endif
                                         >Login as a {{ $userType }}</a></p>
                             </form>
                         </div>
@@ -147,6 +145,6 @@
             </div>
         </div>
     </section>
-    <!-- end learner registraiton section  -->
+    <!-- end User registraiton section  -->
 
 @endsection

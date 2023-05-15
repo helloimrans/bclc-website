@@ -1,4 +1,4 @@
-@extends('learner.layouts.master')
+@extends('user.layouts.master')
 @section('title', 'Update Profile')
 @section('content')
 
@@ -10,9 +10,9 @@
                         <h2 class="content-header-title float-start mb-0">Update Profile</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('learner.dashboard') }}">Dashboard</a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('learner.profile') }}">Profile</a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.profile') }}">Profile</a>
                                 </li>
                                 <li class="breadcrumb-item active">Update Profile
                                 </li>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('learner.update.profile') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('user.update.profile') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="card card-body" style="border:2px dotted #ddd; background:#fafafa"
@@ -41,7 +41,7 @@
                                     <!-- header section -->
                                     <div class="d-flex mb-2">
                                         <a href="#" class="me-25">
-                                            <img src="@if ($learner->image) {{ asset($learner->image) }}
+                                            <img src="@if ($user->image) {{ asset($user->image) }}
                                             @else
                                             {{ asset('defaults/avatar/avatar.png') }} @endif"
                                                 id="upImg1" class="upImg1 rounded me-50" alt="profile image"
@@ -70,7 +70,7 @@
                                                 <label class="form-label" for="">Full Name</label>
                                                 <input type="text" name="name" placeholder="Enter full name"
                                                     class="form-control @error('name') is-invalid @enderror"
-                                                    value="{{ old('name', $learner->name) }}">
+                                                    value="{{ old('name', $user->name) }}">
 
                                                 @error('name')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -83,7 +83,7 @@
                                                 <label class="form-label" for="">Email</label>
                                                 <input type="text" name="email" placeholder="Enter email"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ old('email', $learner->email) }}">
+                                                    value="{{ old('email', $user->email) }}">
 
                                                 @error('email')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -96,7 +96,7 @@
                                                 <label class="form-label" for="">Mobile</label>
                                                 <input type="text" name="mobile" placeholder="Enter number"
                                                     class="form-control @error('mobile') is-invalid @enderror"
-                                                    value="{{ old('mobile', $learner->mobile) }}">
+                                                    value="{{ old('mobile', $user->mobile) }}">
 
                                                 @error('mobile')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -113,15 +113,15 @@
                                                         Select Gender
                                                     </option>
                                                     <option value="Male"
-                                                        @if (old('gender', $learner->gender) == 'Male') selected @endif>
+                                                        @if (old('gender', $user->gender) == 'Male') selected @endif>
                                                         Male
                                                     </option>
                                                     <option value="Female"
-                                                        @if (old('gender', $learner->gender) == 'Female') selected @endif>
+                                                        @if (old('gender', $user->gender) == 'Female') selected @endif>
                                                         Female
                                                     </option>
                                                     <option value="Others"
-                                                        @if (old('gender', $learner->gender) == 'Others') selected @endif>
+                                                        @if (old('gender', $user->gender) == 'Others') selected @endif>
                                                         Others
                                                     </option>
                                                 </select>
@@ -139,11 +139,11 @@
                                                         Select Marital Status
                                                     </option>
                                                     <option value="Married"
-                                                        @if (old('marital_status', $learner->marital_status) == 'Married') selected @endif>
+                                                        @if (old('marital_status', $user->marital_status) == 'Married') selected @endif>
                                                         Married
                                                     </option>
                                                     <option value="Unmarried"
-                                                        @if (old('marital_status', $learner->marital_status) == 'Unmarried') selected @endif>
+                                                        @if (old('marital_status', $user->marital_status) == 'Unmarried') selected @endif>
                                                         Unmarried
                                                     </option>
                                                 </select>
@@ -158,7 +158,7 @@
                                                 <input type="text" name="current_institution"
                                                     placeholder="Enter current institution"
                                                     class="form-control @error('current_institution') is-invalid @enderror"
-                                                    value="{{ old('current_institution', $learner->current_institution) }}">
+                                                    value="{{ old('current_institution', $user->current_institution) }}">
 
                                                 @error('current_institution')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -172,7 +172,7 @@
                                                 <input type="text" name="current_subject"
                                                     placeholder="Enter current subject"
                                                     class="form-control @error('current_subject') is-invalid @enderror"
-                                                    value="{{ old('current_subject', $learner->current_subject) }}">
+                                                    value="{{ old('current_subject', $user->current_subject) }}">
 
                                                 @error('current_subject')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -187,7 +187,7 @@
                                                 <input type="text" name="highest_qualification"
                                                     placeholder="Enter highest qualification"
                                                     class="form-control @error('highest_qualification') is-invalid @enderror"
-                                                    value="{{ old('highest_qualification', $learner->highest_qualification) }}">
+                                                    value="{{ old('highest_qualification', $user->highest_qualification) }}">
 
                                                 @error('highest_qualification')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -200,7 +200,7 @@
                                         <label class="form-label" for="fp-default">Date of Birth</label>
                                         <input type="text" id="fp-default" name="dob"
                                             class="form-control flatpickr-basic @error('present_location') is-invalid @enderror"
-                                            placeholder="YYYY-MM-DD" value="{{ old('dob', $learner->dob) }}" />
+                                            placeholder="YYYY-MM-DD" value="{{ old('dob', $user->dob) }}" />
                                         @error('dob')
                                             <div class="text-danger"><small>{{ $message }}</small></div>
                                         @enderror
@@ -208,7 +208,7 @@
                                     <div class="mb-1">
                                         <label class="form-label">Present Location</label>
                                         <textarea name="present_location" class="form-control @error('present_location') is-invalid @enderror"
-                                            placeholder="Enter present location...">{{ old('present_location', $learner->present_location) }}</textarea>
+                                            placeholder="Enter present location...">{{ old('present_location', $user->present_location) }}</textarea>
                                         @error('present_location')
                                             <div class="text-danger"><small>{{ $message }}</small></div>
                                         @enderror
@@ -216,7 +216,7 @@
                                     <div class="mb-1">
                                         <label class="form-label">Permanent Address</label>
                                         <textarea name="permanent_address" class="form-control @error('permanent_address') is-invalid @enderror"
-                                            placeholder="Enter permanent address...">{{ old('permanent_address', $learner->permanent_address) }}</textarea>
+                                            placeholder="Enter permanent address...">{{ old('permanent_address', $user->permanent_address) }}</textarea>
                                         @error('permanent_address')
                                             <div class="text-danger"><small>{{ $message }}</small></div>
                                         @enderror
@@ -224,7 +224,7 @@
 
                                     <div class="mb-1">
                                         <label class="form-label">About</label>
-                                        <textarea name="about" class="form-control @error('about') is-invalid @enderror" placeholder="Enter about...">{{ old('about', $learner->about) }}</textarea>
+                                        <textarea name="about" class="form-control @error('about') is-invalid @enderror" placeholder="Enter about...">{{ old('about', $user->about) }}</textarea>
                                         @error('about')
                                             <div class="text-danger"><small>{{ $message }}</small></div>
                                         @enderror

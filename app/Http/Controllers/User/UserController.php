@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Learner;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Learner;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
-class LearnerController extends Controller
+class UserController extends Controller
 {
     public function registrationForm()
     {
-        $data['userType'] = "Learner";
+        $data['userType'] = "User";
         return view('frontend.auth.registration', $data);
     }
 
@@ -22,7 +22,7 @@ class LearnerController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'mobile' => 'required|max:11|min:11',
-            'email' => 'required|email|unique:learners,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:8',
         ]);
@@ -35,26 +35,26 @@ class LearnerController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
 
-        $learner = new Learner();
-        $learner->name = $request->name;
-        $learner->email = $request->email;
-        $learner->mobile = $request->mobile;
-        $learner->password = bcrypt($request->password);
-        $learner->save();
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->mobile = $request->mobile;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
-        Auth::guard('learner')->login($learner);
+        Auth::login($user);
 
         $notification = array(
             'message' => 'Registration Successfully!',
             'alert-type' => 'success'
         );
-        return redirect()->intended(route('learner.dashboard'))->with($notification);
+        return redirect()->intended(route('user.dashboard'))->with($notification);
     }
 
     public function loginForm()
     {
         Redirect::setIntendedUrl(url()->previous());
-        $data['userType'] = "Learner";
+        $data['userType'] = "User";
         return view('frontend.auth.login', $data);
     }
 
@@ -74,12 +74,12 @@ class LearnerController extends Controller
         }
         $check = $request->all();
 
-        if (Auth::guard('learner')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+        if (Auth::attempt(['email' => $check['email'], 'password' => $check['password']])) {
             $notification = array(
                 'message' => 'Successfully Logged In!',
                 'alert-type' => 'success'
             );
-            return redirect()->intended(route('learner.dashboard'))->with($notification);
+            return redirect()->intended(route('user.dashboard'))->with($notification);
         } else {
             $notification = array(
                 'message' => 'Invalid Email or Password!',
@@ -91,19 +91,19 @@ class LearnerController extends Controller
 
     public function dashboard()
     {
-        return view('learner.home.index');
+        return view('user.home.index');
     }
 
     public function profile()
     {
-        $data['learner'] = Learner::find(Auth::guard('learner')->user()->id);
-        return view('learner.profile.profile', $data);
+        $data['user'] = User::find(Auth::user()->id);
+        return view('user.profile.profile', $data);
     }
 
     public function edit_profile()
     {
-        $data['learner'] = Learner::find(Auth::guard('learner')->user()->id);
-        return view('learner.profile.edit_profile', $data);
+        $data['user'] = User::find(Auth::user()->id);
+        return view('user.profile.edit_profile', $data);
     }
     public function update_profile(Request $request)
     {
@@ -120,15 +120,15 @@ class LearnerController extends Controller
         }
 
         $input = $request->all();
-        $data = Learner::find(Auth::guard('learner')->user()->id);
+        $data = User::find(Auth::user()->id);
 
         // $image = $request->file('image');
         // if ($image) {
         //     $image_path = public_path($data->image);
         //     @unlink($image_path);
         //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('uploaded/learner'), $imageName);
-        //     $input['image'] = '/uploaded/learner/' . $imageName;
+        //     $image->move(public_path('uploaded/user'), $imageName);
+        //     $input['image'] = '/uploaded/user/' . $imageName;
         // }
         $data->update($input);
         $notification = array(
@@ -140,7 +140,7 @@ class LearnerController extends Controller
 
     public function security()
     {
-        return view('learner.profile.security');
+        return view('user.profile.security');
     }
     public function update_password(Request $request)
     {
@@ -154,8 +154,8 @@ class LearnerController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with('error','Something went wront!, Please try again.');
         }
 
-        if (Auth::guard('learner')->attempt(['id' => Auth::guard('learner')->user()->id, 'password' => $request->current_password])) {
-            $user = Learner::find(Auth::guard('learner')->user()->id);
+        if (Auth::attempt(['id' => Auth::user()->id, 'password' => $request->current_password])) {
+            $user = User::find(Auth::user()->id);
             $user->password = bcrypt($request->new_password);
             $user->save();
             return redirect()->back()->with('success','Successfully password changed.');
@@ -164,13 +164,13 @@ class LearnerController extends Controller
                 'message' => 'Sorry! Your current password dost not match.',
                 'alert-type' => 'error'
             );
-            return redirect()->back()->with('error','Sorry! Your current password dost not match.');
+            return redirect()->back()->with($notification);
         }
     }
 
     public function logout()
     {
-        Auth::guard('learner')->logout();
+        Auth::logout();
         $notification = array(
             'message' => 'Successfully Logged Out!',
             'alert-type' => 'info'

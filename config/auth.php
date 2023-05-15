@@ -48,10 +48,6 @@ return [
             'driver' => 'session',
             'provider' => 'experts',
         ],
-        'learner' => [
-            'driver' => 'session',
-            'provider' => 'learners',
-        ],
     ],
 
     /*
@@ -83,10 +79,6 @@ return [
         'experts' => [
             'driver' => 'eloquent',
             'model' => App\Models\Expert::class,
-        ],
-        'learners' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Learner::class,
         ],
 
         // 'users' => [
@@ -125,12 +117,6 @@ return [
         ],
         'experts' => [
             'provider' => 'experts',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        'learners' => [
-            'provider' => 'learners',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

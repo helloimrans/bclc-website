@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Learner;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LearnerSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class LearnerSeeder extends Seeder
      */
     public function run()
     {
-        Learner::factory(1)->create();
+        User::factory(1)->create();
     }
 }

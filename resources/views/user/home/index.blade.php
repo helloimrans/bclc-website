@@ -1,4 +1,4 @@
-@extends('learner.layouts.master')
+@extends('user.layouts.master')
 @section('title', 'Dashboard')
 @section('content')
     <div class="content-wrapper container-xxl p-0">
