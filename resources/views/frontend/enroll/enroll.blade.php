@@ -41,7 +41,7 @@
                                         <i class="fa fa-clock-o mr-1"></i>
                                         {{ $course->duration }}
                                     </li>
-                                    <li style="font-size: 14px;" class="text-muted"> 
+                                    <li style="font-size: 14px;" class="text-muted">
                                         <i class="fa fa-podcast mr-1"></i>
                                         {{ $course->boarding }}
                                     </li>
@@ -93,10 +93,9 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <form action="" method="post">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">
+                                        <input type="checkbox" class="form-check-input" id="checkTramsCondition">
+                                        <label class="form-check-label" for="checkTramsCondition">
                                             <small class="text-muted">
                                                 By clicking Pay Now,
                                                 <span>I agree to the</span>
@@ -104,9 +103,8 @@
                                             </small>
                                         </label>
                                       </div>
-                                </form>
-                                <a href="#!" class="btn btn-md btn-outline-info w-100 mt-3" data-toggle="modal" data-target="#addModal"
-                                id="addBtn"> Pay Now</a>
+                                <button type="button" class="btn btn-md btn-outline-info w-100 mt-3" data-toggle="modal" data-target="#addModal"
+                                id="payBtn" disabled> Pay Now</button>
                                 <a href="{{ route('training.course.details',$course->slug) }}" class="btn btn-md btn-outline-danger w-100 mt-3"> Cancle</a>
                             </div>
                         </div>
@@ -177,6 +175,19 @@
 
 
     @section('scripts')
+
+    <script>
+        $(document).ready(function() {
+            $("#checkTramsCondition").click(function() {
+                if ($(this).is(":checked")) {
+                    $("#payBtn").prop("disabled",false);
+                } else {
+                    $("#payBtn").prop("disabled",true);
+                }
+            });
+        });
+    </script>
+
     <script>
         //Add button
         $('#addBtn').on('click', function() {
