@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Expert\ExpertController;
 
+
+//Ajax - Get service category & service
+Route::get('/get/division/district/{id}', [DefaultController::class, 'getDivisionDistrict']);
+
 //Expert auth route
 Route::group(['prefix' => 'expert', 'as' => 'expert.'], function () {
     Route::get('login', [ExpertController::class, 'loginForm'])->name('login')->middleware('expert.guest');

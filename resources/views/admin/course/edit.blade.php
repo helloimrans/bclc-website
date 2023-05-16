@@ -302,17 +302,6 @@
                                     @enderror
                                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
                                 <div class="mb-1">
                                     <label class="form-label">Course Thumbnail Image</label>
                                     <input type="file" id="upImgInput1" name="image"

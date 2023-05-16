@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Expert;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expert;
+use App\Models\Division;
+use App\Models\District;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -108,6 +110,8 @@ class ExpertController extends Controller
     public function edit_profile()
     {
         $data['expert'] = Expert::find(Auth::guard('expert')->user()->id);
+        $data['divisions'] = Division::where('status', 1)->get();
+        $data['districts'] = District::where('status', 1)->get();
         return view('expert.profile.edit_profile', $data);
     }
     public function update_profile(Request $request)

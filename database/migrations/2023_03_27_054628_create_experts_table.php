@@ -15,38 +15,38 @@ return new class extends Migration
     {
         Schema::create('experts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('mobile')->nullable();
+            $table->string('name');//
+            $table->string('email')->unique();//
+            $table->string('mobile')->nullable();//
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image')->nullable();
+            $table->string('password');//
+            $table->string('image')->nullable();//
 
-            $table->string('is_lawyer')->nullable();
-            $table->string('is_consultant')->nullable();
-            $table->string('is_trainer')->nullable();
-            $table->string('is_writer')->nullable();
+            $table->string('is_lawyer')->nullable();//
+            $table->string('is_consultant')->nullable();//
+            $table->string('is_trainer')->nullable();//
+            $table->string('is_writer')->nullable();//
 
-            $table->string('id_number')->nullable(); //extra
-            $table->enum('marital_status',['Married','Unmarried'])->nullable(); //extra
-            $table->string('father_name')->nullable();
-            $table->string('husband_name')->nullable();
-            $table->date('dob')->nullable();
-            $table->enum('gender',['Male','Female','Others'])->nullable();
-            $table->enum('nationality',['Bangladeshi','Others'])->nullable();
-            $table->string('country_name')->nullable();
+            $table->string('id_number')->nullable(); //extra//
+            $table->enum('marital_status',['Married','Unmarried'])->nullable(); //extra//
+            $table->string('father_name')->nullable();//
+            $table->string('husband_name')->nullable();//
+            $table->date('dob')->nullable();//
+            $table->enum('gender',['Male','Female','Others'])->nullable();//
+            $table->enum('nationality',['Bangladeshi','Others'])->nullable();//
+            $table->string('country_name')->nullable();//
 
-            $table->string('nid_passport_number')->nullable();
-            $table->string('nid_passport_front')->nullable();
-            $table->string('nid_passport_back')->nullable();
+            $table->string('nid_passport_number')->nullable();//
+            $table->string('nid_passport_front')->nullable();//
+            $table->string('nid_passport_back')->nullable();//
 
-            $table->bigInteger('division_id')->unsigned()->nullable();
-            $table->bigInteger('district_id')->unsigned()->nullable();
-            $table->text('present_address')->nullable();
-            $table->text('permanent_address')->nullable();
+            $table->bigInteger('division_id')->unsigned()->nullable();//
+            $table->bigInteger('district_id')->unsigned()->nullable();//
+            $table->text('present_address')->nullable();//
+            $table->text('permanent_address')->nullable();//
             $table->string('emergency_contact')->nullable();
             $table->string('emergency_contact_relation')->nullable();
-            $table->text('key_profile')->nullable();
+            $table->text('key_profile')->nullable();//
             $table->json('specializations')->nullable();
 
             //Educational Info
