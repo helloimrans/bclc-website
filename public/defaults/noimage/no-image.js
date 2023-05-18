@@ -50,3 +50,30 @@ $(document).ready(function () {
         });
     }
 });
+
+// Upload image show 3
+$(document).ready(function () {
+    var accountUploadImg3 = $('#upImg3');
+    var accountUploadBtn3 = $('#upImgInput3');
+    var accountUserImage3 = $('.upImg3');
+    var accountResetBtn3 = $('#upImgReset3');
+
+    if (accountUserImage3) {
+        var resetImage = accountUserImage3.attr("src");
+        accountUploadBtn3.on("change", function (e) {
+            var reader = new FileReader(),
+                files = e.target.files;
+            reader.onload = function () {
+                if (accountUploadImg3) {
+                    accountUploadImg3.attr("src", reader.result);
+                }
+            };
+            reader.readAsDataURL(files[0]);
+        });
+
+        accountResetBtn3.on("click", function () {
+            accountUserImage3.attr("src", resetImage);
+            accountUploadBtn3.val(null);
+        });
+    }
+});

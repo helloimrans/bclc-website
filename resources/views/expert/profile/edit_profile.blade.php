@@ -43,7 +43,7 @@
                                         <!-- header section -->
                                         <div class="d-flex mb-2">
                                             <a href="#" class="me-25">
-                                                <img src="@if ($expert->image) {{ asset($expert->image) }}
+                                                <img src="@if($expert->image) {{ asset($expert->image) }}
                                                 @else
                                                 {{ asset('defaults/avatar/avatar.png') }} @endif"
                                                     id="upImg1" class="upImg1 rounded me-50" alt="profile image"
@@ -245,16 +245,16 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label">NID/Passport Front</label>
-                                                    <input type="file" id="upImgInput1" name="nid_passport_front"
+                                                    <label class="form-label" for='upImgInput2'>NID/Passport Front</label>
+                                                    <input type="file" id="upImgInput2" name="nid_passport_front"
                                                         class="form-control @error('nid_passport_front') is-invalid @enderror">
                                                     @error('nid_passport_front')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="mb-1">
-                                                    <img src="@if ($expert->nid_passport_front) {{ asset($expert->nid_passport_front) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
-                                                        class="upImg1 rounded me-50 border" alt="profile image" height="100">
+                                                    <img src="@if ($expert->nid_passport_front) {{ asset($expert->nid_passport_front) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
+                                                        class="upImg2 rounded me-50 border" alt="profile image" height="100">
                                                 </div>
                                                 <div class="mb-1">
                                                     <button type="button" id="upImgReset1"
@@ -263,19 +263,19 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label">NID/Passport Back</label>
-                                                    <input type="file" id="upImgInput2" name="nid_passport_back"
+                                                    <label class="form-label" for='upImgInput3'>NID/Passport Back</label>
+                                                    <input type="file" id="upImgInput3" name="nid_passport_back"
                                                         class="form-control @error('nid_passport_back') is-invalid @enderror">
                                                     @error('nid_passport_back')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="mb-1">
-                                                    <img src="@if ($expert->nid_passport_back) {{ asset($expert->nid_passport_back) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
-                                                        class="upImg2 rounded me-50 border" alt="profile image" height="100">
+                                                    <img src="@if ($expert->nid_passport_back) {{ asset($expert->nid_passport_back) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg3"
+                                                        class="upImg3 rounded me-50 border" alt="profile image" height="100">
                                                 </div>
                                                 <div class="mb-1">
-                                                    <button type="button" id="upImgReset2"
+                                                    <button type="button" id="upImgReset3"
                                                         class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
                                                 </div>
                                             </div>
@@ -392,6 +392,149 @@
                                                 <div class="text-danger"><small>{{ $message }}</small></div>
                                             @enderror
                                         </div>
+
+
+
+
+
+
+                                        {{-- <!-- <div class="form-group mb-1 row">
+                                            <label for="editor" class="control-label mb-1">Specializations</label>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Civil Litigation" @if (!empty(($expert->specializations)) && (@in_array('"Civil Litigation"', json_decode($expert->specializations)))) checked @else  @endif>
+                                                        Civil Litigation 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Criminal Litigation"  @if (!empty(($expert->specializations)) && (@in_array('Criminal Litigation', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Criminal Litigation 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Banking & Financial"  @if (!empty(($expert->specializations)) && (@in_array('Banking & Financial', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Banking & Financial 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Corporate & Commercial"  @if (!empty(($expert->specializations)) && (@in_array('Corporate & Commercial', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Corporate & Commercial 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Tax & VAT"  @if (!empty(($expert->specializations)) && (@in_array('Tax & VAT', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Tax & VAT 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Land Law"  @if (!empty(($expert->specializations)) && (@in_array('Land Law', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Land Law 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="ADR Consultant"  @if (!empty(($expert->specializations)) && (@in_array('ADR Consultant', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        ADR Consultant 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Family Law"  @if (!empty(($expert->specializations)) && (@in_array('Family Law', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Family Law 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Labour & Employment Law"  @if (!empty(($expert->specializations)) && (@in_array('Labour & Employment Law', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Labour & Employment Law 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="HR Policy Consultant"  @if (!empty(($expert->specializations)) && (@in_array('HR Policy Consultant', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        HR Policy Consultant 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Regulatory Compliance Expert"  @if (!empty(($expert->specializations)) && (@in_array('Regulatory Compliance Expert', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Regulatory Compliance Expert 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Income Tax Practitioner"  @if (!empty(($expert->specializations)) && (@in_array('Income Tax Practitioner', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Income Tax Practitioner 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Intellectual Property Lawyer"  @if (!empty(($expert->specializations)) && (@in_array('Intellectual Property Lawyer', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Intellectual Property Lawyer 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Real Estate"  @if (!empty(($expert->specializations)) && (@in_array('Real Estate', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Real Estate 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Compliance Auditor"  @if (!empty(($expert->specializations)) && (@in_array('Compliance Auditor', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Compliance Auditor 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-check">
+                                                    <label class="control-label">
+                                                        <input class="form-check-input" type="checkbox" name="specializations[]" value="Construction Lawyer"  @if (!empty(($expert->specializations)) && (@in_array('Construction Lawyer', json_decode($expert->specializations)))) checked @else  @endif >
+                                                        Construction Lawyer 
+                                                    </label>
+                                                    </div>
+                                                </div>
+                                            @error('specializations')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div> --> --}}
+
+
+
                                         <div class="row">
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="password">Password</label>
@@ -687,8 +830,6 @@
                                     </div>
 
                                     <!-- For Others -->
-                                    <!-- <div class="card card-body mb-3" style="border:2px dotted #ddd; background:#fafafa"
-                                    id="others"> -->
                                     <div class="row" id="others">
                                         <div class="col-md-4">
                                             <div class="mb-1">
@@ -736,7 +877,7 @@
                                                     <div class="input-group input-daterange">
                                                         <input type="date" name="job_from" class="form-control @error('job_from') is-invalid @enderror" value="{{ $expert->job_from }}">
                                                     <div class="input-group-append"><div class="input-group-text">to</div></div>
-                                                        <input type="time" name="job_to" class="form-control @error('job_to') is-invalid @enderror" value="{{ $expert->job_to }}">
+                                                        <input type="date" name="job_to" class="form-control @error('job_to') is-invalid @enderror" value="{{ $expert->job_to }}">
                                                     </div>
                                                     @error('job_from')
                                                     <div class="text-danger"><small>{{ $message }}</small></div>
@@ -747,15 +888,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- </div> -->
-
-
-
-
+                                    
                                     <!-- For Lowyers -->
                                     <div id="lawyer">
-
-
                                         <div class="card card-body mb-3" style="border:2px dotted #ddd; background:#fafafa"
                                         id='bar_council_enrollment'>
                                             <h5 class="mb-2 text-secondary">Bar Council Enrollment</h5>
