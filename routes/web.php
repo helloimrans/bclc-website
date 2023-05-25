@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ConsultationRequestController;
 use App\Http\Controllers\Frontend\ContactUsController;
+use App\Http\Controllers\Frontend\CoursePaymentController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\SearchController;
 use Illuminate\Support\Facades\Artisan;
@@ -99,6 +100,8 @@ Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
     Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
     Route::get('course/checkout/{slug}', [FrontendController::class, 'courseCheckout'])->name('course.checkout');
 });
+
+Route::post('/course/payment/submit', [CoursePaymentController::class, 'paymentSubmit'])->name('course.payment.submit');
 
 //Terms Condition
 Route::get('terms-and-conditions', [FrontendController::class, 'termsCondition'])->name('terms.condition');

@@ -35,6 +35,8 @@ $route = Route::currentRouteName();
             <li class="@if ($route == 'user.security') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('user.security') }}"><i data-feather="lock"></i><span
                         class="menu-title text-truncate" data-i18n="Email"> Security</span></a>
             </li>
+            <li class="@if ($route == 'user.course.index') active @endif nav-item"><a class="d-flex align-items-center" href="{{ route('user.course.index') }}"><i class="fa fa-graduation-cap"></i> Your Courses</span></a>
+            </li>
 
         </ul>
     </div>

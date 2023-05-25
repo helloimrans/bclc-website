@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('order_id')->unsigned()->nullable();
             $table->bigInteger('course_id')->unsigned()->nullable();
+            $table->enum('status',['Pending','Processing','Complete'])->default('Pending')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

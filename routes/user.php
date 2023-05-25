@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 
@@ -21,6 +22,9 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 
-Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
 
+    Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
+        Route::get('index', [CourseController::class, 'index'])->name('index');
+    });
 });

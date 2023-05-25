@@ -16,5 +16,11 @@ class CourseOrderDetail extends Model
         'user_id',
         'order_id',
         'course_id',
+        'status',
     ];
+
+    public function courses()
+    {
+        return $this->belongsTo(Course::class, 'course_id', 'id');
+    }
 }
