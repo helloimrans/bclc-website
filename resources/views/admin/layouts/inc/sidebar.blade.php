@@ -113,6 +113,12 @@
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Roles">Course</span></a>
                     </li>
+                    <li class=" @if (
+                        $route == 'enrolled.courses.index') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('enrolled.courses.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Enrolled Course</span></a>
+                    </li>
                 </ul>
             </li>
             {{-- -----------------------------
