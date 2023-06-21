@@ -115,20 +115,12 @@
                     <div class="laws-header-two">
                         <div class="row">
                             <div class="col-md-4 align-self-center">
-                                <div class="laws-back">
-                                    <a href="javascript:;"><i class="fa fa-eye"></i>
-                                        {{ $law->total_views }}</a>
-                                    @if ($law->link)
-                                        <a href="{{ $law->link }}" target="_blank"><i class="fa fa-link"></i>
-                                            Ref. Link</a>
-                                    @endif
-                                </div>
 
                             </div>
                             <div class="col-md-5">
                                 <div class="service-search section-search">
                                     <form action="{{ route('section.form.search') }}" method="GET">
-                                        <input type="hidden" name="law_id" value="{{ $law->id }}">
+                                        <input type="hidden" name="law_id" value="{{ $law->id }}" required>
                                         <div class="input-group">
                                             <input class="form-control form-control-sm" type="text" id="search"
                                                 name="search" placeholder="Search..." autocomplete="off" required>
@@ -147,10 +139,6 @@
 
                             </div>
                             <div class="col-md-3 align-self-center">
-                                <div class="laws-date text-right">
-                                    <span>[ {{ \Carbon\Carbon::parse($law->created_at)->format(' d M, Y') }}
-                                        ]</span>
-                                </div>
                             </div>
                         </div>
                     </div>

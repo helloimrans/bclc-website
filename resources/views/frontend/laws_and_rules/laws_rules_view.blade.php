@@ -169,14 +169,13 @@
                                 <div class="col-md-4 align-self-center">
                                     <div class="laws-back">
                                         <a href="{{ route('laws.rules') }}"><i class="fa fa-angle-left"></i> Back</a>
-                                        <a href="javascript:;"><i class="fa fa-eye"></i> {{ $law->total_views }}</a>
                                     </div>
 
                                 </div>
                                 <div class="col-md-5">
                                     <div class="service-search section-search">
                                         <form action="{{ route('section.form.search') }}" method="GET">
-                                            <input type="hidden" name="law_id" value="{{ $law->id }}">
+                                            <input type="hidden" name="law_id" value="{{ $law->id }}" required>
                                             <div class="input-group">
                                                 <input class="form-control form-control-sm" type="text" id="search"
                                                     name="search" placeholder="Search..." autocomplete="off" required>
@@ -195,8 +194,8 @@
 
                                 </div>
                                 <div class="col-md-3 align-self-center">
-                                    <div class="laws-date text-right">
-                                        <span>[ {{ \Carbon\Carbon::parse($law->created_at)->format(' d M, Y') }} ]</span>
+                                    <div class="laws-date text-right laws-back">
+                                        <a href="javascript:;"><i class="fa fa-eye"></i> {{ $law->total_views }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +234,7 @@
                                             <th class="bg-light">Act Date</th>
                                             <td>{{ \Carbon\Carbon::parse($law->act_date)->format(' d M, Y') }}</td>
                                             <th class="bg-light">Section</th>
-                                            <td>{{$law->total_section}}</td>
+                                            <td>{{ $law->total_section }}</td>
                                         </tr>
                                         <tr>
                                             <th class="bg-light">Amendment</th>
@@ -533,11 +532,12 @@
                                                 <th class="bg-light">Rule Date</th>
                                                 <td>{{ \Carbon\Carbon::parse($law->rules_date)->format(' d M, Y') }}</td>
                                                 <th class="bg-light">Section</th>
-                                                <td>{{$law->rules_total_section}}</td>
+                                                <td>{{ $law->rules_total_section }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="bg-light">Amendment</th>
-                                                <td>{{ \Carbon\Carbon::parse($law->rules_last_amendment)->format(' d M, Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($law->rules_last_amendment)->format(' d M, Y') }}
+                                                </td>
                                                 <th class="bg-light">Schedule</th>
                                                 <td>{{ $law->rules_total_schedule }}</td>
                                             </tr>

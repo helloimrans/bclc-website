@@ -121,8 +121,7 @@
                                     <div class="laws-back">
                                         <a href="{{ route('laws.rules.details', @$chapter->law->slug) }}"><i
                                                 class="fa fa-angle-left"></i> Back</a>
-                                        <a href="javascript:;"><i class="fa fa-eye"></i>
-                                            {{ @$chapter->law->total_views }}</a>
+
                                         @if (@$chapter->law->link)
                                             <a href="{{ @$chapter->law->link }}" target="_blank"><i class="fa fa-link"></i>
                                                 Ref. Link</a>
@@ -152,9 +151,9 @@
 
                                 </div>
                                 <div class="col-md-3 align-self-center">
-                                    <div class="laws-date text-right">
-                                        <span>[ {{ \Carbon\Carbon::parse($chapter->law->created_at)->format(' d M, Y') }}
-                                            ]</span>
+                                    <div class="laws-date text-right laws-back">
+                                        <a href="javascript:;"><i class="fa fa-eye"></i>
+                                            {{ @$chapter->law->total_views }}</a>
                                     </div>
                                 </div>
                             </div>

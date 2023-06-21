@@ -16,7 +16,7 @@ class SearchController extends Controller
 
         $sections = LawSection::where('title', 'LIKE', '%' . $search . '%')->where('law_id', $law_id)->get();
 
-        return view('frontend.pages.result')->with('sections', $sections);
+        return view('frontend.laws_and_rules.result')->with('sections', $sections);
     }
 
     public function sectionFormSearch(Request $request)
@@ -46,12 +46,12 @@ class SearchController extends Controller
 
             $data['law'] = Law::find($law_id);
 
-        return view('frontend.pages.search_result', $data);
+        return view('frontend.laws_and_rules.search_result', $data);
     }
 
     public function searchResultOne($slug){
         $data['section'] = LawSection::where('slug',$slug)->first();
         $data['law'] = Law::find($data['section']->law_id);
-        return view('frontend.pages.search_result_one', $data);
+        return view('frontend.laws_and_rules.search_result_one', $data);
     }
 }
