@@ -49,16 +49,23 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($enrolledCourses as $enrolledCourse)
+
+                                        @php
+                                            $participant = App\Models\CourseOrderDetail::where('course_id', $enrolledCourse->course_id);
+                                        @endphp
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $enrolledCourse->courses->title }}</td>
-                                                <td>Participant</td>
+                                                <td>
+                                                    <span class="badge bg-secondary">Total: {{$participant->count()}}</span>
+                                                    <span class="badge bg-warning">Pending: {{$participant->where('status', 'Pending')->count()}}</span>
+                                                </td>
                                                 <td>
                                                     <a class="me-1 btn btn-info btn-sm" href="" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Classroom">
                                                         Classroom
                                                     </a>
-                                                    <a class="me-1 btn btn-primary btn-sm" href="{{route('enrolled.courses.details',$enrolledCourse->order_id)}}" data-bs-toggle="tooltip"
+                                                    <a class="me-1 btn btn-primary btn-sm" href="{{route('enrolled.courses.details',$enrolledCourse->course_id)}}" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Details">
                                                         Details
                                                     </a>
