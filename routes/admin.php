@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\OfficeFunctionCatController;
 use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\OfficeFunctionSectorController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
+use App\Http\Controllers\Admin\EnrolledCouseController;
 
 //Ajax - Get service & pro-bono category
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
@@ -111,6 +112,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     // Training Course
     Route::resource('courses', CourseController::class);
+
+    //Enrolled Course 
+    Route::group(['prefix' => 'enrolled/courses', 'as' => 'enrolled.courses.'], function () {
+        Route::get('index', [EnrolledCouseController::class, 'index'])->name('index');
+        Route::get('details/{id}', [EnrolledCouseController::class, 'details'])->name('details');
+        // Route::post('update/{id}', [CourseFaqController::class, 'update'])->name('update');
+        // Route::get('destroy/{id}', [CourseFaqController::class, 'destroy'])->name('destroy');
+    });
 
     //Course FAQ
     Route::group(['prefix' => 'course/faq', 'as' => 'course.faq.'], function () {
