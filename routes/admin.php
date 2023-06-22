@@ -72,6 +72,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
 
     //Article,blog,review,news & write up
     Route::resource('abrwn', AbrwnController::class)->except(['show']);
+    Route::get('article', [AbrwnController::class, 'article'])->name('abrwn.article');
+    Route::get('blog', [AbrwnController::class, 'blog'])->name('abrwn.blog');
+    Route::get('review', [AbrwnController::class, 'review'])->name('abrwn.review');
+    Route::get('write_up', [AbrwnController::class, 'write_up'])->name('abrwn.write_up');
+    Route::get('news', [AbrwnController::class, 'news'])->name('abrwn.news');
 
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);

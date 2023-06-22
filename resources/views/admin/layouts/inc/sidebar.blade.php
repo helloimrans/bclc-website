@@ -142,6 +142,31 @@
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Permission">ABRWN</span></a>
                     </li>
+                    <li class=" @if ($route == 'abrwn.article' || $route == 'abrwn.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('abrwn.article') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Permission">Articale</span></a>
+                    </li>
+                    <li class=" @if ($route == 'abrwn.blog' || $route == 'abrwn.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('abrwn.blog') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Permission">Blog</span></a>
+                    </li>
+                    <li class=" @if ($route == 'abrwn.review' || $route == 'abrwn.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('abrwn.review') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Permission">Review</span></a>
+                    </li>
+                    <li class=" @if ($route == 'abrwn.write_up' || $route == 'abrwn.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('abrwn.write_up') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Permission">Write Up</span></a>
+                    </li>
+                    <li class=" @if ($route == 'abrwn.news' || $route == 'abrwn.edit') active @endif"><a
+                            class="d-flex align-items-center" href="{{ route('abrwn.news') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Permission">News</span></a>
+                    </li>   
                 </ul>
             </li>
             {{-- -----------------------------
