@@ -1,5 +1,25 @@
+@php
+    $route = Route::currentRouteName();
+@endphp
 @extends('admin.layouts.master')
-@section('title', 'Create ABRWN')
+@if($route == 'abrwn.edit')
+        @section('title','Create ABRWN')
+    @endif
+    @if($route == 'abrwn.article.create')
+        @section('title','Create Article')
+    @endif
+    @if($route == 'abrwn.blog.create')
+        @section('title','Create Blog')
+    @endif
+    @if($route == 'abrwn.review.create')
+        @section('title','Create Review')
+    @endif
+    @if($route == 'abrwn.write_up.create')
+        @section('title','Create Write_up')
+    @endif
+    @if($route == 'abrwn.news.create')
+        @section('title','Create News')
+    @endif
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +27,49 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Create ABRWN</h2>
+                        <h2 class="content-header-title float-start mb-0">
+                            @if($route == 'abrwn.create')
+                                Create ABRWN
+                            @endif
+                            @if($route == 'abrwn.article.create')
+                                Create Article
+                            @endif
+                            @if($route == 'abrwn.blog.create')
+                                Create Blog
+                            @endif
+                            @if($route == 'abrwn.review.create')
+                                Create Review
+                            @endif
+                            @if($route == 'abrwn.write_up.create')
+                                Create Write_up
+                            @endif
+                            @if($route == 'abrwn.news.create')
+                                Create News
+                            @endif
+                        </h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create ABRWN
+                                <li class="breadcrumb-item active">
+                                @if($route == 'abrwn.create')
+                                    Create ABRWN
+                                @endif
+                                @if($route == 'abrwn.article.create')
+                                    Create Article
+                                @endif
+                                @if($route == 'abrwn.blog.create')
+                                    Create Blog
+                                @endif
+                                @if($route == 'abrwn.review.create')
+                                    Create Review
+                                @endif
+                                @if($route == 'abrwn.write_up.create')
+                                    Create Write_up
+                                @endif
+                                @if($route == 'abrwn.news.create')
+                                    Create News
+                                @endif
                                 </li>
                             </ol>
                         </div>
@@ -26,11 +83,28 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Create ABRWN</h5>
-                                <span><small>( Article, Blog, Review, Write Up, News )</small></span>
+                                @if($route == 'abrwn.create')
+                                        <h5 class="mb-0">Create ABRWN</h5>
+                                        <span><small>( Article, Blog, Review, Write Up, News )</small></span>
+                                @endif
+                                @if($route == 'abrwn.article.create')
+                                    <h5 class="mb-0">Create Article</h5>
+                                @endif
+                                @if($route == 'abrwn.blog.create')
+                                    <h5 class="mb-0">Create Blog</h5>
+                                @endif
+                                @if($route == 'abrwn.review.create')
+                                    <h5 class="mb-0">Create Review</h5>
+                                @endif
+                                @if($route == 'abrwn.write_up.create')
+                                    <h5 class="mb-0">Create Write_up</h5>
+                                @endif
+                                @if($route == 'abrwn.news.create')
+                                    <h5 class="mb-0">Create News</h5>
+                                @endif
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('abrwn.index') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ url()->previous() }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
