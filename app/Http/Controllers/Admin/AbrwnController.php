@@ -182,4 +182,35 @@ class AbrwnController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+
+    public function article()
+    {
+
+        $data['abrwns'] = Abrwn::with('category')->where('is_abrwn','=',1)->latest()->get();
+        return view('admin.abrwn.article.index', $data);
+    }
+    public function blog()
+    {
+
+        $data['abrwns'] = Abrwn::with('category')->where('is_abrwn','=',2)->latest()->get();
+        return view('admin.abrwn.blog.index', $data);
+    }
+    public function review()
+    {
+
+        $data['abrwns'] = Abrwn::with('category')->where('is_abrwn','=',3)->latest()->get();
+        return view('admin.abrwn.review.index', $data);
+    }
+    public function write_up()
+    {
+
+        $data['abrwns'] = Abrwn::with('category')->where('is_abrwn','=',4)->latest()->get();
+        return view('admin.abrwn.write_up.index', $data);
+    }
+    public function news()
+    {
+
+        $data['abrwns'] = Abrwn::with('category')->where('is_abrwn','=',5)->latest()->get();
+        return view('admin.abrwn.news.index', $data);
+    }
 }
