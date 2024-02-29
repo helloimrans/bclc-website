@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,60 +13,28 @@
 
     <link rel="apple-touch-icon" href="{{ asset('admin') }}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin') }}/app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
-        rel="stylesheet">
-
-    <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/charts/apexcharts.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin') }}/app-assets/vendors/css/forms/select/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/forms/select/select2.min.css">
 
-    {{-- datatable --}}
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
 
-    {{-- font awesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
-    <!-- END: Vendor CSS-->
-
-    <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/bootstrap-extended.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/components.min.css">
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/themes/dark-layout.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/themes/bordered-layout.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/themes/semi-dark-layout.min.css"> --}}
-
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin') }}/app-assets/css/core/menu/menu-types/vertical-menu.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin') }}/app-assets/css/pages/dashboard-ecommerce.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('admin') }}/app-assets/css/plugins/charts/chart-apex.min.css">
-        <!-- Core CSS -->
-    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <!-- END: Page CSS-->
-
-    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/core/menu/menu-types/vertical-menu.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}assets/css/style.css">
-    <!-- END: Custom CSS-->
-
-
-    {{-- EXTRA --}}
 
     <!-- Toastr -->
     <link href="{{ asset('defaults/toastr/toastr.min.css') }}" rel="stylesheet" />
+
     <!-- Summernote CSS - CDN Link -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
@@ -135,9 +102,6 @@
     </style>
 
 </head>
-<!-- END: Head-->
-
-<!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
     data-menu="vertical-menu-modern" data-col="">
@@ -159,11 +123,6 @@
     </div>
     <!-- END: Content-->
 
-
-    <!-- BEGIN: Customizer-->
-    {{-- @include('admin.layouts.inc.customizer') --}}
-    <!-- End: Customizer-->
-
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
@@ -177,34 +136,21 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('admin') }}/app-assets/vendors/js/charts/apexcharts.min.js"></script>
-    {{-- datatable --}}
+
+    <!-- Datatable -->
     <script src="{{ asset('admin') }}/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
     <script src="{{ asset('admin') }}/app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('admin') }}/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
     <script src="{{ asset('admin') }}/app-assets/vendors/js/tables/datatable/responsive.bootstrap5.js"></script>
 
-    {{-- Select 2 --}}
+    <!-- Select2 -->
     <script src="{{ asset('admin') }}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
 
-
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
     <script src="{{ asset('admin') }}/app-assets/js/core/app-menu.min.js"></script>
     <script src="{{ asset('admin') }}/app-assets/js/core/app.min.js"></script>
-    {{-- <script src="{{ asset('admin') }}/app-assets/js/scripts/customizer.min.js"></script> --}}
-    <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    <script src="{{ asset('admin') }}/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
-    {{-- select 2 --}}
+    <!-- Select2 -->
     <script src="{{ asset('admin') }}/app-assets/js/scripts/forms/form-select2.min.js"></script>
-
-
-    <!-- END: Page JS-->
-
-    {{-- EXTRA --}}
 
     <!-- Summernote JS - CDN Link -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -269,6 +215,4 @@
 
     @yield('scripts')
 </body>
-<!-- END: Body-->
-
 </html>
