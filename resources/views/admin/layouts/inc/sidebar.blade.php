@@ -166,9 +166,30 @@
                             class="d-flex align-items-center" href="{{ route('abrwn.news') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Permission">News</span></a>
-                    </li>   
+                    </li>
                 </ul>
             </li>
+
+            {{-- -----------------------------
+                Office & Function
+            ------------------------------ --}}
+            <li class="nav-item"><a class="d-flex align-items-center"
+                    href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"
+                        data-i18n="Laws & Rules">Articles</span></a>
+                <ul class="menu-content">
+                    <li class=""><a
+                            class="d-flex align-items-center" href="{{ route('articles.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Articles</span></a>
+                    </li>
+                    <li class=""><a
+                            class="d-flex align-items-center" href="{{ route('article.categories.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Category</span></a>
+                    </li>
+                </ul>
+            </li>
+
             {{-- -----------------------------
                 Laws & Rules
             ------------------------------ --}}
@@ -289,9 +310,9 @@
                 </ul>
             </li>
 
- 
+
               <!-- contact message -->
-            
+
             <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-envelope"></i><span
                         class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Contact Message</span></a>
                 <ul class="menu-content">
@@ -299,7 +320,7 @@
                             href="{{ route('contact.message') }}"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate" data-i18n="Roles"> Show Contact Message</span></a>
                     </li>
-                    
+
                 </ul>
             </li>
 

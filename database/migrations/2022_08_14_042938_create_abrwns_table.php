@@ -25,7 +25,6 @@ return new class extends Migration
             $table->bigInteger('created_by')->unsigned()->nullable();
             $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->bigInteger('deleted_by')->unsigned()->nullable();
-            $table->string('guard_name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -18,6 +18,8 @@ use App\Http\Controllers\Defaults\DefaultController;
 use App\Http\Controllers\Admin\LawCategoryController;
 use App\Http\Controllers\Admin\LawScheduleController;
 use App\Http\Controllers\Admin\AbrwnCategoryController;
+use App\Http\Controllers\Admin\ArticleCategoryController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\OfficeFunctionController;
@@ -88,6 +90,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     Route::get('news/create', [AbrwnController::class, 'create'])->name('abrwn.news.create');
     Route::get('news/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.news.edit');
 
+    //Article Categories
+    Route::resource('article-categories', ArticleCategoryController::class)->names('article.categories');
+    //Articles
+    Route::resource('articles', ArticleController::class);
+
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);
 
@@ -128,7 +135,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
     // Training Course
     Route::resource('courses', CourseController::class);
 
-    //Enrolled Course 
+    //Enrolled Course
     Route::group(['prefix' => 'enrolled/courses', 'as' => 'enrolled.courses.'], function () {
         Route::get('index', [EnrolledCouseController::class, 'index'])->name('index');
         Route::get('details/{id}', [EnrolledCouseController::class, 'details'])->name('details');
