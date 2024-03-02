@@ -57,7 +57,7 @@ class AssociatedServiceController extends Controller
 
         $input = $request->all();
         $input['slug'] = Str::slug($request->title);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         AssociatedService::create($input);
         $notification = array(
             'message' => 'Successfully associated service created.',
@@ -115,7 +115,7 @@ class AssociatedServiceController extends Controller
         $input = $request->all();
         $data = AssociatedService::find($id);
         $input['slug'] = Str::slug($request->title);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

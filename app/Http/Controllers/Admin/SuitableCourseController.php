@@ -33,7 +33,7 @@ class SuitableCourseController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
         $input = $request->all();
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         SuitableForCourse::create($input);
         $notification = array(
             'message' => 'Successfully course suitable created.',
@@ -65,7 +65,7 @@ class SuitableCourseController extends Controller
 
         $input = $request->all();
         $data = SuitableForCourse::find($id);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

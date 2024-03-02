@@ -50,7 +50,7 @@
                         </h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active">
                                 @if($route == 'abrwn.edit')

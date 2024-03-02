@@ -52,7 +52,7 @@ class ServiceFacilityController extends Controller
         $data->sort                         = $request->sort;
 
         $data->status                       = $request->status;
-        $data->created_by                   = Auth::guard('admin')->user()->id;
+        $data->created_by                   = Auth::user()->id;
 
         $file = $request->file('file');
         if ($file) {
@@ -106,7 +106,7 @@ class ServiceFacilityController extends Controller
         $data->sort                         = $request->sort;
 
         $data->status                       = $request->status;
-        $data->updated_by                   = Auth::guard('admin')->user()->id;
+        $data->updated_by                   = Auth::user()->id;
 
         $file = $request->file('file');
         if ($file) {

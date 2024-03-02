@@ -17,12 +17,12 @@ class AdminController extends Controller
     {
         $check = $request->all();
 
-        if (Auth::guard('admin')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+        if (Auth::attempt(['email' => $check['email'], 'password' => $check['password']])) {
             $notification = array(
                 'message' => 'Successfully Logged In!',
                 'alert-type' => 'success'
             );
-            return redirect()->route('admin.dashboard')->with($notification);
+            return redirect()->route('user.dashboard')->with($notification);
         } else {
             $notification = array(
                 'message' => 'Invalid Email or Password!',
@@ -30,21 +30,5 @@ class AdminController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-    }
-
-    public function dashboard()
-    {
-        return view('admin.home.index');
-    }
-
-    public function logout()
-    {
-        Auth::guard('admin')->logout();
-        $notification = array(
-            'message' => 'Successfully Logged Out!',
-            'alert-type' => 'info'
-        );
-
-        return redirect()->route('admin.login')->with($notification);
     }
 }

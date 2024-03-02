@@ -26,11 +26,7 @@
                                 <img src="{{ asset('frontend') }}/logo/logo.png" class="logo mb-3" alt="Logo" />
                             </div>
                             <h4 class="text-center m-0 mb-3">Register as a {{ $userType }} </h4>
-                            <form
-                                @if ($userType == 'Expert') action="{{ route('expert.registration.store') }}"
-                            @elseif ($userType == 'User')
-                              action="{{ route('user.registration.store') }}"
-                             @endif
+                            <form action="{{ route('user.registration.store') }}"
                                 method="POST">
                                 @csrf
                                 <div class="form-group">
@@ -132,11 +128,7 @@
                                 <button type="submit" class="btn bd mt-2 mb-3 btn-block text-light"><i
                                         class="fa fa-user-plus"></i> Registration</button>
                                 <p class="text-center mb-0 text-15">Already registered? <a class="td"
-                                    @if ($userType == 'Expert')
-                                    href="{{ route('expert.login') }}"
-                                    @elseif ($userType == 'User')
-                                     href="{{ route('user.login') }}"
-                                     @endif
+                                    href="{{ route('user.login') }}"
                                         >Login as a {{ $userType }}</a></p>
                             </form>
                         </div>

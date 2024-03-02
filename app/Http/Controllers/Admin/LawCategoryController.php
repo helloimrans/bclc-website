@@ -57,7 +57,7 @@ class LawCategoryController extends Controller
         $input = $request->all();
 
         $input['slug'] = Str::slug($request->name);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         $input['sort'] = LawCategory::count() + 1;
 
         LawCategory::create($input);
@@ -121,7 +121,7 @@ class LawCategoryController extends Controller
         $data = LawCategory::find($id);
 
         $input['slug'] = Str::slug($request->name);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
 
@@ -141,7 +141,7 @@ class LawCategoryController extends Controller
     public function destroy($id)
     {
         $data = LawCategory::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $data->delete();
         $notification = array(

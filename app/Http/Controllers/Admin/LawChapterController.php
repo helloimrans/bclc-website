@@ -67,7 +67,7 @@ class LawChapterController extends Controller
         $data->status        = $request->status;
         $data->is_act        = $request->is_act;
         $data->is_rules      = $request->is_rules;
-        $data->created_by    = Auth::guard('admin')->user()->id;
+        $data->created_by    = Auth::user()->id;
         $data->save();
 
         $genSlug = LawChapter::find($data->id);
@@ -131,7 +131,7 @@ class LawChapterController extends Controller
         $data->slug          = Str::slug($request->title) . $data->id;
         $data->sort          = $request->sort;
         $data->status        = $request->status;
-        $data->updated_by    = Auth::guard('admin')->user()->id;
+        $data->updated_by    = Auth::user()->id;
         $data->save();
 
         return response()->json($data);
@@ -146,7 +146,7 @@ class LawChapterController extends Controller
     public function destroy($id)
     {
         $data = LawChapter::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $true = $data->delete();
         return response()->json($true);

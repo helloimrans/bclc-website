@@ -74,7 +74,7 @@ class ServiceProBonoController extends Controller
         $data->slug                  = Str::slug($request->title);
         $data->description           = $request->description;
         $data->status                = $request->status;
-        $data->created_by            = Auth::guard('admin')->user()->id;
+        $data->created_by            = Auth::user()->id;
 
 
 
@@ -179,7 +179,7 @@ class ServiceProBonoController extends Controller
         $data->slug                  = Str::slug($request->title);
         $data->description           = $request->description;
         $data->status                = $request->status;
-        $data->updated_by            = Auth::guard('admin')->user()->id;
+        $data->updated_by            = Auth::user()->id;
 
 
 
@@ -230,7 +230,7 @@ class ServiceProBonoController extends Controller
     public function destroy($id)
     {
         $data = Service::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $data->delete();
         $notification = array(

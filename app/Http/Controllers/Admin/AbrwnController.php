@@ -61,7 +61,7 @@ class AbrwnController extends Controller
         $input = $request->all();
 
         $input['slug'] = Str::slug($request->title);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         $input['guard_name'] = 'admin';
 
         $thumbnail_image = $request->file('thumbnail_image');
@@ -144,7 +144,7 @@ class AbrwnController extends Controller
         $input = $request->all();
 
         $input['slug'] = Str::slug($request->title);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $thumbnail_image = $request->file('thumbnail_image');
         if ($thumbnail_image) {
@@ -173,7 +173,7 @@ class AbrwnController extends Controller
     public function destroy($id)
     {
         $data = Abrwn::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $data->delete();
         $notification = array(

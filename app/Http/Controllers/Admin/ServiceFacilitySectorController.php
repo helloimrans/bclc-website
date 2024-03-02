@@ -33,7 +33,7 @@ class ServiceFacilitySectorController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
         $input = $request->all();
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         ServiceFacilitySector::create($input);
         $notification = array(
             'message' => 'Successfully service & facility sector created.',
@@ -65,7 +65,7 @@ class ServiceFacilitySectorController extends Controller
 
         $input = $request->all();
         $data = ServiceFacilitySector::find($id);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

@@ -16,7 +16,7 @@ class ArticleCategoryService
     public function createCategory($input)
     {
         $input['slug'] = Str::slug($input['name']);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         $input['image'] = uploadFile($input['image'], 'article_category');
 
         return ArticleCategory::create($input);
@@ -31,7 +31,7 @@ class ArticleCategoryService
     {
         $category = ArticleCategory::findOrFail($id);
         $input['slug'] = Str::slug($input['name']);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['image'])) {
             deleteFile($category->image);
@@ -46,7 +46,7 @@ class ArticleCategoryService
     public function deleteCategory($id)
     {
         $category = ArticleCategory::findOrFail($id);
-        $category->deleted_by = Auth::guard('admin')->user()->id;
+        $category->deleted_by = Auth::user()->id;
         $category->save();
         $category->delete();
     }

@@ -90,7 +90,7 @@ class LawController extends Controller
         $input = $request->all();
 
         $input['slug'] = Str::slug($request->title);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
 
         if ($request->is_rules == null) {
             $input['is_rules'] = 0;
@@ -197,7 +197,7 @@ class LawController extends Controller
 
         $input = $request->all();
         $input['slug'] = Str::slug($request->title);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         if ($request->is_rules == null) {
             $input['is_rules'] = 0;
@@ -225,7 +225,7 @@ class LawController extends Controller
     public function destroy($id)
     {
         $data = LawCategory::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $data->delete();
         $notification = array(

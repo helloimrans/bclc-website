@@ -33,7 +33,7 @@ class ProfessionController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
         $input = $request->all();
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         Profession::create($input);
         $notification = array(
             'message' => 'Successfully profession created.',
@@ -65,7 +65,7 @@ class ProfessionController extends Controller
 
         $input = $request->all();
         $data = Profession::find($id);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

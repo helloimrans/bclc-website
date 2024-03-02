@@ -16,7 +16,7 @@ class ArticleService
     public function createArticle($input)
     {
         $input['slug'] = Str::slug($input['title']);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
 
         return Article::create($input);
@@ -31,7 +31,7 @@ class ArticleService
     {
         $article = Article::find($id);
         $input['slug'] = Str::slug($input['title']);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {
             deleteFile($article->thumbnail_image);
@@ -46,7 +46,7 @@ class ArticleService
     public function deleteArticle($id)
     {
         $article = Article::find($id);
-        $article->deleted_by = Auth::guard('admin')->user()->id;
+        $article->deleted_by = Auth::user()->id;
         $article->save();
         $article->delete();
     }

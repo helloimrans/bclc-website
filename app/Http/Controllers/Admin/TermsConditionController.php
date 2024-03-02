@@ -55,7 +55,7 @@ class TermsConditionController extends Controller
         }
 
         $input = $request->all();
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         TermsCondition::create($input);
         $notification = array(
             'message' => 'Successfully terms condition created.',
@@ -114,7 +114,7 @@ class TermsConditionController extends Controller
 
         $input = $request->all();
         $data = TermsCondition::find($id);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

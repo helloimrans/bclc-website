@@ -29,7 +29,7 @@ class LawScheduleController extends Controller
             $data->file = '/uploaded/law_schedule/' . $fileName;
         }
         $data->status        = $request->status;
-        $data->created_by    = Auth::guard('admin')->user()->id;
+        $data->created_by    = Auth::user()->id;
         $data->save();
 
         return response()->json($data);
@@ -59,7 +59,7 @@ class LawScheduleController extends Controller
             $data->file = '/uploaded/law_schedule/' . $fileName;
         }
         $data->status        = $request->status;
-        $data->updated_by    = Auth::guard('admin')->user()->id;
+        $data->updated_by    = Auth::user()->id;
         $data->save();
 
         return response()->json($data);
@@ -67,7 +67,7 @@ class LawScheduleController extends Controller
     public function destroy($id)
     {
         $data = LawSchedule::findOrFail($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $true = $data->delete();
         return response()->json($true);

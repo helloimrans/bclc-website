@@ -78,7 +78,7 @@ class CourseController extends Controller
         $input['slug'] = Str::slug($request->title);
         $input['schedule'] = json_encode($request->schedule);
         $input['suitable_course'] = json_encode($request->suitable_course);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
 
         Course::create($input);
 
@@ -147,7 +147,7 @@ class CourseController extends Controller
         $input['slug'] = Str::slug($request->title);
         $input['schedule'] = json_encode($request->schedule);
         $input['suitable_course'] = json_encode($request->suitable_course);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
 
         $data->update($input);
 
@@ -160,7 +160,7 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $data = Course::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $data->delete();
         $notification = array(

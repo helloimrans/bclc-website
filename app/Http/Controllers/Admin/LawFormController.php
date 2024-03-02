@@ -28,7 +28,7 @@ class LawFormController extends Controller
             $data->file = '/uploaded/law_form/' . $fileName;
         }
         $data->status        = $request->status;
-        $data->created_by    = Auth::guard('admin')->user()->id;
+        $data->created_by    = Auth::user()->id;
         $data->save();
 
         return response()->json($data);
@@ -58,7 +58,7 @@ class LawFormController extends Controller
             $data->file = '/uploaded/law_form/' . $fileName;
         }
         $data->status        = $request->status;
-        $data->updated_by    = Auth::guard('admin')->user()->id;
+        $data->updated_by    = Auth::user()->id;
         $data->save();
 
         return response()->json($data);
@@ -66,7 +66,7 @@ class LawFormController extends Controller
     public function destroy($id)
     {
         $data = LawForm::findOrFail($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $true = $data->delete();
         return response()->json($true);

@@ -22,9 +22,9 @@
                 id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <div class="user-nav d-sm-flex d-none"><span
-                        class="user-name fw-bolder">{{ Auth::guard('expert')->user()->name }}</span><span
+                        class="user-name fw-bolder">{{ Auth::user()->name }}</span><span
                         class="user-status">expert</span></div><span class="avatar"><img class="round"
-                        src="@if (Auth::guard('expert')->user()->image) {{ asset(Auth::guard('expert')->user()->image) }}
+                        src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }}
                             @else
                             {{ asset('defaults/avatar/avatar.png') }} @endif"
                         alt="avatar" height="40" width="40"><span

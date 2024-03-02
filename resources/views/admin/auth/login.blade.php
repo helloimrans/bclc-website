@@ -74,7 +74,7 @@
                                 <h4 class="card-title mb-1">Admin Login</h4>
                                 <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
-                                <form class="auth-login-form mt-2" action="{{ route('admin.login.store') }}"
+                                <form class="auth-login-form mt-2" action="{{ route('user.login.store') }}"
                                     method="POST">
                                     @csrf
                                     <div class="mb-1">

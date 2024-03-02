@@ -55,7 +55,7 @@ class PrivacyPolicyController extends Controller
         }
 
         $input = $request->all();
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         PrivacyPolicy::create($input);
         $notification = array(
             'message' => 'Successfully privacy policy created.',
@@ -114,7 +114,7 @@ class PrivacyPolicyController extends Controller
 
         $input = $request->all();
         $data = PrivacyPolicy::find($id);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

@@ -34,7 +34,7 @@ class ServiceFacilityCatController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
         $input = $request->all();
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
         ServiceFacilityCategory::create($input);
         $notification = array(
             'message' => 'Successfully service & facility category created.',
@@ -66,7 +66,7 @@ class ServiceFacilityCatController extends Controller
 
         $input = $request->all();
         $data = ServiceFacilityCategory::find($id);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(

@@ -17,7 +17,7 @@ class ExpertAuthenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('expert')->check()) {
+        if (!Auth::check()) {
             return redirect('/');
         }
         return $next($request);

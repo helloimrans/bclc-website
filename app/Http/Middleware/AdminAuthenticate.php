@@ -17,13 +17,13 @@ class AdminAuthenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::guard('admin')->check()){
+        if(!Auth::check()){
             $notification = array(
                 'message' => 'Please at first login!',
                 'alert-type' => 'info'
             );
 
-            return redirect()->route('admin.login')->with($notification);
+            return redirect()->route('user.login')->with($notification);
         }
         return $next($request);
     }

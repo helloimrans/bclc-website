@@ -91,19 +91,19 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        return view('user.home.index');
+        return view('admin.home.index');
     }
 
     public function profile()
     {
         $data['user'] = User::find(Auth::user()->id);
-        return view('user.profile.profile', $data);
+        return view('admin.profile.profile', $data);
     }
 
     public function edit_profile()
     {
         $data['user'] = User::find(Auth::user()->id);
-        return view('user.profile.edit_profile', $data);
+        return view('admin.profile.edit_profile', $data);
     }
     public function update_profile(Request $request)
     {
@@ -140,7 +140,7 @@ class UserController extends Controller
 
     public function security()
     {
-        return view('user.profile.security');
+        return view('admin.profile.security');
     }
     public function update_password(Request $request)
     {

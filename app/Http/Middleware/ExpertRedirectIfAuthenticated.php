@@ -17,7 +17,7 @@ class ExpertRedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('expert')->check()){
+        if(Auth::check()){
             return redirect()->route('expert.dashboard');
         }
         return $next($request);

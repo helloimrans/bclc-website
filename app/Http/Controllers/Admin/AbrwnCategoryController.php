@@ -70,7 +70,7 @@ class AbrwnCategoryController extends Controller
         }
 
         $input['slug'] = Str::slug($request->name);
-        $input['created_by'] = Auth::guard('admin')->user()->id;
+        $input['created_by'] = Auth::user()->id;
 
         if ($request->is_article == null) {
             $input['is_article'] = null;
@@ -172,7 +172,7 @@ class AbrwnCategoryController extends Controller
         }
 
         $input['slug'] = Str::slug($request->name);
-        $input['updated_by'] = Auth::guard('admin')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         if ($request->is_article == null) {
             $input['is_article'] = null;
@@ -218,7 +218,7 @@ class AbrwnCategoryController extends Controller
     public function destroy($id)
     {
         $data = AbrwnCategory::find($id);
-        $data->deleted_by = Auth::guard('admin')->user()->id;
+        $data->deleted_by = Auth::user()->id;
         $data->save();
         $data->delete();
         $notification = array(

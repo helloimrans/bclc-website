@@ -6,7 +6,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
-                <a href="{{ route('admin.dashboard') }}">
+                <a href="{{ route('user.dashboard') }}">
                     <img style="margin-top: 5px" src="{{ asset('admin/new/logo.png') }}" alt="img" width="70">
                 </a>
             </li>
@@ -20,7 +20,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="@if ($route == 'admin.dashboard') active @endif nav-item"><a class="d-flex align-items-center"
-                    href="{{ route('admin.dashboard') }}"><i data-feather="home"></i><span
+                    href="{{ route('user.dashboard') }}"><i data-feather="home"></i><span
                         class="menu-title text-truncate" data-i18n="Email">Dashboard</span></a>
             </li>
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i

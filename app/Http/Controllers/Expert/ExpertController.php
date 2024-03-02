@@ -49,7 +49,7 @@ class ExpertController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        Auth::guard('expert')->login($user);
+        Auth::login($user);
 
         $notification = array(
             'message' => 'Registration Successfully!',
@@ -79,7 +79,7 @@ class ExpertController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
         $check = $request->all();
-        if (Auth::guard('expert')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+        if (Auth::attempt(['email' => $check['email'], 'password' => $check['password']])) {
             $notification = array(
                 'message' => 'Successfully Logged In!',
                 'alert-type' => 'success'
@@ -103,13 +103,13 @@ class ExpertController extends Controller
 
     public function profile()
     {
-        $data['expert'] = Expert::find(Auth::guard('expert')->user()->id);
+        $data['expert'] = Expert::find(Auth::user()->id);
         return view('expert.profile.profile', $data);
     }
 
     public function edit_profile()
     {
-        $data['expert'] = Expert::find(Auth::guard('expert')->user()->id);
+        $data['expert'] = Expert::find(Auth::user()->id);
         $data['divisions'] = Division::where('status', 1)->get();
         $data['districts'] = District::where('status', 1)->get();
         return view('expert.profile.edit_profile', $data);
@@ -129,7 +129,7 @@ class ExpertController extends Controller
         }
 
         $input = $request->all();
-        $data = Expert::find(Auth::guard('expert')->user()->id);
+        $data = Expert::find(Auth::user()->id);
 
         $image = $request->file('image');
         if ($image) {
@@ -157,7 +157,7 @@ class ExpertController extends Controller
         }
 
         $input['specializations'] = json_encode($request->specializations);
-        $input['updated_by'] = Auth::guard('expert')->user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $data->update($input);
         $notification = array(
@@ -183,8 +183,8 @@ class ExpertController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with('error','Something went wront!, Please try again.');
         }
 
-        if (Auth::guard('expert')->attempt(['id' => Auth::guard('expert')->user()->id, 'password' => $request->current_password])) {
-            $user = Expert::find(Auth::guard('expert')->user()->id);
+        if (Auth::attempt(['id' => Auth::user()->id, 'password' => $request->current_password])) {
+            $user = Expert::find(Auth::user()->id);
             $user->password = bcrypt($request->new_password);
             $user->save();
             return redirect()->back()->with('success','Successfully password changed.');
@@ -201,7 +201,7 @@ class ExpertController extends Controller
 
     public function logout()
     {
-        Auth::guard('expert')->logout();
+        Auth::logout();
         $notification = array(
             'message' => 'Successfully Logged Out!',
             'alert-type' => 'info'

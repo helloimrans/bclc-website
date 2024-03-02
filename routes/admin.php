@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\OfficeFunctionSectorController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\EnrolledCouseController;
 use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\User\UserController;
 
 //Ajax - Get service & pro-bono category
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
@@ -43,15 +44,28 @@ Route::get('/get/abrwn/category/{id}', [DefaultController::class, 'getAbrwnCat']
 Route::get('/get/category/service/{id}', [DefaultController::class, 'getCatService']);
 
 //Admin auth route
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('login', [AdminController::class, 'loginForm'])->name('login')->middleware('admin.guest');
-    Route::post('login/store', [AdminController::class, 'login'])->name('login.store');
-    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('admin.auth');
-    Route::get('logout', [AdminController::class, 'logout'])->name('logout')->middleware('admin.auth');
+Route::get('/admin/login', [AdminController::class, 'loginForm'])->name('admin.login')->middleware('guest');
+Route::post('/admin/login/store', [AdminController::class, 'login'])->name('admin.login.store');
+
+//Auth route
+Route::group(['prefix' => 'dashboard', 'as' => 'user.'], function () {
+    Route::get('login', [UserController::class, 'loginForm'])->name('login')->middleware('guest');
+    Route::get('registration', [UserController::class, 'registrationForm'])->name('registration');
+    Route::post('registration/store', [UserController::class, 'registration'])->name('registration.store');
+    Route::post('login/store', [UserController::class, 'login'])->name('login.store');
+    Route::get('/', [UserController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+    Route::get('logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+
+    // Profile
+    Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+    Route::get('profile/edit', [UserController::class, 'edit_profile'])->name('edit.profile')->middleware('auth');
+    Route::post('profile/update', [UserController::class, 'update_profile'])->name('update.profile')->middleware('auth');
+    Route::get('profile/security', [UserController::class, 'security'])->name('security')->middleware('auth');
+    Route::post('profile/update/password', [UserController::class, 'update_password'])->name('update.password')->middleware('auth');
 });
 
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     //Global
     Route::post('/change-status', [StatusController::class, 'changeStatus'])->name('change.status');
 
