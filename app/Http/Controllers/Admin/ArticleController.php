@@ -7,7 +7,8 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\ArticleCategory;
 use App\Services\ArticleCategoryService;
 use App\Services\ArticleService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class ArticleController extends Controller
 {
@@ -22,8 +23,32 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = $this->articleService->getAllArticles();
-        return view('admin.articles.index', compact('articles'));
+        if (request()->ajax()) {
+            $articles = $this->articleService->getAllArticles();
+            return DataTables::of($articles)
+                ->editColumn('thumbnail_image', function ($article) {
+                    $imageUrl = $article->thumbnail_image ? Storage::url($article->thumbnail_image) : Storage::url('defaults/noimage/no_img.jpg');
+                    return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $article->title . '">';
+                })
+                ->editColumn('is_active', function ($article) {
+                    $checkStatus = $article->is_active ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-id="' . $article->id . '" ' . $checkStatus . '>
+                             </div>';
+                })
+                ->addColumn('action', function ($article) {
+                    $str = '<a href="' . route("articles.edit", $article->id) . '" class="me-1"><i class="far fa-edit text-dark"></i></a>';
+                    $str .= '<form class="d-inline" id="delForm" action="' . route("articles.destroy", $article->id) . '" method="POST">' .
+                        csrf_field() .
+                        method_field("DELETE") .
+                        '<button id="delete" type="submit" class="me-1 dlt-btn"><i class="far fa-trash-alt text-danger"></i></button>' .
+                        '</form>';
+                    return $str;
+                })
+                ->rawColumns(['action', 'thumbnail_image', 'is_active'])
+                ->make(true);
+        }
+        return view('admin.articles.index');
     }
 
     public function create()
@@ -35,7 +60,10 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $this->articleService->createArticle($request->validated());
-        return redirect()->route('articles.index')->with('success', 'Article created successfully.');
+        return redirect()->route('articles.index')->with([
+            'message' => 'Data stored successfully.',
+            'alert-type' => 'success'
+        ]);
     }
 
     public function edit($id)
@@ -48,11 +76,19 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, $id)
     {
         $this->articleService->updateArticle($id, $request->validated());
-        return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
+        return redirect()->route('articles.index')->with([
+            'message' => 'Data updated successfully.',
+            'alert-type' => 'success'
+        ]);
     }
+
     public function destroy($id)
     {
         $this->articleService->deleteArticle($id);
         return redirect()->back()->with('success', 'Article deleted successfully.');
+        return redirect()->back()->with([
+            'message' => 'Data deleted successfully.',
+            'alert-type' => 'success'
+        ]);
     }
 }

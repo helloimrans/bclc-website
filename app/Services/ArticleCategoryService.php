@@ -17,7 +17,7 @@ class ArticleCategoryService
     {
         $input['slug'] = Str::slug($input['name']);
         $input['created_by'] = Auth::guard('admin')->user()->id;
-        $input['image'] = uploadFile($input['image'], 'uploaded/article_category');
+        $input['image'] = uploadFile($input['image'], 'article_category');
 
         return ArticleCategory::create($input);
     }
@@ -35,7 +35,7 @@ class ArticleCategoryService
 
         if (isset($input['image'])) {
             deleteFile($category->image);
-            $input['image'] = uploadFile($input['image'], 'uploaded/article_category');
+            $input['image'] = uploadFile($input['image'], 'article_category');
         }
 
         $category->update($input);
@@ -48,7 +48,6 @@ class ArticleCategoryService
         $category = ArticleCategory::findOrFail($id);
         $category->deleted_by = Auth::guard('admin')->user()->id;
         $category->save();
-        deleteFile($category->image);
         $category->delete();
     }
 }

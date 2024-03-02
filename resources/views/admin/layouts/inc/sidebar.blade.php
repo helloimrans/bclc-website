@@ -171,7 +171,7 @@
             </li>
 
             {{-- -----------------------------
-                Office & Function
+                Articles
             ------------------------------ --}}
             <li class="nav-item"><a class="d-flex align-items-center"
                     href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"

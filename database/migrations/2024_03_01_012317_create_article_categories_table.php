@@ -26,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Article Categories')
+@section('title', 'Articles')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +7,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start">Article Categories</h2>
+                        <h2 class="content-header-title float-start mb-0">Articles</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Article Categories
+                                <li class="breadcrumb-item active">Articles
                                 </li>
                             </ol>
                         </div>
@@ -20,17 +20,16 @@
                 </div>
             </div>
         </div>
-
         <div class="content-body">
             <div class="row" id="basic-table">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="">Article Categories</h5>
+                                <h5 class="mb-0">Articles</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('article.categories.create') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('articles.create') }}"
                                         class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New</a></div>
                             </div>
                         </div>
@@ -40,11 +39,12 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Description</th>
+                                            <th>Title</th>
+                                            <th>Thumbnail</th>
+                                            <th>Category</th>
                                             <th>Status</th>
-                                            <th>Sort</th>
+                                            <th>Created By</th>
+                                            <th>Updated By</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -59,7 +59,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
@@ -68,7 +67,7 @@
             var table = $('.datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('article.categories.index') }}",
+                ajax: "{{ route('articles.index') }}",
                 columns: [{
                         data: null,
                         name: 'serial',
@@ -77,24 +76,28 @@
                         }
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'title',
+                        name: 'title'
                     },
                     {
-                        data: 'image',
-                        name: 'image'
+                        data: 'thumbnail_image',
+                        name: 'thumbnail_image'
                     },
                     {
-                        data: 'description',
-                        name: 'description'
+                        data: 'category.name',
+                        name: 'category.name'
                     },
                     {
                         data: 'is_active',
                         name: 'is_active'
                     },
                     {
-                        data: 'sort',
-                        name: 'sort'
+                        data: 'created_by.name',
+                        name: 'created_by.name'
+                    },
+                    {
+                        data: 'updated_by.name',
+                        name: 'updated_by.name'
                     },
                     {
                         data: 'action',
@@ -104,10 +107,9 @@
                     },
                 ]
             });
-
         });
     </script>
 
     {{-- Change Status Script --}}
-    @include('admin.layouts.inc.change-status', ['table'=> 'article_categories'])
+    @include('admin.layouts.inc.change-status', ['table'=> 'articles'])
 @endsection

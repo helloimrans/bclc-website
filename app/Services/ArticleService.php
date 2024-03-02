@@ -10,14 +10,14 @@ class ArticleService
 {
     public function getAllArticles()
     {
-        return Article::with('category')->latest()->get();
+        return Article::with(['category','createdBy','updatedBy'])->latest()->get();
     }
 
     public function createArticle($input)
     {
         $input['slug'] = Str::slug($input['title']);
         $input['created_by'] = Auth::guard('admin')->user()->id;
-        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'uploaded/article');
+        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
 
         return Article::create($input);
     }
@@ -35,7 +35,7 @@ class ArticleService
 
         if (isset($input['thumbnail_image'])) {
             deleteFile($article->thumbnail_image);
-            $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'uploaded/article');
+            $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
         }
 
         $article->update($input);
@@ -48,7 +48,6 @@ class ArticleService
         $article = Article::find($id);
         $article->deleted_by = Auth::guard('admin')->user()->id;
         $article->save();
-        deleteFile($article->thumbnail_image);
         $article->delete();
     }
 }

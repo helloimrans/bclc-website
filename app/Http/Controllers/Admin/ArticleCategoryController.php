@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleCategoryRequest;
-use App\Models\ArticleCategory;
+use App\Models\BaseModel;
 use App\Services\ArticleCategoryService;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
@@ -27,8 +27,11 @@ class ArticleCategoryController extends Controller
                     $imageUrl = $category->image ? Storage::url($category->image) : Storage::url('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $category->name . '">';
                 })
-                ->editColumn('is_active', function ($category) {
-                    return ArticleCategory::STATUS[$category->is_active];
+                ->editColumn('is_active', function ($article) {
+                    $checkStatus = $article->is_active ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-id="' . $article->id . '" ' . $checkStatus . '>
+                             </div>';
                 })
                 ->addColumn('action', function ($category) {
                     $str = '<a href="' . route("article.categories.edit", $category->id) . '" class="me-1"><i class="far fa-edit text-dark"></i></a>';
@@ -39,7 +42,7 @@ class ArticleCategoryController extends Controller
                         '</form>';
                     return $str;
                 })
-                ->rawColumns(['action', 'image'])
+                ->rawColumns(['action', 'image', 'is_active'])
                 ->make(true);
         }
 

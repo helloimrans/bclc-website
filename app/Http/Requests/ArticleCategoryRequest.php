@@ -29,7 +29,6 @@ class ArticleCategoryRequest extends FormRequest
             'name' => 'required|unique:article_categories,name,' . $id,
             'image' => $imageRules,
             'sort' => 'numeric|min:0',
-            'is_active' => 'nullable|boolean',
         ];
     }
 }

@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('uploadFile')) {
-    function uploadFile($file, $path){
-        if($file){
-            $storedFilePath = $file->store($path, 'public');
+    function uploadFile($file, $path)
+    {
+        if ($file) {
+            $storedFilePath = $file->store('uploaded/' . $path, 'public');
             if ($storedFilePath === false) {
-                throw new Exception('Failed to store the file.');
+                // throw new Exception('Failed to store the file.');
             }
             return $storedFilePath;
         } else {
@@ -22,8 +23,7 @@ if (!function_exists('deleteFile')) {
         if (Storage::disk('public')->exists($filePath)) {
             Storage::disk('public')->delete($filePath);
         } else {
-            throw new Exception('File not found.');
+            // throw new Exception('File not found.');
         }
     }
 }
-

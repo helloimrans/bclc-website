@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\OfficeFunctionSectorController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\EnrolledCouseController;
+use App\Http\Controllers\Admin\StatusController;
 
 //Ajax - Get service & pro-bono category
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
@@ -51,6 +52,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin.auth'], function () {
+    //Global
+    Route::post('/change-status', [StatusController::class, 'changeStatus'])->name('change.status');
 
     //Associated service
     Route::resource('associated/service', AssociatedServiceController::class, ['as' => 'associated'])->except(['show']);
