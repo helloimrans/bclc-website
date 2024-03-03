@@ -21,21 +21,25 @@ class Article extends Model
     }
     public function createdBy()
     {
-        return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
+        return $this->belongsTo(User::class, 'created_by', 'id')->withDefault([
             'name' => '--',
         ]);
     }
     public function updatedBy()
     {
-        return $this->belongsTo(Admin::class, 'updated_by', 'id')->withDefault([
+        return $this->belongsTo(User::class, 'updated_by', 'id')->withDefault([
             'name' => '--',
         ]);
     }
 
-    public function scopeIsCategoryActive($query)
+    public function scopeIsActive($query)
     {
-        return $query->whereHas('category', function ($query) {
-            $query->isActive();
-        });
+        return $query->where('is_active', true);
+    }
+
+    public function scopeRelated($query, $categoryId)
+    {
+        return $query->isActive()
+            ->where('article_category_id', $categoryId);
     }
 }

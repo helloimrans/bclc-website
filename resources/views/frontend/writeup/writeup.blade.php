@@ -36,7 +36,7 @@
                     <div class="sh-img">
                       <a href="{{ route('writeup.details',$writeup->slug) }}">
                         <div class="sh-img-main">
-                            <img src="@if ($writeup->thumbnail_image) {{ asset($writeup->thumbnail_image) }}
+                            <img src="@if ($writeup->thumbnail_image) {{ Storage::url($writeup->thumbnail_image) }}
                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" class="img-fluid" alt="image">
                         </div>
                         <h4 class="text-custom"> {{ \Str::limit($writeup->title, 40) }}</h4>

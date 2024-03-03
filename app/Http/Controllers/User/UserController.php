@@ -99,12 +99,7 @@ class UserController extends Controller
         $data['user'] = User::find(Auth::user()->id);
         return view('admin.profile.profile', $data);
     }
-
-    public function edit_profile()
-    {
-        $data['user'] = User::find(Auth::user()->id);
-        return view('admin.profile.edit_profile', $data);
-    }
+    
     public function update_profile(Request $request)
     {
         $validator = Validator::make($request->all(), [

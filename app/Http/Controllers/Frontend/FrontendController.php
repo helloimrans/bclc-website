@@ -12,24 +12,28 @@ use App\Models\CourseFaq;
 use App\Models\LawChapter;
 use App\Models\LawCategory;
 use App\Models\LawSchedule;
-use Illuminate\Http\Request;
 use App\Models\PrivacyPolicy;
 use App\Models\TermsCondition;
 use App\Models\ServiceCategory;
 use App\Models\AssociatedService;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Blog;
+use App\Models\News;
 use App\Models\OfficeFunctionSector;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServiceFacilitySector;
+use App\Models\WriteUp;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        $data['articles'] = Abrwn::where('is_abrwn', 1)->where('status', 1)->limit(10)->latest()->get();
-        $data['writeups'] = Abrwn::where('is_abrwn', 4)->where('status', 1)->limit(10)->latest()->get();
-        $data['newses'] = Abrwn::where('is_abrwn', 5)->where('status', 1)->limit(10)->latest()->get();
-        $data['blogs'] = Abrwn::where('is_abrwn', 2)->where('status', 1)->limit(10)->latest()->get();
+        $data['articles'] = Article::isActive()->limit(10)->latest()->get();
+        $data['writeups'] = WriteUp::isActive()->limit(10)->latest()->get();
+        $data['newses'] = News::isActive()->limit(10)->latest()->get();
+        $data['blogs'] = Blog::isActive()->limit(10)->latest()->get();
         $data['insights'] = AssociatedService::where('status', 1)->limit(10)->latest()->get();
         return view('frontend.home.index', $data);
     }
@@ -89,27 +93,27 @@ class FrontendController extends Controller
     }
     public function articles()
     {
-        $data['articles'] = Abrwn::where('is_abrwn', 1)->where('status', 1)->latest()->paginate(8);
+        $data['articles'] = Article::isActive()->latest()->paginate(8);
         return view('frontend.article.article', $data);
     }
     public function writeup()
     {
-        $data['writeups'] = Abrwn::where('is_abrwn', 4)->where('status', 1)->latest()->paginate(8);
+        $data['writeups'] = WriteUp::isActive()->latest()->paginate(8);
         return view('frontend.writeup.writeup', $data);
     }
     public function blog()
     {
-        $data['blogs'] = Abrwn::where('is_abrwn', 2)->where('status', 1)->latest()->paginate(8);
+        $data['blogs'] = Blog::isActive()->latest()->paginate(8);
         return view('frontend.blog.blog', $data);
     }
     public function news()
     {
-        $data['newses'] = Abrwn::where('is_abrwn', 5)->where('status', 1)->latest()->paginate(8);
+        $data['newses'] = News::isActive()->latest()->paginate(8);
         return view('frontend.news.news', $data);
     }
     public function review()
     {
-        $data['reviews'] = Abrwn::where('is_abrwn', 3)->where('status', 1)->latest()->paginate(8);
+        $data['reviews'] = Review::isActive()->latest()->paginate(8);
         return view('frontend.review.review', $data);
     }
     public function insights()
@@ -119,31 +123,38 @@ class FrontendController extends Controller
     }
     public function articleDetails($slug)
     {
-        $data['article'] = Abrwn::where('slug', $slug)->first();
-        $data['relatedArticles'] = Abrwn::where('is_abrwn', 1)->where('abrwn_category_id',$data['article']->abrwn_category_id)->where('status', 1)->latest()->limit(8)->get();
-        $data['latestArticles'] = Abrwn::where('is_abrwn', 1)->where('status', 1)->latest()->limit(8)->get();
+        $data['article'] = Article::isActive()->where('slug', $slug)->first();
+        $data['relatedArticles'] = Article::related($data['article']->article_category_id)->latest()->limit(8)->get();
+        $data['latestArticles'] = Article::isActive()->latest()->limit(8)->get();
         return view('frontend.article.article_details',$data);
     }
     public function writeupDetails($slug)
     {
-        $data['writeup'] = Abrwn::where('slug', $slug)->first();
-        $data['relatedWriteups'] = Abrwn::where('is_abrwn', 4)->where('abrwn_category_id',$data['writeup']->abrwn_category_id)->where('status', 1)->latest()->limit(8)->get();
-        $data['latestWriteups'] = Abrwn::where('is_abrwn', 4)->where('status', 1)->latest()->limit(8)->get();
+        $data['writeup'] = WriteUp::isActive()->where('slug', $slug)->first();
+        $data['relatedWriteups'] = WriteUp::related($data['writeup']->write_up_category_id)->latest()->limit(8)->get();
+        $data['latestWriteups'] = WriteUp::isActive()->latest()->limit(8)->get();
         return view('frontend.writeup.writeup_details',$data);
     }
     public function newsDetails($slug)
     {
-        $data['news'] = Abrwn::where('slug', $slug)->first();
-        $data['relatedNewses'] = Abrwn::where('is_abrwn', 5)->where('abrwn_category_id',$data['news']->abrwn_category_id)->where('status', 1)->latest()->limit(8)->get();
-        $data['latestNewses'] = Abrwn::where('is_abrwn', 5)->where('status', 1)->latest()->limit(8)->get();
+        $data['news'] = News::isActive()->where('slug', $slug)->first();
+        $data['relatedNewses'] = News::related($data['news']->news_category_id)->latest()->limit(8)->get();
+        $data['latestNewses'] = News::isActive()->latest()->limit(8)->get();
         return view('frontend.news.news_details',$data);
     }
     public function blogDetails($slug)
     {
-        $data['blog'] = Abrwn::where('slug', $slug)->first();
-        $data['relatedBlogs'] = Abrwn::where('is_abrwn', 2)->where('abrwn_category_id',$data['blog']->abrwn_category_id)->where('status', 1)->latest()->limit(8)->get();
-        $data['latestBlogs'] = Abrwn::where('is_abrwn', 2)->where('status', 1)->latest()->limit(8)->get();
+        $data['blog'] = Blog::isActive()->where('slug', $slug)->first();
+        $data['relatedBlogs'] = Blog::related($data['blog']->blog_category_id)->latest()->limit(8)->get();
+        $data['latestBlogs'] = Blog::isActive()->latest()->limit(8)->get();
         return view('frontend.blog.blog_details',$data);
+    }
+    public function reviewDetails($slug)
+    {
+        $data['review'] = Review::isActive()->where('slug', $slug)->first();
+        $data['relatedReviews'] = Review::related($data['review']->review_category_id)->latest()->limit(8)->get();
+        $data['latestReviews'] = Review::isActive()->latest()->limit(8)->get();
+        return view('frontend.review.review_details',$data);
     }
     public function insightsDetails($slug)
     {

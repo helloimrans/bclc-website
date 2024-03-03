@@ -12,11 +12,6 @@ class ArticleCategory extends Model
 
     protected $guarded = ['id'];
 
-    const STATUS = [
-        1 => 'Active',
-        0 => 'Deactive',
-    ];
-
     public function scopeIsActive($query)
     {
         return $query->where('is_active', true);

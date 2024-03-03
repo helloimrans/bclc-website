@@ -34,13 +34,13 @@ class Abrwn extends Model
     }
     public function createdBy()
     {
-        return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
+        return $this->belongsTo(User::class, 'created_by', 'id')->withDefault([
             'name' => 'None',
         ]);
     }
     public function updatedBy()
     {
-        return $this->belongsTo(Admin::class, 'updated_by', 'id')->withDefault([
+        return $this->belongsTo(User::class, 'updated_by', 'id')->withDefault([
             'name' => 'None',
         ]);
     }

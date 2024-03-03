@@ -35,8 +35,6 @@
                             data-feather="home"></i> Dashboard</a>
                     <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="me-50"
                             data-feather="user"></i> Profile</a>
-                    <a class="dropdown-item" href="{{ route('user.edit.profile') }}"><i class="me-50"
-                            data-feather="edit"></i> Update Profile</a>
                     <a class="dropdown-item" href="{{ route('user.security') }}"><i class="me-50"
                             data-feather="lock"></i> Security</a>
 

@@ -51,7 +51,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $course->courses->title }}</td>
                                                 <td><img class="rounded" width="60"
-                                                    src="@if ($course->courses->image) {{ asset($course->courses->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                    src="@if ($course->courses->image) {{ Storage::url($course->courses->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                     alt="{{ $course->courses->title }}">
                                                 </td>
                                                 <td>{{ $course->courses->service->title }}</td>

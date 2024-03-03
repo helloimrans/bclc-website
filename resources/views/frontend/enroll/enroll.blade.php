@@ -32,7 +32,7 @@
                                 <hr>
                             </div>
                             <div class="col-md-4">
-                                <img style="height:10em" class="w-100" src="{{ asset($course->image) }}" alt="img">
+                                <img style="height:10em" class="w-100" src="{{ Storage::url($course->image) }}" alt="img">
                             </div>
                             <div class="col-md-6">
                                 <p style="font-size: 18px;" class="m-0"><strong>{{ $course->title }}</strong></p>

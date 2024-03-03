@@ -68,12 +68,12 @@
                                                 <td>{{ $row->email }}</td>
                                                 <td>{{ $row->subject }}</td>
                                                 @php
-                                                $uri_path = asset($row->file);
+                                                $uri_path = Storage::url($row->file);
                                                 $uri_parts = explode('/', $uri_path);
                                                 $uri_tail = end($uri_parts);
                                             @endphp
                                                 <td class="text-center">
-                                                    <a href="{{ asset($row->file)  }}" download="{{ $uri_tail  }}"
+                                                    <a href="{{ Storage::url($row->file)  }}" download="{{ $uri_tail  }}"
                                                         data-bs-toggle="tooltip"
                                                         data-bs-original-title="Download" class="badge badge-light-success">
                                                         <i class="fa fa-download text-success"></i>

@@ -175,7 +175,7 @@
                                         <div class="carousel-inner">
                                             @foreach ($service->images as $service_image)
                                                 <div class="carousel-item @if ($loop->first) active @endif">
-                                                    <img class="d-block w-100" src="{{ asset($service_image->image) }}"
+                                                    <img class="d-block w-100" src="{{ Storage::url($service_image->image) }}"
                                                         alt="image" />
                                                 </div>
                                             @endforeach

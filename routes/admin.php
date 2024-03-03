@@ -58,7 +58,6 @@ Route::group(['prefix' => 'dashboard', 'as' => 'user.'], function () {
 
     // Profile
     Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
-    Route::get('profile/edit', [UserController::class, 'edit_profile'])->name('edit.profile')->middleware('auth');
     Route::post('profile/update', [UserController::class, 'update_profile'])->name('update.profile')->middleware('auth');
     Route::get('profile/security', [UserController::class, 'security'])->name('security')->middleware('auth');
     Route::post('profile/update/password', [UserController::class, 'update_password'])->name('update.password')->middleware('auth');

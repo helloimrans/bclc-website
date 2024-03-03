@@ -42,7 +42,7 @@ class OfficeFunction extends Model
     }
     public function createdBy()
     {
-        return $this->belongsTo(Admin::class, 'created_by', 'id')->withDefault([
+        return $this->belongsTo(User::class, 'created_by', 'id')->withDefault([
             'name' => 'None',
         ]);
     }

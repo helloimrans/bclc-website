@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class AdminFactory extends Factory
     {
         return [
             'name' => 'Imran',
+            'user_type' => User::ADMIN,
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'), //password
             'email_verified_at' => now(),
