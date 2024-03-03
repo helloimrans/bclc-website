@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\SuitableCourseController;
 use App\Http\Controllers\Admin\TermsConditionController;
 use App\Http\Controllers\Admin\ServiceFacilityController;
 use App\Http\Controllers\Admin\AssociatedServiceController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\OfficeFunctionCatController;
 use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\OfficeFunctionSectorController;
@@ -110,6 +112,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('article-categories', ArticleCategoryController::class)->names('article.categories');
     //Articles
     Route::resource('articles', ArticleController::class);
+    //Blog Categories
+    Route::resource('blog-categories', BlogCategoryController::class)->names('blog.categories');
+    //Blogs
+    Route::resource('blogs', BlogController::class);
 
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);
