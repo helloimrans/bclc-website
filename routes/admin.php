@@ -37,6 +37,8 @@ use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\EnrolledCouseController;
 use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ReviewCategoryController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\WriteUpCategoryController;
 use App\Http\Controllers\Admin\WriteUpController;
@@ -128,6 +130,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('news-categories', NewsCategoryController::class)->names('news.categories');
     //News
     Route::resource('news', NewsController::class)->names('news');
+    //Review Categories
+    Route::resource('review-categories', ReviewCategoryController::class)->names('review.categories');
+    //Reviews
+    Route::resource('reviews', ReviewController::class)->names('reviews');
 
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);
