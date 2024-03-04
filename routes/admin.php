@@ -36,6 +36,8 @@ use App\Http\Controllers\Admin\OfficeFunctionSectorController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\EnrolledCouseController;
 use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\WriteUpCategoryController;
+use App\Http\Controllers\Admin\WriteUpController;
 use App\Http\Controllers\User\UserController;
 
 //Ajax - Get service & pro-bono category
@@ -116,6 +118,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('blog-categories', BlogCategoryController::class)->names('blog.categories');
     //Blogs
     Route::resource('blogs', BlogController::class);
+    //Write Up Categories
+    Route::resource('write-up-categories', WriteUpCategoryController::class)->names('write_up.categories');
+    //Write Ups
+    Route::resource('write-ups', WriteUpController::class)->names('write_ups');
 
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);
