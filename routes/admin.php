@@ -35,6 +35,8 @@ use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\OfficeFunctionSectorController;
 use App\Http\Controllers\Admin\ServiceFacilitySectorController;
 use App\Http\Controllers\Admin\EnrolledCouseController;
+use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\WriteUpCategoryController;
 use App\Http\Controllers\Admin\WriteUpController;
@@ -106,7 +108,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('write_up', [AbrwnController::class, 'write_up'])->name('abrwn.write_up');
     Route::get('write_up/create', [AbrwnController::class, 'create'])->name('abrwn.write_up.create');
     Route::get('write_up/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.write_up.edit');
-    Route::get('news', [AbrwnController::class, 'news'])->name('abrwn.news');
+    Route::get('abrwn/news', [AbrwnController::class, 'news'])->name('abrwn.news');
     Route::get('news/create', [AbrwnController::class, 'create'])->name('abrwn.news.create');
     Route::get('news/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.news.edit');
 
@@ -122,6 +124,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('write-up-categories', WriteUpCategoryController::class)->names('write_up.categories');
     //Write Ups
     Route::resource('write-ups', WriteUpController::class)->names('write_ups');
+    //News Categories
+    Route::resource('news-categories', NewsCategoryController::class)->names('news.categories');
+    //News
+    Route::resource('news', NewsController::class)->names('news');
 
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);

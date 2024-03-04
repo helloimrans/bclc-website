@@ -228,6 +228,25 @@
                     </li>
                 </ul>
             </li>
+            {{-- -----------------------------
+                News
+            ------------------------------ --}}
+            <li class="nav-item"><a class="d-flex align-items-center"
+                href="#"><i class="fa fa-gavel"></i><span class="menu-title text-truncate"
+                    data-i18n="Laws & Rules">News</span></a>
+                <ul class="menu-content">
+                    <li class=""><a
+                            class="d-flex align-items-center" href="{{ route('news.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">News</span></a>
+                    </li>
+                    <li class=""><a
+                            class="d-flex align-items-center" href="{{ route('news.categories.index') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate"
+                                data-i18n="Roles">Category</span></a>
+                    </li>
+                </ul>
+            </li>
 
             {{-- -----------------------------
                 Laws & Rules

@@ -85,7 +85,6 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $this->articleService->deleteArticle($id);
-        return redirect()->back()->with('success', 'Article deleted successfully.');
         return redirect()->back()->with([
             'message' => 'Data deleted successfully.',
             'alert-type' => 'success'
