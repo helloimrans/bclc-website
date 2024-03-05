@@ -25,6 +25,7 @@ use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServiceFacilitySector;
 use App\Models\WriteUp;
+use Illuminate\Support\Facades\App;
 
 class FrontendController extends Controller
 {
@@ -176,6 +177,7 @@ class FrontendController extends Controller
         return view('frontend.laws_and_rules.details.laws_rules_details',$data);
     }
     public function lawsRulesView($slug){
+        App::setLocale('en');
         $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
         $data['law_faqs'] = LawFaq::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law']->increment('total_views');
