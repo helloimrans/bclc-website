@@ -52,6 +52,6 @@ class SearchController extends Controller
     public function searchResultOne($slug){
         $data['section'] = LawSection::where('slug',$slug)->first();
         $data['law'] = Law::find($data['section']->law_id);
-        return view('frontend.laws_and_rules.search_result_one', $data);
+        return view('frontend.laws_and_rules.search_result_details', $data);
     }
 }

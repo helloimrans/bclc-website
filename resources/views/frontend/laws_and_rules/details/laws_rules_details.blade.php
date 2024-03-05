@@ -126,53 +126,12 @@
         <div class="container">
             <div class="row">
                 <input type="hidden" value="{{ $law->id }}" id="law_id">
-                <div class="col-lg-10 mx-auto">
+                <div class="col-lg-12">
+
+                    {{-- include law header --}}
+                    @includeIf('frontend.laws_and_rules.law_header', ['law' => $law])
                     <div class="laws-box">
-                        <div class="laws-header-one text-center mb-4 pb-2">
-                            <h5>{{ $law->title }}</h5>
-                            <p>( You are now reading in-depth details )</p>
-                        </div>
-                        <div class="laws-header-two">
-                            <div class="row">
-                                <div class="col-md-4 align-self-center">
-                                    <div class="laws-back">
-                                        <a href="{{ route('laws.rules') }}"><i class="fa fa-angle-left"></i> Back</a>
 
-                                        @if ($law->link)
-                                            <a href="{{ $law->link }}" target="_blank"><i class="fa fa-link"></i> Ref.
-                                                Link</a>
-                                        @endif
-                                    </div>
-
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="service-search section-search">
-                                        <form action="{{ route('section.form.search') }}" method="GET">
-                                            <input type="hidden" name="law_id" value="{{ $law->id }}" required>
-                                            <div class="input-group">
-                                                <input class="form-control form-control-sm" type="text" id="search"
-                                                    name="search" placeholder="Search..." autocomplete="off" required>
-                                                <div class="input-group-prepend">
-                                                    <button type="submit" class="btn service-nsbtn"><i
-                                                            class="fa fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <div class="section-ajax" id="result" style="display:none">
-                                            <div id="memList">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-3 align-self-center">
-                                    <div class="laws-date text-right laws-back">
-                                        <a href="javascript:;"><i class="fa fa-eye"></i> {{ $law->total_views }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <hr class="my-4">
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -243,18 +202,18 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-10 mx-auto">
+                <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="law_schedules">
                                 <a href="#!" class="pr-1" data-toggle="modal" data-target="#LawScheduleModal"><span
-                                    class="schedule-btn btn w-100 btn-md btn-info">Law Schedules</span></a>
+                                        class="schedule-btn btn w-100 btn-md btn-info">Law Schedules</span></a>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="law_forms">
                                 <a href="#!" class="pr-1" data-toggle="modal" data-target="#LawFormModal"><span
-                                    class="form-btn btn btn-md w-100 btn-info">Low Forms</span></a>
+                                        class="form-btn btn btn-md w-100 btn-info">Low Forms</span></a>
                             </div>
                         </div>
                     </div>
@@ -319,53 +278,53 @@
         </div>
     </div>
 
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                localStorage.setItem('activeTab', $(e.target).attr('href'));
-            });
-            var activeTab = localStorage.getItem('activeTab');
-            if (activeTab) {
-                $('#myTab a[href="' + activeTab + '"]').tab('show');
-            }
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    @section('scripts')
+        <script>
+            $(document).ready(function() {
+                $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                    localStorage.setItem('activeTab', $(e.target).attr('href'));
+                });
+                var activeTab = localStorage.getItem('activeTab');
+                if (activeTab) {
+                    $('#myTab a[href="' + activeTab + '"]').tab('show');
                 }
             });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-            function autoCom() {
-                alert(10);
-            }
-
-            $('#search').keyup(function() {
-                var search = $('#search').val();
-                var law_id = $('#law_id').val();
-                if (search == "") {
-                    $("#memList").html("");
-                    $('#result').hide();
-                } else {
-                    $.get("{{ URL::to('section/search') }}", {
-                        search: search,
-                        law_id: law_id
-                    }, function(data) {
-                        if (data == "") {
-                            $("#memList").html("");
-                            $('#result').hide();
-                        } else {
-                            $('#memList').empty().html(data);
-                            $('#result').show();
-                        }
-
-                    })
+                function autoCom() {
+                    alert(10);
                 }
+
+                $('#search').keyup(function() {
+                    var search = $('#search').val();
+                    var law_id = $('#law_id').val();
+                    if (search == "") {
+                        $("#memList").html("");
+                        $('#result').hide();
+                    } else {
+                        $.get("{{ URL::to('section/search') }}", {
+                            search: search,
+                            law_id: law_id
+                        }, function(data) {
+                            if (data == "") {
+                                $("#memList").html("");
+                                $('#result').hide();
+                            } else {
+                                $('#memList').empty().html(data);
+                                $('#result').show();
+                            }
+
+                        })
+                    }
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection
 @endsection

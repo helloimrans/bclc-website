@@ -173,19 +173,19 @@ class FrontendController extends Controller
         $data['law_schedules'] = LawSchedule::where('law_id', $data['law']->id)->where('status', 1)->get();
         // $data['law']->increment('total_views');
         // $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
-        return view('frontend.laws_and_rules.laws_rules_details',$data);
+        return view('frontend.laws_and_rules.details.laws_rules_details',$data);
     }
     public function lawsRulesView($slug){
         $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
         $data['law_faqs'] = LawFaq::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law']->increment('total_views');
         $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
-        return view('frontend.laws_and_rules.laws_rules_view',$data);
+        return view('frontend.laws_and_rules.view.laws_rules_view',$data);
     }
 
     public function lawsRulesChapter($slug){
         $data['chapter'] = LawChapter::with('law')->where('slug',$slug)->first();
-        return view('frontend.laws_and_rules.laws_rules_chapter',$data);
+        return view('frontend.laws_and_rules.chapter_details.laws_rules_chapter',$data);
     }
 
 
