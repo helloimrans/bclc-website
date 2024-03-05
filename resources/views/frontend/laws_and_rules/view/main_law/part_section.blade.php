@@ -5,9 +5,9 @@
                 <h5 class="mb-0">
                     <a role="button" data-toggle="collapse" href="#collapse-1_{{ $part->id }}"
                         aria-controls="collapse-1_{{ $part->id }}">
-                        {{ app()->getLocale() == 'bn' ? $part->part_no_bn : $part->part_no }}
+                        {{ session()->get('lawLocale') == 'bn' ? $part->part_no_bn : $part->part_no }}
                         :
-                        {{ app()->getLocale() == 'bn' ? $part->title_bn : $part->title }}
+                        {{ session()->get('lawLocale') == 'bn' ? $part->title_bn : $part->title }}
                     </a>
                 </h5>
             </div>
@@ -22,10 +22,10 @@
                     @foreach ($part->section->where('status', 1)->where('parent_id', 0) as $section)
                     <div class="laws-chapters-section">
                         <h5>
-                            {{ app()->getLocale() == 'bn' ? $section->title_bn : $section->title }}
+                            {{ session()->get('lawLocale') == 'bn' ? $section->title_bn : $section->title }}
                         </h5>
                         <p>
-                            {!! app()->getLocale() == 'bn' ? $section->description_bn : $section->description !!}
+                            {!! session()->get('lawLocale') == 'bn' ? $section->description_bn : $section->description !!}
                         </p>
                     </div>
                     @if (count($section->childs))

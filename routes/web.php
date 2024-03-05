@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\ConsultationRequestController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\CoursePaymentController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\LocaleController;
 use App\Http\Controllers\Frontend\SearchController;
 use Illuminate\Support\Facades\Artisan;
 
@@ -29,6 +30,9 @@ Route::get('/clear', function () {
     Artisan::call('route:clear');
     return "Cache Cleared!";
 });
+
+//Change law locale
+Route::post('/change-law-locale', [LocaleController::class, 'changeLawLocale'])->name('change.law.locale');
 
 
 // Home

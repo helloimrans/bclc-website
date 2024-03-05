@@ -177,8 +177,24 @@ class FrontendController extends Controller
         return view('frontend.laws_and_rules.details.laws_rules_details',$data);
     }
     public function lawsRulesView($slug){
-        App::setLocale('en');
         $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
+
+        // if($data['law']->lang == 'en'){
+        //     session()->put('lawLocale', 'en');
+        // }elseif($data['law']->lang == 'bn'){
+        //     session()->put('lawLocale', 'bn');
+        // }elseif($data['law']->lang == 'both'){
+        //     if($data['law']->default_lang == 'en'){
+        //         session()->put('lawLocale', 'en');
+        //     }elseif($data['law']->default_lang == 'bn'){
+        //         session()->put('lawLocale', 'bn');
+        //     }else{
+        //         session()->put('lawLocale', 'en');
+        //     }
+        // }else{
+        //     session()->put('lawLocale', 'en');
+        // }
+
         $data['law_faqs'] = LawFaq::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law']->increment('total_views');
         $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();

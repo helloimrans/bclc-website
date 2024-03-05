@@ -1,9 +1,9 @@
 @foreach ($law->rulesChapter as $chapter)
     <div class="laws-chapters-one mt-4">
         <h5>
-            {{ app()->getLocale() == 'bn' ? $chapter->chapter_no_bn : $chapter->chapter_no }}
+            {{ session()->get('lawLocale') == 'bn' ? $chapter->chapter_no_bn : $chapter->chapter_no }}
             :
-            {{ app()->getLocale() == 'bn' ? $chapter->title_bn : $chapter->title }}
+            {{ session()->get('lawLocale') == 'bn' ? $chapter->title_bn : $chapter->title }}
         </h5>
     </div>
     <div class="laws-chapters mt-4">
@@ -14,10 +14,10 @@
     @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
         <div class="laws-chapters-section">
             <h5>
-                {{ app()->getLocale() == 'bn' ? $section->title_bn : $section->title }}
+                {{ session()->get('lawLocale') == 'bn' ? $section->title_bn : $section->title }}
             </h5>
             <p>
-                {!! app()->getLocale() == 'bn' ? $section->description_bn : $section->description !!}
+                {!! session()->get('lawLocale') == 'bn' ? $section->description_bn : $section->description !!}
             </p>
         </div>
         @if (count($section->childs))

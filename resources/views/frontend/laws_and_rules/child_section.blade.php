@@ -1,10 +1,10 @@
 @foreach ($childs as $child)
     <div class="laws-chapters-section">
         <h5>
-            {{app()->getLocale() == 'bn' ? $child->title_bn : $child->title}}
+            {{session()->get('lawLocale') == 'bn' ? $child->title_bn : $child->title}}
         </h5>
         <p>
-            {!! app()->getLocale() == 'bn' ? $child->description_bn : $child->description !!}
+            {!! session()->get('lawLocale') == 'bn' ? $child->description_bn : $child->description !!}
         </p>
     </div>
 

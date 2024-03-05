@@ -8,6 +8,7 @@
         <div class="col-md-4 align-self-center">
             <div class="laws-back">
                 <a href="{{ url()->previous() }}"><i class="fa fa-angle-left"></i> Back</a>
+                <a href="javascript:;"><i class="fa fa-eye"></i> {{ $law->total_views }}</a>
             </div>
 
         </div>
@@ -16,11 +17,10 @@
                 <form action="{{ route('section.form.search') }}" method="GET">
                     <input type="hidden" name="law_id" value="{{ $law->id }}" required>
                     <div class="input-group">
-                        <input class="form-control form-control-sm" type="text" id="search"
-                            name="search" placeholder="Search..." autocomplete="off" required>
+                        <input class="form-control form-control-sm" type="text" id="search" name="search"
+                            placeholder="Search..." autocomplete="off" value="{{ @$search }}" required>
                         <div class="input-group-prepend">
-                            <button type="submit" class="btn service-nsbtn"><i
-                                    class="fa fa-search"></i></button>
+                            <button type="submit" class="btn service-nsbtn"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>
@@ -34,9 +34,47 @@
         </div>
         <div class="col-md-3 align-self-center">
             <div class="laws-date text-right laws-back">
-                <a href="javascript:;"><i class="fa fa-eye"></i> {{ $law->total_views }}</a>
+                <div class="ht-social">
+                    @if ($law->lang == 'both')
+                    <select id="lawLanguage" class="px-3" style="cursor: pointer">
+                        <option value="bn" @if (session()->get('lawLocale') == 'bn') @selected(true) @endif>
+                            Bangla</option>
+                        <option value="en" @if (session()->get('lawLocale') == 'en') @selected(true) @endif>
+                            English</option>
+                    </select>
+                    @else
+                    <select disabled>
+                        <option @if ($law->lang == 'bn') @selected(true) @endif>
+                            Bangla</option>
+                        <option @if ($law->lang == 'en') @selected(true) @endif>
+                            English</option>
+                    </select>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
 </div>
 <hr class="my-4">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('lawLanguage').addEventListener('change', function() {
+            var locale = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "{{ route('change.law.locale') }}");
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-CSRF-TOKEN', "{{ csrf_token() }}");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    location.reload();
+                } else {
+                    console.error(xhr.responseText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.responseText);
+            };
+            xhr.send(JSON.stringify({ locale: locale }));
+        });
+    });
+</script>
