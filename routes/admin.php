@@ -40,9 +40,12 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ReviewCategoryController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\UserManagement\PermissionController;
+use App\Http\Controllers\Admin\UserManagement\RoleController;
 use App\Http\Controllers\Admin\WriteUpCategoryController;
 use App\Http\Controllers\Admin\WriteUpController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Response;
 
 //Ajax - Get service & pro-bono category
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
@@ -72,7 +75,22 @@ Route::group(['prefix' => 'dashboard', 'as' => 'user.'], function () {
 });
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' =>['auth', 'permission']], function () {
+
+    Route::get('/export-permissions', function () {
+        $filename = 'permissions.csv';
+        $filePath = createCSV($filename);
+        return Response::download($filePath, $filename);
+    })->name('export.permissions');
+
+    //Users
+    Route::resource('users', UserController::class);
+    //Roles
+    Route::resource('roles', RoleController::class);
+    //Permissions
+    Route::resource('permissions', PermissionController::class);
+
+
     //Global
     Route::post('/change-status', [StatusController::class, 'changeStatus'])->name('change.status');
 
@@ -113,6 +131,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('abrwn/news', [AbrwnController::class, 'news'])->name('abrwn.news');
     Route::get('news/create', [AbrwnController::class, 'create'])->name('abrwn.news.create');
     Route::get('news/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.news.edit');
+
+
+    
 
     //Article Categories
     Route::resource('article-categories', ArticleCategoryController::class)->names('article.categories');

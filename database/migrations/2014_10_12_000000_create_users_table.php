@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_approved')->default(0);
-            $table->boolean('status')->default(1);
+            $table->boolean('is_approved')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
