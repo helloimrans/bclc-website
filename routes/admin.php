@@ -93,26 +93,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('service/consultation/delete/{id}', [ServiceProBonoController::class, 'consultationDelete'])->name('service.consultation.delete');
     Route::get('service/consultation/status/{id}', [ServiceProBonoController::class, 'consultationStatus'])->name('service.consultation.status');
 
-    //Article,blog,review,news & write up category
-    Route::resource('abrwn/category', AbrwnCategoryController::class, ['as' => 'abrwn'])->except(['show']);
-
-    //Article,blog,review,news & write up
-    Route::resource('abrwn', AbrwnController::class)->except(['show']);
-    Route::get('article', [AbrwnController::class, 'article'])->name('abrwn.article');
-    Route::get('article/create', [AbrwnController::class, 'create'])->name('abrwn.article.create');
-    Route::get('article/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.article.edit');
-    Route::get('blog', [AbrwnController::class, 'blog'])->name('abrwn.blog');
-    Route::get('blog/create', [AbrwnController::class, 'create'])->name('abrwn.blog.create');
-    Route::get('blog/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.blog.edit');
-    Route::get('review', [AbrwnController::class, 'review'])->name('abrwn.review');
-    Route::get('review/create', [AbrwnController::class, 'create'])->name('abrwn.review.create');
-    Route::get('review/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.review.edit');
-    Route::get('write_up', [AbrwnController::class, 'write_up'])->name('abrwn.write_up');
-    Route::get('write_up/create', [AbrwnController::class, 'create'])->name('abrwn.write_up.create');
-    Route::get('write_up/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.write_up.edit');
-    Route::get('abrwn/news', [AbrwnController::class, 'news'])->name('abrwn.news');
-    Route::get('news/create', [AbrwnController::class, 'create'])->name('abrwn.news.create');
-    Route::get('news/edit/{id}', [AbrwnController::class, 'edit'])->name('abrwn.news.edit');
 
     //Article Categories
     Route::resource('article-categories', ArticleCategoryController::class)->names('article.categories');

@@ -1,30 +1,10 @@
 @foreach ($childs as $child)
     <div class="laws-chapters-section">
         <h5>
-            @if ($law->lang == 'en')
-            {{ $child->title }}
-            @elseif ($law->lang == 'bn')
-            {{ $child->title_bn }}
-            @elseif ($law->lang == 'both')
-                @if ($law->default_lang == 'en')
-                    {{ $child->title }}
-                    @elseif ($law->default_lang == 'bn')
-                    {{ $child->title_bn }}
-                @endif
-            @endif
+            {{session()->get('lawLocale') == 'bn' ? $child->title_bn : $child->title}}
         </h5>
         <p>
-            @if ($law->lang == 'en')
-            {!! $child->description !!}
-            @elseif ($law->lang == 'bn')
-            {!! $child->description_bn !!}
-            @elseif ($law->lang == 'both')
-                @if ($law->default_lang == 'en')
-                {!! $child->description !!}
-                    @elseif ($law->default_lang == 'bn')
-                    {!! $child->description_bn !!}
-                @endif
-            @endif
+            {!! session()->get('lawLocale') == 'bn' ? $child->description_bn : $child->description !!}
         </p>
     </div>
 

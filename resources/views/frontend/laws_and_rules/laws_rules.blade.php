@@ -6,7 +6,8 @@
             margin-top: 5px;
             color: var(--td);
         }
-        .article-item a{
+
+        .article-item a {
             font-size: 15px;
         }
 
@@ -76,19 +77,22 @@
                     <div class="laws-box">
                         @foreach ($categories as $category)
                             <div class="article-item">
-                                <h5 style="font-size: 18px; font-weight:600" class="mb-3" id="category_{{ $category->id }}"><i class="fa fa-angle-double-right"></i> {{ $category->name }}
+                                <h5 style="font-size: 18px; font-weight:600" class="mb-3"
+                                    id="category_{{ $category->id }}"><i class="fa fa-angle-double-right"></i>
+                                    {{ $category->name }}
                                 </h5>
                                 @if ($category->laws->count() == 0)
-                                    <span class="text-danger text-14"><i class="fa fa-ban text-danger"></i> Not found laws!</span>
+                                    <span class="text-danger text-14"><i class="fa fa-ban text-danger"></i> Not found
+                                        laws!</span>
                                 @endif
                                 @foreach ($category->laws as $law)
-                                <!-- article item -->
-                                <div class="media">
-                                    <i class="fa fa fa-legal"></i>
-                                    <div class="media-body">
-                                        <a href="{{ route('laws.rules.view',$law->slug) }}">{{ $law->title }}</a>
+                                    <!-- article item -->
+                                    <div class="media">
+                                        <i class="fa fa fa-legal"></i>
+                                        <div class="media-body">
+                                            <a href="{{ route('laws.rules.view', $law->slug) }}">{{ $law->title }}</a>
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
 
                             </div>
@@ -104,13 +108,13 @@
                     </div>
                     <div class="article-item">
                         @foreach ($categories as $category)
-                        <!-- article item -->
-                        <div class="media">
-                            <i class="fa fa-angle-double-right"></i>
-                            <div class="media-body">
-                                <a href="#category_{{ $category->id }}">{{ $category->name }}</a>
+                            <!-- article item -->
+                            <div class="media">
+                                <i class="fa fa-angle-double-right"></i>
+                                <div class="media-body">
+                                    <a href="#category_{{ $category->id }}">{{ $category->name }}</a>
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

@@ -109,55 +109,12 @@
         <div class="container">
             <div class="row">
                 <input type="hidden" value="{{ @$chapter->law->id }}" id="law_id">
-                <div class="col-lg-10 mx-auto">
+                <div class="col-lg-12">
+
+                    {{-- include law header --}}
+                    @includeIf('frontend.laws_and_rules.law_header', ['law' => @$chapter->law])
                     <div class="laws-box">
-                        <div class="laws-header-one text-center mb-4 pb-2">
-                            <h5>{{ @$chapter->law->title }}</h5>
-                            <p>( You are now reading in-depth details )</p>
-                        </div>
-                        <div class="laws-header-two">
-                            <div class="row">
-                                <div class="col-md-4 align-self-center">
-                                    <div class="laws-back">
-                                        <a href="{{ route('laws.rules.details', @$chapter->law->slug) }}"><i
-                                                class="fa fa-angle-left"></i> Back</a>
 
-                                        @if (@$chapter->law->link)
-                                            <a href="{{ @$chapter->law->link }}" target="_blank"><i class="fa fa-link"></i>
-                                                Ref. Link</a>
-                                        @endif
-                                    </div>
-
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="service-search section-search">
-                                        <form action="{{ route('section.form.search') }}" method="GET">
-                                            <input type="hidden" name="law_id" value="{{ $chapter->law_id }}">
-                                            <div class="input-group">
-                                                <input class="form-control form-control-sm" type="text" id="search"
-                                                    name="search" placeholder="Search..." autocomplete="off" required>
-                                                <div class="input-group-prepend">
-                                                    <button type="submit" class="btn service-nsbtn"><i
-                                                            class="fa fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <div class="section-ajax" id="result" style="display:none">
-                                            <div id="memList">
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-3 align-self-center">
-                                    <div class="laws-date text-right laws-back">
-                                        <a href="javascript:;"><i class="fa fa-eye"></i>
-                                            {{ @$chapter->law->total_views }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="laws-chapters-one">
                             <h5>{{ $chapter->chapter_no }} : {{ $chapter->title }} <span class="text-uppercase">(
 
@@ -197,17 +154,17 @@
     <!-- end laws section -->
 
 @section('scripts')
-<script>
-$(document).ready(function(){
-    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-        localStorage.setItem('activeTab', $(e.target).attr('href'));
-    });
-    var activeTab = localStorage.getItem('activeTab');
-    if(activeTab){
-        $('#myTab a[href="' + activeTab + '"]').tab('show');
-    }
-});
-</script>
+    <script>
+        $(document).ready(function() {
+            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('#myTab a[href="' + activeTab + '"]').tab('show');
+            }
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $.ajaxSetup({

@@ -126,49 +126,12 @@
         <div class="container">
             <div class="row">
                 <input type="hidden" value="{{ $law->id }}" id="law_id">
-                <div class="col-lg-9 mx-auto">
-                    <div class="laws-header-one text-center mb-4 pb-2">
-                        <h5>{{ $law->title }}</h5>
-                        <p>( You are now reading in-depth details )</p>
-                    </div>
-                    <div class="laws-header-two">
-                        <div class="row">
-                            <div class="col-md-4 align-self-center">
-                                <div class="laws-back">
+                <div class="col-lg-12">
 
-                                </div>
+                    {{-- include law header --}}
+                    @includeIf('frontend.laws_and_rules.law_header', ['law' => $law])
 
-                            </div>
-                            <div class="col-md-5">
-                                <div class="service-search section-search">
-                                    <form action="{{ route('section.form.search') }}" method="GET">
-                                        <input type="hidden" name="law_id" value="{{ $law->id }}" required>
-                                        <div class="input-group">
-                                            <input class="form-control form-control-sm" type="text" id="search"
-                                                name="search" placeholder="Search..." autocomplete="off" required>
-                                            <div class="input-group-prepend">
-                                                <button type="submit" class="btn service-nsbtn"><i
-                                                        class="fa fa-search"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div class="section-ajax" id="result" style="display:none">
-                                        <div id="memList">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-md-3 align-self-center">
-                                <div class="laws-date text-right">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-<hr class="my-4">
-                    <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+                    <ul class="nav nav-pills nav-justified mb-2" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                 aria-controls="home" aria-selected="true">ENGLISH</a>

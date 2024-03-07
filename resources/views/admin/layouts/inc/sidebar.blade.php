@@ -29,7 +29,7 @@
 
             {{-- users --}}
             <li class="nav-item @if ($route == 'profession.index' || $route == 'profession.edit' || $route == 'profession.create') open @endif"><a class="d-flex align-items-center"
-                    href="#"><i class="fas fa-signature"></i>
+                    href="#"><i class="fas fa-users"></i>
                     <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">System Users</span></a>
                 <ul class="menu-content">
                     <li class=" @if ($route == 'profession.index' || $route == 'profession.edit' || $route == 'profession.create') active @endif"><a class="d-flex align-items-center"
@@ -118,54 +118,6 @@
                             class="d-flex align-items-center" href="{{ route('enrolled.courses.index') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate"
                                 data-i18n="Roles">Enrolled Course</span></a>
-                    </li>
-                </ul>
-            </li>
-            {{-- -----------------------------
-                Article,Blog,Others
-            ------------------------------ --}}
-            <li class="nav-item @if (
-                $route == 'abrwn.category.index' ||
-                    $route == 'abrwn.category.edit' ||
-                    $route == 'abrwn.index' ||
-                    $route == 'abrwn.edit') open @endif"><a class="d-flex align-items-center"
-                    href="#"><i data-feather='check-square'></i><span class="menu-title text-truncate"
-                        data-i18n="Article,Blog,Others">Article,Blog,Others</span></a>
-                <ul class="menu-content">
-                    <li class=" @if ($route == 'abrwn.category.index' || $route == 'abrwn.category.edit') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.category.index') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Roles">Category</span></a>
-                    </li>
-                    <li class=" @if ($route == 'abrwn.index' || $route == 'abrwn.edit' || $route == 'abrwn.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.index') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Permission">ABRWN</span></a>
-                    </li>
-                    <li class=" @if ($route == 'abrwn.article' || $route == 'abrwn.article.edit' || $route == 'abrwn.article.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.article') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Permission">Article</span></a>
-                    </li>
-                    <li class=" @if ($route == 'abrwn.blog' || $route == 'abrwn.blog.edit' || $route == 'abrwn.blog.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.blog') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Permission">Blog</span></a>
-                    </li>
-                    <li class=" @if ($route == 'abrwn.review' || $route == 'abrwn.review.edit' || $route == 'abrwn.review.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.review') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Permission">Review</span></a>
-                    </li>
-                    <li class=" @if ($route == 'abrwn.write_up' || $route == 'abrwn.write_up.edit' || $route == 'abrwn.write_up.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.write_up') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Permission">Write Up</span></a>
-                    </li>
-                    <li class=" @if ($route == 'abrwn.news' || $route == 'abrwn.news.edit' || $route == 'abrwn.news.create') active @endif"><a
-                            class="d-flex align-items-center" href="{{ route('abrwn.news') }}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate"
-                                data-i18n="Permission">News</span></a>
                     </li>
                 </ul>
             </li>
