@@ -126,7 +126,7 @@
                             <div id="collapse-1" class="collapse" data-parent="#accordion"
                                 aria-labelledby="heading-1" style="">
                                 <div class="card-body">
-                                    {{ $course->training_offering }}
+                                    {!! $course->training_offering !!}
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div id="collapse-2" class="collapse" data-parent="#accordion"
                                 aria-labelledby="heading-2">
                                 <div class="card-body">
-                                    {{ $course->consulting_offering }}
+                                    {!! $course->consulting_offering !!}
                                 </div>
                             </div>
                         </div>
