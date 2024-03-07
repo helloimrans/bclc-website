@@ -34,7 +34,7 @@
                     <a href="{{ route('writeup.details',$relatedWriteup->slug) }}">
                         <div class="media">
                             <div class="adrm-img">
-                                <img src="@if ($relatedWriteup->thumbnail_image) {{ Storage::url($relatedWriteup->thumbnail_image) }}
+                                <img src="@if ($relatedWriteup->thumbnail_image) {{ asset($relatedWriteup->thumbnail_image) }}
                                 @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="{{ $relatedWriteup->title }}">
                             </div>
                             <div class="media-body">
@@ -92,7 +92,7 @@
                         <span><i class="fa fa-calendar"></i> {{ $writeup->created_at->format('d M Y') }}</span>
                     </div>
                     <div class="ad-images mb-3">
-                        <img class="img-fluid rounded" src="@if ($writeup->thumbnail_image) {{ Storage::url($writeup->thumbnail_image) }}
+                        <img class="img-fluid rounded" src="@if ($writeup->thumbnail_image) {{ asset($writeup->thumbnail_image) }}
                         @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="image">
                     </div>
                     <div class="ad-descs">

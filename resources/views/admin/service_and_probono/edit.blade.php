@@ -119,7 +119,7 @@
                                             @enderror
                                         </div>
                                         <div class="mb-1">
-                                            <img src="@if ($service->thumbnail_image) {{ Storage::url($service->thumbnail_image) }}
+                                            <img src="@if ($service->thumbnail_image) {{ asset($service->thumbnail_image) }}
                                             @else
                                             {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 id="upImg1" class="upImg1 rounded me-50 border" alt="image"
@@ -143,7 +143,7 @@
                                             @foreach ($service->images as $image)
                                                 <div class="col-sm-4 col-md-3">
                                                     <div class="mb-1 text-center border rounded">
-                                                        <img src=" {{ Storage::url($image->image) }}"
+                                                        <img src=" {{ asset($image->image) }}"
                                                             class="rounded me-50 border-bottom img-fluid" alt="image">
                                                         <a id="confirm_first"
                                                             href="{{ route('service.image.remove', $image->id) }}"

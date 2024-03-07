@@ -27,7 +27,7 @@ class ReviewController extends Controller
             $reviews = $this->reviewService->getAllReviews();
             return DataTables::of($reviews)
                 ->editColumn('thumbnail_image', function ($review) {
-                    $imageUrl = $review->thumbnail_image ? Storage::url($review->thumbnail_image) : Storage::url('defaults/noimage/no_img.jpg');
+                    $imageUrl = $review->thumbnail_image ? asset($review->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $review->title . '">';
                 })
                 ->editColumn('is_active', function ($review) {

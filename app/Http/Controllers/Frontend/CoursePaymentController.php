@@ -41,4 +41,8 @@ class CoursePaymentController extends Controller
 
         return response()->json($courseOrderDetails);
     }
+
+    public function paymentSuccess(){
+        return view('frontend.enroll.success');
+    }
 }

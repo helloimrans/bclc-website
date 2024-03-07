@@ -56,7 +56,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ \Str::limit($abrwn->title,40) }}</td>
                                                 <td><img class="rounded" width="60"
-                                                    src="@if ($abrwn->thumbnail_image) {{ Storage::url($abrwn->thumbnail_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                    src="@if ($abrwn->thumbnail_image) {{ asset($abrwn->thumbnail_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                     alt="{{ $abrwn->title }}"></td>
                                                 <td>
                                                     @if ($abrwn->is_abrwn == 1)

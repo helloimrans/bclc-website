@@ -366,15 +366,15 @@
 
                                 <div class="mb-1">
                                     <label class="form-label">Certificate Image</label>
-                                    <input type="file" id="upImgInput1" name="certificate_image"
+                                    <input type="file" id="upImgInput2" name="certificate_image"
                                         class="form-control @error('certificate_image') is-invalid @enderror">
                                     @error('certificate_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <img src="{{ asset('defaults/noimage/no_img.jpg') }}" id="upImg1"
-                                        class="upImg1 rounded me-50 border" alt="profile image" height="100">
+                                    <img src="{{ asset('defaults/noimage/no_img.jpg') }}" id="upImg2"
+                                        class="upImg2 rounded me-50 border" alt="profile image" height="100">
                                 </div>
                                 <div class="mb-1">
                                     <button type="button" id="upImgReset1"

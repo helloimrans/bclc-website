@@ -24,7 +24,7 @@ class ArticleCategoryController extends Controller
             $categories = $this->articleCategoryService->getAllCategories();
             return DataTables::of($categories)
                 ->editColumn('image', function ($category) {
-                    $imageUrl = $category->image ? Storage::url($category->image) : Storage::url('defaults/noimage/no_img.jpg');
+                    $imageUrl = $category->image ? asset($category->image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $category->name . '">';
                 })
                 ->editColumn('is_active', function ($article) {

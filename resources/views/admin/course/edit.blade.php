@@ -311,7 +311,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <img src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
+                                    <img src="@if ($course->image) {{ asset($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
                                         class="upImg1 rounded me-50 border" alt="profile image" height="100">
                                 </div>
                                 <div class="mb-1">
@@ -356,14 +356,14 @@
 
                                 <div class="mb-1">
                                     <label class="form-label">Certificate Image</label>
-                                    <input type="file" id="upImgInput1" name="certificate_image"
+                                    <input type="file" id="upImgInput2" name="certificate_image"
                                         class="form-control @error('certificate_image') is-invalid @enderror">
                                     @error('certificate_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <img src="@if ($course->certificate_image) {{ Storage::url($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
+                                    <img src="@if ($course->certificate_image) {{ asset($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
                                         class="upImg1 rounded me-50 border" alt="certificate image" height="100">
                                 </div>
                                 <div class="mb-1">

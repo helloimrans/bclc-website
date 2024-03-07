@@ -100,7 +100,7 @@
                                         <!--article box -->
                                         <div class="article-box">
                                             <div class="article-img">
-                                                <img src="@if ($article->thumbnail_image) {{ Storage::url($article->thumbnail_image) }}
+                                                <img src="@if ($article->thumbnail_image) {{ asset($article->thumbnail_image) }}
                       @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                     alt="{{ $article->title }}">
                                             </div>
@@ -177,7 +177,7 @@
                                             <div class="sh-img">
                                                 <a href="{{ route('writeup.details', $writeup->slug) }}">
                                                     <div class="sh-img-main">
-                                                        <img src="@if ($writeup->thumbnail_image) {{ Storage::url($writeup->thumbnail_image) }}
+                                                        <img src="@if ($writeup->thumbnail_image) {{ asset($writeup->thumbnail_image) }}
                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                             class="img-fluid" alt="image">
                                                     </div>
@@ -488,7 +488,7 @@
                                 <!--news events box-->
                                 <div class="news-events-box">
                                     <div class="events-img">
-                                        <img src="@if ($news->thumbnail_image) {{ Storage::url($news->thumbnail_image) }}
+                                        <img src="@if ($news->thumbnail_image) {{ asset($news->thumbnail_image) }}
                   @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                             class="img-fluid" alt="{{ $news->title }}">
                                     </div>
@@ -531,7 +531,7 @@
                                 <!--news events box-->
                                 <div class="news-events-box">
                                     <div class="events-img">
-                                        <img src="@if ($blog->thumbnail_image) {{ Storage::url($blog->thumbnail_image) }}
+                                        <img src="@if ($blog->thumbnail_image) {{ asset($blog->thumbnail_image) }}
                   @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                             class="img-fluid" alt="{{ $blog->title }}">
                                     </div>

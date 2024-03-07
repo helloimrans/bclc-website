@@ -27,7 +27,7 @@ class BlogController extends Controller
             $blogs = $this->blogService->getAllBlogs();
             return DataTables::of($blogs)
                 ->editColumn('thumbnail_image', function ($blog) {
-                    $imageUrl = $blog->thumbnail_image ? Storage::url($blog->thumbnail_image) : Storage::url('defaults/noimage/no_img.jpg');
+                    $imageUrl = $blog->thumbnail_image ? asset($blog->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $blog->title . '">';
                 })
                 ->editColumn('is_active', function ($blog) {

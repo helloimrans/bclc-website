@@ -41,7 +41,7 @@
                                     <a
                                         href="{{ route('news.details',$relatedNews->slug) }}">
                                         <span>
-                                            <img src="@if ($relatedNews->thumbnail_image) {{ Storage::url($relatedNews->thumbnail_image) }}
+                                            <img src="@if ($relatedNews->thumbnail_image) {{ asset($relatedNews->thumbnail_image) }}
                                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 alt="image">
                                         </span>
@@ -72,7 +72,7 @@
                                     <a
                                         href="{{ route('news.details',$latestNews->slug) }}">
                                         <span>
-                                            <img src="@if ($latestNews->thumbnail_image) {{ Storage::url($latestNews->thumbnail_image) }}
+                                            <img src="@if ($latestNews->thumbnail_image) {{ asset($latestNews->thumbnail_image) }}
                                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 alt="image">
                                         </span>
@@ -114,7 +114,7 @@
                         <span><i class="fa fa-calendar"></i> {{ $news->created_at->format('d M Y') }}</span>
                     </div>
                     <div class="ad-images mb-3">
-                        <img class="img-fluid rounded" src="@if ($news->thumbnail_image) {{ Storage::url($news->thumbnail_image) }}
+                        <img class="img-fluid rounded" src="@if ($news->thumbnail_image) {{ asset($news->thumbnail_image) }}
                         @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="image">
                     </div>
                     <div class="ad-descs">

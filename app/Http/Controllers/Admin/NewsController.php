@@ -27,7 +27,7 @@ class NewsController extends Controller
             $newss = $this->newsService->getAllNews();
             return DataTables::of($newss)
                 ->editColumn('thumbnail_image', function ($news) {
-                    $imageUrl = $news->thumbnail_image ? Storage::url($news->thumbnail_image) : Storage::url('defaults/noimage/no_img.jpg');
+                    $imageUrl = $news->thumbnail_image ? asset($news->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $news->title . '">';
                 })
                 ->editColumn('is_active', function ($news) {

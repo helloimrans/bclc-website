@@ -96,7 +96,7 @@
                                             @enderror
                                         </div>
                                         <div class="mb-1">
-                                            <img src="@if ($news->thumbnail_image) {{ Storage::url($news->thumbnail_image) }}
+                                            <img src="@if ($news->thumbnail_image) {{ asset($news->thumbnail_image) }}
                                             @else
                                             {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 id="upImg1" class="upImg1 rounded me-50 border" alt="image"
