@@ -62,12 +62,14 @@ class AbrwnCategoryController extends Controller
 
         $input = $request->all();
 
-        $image = $request->file('image');
-        if ($image) {
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploaded/abrwn'), $imageName);
-            $input['image'] = '/uploaded/abrwn/' . $imageName;
-        }
+        // $image = $request->file('image');
+        // if ($image) {
+        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path('uploaded/abrwn'), $imageName);
+        //     $input['image'] = '/uploaded/abrwn/' . $imageName;
+        // }
+
+        $input['image'] = uploadFile($input['image'], 'abrwn');
 
         $input['slug'] = Str::slug($request->name);
         $input['created_by'] = Auth::user()->id;
@@ -162,14 +164,15 @@ class AbrwnCategoryController extends Controller
         $input = $request->all();
         $data = AbrwnCategory::find($id);
 
-        $image = $request->file('image');
-        if ($image) {
-            $image_path = public_path($data->image);
-            @unlink($image_path);
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploaded/abrwn'), $imageName);
-            $input['image'] = '/uploaded/abrwn/' . $imageName;
-        }
+        // $image = $request->file('image');
+        // if ($image) {
+        //     $image_path = public_path($data->image);
+        //     @unlink($image_path);
+        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path('uploaded/abrwn'), $imageName);
+        //     $input['image'] = '/uploaded/abrwn/' . $imageName;
+        // }
+        $input['image'] = uploadFile($input['image'], 'abrwn');
 
         $input['slug'] = Str::slug($request->name);
         $input['updated_by'] = Auth::user()->id;

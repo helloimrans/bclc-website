@@ -78,12 +78,14 @@ class ServiceProBonoController extends Controller
 
 
 
-        $thumbnail_image = $request->file('thumbnail_image');
-        if ($thumbnail_image) {
-            $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
-            $thumbnail_image->move(public_path('uploaded/service'), $imageName);
-            $data->thumbnail_image = '/uploaded/service/' . $imageName;
-        }
+        // $thumbnail_image = $request->file('thumbnail_image');
+        // if ($thumbnail_image) {
+        //     $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
+        //     $thumbnail_image->move(public_path('uploaded/service'), $imageName);
+        //     $data->thumbnail_image = '/uploaded/service/' . $imageName;
+        // }
+
+        $data->thumbnail_image = uploadFile($request->thumbnail_image, 'service');
         $data->save();
 
         //Associated Service
@@ -96,9 +98,12 @@ class ServiceProBonoController extends Controller
                 $si_image = new ServiceImage();
                 $si_image->service_id = $data->id;
 
-                $imageName = time() . '_' . uniqid() . '.' . $slider_image->getClientOriginalExtension();
-                $slider_image->move(public_path('uploaded/service'), $imageName);
-                $si_image->image = '/uploaded/service/' . $imageName;
+                // $imageName = time() . '_' . uniqid() . '.' . $slider_image->getClientOriginalExtension();
+                // $slider_image->move(public_path('uploaded/service'), $imageName);
+                // $si_image->image = '/uploaded/service/' . $imageName;
+
+                $si_image->image = uploadFile($slider_image, 'service');
+
                 $si_image->save();
             }
         }
@@ -183,14 +188,15 @@ class ServiceProBonoController extends Controller
 
 
 
-        $thumbnail_image = $request->file('thumbnail_image');
-        if ($thumbnail_image) {
-            $image_path = public_path($data->thumbnail_image);
-            @unlink($image_path);
-            $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
-            $thumbnail_image->move(public_path('uploaded/service'), $imageName);
-            $data->thumbnail_image = '/uploaded/service/' . $imageName;
-        }
+        // $thumbnail_image = $request->file('thumbnail_image');
+        // if ($thumbnail_image) {
+        //     $image_path = public_path($data->thumbnail_image);
+        //     @unlink($image_path);
+        //     $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
+        //     $thumbnail_image->move(public_path('uploaded/service'), $imageName);
+        //     $data->thumbnail_image = '/uploaded/service/' . $imageName;
+        // }
+        $data->thumbnail_image = uploadFile($request->thumbnail_image, 'service');
         $data->save();
 
         //Associated Service
@@ -205,9 +211,11 @@ class ServiceProBonoController extends Controller
                 $si_image = new ServiceImage();
                 $si_image->service_id = $data->id;
 
-                $imageName = time() . '_' . uniqid() . '.' . $slider_image->getClientOriginalExtension();
-                $slider_image->move(public_path('uploaded/service'), $imageName);
-                $si_image->image = '/uploaded/service/' . $imageName;
+                // $imageName = time() . '_' . uniqid() . '.' . $slider_image->getClientOriginalExtension();
+                // $slider_image->move(public_path('uploaded/service'), $imageName);
+                // $si_image->image = '/uploaded/service/' . $imageName;
+                $si_image->image = uploadFile($slider_image, 'service');
+
                 $si_image->save();
             }
         }

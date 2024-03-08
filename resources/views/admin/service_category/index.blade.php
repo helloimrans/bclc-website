@@ -62,7 +62,7 @@
                                                     @endif
                                                 </td>
                                                 <td><img class="rounded" width="60"
-                                                        src="@if ($category->image) {{ asset($category->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                        src="@if ($category->image) {{ Storage::url($category->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                         alt="{{ $category->name }}"></td>
                                                 <td>{{ $category->description }}</td>
                                                 <td>

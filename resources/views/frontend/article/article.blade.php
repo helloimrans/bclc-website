@@ -33,7 +33,7 @@
                      <!--article box -->
                      <div class="article-box">
                         <div class="article-img">
-                            <img src="@if ($article->thumbnail_image) {{ asset($article->thumbnail_image) }}
+                            <img src="@if ($article->thumbnail_image) {{ Storage::url($article->thumbnail_image) }}
                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif">
                         </div>
                         <div class="article-txt">

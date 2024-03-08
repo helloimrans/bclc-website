@@ -6,7 +6,7 @@
         <!-- header section -->
         <div class="d-flex mb-2">
             <a href="#" class="me-25">
-                <img src="@if ($user->image) {{ asset($user->image) }}
+                <img src="@if ($user->image) {{ Storage::url($user->image) }}
                 @else
                 {{ asset('defaults/avatar/avatar.png') }} @endif"
                     id="upImg1" class="upImg1 rounded me-50" alt="profile image" height="100" width="100" />

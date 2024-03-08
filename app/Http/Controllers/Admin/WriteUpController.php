@@ -27,7 +27,7 @@ class WriteUpController extends Controller
             $writeUps = $this->writeUpService->getAllWriteUps();
             return DataTables::of($writeUps)
                 ->editColumn('thumbnail_image', function ($writeUp) {
-                    $imageUrl = $writeUp->thumbnail_image ? asset($writeUp->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
+                    $imageUrl = $writeUp->thumbnail_image ? Storage::url($writeUp->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $writeUp->title . '">';
                 })
                 ->editColumn('is_active', function ($writeUp) {

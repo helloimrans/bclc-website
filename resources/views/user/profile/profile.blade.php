@@ -30,7 +30,7 @@
                                 <div class="user-avatar-section">
                                     <div class="d-flex align-items-center flex-column">
                                         <img class="img-fluid rounded mt-3 mb-2"
-                                            src="@if ($user->image) {{ asset($user->image) }}
+                                            src="@if ($user->image) {{ Storage::url($user->image) }}
                                             @else
                                             {{ asset('defaults/avatar/avatar.png') }} @endif"
                                             height="110" width="110" alt="User avatar" />

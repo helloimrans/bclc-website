@@ -53,12 +53,13 @@ class OfficeFunctionController extends Controller
         $data->status                       = $request->status;
         $data->created_by                   = Auth::user()->id;
 
-        $file = $request->file('file');
-        if ($file) {
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploaded/office_function'), $fileName);
-            $data->file = '/uploaded/office_function/' . $fileName;
-        }
+        // $file = $request->file('file');
+        // if ($file) {
+        //     $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        //     $file->move(public_path('uploaded/office_function'), $fileName);
+        //     $data->file = '/uploaded/office_function/' . $fileName;
+        // }
+        $data->file = uploadFile($request->file, 'office_function');
         $data->save();
 
         $notification = array(
@@ -108,14 +109,15 @@ class OfficeFunctionController extends Controller
         $data->status                       = $request->status;
         $data->updated_by                   = Auth::user()->id;
 
-        $file = $request->file('file');
-        if ($file) {
-            $file_path = public_path($data->file);
-            @unlink($file_path);
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploaded/office_function'), $fileName);
-            $data->file = '/uploaded/office_function/' . $fileName;
-        }
+        // $file = $request->file('file');
+        // if ($file) {
+        //     $file_path = public_path($data->file);
+        //     @unlink($file_path);
+        //     $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        //     $file->move(public_path('uploaded/office_function'), $fileName);
+        //     $data->file = '/uploaded/office_function/' . $fileName;
+        // }
+        $data->file = uploadFile($request->file, 'office_function');
         $data->update();
 
         $notification = array(

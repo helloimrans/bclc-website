@@ -311,7 +311,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <img src="@if ($course->image) {{ asset($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
+                                    <img src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg1"
                                         class="upImg1 rounded me-50 border" alt="profile image" height="100">
                                 </div>
                                 <div class="mb-1">
@@ -363,7 +363,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-1">
-                                    <img src="@if ($course->certificate_image) {{ asset($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
+                                    <img src="@if ($course->certificate_image) {{ Storage::url($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
                                         class="upImg1 rounded me-50 border" alt="certificate image" height="100">
                                 </div>
                                 <div class="mb-1">

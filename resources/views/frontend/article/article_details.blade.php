@@ -51,7 +51,7 @@
                         <span><i class="fa fa-calendar"></i> {{ $article->created_at->format('d M Y') }}</span>
                     </div>
                     <div class="ad-images mb-3">
-                        <img class="img-fluid rounded" src="@if ($article->thumbnail_image) {{ asset($article->thumbnail_image) }}
+                        <img class="img-fluid rounded" src="@if ($article->thumbnail_image) {{ Storage::url($article->thumbnail_image) }}
                         @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="image">
                     </div>
                     <div class="ad-descs">
@@ -77,7 +77,7 @@
                         <a href="{{ route('article.details', $relatedArticle->slug) }}">
                             <div class="media">
                                 <div class="adrm-img">
-                                    <img src="@if ($relatedArticle->thumbnail_image) {{ asset($relatedArticle->thumbnail_image) }}
+                                    <img src="@if ($relatedArticle->thumbnail_image) {{ Storage::url($relatedArticle->thumbnail_image) }}
                                 @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                         alt="{{ $relatedArticle->title }}">
                                 </div>

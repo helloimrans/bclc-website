@@ -100,7 +100,7 @@
                                             @enderror
                                         </div>
                                         <div class="mb-1">
-                                            <img src="@if ($category->image) {{ asset($category->image) }}
+                                            <img src="@if ($category->image) {{ Storage::url($category->image) }}
                                                                                 @else
                                                                                 {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 id="upImg2" class="upImg2 rounded me-50 border" alt="profile image"

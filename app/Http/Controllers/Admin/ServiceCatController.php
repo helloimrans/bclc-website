@@ -59,12 +59,14 @@ class ServiceCatController extends Controller
 
         $input = $request->all();
 
-        $image = $request->file('image');
-        if ($image) {
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploaded/service_category'), $imageName);
-            $input['image'] = '/uploaded/service_category/' . $imageName;
-        }
+        // $image = $request->file('image');
+        // if ($image) {
+        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path('uploaded/service_category'), $imageName);
+        //     $input['image'] = '/uploaded/service_category/' . $imageName;
+        // }
+
+        $input['image'] = uploadFile($input['image'], 'service_category');
 
         $input['slug'] = Str::slug($request->name);
         $input['created_by'] = Auth::user()->id;
@@ -141,14 +143,16 @@ class ServiceCatController extends Controller
         $input = $request->all();
         $data = ServiceCategory::find($id);
 
-        $image = $request->file('image');
-        if ($image) {
-            $image_path = public_path($data->image);
-            @unlink($image_path);
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploaded/service_category'), $imageName);
-            $input['image'] = '/uploaded/service_category/' . $imageName;
-        }
+        // $image = $request->file('image');
+        // if ($image) {
+        //     $image_path = public_path($data->image);
+        //     @unlink($image_path);
+        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path('uploaded/service_category'), $imageName);
+        //     $input['image'] = '/uploaded/service_category/' . $imageName;
+        // }
+        
+        $input['image'] = uploadFile($input['image'], 'service_category');
 
         $input['slug'] = Str::slug($request->name);
         $input['updated_by'] = Auth::user()->id;

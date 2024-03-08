@@ -27,7 +27,7 @@ class ArticleController extends Controller
             $articles = $this->articleService->getAllArticles();
             return DataTables::of($articles)
                 ->editColumn('thumbnail_image', function ($article) {
-                    $imageUrl = $article->thumbnail_image ? asset($article->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
+                    $imageUrl = $article->thumbnail_image ? Storage::url($article->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $article->title . '">';
                 })
                 ->editColumn('is_active', function ($article) {

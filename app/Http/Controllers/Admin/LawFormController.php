@@ -21,12 +21,15 @@ class LawFormController extends Controller
 
         $data->law_id        = $request->law_id;
         $data->title         = $request->title;
-        $file = $request->file('file');
-        if ($file) {
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploaded/law_form'), $fileName);
-            $data->file = '/uploaded/law_form/' . $fileName;
-        }
+        // $file = $request->file('file');
+        // if ($file) {
+        //     $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        //     $file->move(public_path('uploaded/law_form'), $fileName);
+        //     $data->file = '/uploaded/law_form/' . $fileName;
+        // }
+
+        $data->file = uploadFile($request->file, 'law_form');
+
         $data->status        = $request->status;
         $data->created_by    = Auth::user()->id;
         $data->save();
@@ -49,14 +52,15 @@ class LawFormController extends Controller
         $data = LawForm::findOrFail($id);
 
         $data->title         = $request->title;
-        $file = $request->file('file');
-        if ($file) {
-            $file_path = public_path($data->file);
-            @unlink($file_path);
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploaded/law_form'), $fileName);
-            $data->file = '/uploaded/law_form/' . $fileName;
-        }
+        // $file = $request->file('file');
+        // if ($file) {
+        //     $file_path = public_path($data->file);
+        //     @unlink($file_path);
+        //     $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        //     $file->move(public_path('uploaded/law_form'), $fileName);
+        //     $data->file = '/uploaded/law_form/' . $fileName;
+        // }
+        $data->file = uploadFile($request->file, 'law_form');
         $data->status        = $request->status;
         $data->updated_by    = Auth::user()->id;
         $data->save();

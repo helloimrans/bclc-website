@@ -43,7 +43,7 @@
                                         <!-- header section -->
                                         <div class="d-flex mb-2">
                                             <a href="#" class="me-25">
-                                                <img src="@if($expert->image) {{ asset($expert->image) }}
+                                                <img src="@if($expert->image) {{ Storage::url($expert->image) }}
                                                 @else
                                                 {{ asset('defaults/avatar/avatar.png') }} @endif"
                                                     id="upImg1" class="upImg1 rounded me-50" alt="profile image"
@@ -253,7 +253,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="mb-1">
-                                                    <img src="@if ($expert->nid_passport_front) {{ asset($expert->nid_passport_front) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
+                                                    <img src="@if ($expert->nid_passport_front) {{ Storage::url($expert->nid_passport_front) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg2"
                                                         class="upImg2 rounded me-50 border" alt="profile image" height="100">
                                                 </div>
                                                 <div class="mb-1">
@@ -271,7 +271,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="mb-1">
-                                                    <img src="@if ($expert->nid_passport_back) {{ asset($expert->nid_passport_back) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg3"
+                                                    <img src="@if ($expert->nid_passport_back) {{ Storage::url($expert->nid_passport_back) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" id="upImg3"
                                                         class="upImg3 rounded me-50 border" alt="profile image" height="100">
                                                 </div>
                                                 <div class="mb-1">

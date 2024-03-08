@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="td-image">
-                    <img src="{{asset($course->image)}}" class="img-fluid" alt="">
+                    <img src="{{Storage::url($course->image)}}" class="img-fluid" alt="">
                     <div class="td-img-txt">
                         <h4>{{ $course->title }}</h4>
                     </div>
@@ -153,7 +153,7 @@
                     <h2><span>Certificate Image</span></h2>
                 </div>
                 <div class="certificate_image mt-4">
-                    <img src="{{asset($course->certificate_image)}}" class="w-100" alt="Certificate">
+                    <img src="{{Storage::url($course->certificate_image)}}" class="w-100" alt="Certificate">
                 </div>
 
                 <!--Start Course FAQs-->
@@ -303,7 +303,7 @@
                                 <!-- training box -->
                                 <div class="course-box">
                                     <div class="course-img">
-                                        <img src="{{asset($related_course->image)}}" class="img-fluid" alt="">
+                                        <img src="{{Storage::url($related_course->image)}}" class="img-fluid" alt="">
                                     </div>
                                     <div class="course-desc">
                                         <div class="course-author">

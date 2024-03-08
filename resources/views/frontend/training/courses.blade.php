@@ -22,13 +22,13 @@
       <div class="col-lg-4 col-md-6">
         <div class="course-box mt-3">
             <div class="course-img">
-              <img class="img-fluid" src="{{ asset($course->image) }}" alt="image">
+              <img class="img-fluid" src="{{ Storage::url($course->image) }}" alt="image">
             </div>
             <div class="course-desc">
               <div class="course-author">
                 <div class="ta-img">
                   <div class="ta-img-main">
-                    <img src="{{$course->expert->image ? asset($course->expert->image) : asset('defaults/noimage/no_img.jpg')}}" alt="image">
+                    <img src="{{$course->expert->image ? Storage::url($course->expert->image) : asset('defaults/noimage/no_img.jpg')}}" alt="image">
                   </div>
                   <a href="#">{{ $course->expert->name }}</a>
                 </div>

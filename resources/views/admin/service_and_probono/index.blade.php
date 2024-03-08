@@ -55,7 +55,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $service->title }}</td>
                                                 <td><img class="rounded" width="60"
-                                                    src="@if ($service->thumbnail_image) {{ asset($service->thumbnail_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                    src="@if ($service->thumbnail_image) {{ Storage::url($service->thumbnail_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                     alt="{{ $service->title }}"></td>
                                                 <td>
                                                     @if ($service->is_service == 1)

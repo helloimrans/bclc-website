@@ -33,7 +33,7 @@
                         <!--news events box-->
                         <div class="news-events-box">
                             <div class="events-img">
-                                <img src="@if ($news->thumbnail_image) {{ asset($news->thumbnail_image) }}
+                                <img src="@if ($news->thumbnail_image) {{ Storage::url($news->thumbnail_image) }}
                                 @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" class="img-fluid" alt="{{ $news->title }}">
                             </div>
                             <div class="events-txt">

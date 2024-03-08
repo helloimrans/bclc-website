@@ -64,12 +64,13 @@ class AbrwnController extends Controller
         $input['created_by'] = Auth::user()->id;
         $input['guard_name'] = 'admin';
 
-        $thumbnail_image = $request->file('thumbnail_image');
-        if ($thumbnail_image) {
-            $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
-            $thumbnail_image->move(public_path('uploaded/service'), $imageName);
-            $input['thumbnail_image'] = '/uploaded/service/' . $imageName;
-        }
+        // $thumbnail_image = $request->file('thumbnail_image');
+        // if ($thumbnail_image) {
+        //     $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
+        //     $thumbnail_image->move(public_path('uploaded/service'), $imageName);
+        //     $input['thumbnail_image'] = '/uploaded/service/' . $imageName;
+        // }
+        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'service');
 
         Abrwn::create($input);
 
@@ -146,14 +147,15 @@ class AbrwnController extends Controller
         $input['slug'] = Str::slug($request->title);
         $input['updated_by'] = Auth::user()->id;
 
-        $thumbnail_image = $request->file('thumbnail_image');
-        if ($thumbnail_image) {
-            $image_path = public_path($data->thumbnail_image);
-            @unlink($image_path);
-            $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
-            $thumbnail_image->move(public_path('uploaded/abrwn'), $imageName);
-            $input['thumbnail_image'] = '/uploaded/abrwn/' . $imageName;
-        }
+        // $thumbnail_image = $request->file('thumbnail_image');
+        // if ($thumbnail_image) {
+        //     $image_path = public_path($data->thumbnail_image);
+        //     @unlink($image_path);
+        //     $imageName = time() . '_' . uniqid() . '.' . $thumbnail_image->getClientOriginalExtension();
+        //     $thumbnail_image->move(public_path('uploaded/abrwn'), $imageName);
+        //     $input['thumbnail_image'] = '/uploaded/abrwn/' . $imageName;
+        // }
+        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'service');
 
         $data->update($input);
 
