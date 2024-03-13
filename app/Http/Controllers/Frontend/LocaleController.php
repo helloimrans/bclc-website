@@ -10,7 +10,11 @@ class LocaleController extends Controller
     public function changeLawLocale(Request $request)
     {
         $locale = $request->input('locale');
-        session()->put('lawLocale', $locale);
+        $lawId = $request->input('lawId');
+        session()->put([
+            'lawLocale' => $locale,
+            'lawId' => $lawId
+        ]);
         return response()->json(['success' => true]);
     }
 }

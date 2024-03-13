@@ -27,3 +27,38 @@ if (!function_exists('deleteFile')) {
         }
     }
 }
+
+if (!function_exists('setLawLocale')) {
+    function setLawLocale($lawData) {
+        $lawLocale = 'en';
+        if ($lawData->lang == 'en' || $lawData->default_lang == 'en') {
+            $lawLocale = 'en';
+        } elseif ($lawData->lang == 'bn' || $lawData->default_lang == 'bn') {
+            $lawLocale = 'bn';
+        }
+        session()->put([
+            'lawLocale' => $lawLocale,
+            'lawId' => $lawData->id
+        ]);
+    }
+}
+
+// if (!function_exists('updateLawLocale')) {
+//     function updateLawLocale($lawData) {
+//         $lawLocale = session()->get('lawLocale');
+
+//         if ($lawData->lang == 'en' && $lawLocale != 'en') {
+//             $lawLocale = 'en';
+//         } elseif ($lawData->lang == 'bn' && $lawLocale != 'bn') {
+//             $lawLocale = 'bn';
+//         } elseif ($lawData->lang == 'both') {
+//             if ($lawData->default_lang == 'en' && $lawLocale != 'en') {
+//                 $lawLocale = 'en';
+//             } elseif ($lawData->default_lang == 'bn' && $lawLocale != 'bn') {
+//                 $lawLocale = 'bn';
+//             }
+//         }
+
+//         session()->put('lawLocale', $lawLocale);
+//     }
+// }

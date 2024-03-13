@@ -56,10 +56,12 @@
     </div>
 </div>
 <hr class="my-4">
+<input type="hidden" id="LocaleLawId" value="{{$law->id}}">
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('lawLanguage').addEventListener('change', function() {
             var locale = this.value;
+            var lawId = document.getElementById("LocaleLawId").value;
             var xhr = new XMLHttpRequest();
             xhr.open('POST', "{{ route('change.law.locale') }}");
             xhr.setRequestHeader('Content-Type', 'application/json');
@@ -74,7 +76,7 @@
             xhr.onerror = function() {
                 console.error(xhr.responseText);
             };
-            xhr.send(JSON.stringify({ locale: locale }));
+            xhr.send(JSON.stringify({ locale: locale, lawId: lawId }));
         });
     });
 </script>

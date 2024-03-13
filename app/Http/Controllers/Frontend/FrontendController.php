@@ -127,94 +127,90 @@ class FrontendController extends Controller
         $data['article'] = Article::isActive()->where('slug', $slug)->first();
         $data['relatedArticles'] = Article::related($data['article']->article_category_id)->latest()->limit(8)->get();
         $data['latestArticles'] = Article::isActive()->latest()->limit(8)->get();
-        return view('frontend.article.article_details',$data);
+        return view('frontend.article.article_details', $data);
     }
     public function writeupDetails($slug)
     {
         $data['writeup'] = WriteUp::isActive()->where('slug', $slug)->first();
         $data['relatedWriteups'] = WriteUp::related($data['writeup']->write_up_category_id)->latest()->limit(8)->get();
         $data['latestWriteups'] = WriteUp::isActive()->latest()->limit(8)->get();
-        return view('frontend.writeup.writeup_details',$data);
+        return view('frontend.writeup.writeup_details', $data);
     }
     public function newsDetails($slug)
     {
         $data['news'] = News::isActive()->where('slug', $slug)->first();
         $data['relatedNewses'] = News::related($data['news']->news_category_id)->latest()->limit(8)->get();
         $data['latestNewses'] = News::isActive()->latest()->limit(8)->get();
-        return view('frontend.news.news_details',$data);
+        return view('frontend.news.news_details', $data);
     }
     public function blogDetails($slug)
     {
         $data['blog'] = Blog::isActive()->where('slug', $slug)->first();
         $data['relatedBlogs'] = Blog::related($data['blog']->blog_category_id)->latest()->limit(8)->get();
         $data['latestBlogs'] = Blog::isActive()->latest()->limit(8)->get();
-        return view('frontend.blog.blog_details',$data);
+        return view('frontend.blog.blog_details', $data);
     }
     public function reviewDetails($slug)
     {
         $data['review'] = Review::isActive()->where('slug', $slug)->first();
         $data['relatedReviews'] = Review::related($data['review']->review_category_id)->latest()->limit(8)->get();
         $data['latestReviews'] = Review::isActive()->latest()->limit(8)->get();
-        return view('frontend.review.review_details',$data);
+        return view('frontend.review.review_details', $data);
     }
     public function insightsDetails($slug)
     {
         $data['insight'] = AssociatedService::where('slug', $slug)->first();
         $data['latestInsights'] = AssociatedService::where('status', 1)->latest()->limit(10)->get();
-        return view('frontend.insights.insights_details',$data);
+        return view('frontend.insights.insights_details', $data);
     }
-    public function lawsRules(){
-        $data['categories'] = LawCategory::with('laws')->where('status',1)->orderBy('sort','ASC')->get();
-        return view('frontend.laws_and_rules.laws_rules',$data);
+    public function lawsRules()
+    {
+        $data['categories'] = LawCategory::with('laws')->where('status', 1)->orderBy('sort', 'ASC')->get();
+        return view('frontend.laws_and_rules.laws_rules', $data);
     }
 
-    public function lawsRulesDetails($slug){
-        $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
+    public function lawsRulesDetails($slug)
+    {
+        $data['law'] = Law::with('actChapter', 'rulesChapter')->where('slug', $slug)->first();
         $data['law_forms'] = LawForm::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law_schedules'] = LawSchedule::where('law_id', $data['law']->id)->where('status', 1)->get();
         // $data['law']->increment('total_views');
         // $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
-        return view('frontend.laws_and_rules.details.laws_rules_details',$data);
+        return view('frontend.laws_and_rules.details.laws_rules_details', $data);
     }
-    public function lawsRulesView($slug){
-        $data['law'] = Law::with('actChapter','rulesChapter')->where('slug',$slug)->first();
+    public function lawsRulesView($slug)
+    {
+        $data['law'] = Law::with('actChapter', 'rulesChapter')->where('slug', $slug)->first();
 
-        // if($data['law']->lang == 'en'){
-        //     session()->put('lawLocale', 'en');
-        // }elseif($data['law']->lang == 'bn'){
-        //     session()->put('lawLocale', 'bn');
-        // }elseif($data['law']->lang == 'both'){
-        //     if($data['law']->default_lang == 'en'){
-        //         session()->put('lawLocale', 'en');
-        //     }elseif($data['law']->default_lang == 'bn'){
-        //         session()->put('lawLocale', 'bn');
-        //     }else{
-        //         session()->put('lawLocale', 'en');
-        //     }
-        // }else{
-        //     session()->put('lawLocale', 'en');
-        // }
+        if ($data['law']) {
+            if (!session()->has('lawId') || session()->get('lawId') != $data['law']->id) {
+                setLawLocale($data['law']);
+            }
+        }
 
         $data['law_faqs'] = LawFaq::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law']->increment('total_views');
         $data['categories'] = LawCategory::where('status', 1)->orderBy('sort', 'ASC')->get();
-        return view('frontend.laws_and_rules.view.laws_rules_view',$data);
+        return view('frontend.laws_and_rules.view.laws_rules_view', $data);
     }
 
-    public function lawsRulesChapter($slug){
-        $data['chapter'] = LawChapter::with('law')->where('slug',$slug)->first();
-        return view('frontend.laws_and_rules.chapter_details.laws_rules_chapter',$data);
+    public function lawsRulesChapter($slug)
+    {
+        $data['chapter'] = LawChapter::with('law')->where('slug', $slug)->first();
+        return view('frontend.laws_and_rules.chapter_details.laws_rules_chapter', $data);
     }
 
 
-    public function officeFunction(){
-        $data['of_sectors'] = OfficeFunctionSector::where('status',1)->orderBy('sort', 'ASC')->get();
-        return view('frontend.office_function.office_function',$data);
+    public function officeFunction()
+    {
+        $data['of_sectors'] = OfficeFunctionSector::where('status', 1)->orderBy('sort', 'ASC')->get();
+        return view('frontend.office_function.office_function', $data);
     }
 
-    public function serviceFacility(){
-        $data['sf_sectors'] = ServiceFacilitySector::where('status',1)->orderBy('sort', 'ASC')->get();
-        return view('frontend.service_facility.service_facility',$data);
+    public function serviceFacility()
+    {
+        $data['sf_sectors'] = ServiceFacilitySector::where('status', 1)->orderBy('sort', 'ASC')->get();
+        return view('frontend.service_facility.service_facility', $data);
     }
 
     public function courses()
@@ -248,7 +244,7 @@ class FrontendController extends Controller
     public function termsCondition()
     {
         $data['termsCondition'] = TermsCondition::latest()->first();
-        return view('frontend.terms_condition.trams_condition',$data);
+        return view('frontend.terms_condition.trams_condition', $data);
     }
     public function privacyPolicy()
     {
