@@ -1,3 +1,7 @@
+@php
+    $route = Route::currentRouteName();
+@endphp
+
 <div class="laws-header-one text-center mb-4 pb-2">
     <h5>{{ $law->title }}</h5>
     {{-- <p>( ACT NO. {{ $law->act_no }} OF {{ $law->act_year }} )</p> --}}
@@ -37,13 +41,19 @@
                 <div class="ht-social">
                     @if ($law->lang == 'both')
                     <select id="lawLanguage" class="px-3" style="cursor: pointer">
+                        <option value="">Select Language</option>
                         <option value="bn" @if (session()->get('lawLocale') == 'bn') @selected(true) @endif>
                             Bangla</option>
                         <option value="en" @if (session()->get('lawLocale') == 'en') @selected(true) @endif>
                             English</option>
+                            @if ($route == 'laws.rules.chapter')
+                            <option value="both" @if (session()->get('lawChapterLocale') == 'both') @selected(true) @endif>
+                                Bangla & English</option>
+                            @endif
                     </select>
                     @else
                     <select disabled>
+                        <option value="">Select Language</option>
                         <option @if ($law->lang == 'bn') @selected(true) @endif>
                             Bangla</option>
                         <option @if ($law->lang == 'en') @selected(true) @endif>

@@ -90,6 +90,12 @@
         .section-ajax a:last-child {
             border-bottom: 0;
         }
+
+        .law-chapter-summery li a {
+            font-weight: 500;
+            padding: 5px 0px;
+            display: inline-block
+        }
     </style>
     <!-- start page header -->
     <section class="page-header-section wow fadeInDown" data-wow-duration="1s">
@@ -113,39 +119,12 @@
 
                     {{-- include law header --}}
                     @includeIf('frontend.laws_and_rules.law_header', ['law' => @$chapter->law])
-                    <div class="laws-box">
 
-                        <div class="laws-chapters-one">
-                            <h5>{{ $chapter->chapter_no }} : {{ $chapter->title }} <span class="text-uppercase">(
-
-                                    @if ($chapter->is_act == 1)
-                                        {{ $chapter->law->short_form }}
-                                    @endif
-
-                                    @if ($chapter->is_rules == 1)
-                                        {{ $chapter->law->rules_short_form }}
-                                    @endif
-
-                                    )
-                                </span></h5>
-                        </div>
-                        <div class="laws-chapters mt-4">
-                            @if ($chapter->section->where('status', 1)->where('parent_id', 0)->count() == 0)
-                                <p class="text-danger text-14 text-center">Not found section!</p>
-                            @endif
-                        </div>
-                        @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
-                            <div class="laws-chapters-section">
-                                <h5>{{ $section->title }}</h5>
-                                <p>{!! $section->description !!}</p>
-                            </div>
-                            @if (count($section->childs->where('status', 1)))
-                                @include('frontend.laws_and_rules.child_section', [
-                                    'childs' => $section->childs,
-                                ])
-                            @endif
-                        @endforeach
-                    </div>
+                    @if (Session::has('lawChapterLocale') && Session::get('lawChapterLocale') == 'both')
+                        @include('frontend.laws_and_rules.chapter_details.laws_rules_chapter_both')
+                    @else
+                    @include('frontend.laws_and_rules.chapter_details.laws_rules_chapter_bn_or_en')
+                    @endif
 
                 </div>
             </div>
@@ -153,18 +132,9 @@
     </section>
     <!-- end laws section -->
 
+@endsection
+
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                localStorage.setItem('activeTab', $(e.target).attr('href'));
-            });
-            var activeTab = localStorage.getItem('activeTab');
-            if (activeTab) {
-                $('#myTab a[href="' + activeTab + '"]').tab('show');
-            }
-        });
-    </script>
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -202,6 +172,4 @@
             });
         });
     </script>
-@endsection
-
 @endsection

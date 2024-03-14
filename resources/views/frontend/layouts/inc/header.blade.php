@@ -38,7 +38,7 @@
 
 <!--start header-->
 <header class=" wow fadeInDown" data-wow-duration="1s"
-    @if ($route == 'laws.rules') style="position:inherit;" @endif>
+    @if ($route == 'laws.rules' || $route == 'laws.rules.chapter') style="position:inherit;" @endif>
     <nav class="navbar">
         <div class="container">
             <a class="navbar-brand align-self-center" href="{{ url('/') }}">

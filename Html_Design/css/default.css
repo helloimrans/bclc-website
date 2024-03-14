@@ -5,6 +5,10 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+  }
+
 :focus {
     outline: 0 !important;
 }
