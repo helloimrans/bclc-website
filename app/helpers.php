@@ -38,6 +38,7 @@ if (!function_exists('setLawLocale')) {
         }
         session()->put([
             'lawLocale' => $lawLocale,
+            'lawChapterLocale' => '',
             'lawId' => $lawData->id
         ]);
     }

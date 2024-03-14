@@ -11,10 +11,19 @@ class LocaleController extends Controller
     {
         $locale = $request->input('locale');
         $lawId = $request->input('lawId');
-        session()->put([
-            'lawLocale' => $locale,
-            'lawId' => $lawId
-        ]);
+
+        if($locale == 'both'){
+            session()->put([
+                'lawChapterLocale' => $locale,
+                'lawId' => $lawId
+            ]);
+        }else{
+            session()->put([
+                'lawLocale' => $locale,
+                'lawChapterLocale' => '',
+                'lawId' => $lawId
+            ]);
+        }
         return response()->json(['success' => true]);
     }
 }
