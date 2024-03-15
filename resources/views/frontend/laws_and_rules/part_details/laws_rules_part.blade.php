@@ -66,7 +66,7 @@
 
         .section-ajax {
             position: absolute;
-            top: 100%;
+            top: 40%;
             left: 0;
             border: 1px solid #ebebeb;
             padding: 5px;
@@ -118,7 +118,7 @@
                 <div class="col-lg-12">
 
                     {{-- include law header --}}
-                    @includeIf('frontend.laws_and_rules.law_header', ['law' => @$part->law])
+                    @include('frontend.laws_and_rules.law_header', ['law' => @$part->law])
 
                     @if (Session::has('lawChapterLocale') && Session::get('lawChapterLocale') == 'both')
                         @include('frontend.laws_and_rules.part_details.laws_rules_part_both')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Law;
 use Illuminate\Http\Request;
 
 class LocaleController extends Controller
@@ -25,5 +26,12 @@ class LocaleController extends Controller
             ]);
         }
         return response()->json(['success' => true]);
+    }
+
+    public function refreshLawLocale($lawId)
+    {
+        $law = Law::findOrFail($lawId);
+        setLawLocale($law);
+        return redirect()->back();
     }
 }

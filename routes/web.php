@@ -34,6 +34,9 @@ Route::get('/clear', function () {
 //Change law locale
 Route::post('/change-law-locale', [LocaleController::class, 'changeLawLocale'])->name('change.law.locale');
 
+//Change law locale
+Route::get('/refresh-law-locale/{lawId}', [LocaleController::class, 'refreshLawLocale'])->name('refresh.law.locale');
+
 
 // Home
 Route::get('/', [FrontendController::class,'index'])->name('frontend');

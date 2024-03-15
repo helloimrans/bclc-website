@@ -65,7 +65,7 @@
 
         .section-ajax {
             position: absolute;
-            top: 100%;
+            top: 40%;
             left: 0;
             border: 1px solid #ebebeb;
             padding: 5px;
@@ -129,7 +129,7 @@
                 <input type="hidden" value="{{ $law->id }}" id="law_id">
                 <div class="col-lg-12">
                     {{-- include law header --}}
-                    @includeIf('frontend.laws_and_rules.law_header', ['law' => $law])
+                    @include('frontend.laws_and_rules.law_header', ['law' => $law])
 
                     @if (Session::has('lawChapterLocale') && Session::get('lawChapterLocale') == 'both')
                         @include('frontend.laws_and_rules.search_result_details.search_result_details_both')

@@ -71,7 +71,7 @@
 
         .section-ajax {
             position: absolute;
-            top: 100%;
+            top: 40%;
             left: 0;
             border: 1px solid #ebebeb;
             padding: 5px;
@@ -157,10 +157,10 @@
         <div class="container">
             <div class="row">
                 <input type="hidden" value="{{ $law->id }}" id="law_id">
-                <div class="col-lg-9">
+                <div class="col-lg-12">
 
                     {{-- include law header --}}
-                     @includeIf('frontend.laws_and_rules.law_header', ['law' => $law])
+                     @include('frontend.laws_and_rules.law_header', ['law' => $law])
                     <div class="laws-box">
 
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
@@ -188,7 +188,7 @@
 
                 </div>
 
-                <div class="col-lg-3 col-md-5">
+                {{-- <div class="col-lg-3 col-md-5">
                     <div class="section-title mb-3">
                         <h2><span>Categories</span></h2>
                     </div>
@@ -233,7 +233,7 @@
                             @endforelse
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
