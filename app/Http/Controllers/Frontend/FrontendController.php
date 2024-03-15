@@ -19,6 +19,7 @@ use App\Models\AssociatedService;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Blog;
+use App\Models\LawPart;
 use App\Models\News;
 use App\Models\OfficeFunctionSector;
 use App\Models\Review;
@@ -172,6 +173,13 @@ class FrontendController extends Controller
     public function lawsRulesDetails($slug)
     {
         $data['law'] = Law::with('actChapter', 'rulesChapter')->where('slug', $slug)->first();
+
+        if ($data['law']) {
+            if (!session()->has('lawId') || session()->get('lawId') != $data['law']->id) {
+                setLawLocale($data['law']);
+            }
+        }
+
         $data['law_forms'] = LawForm::where('law_id', $data['law']->id)->where('status', 1)->get();
         $data['law_schedules'] = LawSchedule::where('law_id', $data['law']->id)->where('status', 1)->get();
         // $data['law']->increment('total_views');
@@ -197,7 +205,27 @@ class FrontendController extends Controller
     public function lawsRulesChapter($slug)
     {
         $data['chapter'] = LawChapter::with('law')->where('slug', $slug)->first();
+
+        if ($data['chapter']->law) {
+            if (!session()->has('lawId') || session()->get('lawId') != $data['chapter']->law->id) {
+                setLawLocale($data['chapter']->law);
+            }
+        }
+
         return view('frontend.laws_and_rules.chapter_details.laws_rules_chapter', $data);
+    }
+
+    public function lawsRulesPart($slug)
+    {
+        $data['part'] = LawPart::with('law')->where('slug', $slug)->first();
+
+        if ($data['part']->law) {
+            if (!session()->has('lawId') || session()->get('lawId') != $data['part']->law->id) {
+                setLawLocale($data['part']->law);
+            }
+        }
+
+        return view('frontend.laws_and_rules.part_details.laws_rules_part', $data);
     }
 
 

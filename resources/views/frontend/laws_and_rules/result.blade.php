@@ -9,7 +9,7 @@
             document.getElementById('search').value = search;
             document.getElementById('result').style.display = 'none';
 
-          } test();" href="javascript:;">{{ $section->title }}</a>
+          } test();" href="javascript:;">{{ session()->get('lawLocale') == 'bn' ? $section->title_bn : $section->title }}</a>
     @endforeach
 @endif
 

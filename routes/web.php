@@ -80,8 +80,10 @@ Route::get('/laws-and-rules', [FrontendController::class,'lawsRules'])->name('la
 Route::get('/laws-and-rules/view/{slug}', [FrontendController::class, 'lawsRulesView'])->name('laws.rules.view');
 //Laws & Rules Details
 Route::get('/laws-and-rules/details/{slug}', [FrontendController::class, 'lawsRulesDetails'])->name('laws.rules.details');
-//Laws Chapter Chapter
+//Laws Chapter
 Route::get('/laws-and-rules/chapter/{slug}', [FrontendController::class, 'lawsRulesChapter'])->name('laws.rules.chapter');
+//Laws Part
+Route::get('/laws-and-rules/part/{slug}', [FrontendController::class, 'lawsRulesPart'])->name('laws.rules.part');
 
 //Consultation request
 Route::post('/consultation/request', [ConsultationRequestController::class,'store'])->name('consultation.request');

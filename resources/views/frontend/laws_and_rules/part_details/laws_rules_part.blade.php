@@ -8,7 +8,7 @@
         }
 
         .laws-box {
-            padding: 30px;
+            padding: 20px;
             border: var(--border);
             box-shadow: var(--shadow);
             border-radius: 10px;
@@ -50,13 +50,14 @@
 
         .laws-chapters-section h5 {
             font-size: 16px;
-            font-weight: 700
+            font-weight: 700;
+            margin-top: 40px
         }
 
         .laws-chapters-section p {
             font-size: 14px;
             margin-bottom: 12px;
-            margin-left: 10px
+            margin-left: 10px;
         }
 
         .section-search {
@@ -83,10 +84,17 @@
             border-bottom: 1px solid #ebebeb;
             font-size: 15px;
             color: #000;
+            text-decoration: none;
         }
 
         .section-ajax a:last-child {
             border-bottom: 0;
+        }
+
+        .law-chapter-summery li a {
+            font-weight: 500;
+            padding: 5px 0px;
+            display: inline-block
         }
     </style>
     <!-- start page header -->
@@ -96,7 +104,7 @@
                 <img src="{{ asset('frontend') }}/images/page-header.jpg" alt="image" class="img-fluid">
             </div>
             <div class="page-header-txt">
-                <h4 class="mb-0">Search Result</h4>
+                <h4 class="mb-0">Laws & Rules</h4>
             </div>
         </div>
     </section>
@@ -106,56 +114,25 @@
     <section class="article-page-section py-5 wow fadeInDown" data-wow-duration="1s">
         <div class="container">
             <div class="row">
-                <input type="hidden" value="{{ $law->id }}" id="law_id">
+                <input type="hidden" value="{{ @$part->law->id }}" id="law_id">
                 <div class="col-lg-12">
 
                     {{-- include law header --}}
-                    @includeIf('frontend.laws_and_rules.law_header', ['law' => $law])
+                    @includeIf('frontend.laws_and_rules.law_header', ['law' => @$part->law])
 
-                    <div class="laws-chapters-one">
-
-                        <h5>{{ $resultCount }} results found.</h5>
-                    </div>
-                    @foreach ($sections as $section)
-                        <div class="laws-chapters-section laws-box">
-                            <a href="{{ route('search.result.one', $section->slug) }}">
-                                <div class="row mb-2">
-                                    <div class="col-8">
-                                        <h5 class="mb-2 text-18">
-                                            {{ session()->get('lawLocale') == 'bn' ? $section->title_bn : $section->title }}
-                                        </h5>
-                                        <h5 class="mb-3 text-15">
-                                            {{ session()->get('lawLocale') == 'bn' ? $section->chapter->chapter_no_bn : $section->chapter->chapter_no }}
-                                            :
-                                            {{ session()->get('lawLocale') == 'bn' ? $section->chapter->title_bn : $section->chapter->title }}
-                                        </h5>
-                                    </div>
-                                    <div class="col-4 align-self-center text-right">
-                                        <p class="mb-0 font-weight-bold text-17 td">
-
-                                            @if ($section->is_act == 1)
-                                                {{ $law->short_form }}
-                                            @endif
-
-                                            @if ($section->is_rules == 1)
-                                                {{ $law->rules_short_form }}
-                                            @endif
-
-                                        </p>
-                                    </div>
-                                </div>
-                                <p class="mb-0">
-                                    {!! session()->get('lawLocale') == 'bn' ? substr(strip_tags($section->description_bn), 0, 200) : substr(strip_tags($section->description), 0, 200) !!}...
-                                </p>
-                            </a>
-                        </div>
-                    @endforeach
+                    @if (Session::has('lawChapterLocale') && Session::get('lawChapterLocale') == 'both')
+                        @include('frontend.laws_and_rules.part_details.laws_rules_part_both')
+                    @else
+                    @include('frontend.laws_and_rules.part_details.laws_rules_part_bn_or_en')
+                    @endif
 
                 </div>
             </div>
         </div>
     </section>
     <!-- end laws section -->
+
+@endsection
 
 @section('scripts')
     <script>
@@ -195,5 +172,4 @@
             });
         });
     </script>
-@endsection
 @endsection

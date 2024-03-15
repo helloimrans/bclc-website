@@ -46,7 +46,7 @@
                             Bangla</option>
                         <option value="en" @if (session()->get('lawLocale') == 'en') @selected(true) @endif>
                             English</option>
-                            @if ($route == 'laws.rules.chapter')
+                            @if ($route == 'laws.rules.chapter' || $route == 'search.result.one')
                             <option value="both" @if (session()->get('lawChapterLocale') == 'both') @selected(true) @endif>
                                 Bangla & English</option>
                             @endif

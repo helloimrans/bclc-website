@@ -16,7 +16,7 @@
                             <p>
                                 {{ session()->get('lawLocale') == 'bn' ? \Str::limit($part->title_bn, 25, '...') : \Str::limit($part->title, 25, '...') }}
                             </p>
-                            <a href="{{ route('laws.rules.chapter', $part->slug) }}">Details
+                            <a href="{{ route('laws.rules.part', $part->slug) }}">Details
                                 →</a>
                         </div>
                     </div>

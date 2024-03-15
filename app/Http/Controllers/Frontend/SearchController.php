@@ -11,49 +11,66 @@ class SearchController extends Controller
 {
     public function sectionSearch(Request $request)
     {
-        $search = $request->input('search');
+        $search = '%' . $request->input('search') . '%';
         $law_id = $request->input('law_id');
+        $locale = session()->get('lawLocale');
 
-        $sections = LawSection::where('title', 'LIKE', '%' . $search . '%')->where('law_id', $law_id)->get();
+        $sections = LawSection::where('law_id', $law_id)
+            ->where(function ($query) use ($search, $locale) {
+                if ($locale == 'bn') {
+                    $query->where('title_bn', 'LIKE', $search);
+                } else {
+                    $query->where('title', 'LIKE', $search);
+                }
+            })
+            ->get();
 
-        return view('frontend.laws_and_rules.result')->with('sections', $sections);
+        return view('frontend.laws_and_rules.result', compact('sections'));
     }
 
     public function sectionFormSearch(Request $request)
     {
-        $search = $request->input('search');
+        $search = '%' . $request->input('search') . '%';
         $law_id = $request->input('law_id');
+        $locale = session()->get('lawLocale');
 
-        $data['search'] = $search;
+        $data['search'] = $request->input('search');
+        $sectionsQuery = LawSection::with('chapter')->where('law_id', $law_id)->orderBy('id', 'DESC');
 
-        $data['sections'] = LawSection::with('chapter')->where('law_id', $law_id)
-            ->where(function ($q) use ($search) {
-                $q->where('title', 'like', '%' . $search . '%')
-                    ->orWhere(
-                        'description',
-                        'like',
-                        '%' . $search . '%'
-                    )->orWhere('description_bn', 'like', '%' . $search . '%');
-            })->orderBy('id', 'DESC')->get();
+        if ($locale == 'bn') {
+            $sectionsQuery->where(function ($q) use ($search) {
+                $q->where('title_bn', 'like', $search)
+                    ->orWhere('description_bn', 'like', $search);
+            });
+        } else {
+            $sectionsQuery->where(function ($q) use ($search) {
+                $q->where('title', 'like', $search)
+                    ->orWhere('description', 'like', $search);
+            });
+        }
 
-        $data['resultCount'] = LawSection::where('law_id', $law_id)
-            ->where(function ($q) use ($search) {
-                $q->where('title', 'like', '%' . $search . '%')
-                    ->orWhere(
-                        'description',
-                        'like',
-                        '%' . $search . '%'
-                    )->orWhere('description_bn', 'like', '%' . $search . '%');
-            })->count();
+        $data['sections'] = $sectionsQuery->get();
+        $data['resultCount'] = $sectionsQuery->count();
+        $data['law'] = Law::find($law_id);
 
-            $data['law'] = Law::find($law_id);
+        if ($data['law']) {
+            if (!session()->has('lawId') || session()->get('lawId') != $data['law']->id) {
+                setLawLocale($data['law']);
+            }
+        }
 
         return view('frontend.laws_and_rules.search_result', $data);
     }
 
-    public function searchResultOne($slug){
-        $data['section'] = LawSection::where('slug',$slug)->first();
+    public function searchResultOne($slug)
+    {
+        $data['section'] = LawSection::where('slug', $slug)->first();
         $data['law'] = Law::find($data['section']->law_id);
-        return view('frontend.laws_and_rules.search_result_details', $data);
+        if ($data['law']) {
+            if (!session()->has('lawId') || session()->get('lawId') != $data['law']->id) {
+                setLawLocale($data['law']);
+            }
+        }
+        return view('frontend.laws_and_rules.search_result_details.search_result_details', $data);
     }
 }
