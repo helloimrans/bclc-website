@@ -6,7 +6,7 @@
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{ asset('frontend') }}/images/slider1.png" alt="First slide" />
+                    <img class="d-block w-100" src="{{ asset('frontend') }}/images/slider3.png" alt="First slide" />
                     <div class="carousel-caption">
                         <h2 class="slider-title wow animate__animated animate__backInUp" data-wow-duration=".5s">
                             Welcome to the
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ asset('frontend') }}/images/service-header.png" alt="First slide" />
+                    <img class="d-block w-100" src="{{ asset('frontend') }}/images/slider2.jpg" alt="First slide" />
                     <div class="carousel-caption">
                         <h2 class="slider-title wow animate__animated animate__backInUp" data-wow-duration=".5s">
                             Welcome to the

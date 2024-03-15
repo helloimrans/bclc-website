@@ -464,6 +464,19 @@ header.scrolled .logo {
     width: 51%;
 }
 
+.carousel-item{
+
+}
+.carousel-item::after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: #00000057;
+}
+
 /* about section styles */
 
 .about-video {
