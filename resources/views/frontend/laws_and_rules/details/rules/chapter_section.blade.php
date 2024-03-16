@@ -4,7 +4,7 @@
             @if ($law->rulesChapter->where('status', 1)->count() == 0)
                 <p class="text-danger text-14 text-center">Not found chapter!</p>
             @endif
-            @foreach ($law->actChapter->where('status', 1) as $chapter)
+            @foreach ($law->rulesChapter->where('status', 1) as $chapter)
                 <div class="col-md-4">
                     <div class="laws-chapter-box mb-2">
                         <div class="chapter-no">
