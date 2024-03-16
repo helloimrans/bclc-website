@@ -32,7 +32,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $data['articles'] = Article::isActive()->limit(10)->latest()->get();
+        $data['articles'] = Article::with(['createdBy'])->isActive()->limit(10)->latest()->get();
         $data['writeups'] = WriteUp::isActive()->limit(10)->latest()->get();
         $data['newses'] = News::isActive()->limit(10)->latest()->get();
         $data['blogs'] = Blog::isActive()->limit(10)->latest()->get();
@@ -96,7 +96,7 @@ class FrontendController extends Controller
     }
     public function articles()
     {
-        $data['articles'] = Article::isActive()->latest()->paginate(8);
+        $data['articles'] = Article::with(['createdBy'])->isActive()->latest()->paginate(8);
         return view('frontend.article.article', $data);
     }
     public function writeup()
@@ -126,28 +126,28 @@ class FrontendController extends Controller
     }
     public function articleDetails($slug)
     {
-        $data['article'] = Article::isActive()->where('slug', $slug)->first();
-        $data['relatedArticles'] = Article::related($data['article']->article_category_id)->latest()->limit(8)->get();
-        $data['latestArticles'] = Article::isActive()->latest()->limit(8)->get();
+        $data['article'] = Article::with(['createdBy'])->isActive()->where('slug', $slug)->first();
+        $data['relatedArticles'] = Article::with(['createdBy'])->related($data['article']->article_category_id)->latest()->limit(8)->get();
+        $data['latestArticles'] = Article::with(['createdBy'])->isActive()->latest()->limit(8)->get();
         return view('frontend.article.article_details', $data);
     }
     public function writeupDetails($slug)
     {
-        $data['writeup'] = WriteUp::isActive()->where('slug', $slug)->first();
+        $data['writeup'] = WriteUp::with(['createdBy'])->isActive()->where('slug', $slug)->first();
         $data['relatedWriteups'] = WriteUp::related($data['writeup']->write_up_category_id)->latest()->limit(8)->get();
         $data['latestWriteups'] = WriteUp::isActive()->latest()->limit(8)->get();
         return view('frontend.writeup.writeup_details', $data);
     }
     public function newsDetails($slug)
     {
-        $data['news'] = News::isActive()->where('slug', $slug)->first();
+        $data['news'] = News::with(['createdBy'])->isActive()->where('slug', $slug)->first();
         $data['relatedNewses'] = News::related($data['news']->news_category_id)->latest()->limit(8)->get();
         $data['latestNewses'] = News::isActive()->latest()->limit(8)->get();
         return view('frontend.news.news_details', $data);
     }
     public function blogDetails($slug)
     {
-        $data['blog'] = Blog::isActive()->where('slug', $slug)->first();
+        $data['blog'] = Blog::with(['createdBy'])->isActive()->where('slug', $slug)->first();
         $data['relatedBlogs'] = Blog::related($data['blog']->blog_category_id)->latest()->limit(8)->get();
         $data['latestBlogs'] = Blog::isActive()->latest()->limit(8)->get();
         return view('frontend.blog.blog_details', $data);

@@ -40,11 +40,7 @@
                             <h5><a href="{{ route('article.details',$article->slug) }}">{{ $article->title }}</a></h5>
                             <div class="article-icon">
                                 <span><i class="fa fa-user-o"></i>
-                                    @if ($article->guard_name == 'admin')
-                                        Admin
-                                    @else
-                                        Not Set
-                                    @endif
+                                    {{$article->createdBy->name}}
                                 </span>
                                 <span><i class="fa fa-calendar-o"></i>
                                     {{ $article->created_at->format('d M Y') }}</span>
