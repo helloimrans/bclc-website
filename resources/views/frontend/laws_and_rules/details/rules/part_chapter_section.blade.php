@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <div class="laws-chapters mt-4">
         @foreach ($law->rulesPart as $part)
             <div class="row">

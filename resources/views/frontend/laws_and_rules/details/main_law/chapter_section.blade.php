@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="laws-chapters mt-4">
         <div class="row">
             @if ($law->actChapter->where('status', 1)->count() == 0)

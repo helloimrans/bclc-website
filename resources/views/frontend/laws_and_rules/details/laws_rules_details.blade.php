@@ -135,7 +135,7 @@
                         <hr class="my-4">
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                     aria-controls="home" aria-selected="true">{{ $law->title }}</a>
                             </li>
                             @if ($law->is_rules == 1)
@@ -149,8 +149,10 @@
                             {{-- include main law --}}
                             @include('frontend.laws_and_rules.details.main_law.main_law', ['law' => $law])
                             @if ($law->is_rules == 1)
-                            {{-- include rules --}}
-                            @include('frontend.laws_and_rules.details.rules.law_rules', ['law' => $law])
+                                {{-- include rules --}}
+                                @include('frontend.laws_and_rules.details.rules.law_rules', [
+                                    'law' => $law,
+                                ])
                             @endif
                         </div>
 
@@ -209,8 +211,8 @@
     </div>
     <!--Law Forms Modal-->
     <div class="service-cunsult-modal">
-        <div class="modal fade" id="LawFormModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="LawFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -238,17 +240,17 @@
     @section('scripts')
         <script>
             $(document).ready(function() {
-                $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                    localStorage.setItem('activeTab', $(e.target).attr('href'));
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+                    var activeTab = $(e.target).attr('href');
+                    localStorage.setItem('activeTab', activeTab);
                 });
+
                 var activeTab = localStorage.getItem('activeTab');
                 if (activeTab) {
                     $('#myTab a[href="' + activeTab + '"]').tab('show');
+                } else {
+                    $('#myTab a:first').tab('show');
                 }
-
-                $('a[data-toggle="tab"]').on('click', function(e) {
-                    location.reload();
-                });
             });
         </script>
         <script>

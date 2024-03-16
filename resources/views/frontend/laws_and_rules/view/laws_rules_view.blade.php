@@ -165,7 +165,7 @@
 
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                     aria-controls="home" aria-selected="true">{{ $law->title }}</a>
                             </li>
                             @if ($law->is_rules == 1)
@@ -240,20 +240,21 @@
     <!-- end laws section -->
 
     @section('scripts')
-        <script>
-            $(document).ready(function() {
-                $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-                    localStorage.setItem('activeTab', $(e.target).attr('href'));
-                });
-                var activeTab = localStorage.getItem('activeTab');
-                if (activeTab) {
-                    $('#myTab a[href="' + activeTab + '"]').tab('show');
-                }
-                $('a[data-toggle="tab"]').on('click', function(e) {
-                    location.reload();
-                });
+    <script>
+        $(document).ready(function() {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+                var activeTab = $(e.target).attr('href');
+                localStorage.setItem('activeTab', activeTab);
             });
-        </script>
+
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('#myTab a[href="' + activeTab + '"]').tab('show');
+            } else {
+                $('#myTab a:first').tab('show');
+            }
+        });
+    </script>
         <script>
             $(document).ready(function() {
                 $.ajaxSetup({

@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="table-responsive">
         <table class="table table-bordered table-sm mt-3">
             <tr>
@@ -34,7 +34,7 @@
         </table>
     </div>
     <p>{!! $law->description !!}</p>
-    
+
     @if ($law->format == 'part_chapter_section')
         @include('frontend.laws_and_rules.view.main_law.part_chapter_section', ['law' => $law])
     @elseif ($law->format == 'part_section')

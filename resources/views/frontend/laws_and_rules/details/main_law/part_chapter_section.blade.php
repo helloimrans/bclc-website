@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="laws-chapters mt-4">
         @foreach ($law->actPart as $part)
             <div class="row">
