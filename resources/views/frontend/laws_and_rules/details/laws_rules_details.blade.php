@@ -245,6 +245,10 @@
                 if (activeTab) {
                     $('#myTab a[href="' + activeTab + '"]').tab('show');
                 }
+
+                $('a[data-toggle="tab"]').on('click', function(e) {
+                    location.reload();
+                });
             });
         </script>
         <script>
