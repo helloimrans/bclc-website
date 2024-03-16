@@ -17,7 +17,9 @@ class ReviewService
     {
         $input['slug'] = Str::slug($input['title']);
         $input['created_by'] = Auth::user()->id;
-        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'review');
+        if(isset($input['thumbnail_image'])){
+            $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'review');
+        }
 
         return Review::create($input);
     }
@@ -34,7 +36,9 @@ class ReviewService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {
-            deleteFile($review->thumbnail_image);
+            if($review->thumbnail_image){
+                deleteFile($review->thumbnail_image);
+            }
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'review');
         }
 

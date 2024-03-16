@@ -6,7 +6,7 @@
                 @foreach ($chapter->section->where('status', 1)->where('parent_id', 0) as $section)
                     <li>
                         <a href="#goSection_en_{{ $section->slug }}">
-                            {{ session()->get('lawLocale') == 'bn' ? $section->title_bn : $section->title }}
+                            {{ $section->title }}
                         </a>
                     </li>
                     @if (count($section->childs->where('status', 1)))

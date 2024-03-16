@@ -17,7 +17,9 @@ class BlogService
     {
         $input['slug'] = Str::slug($input['title']);
         $input['created_by'] = Auth::user()->id;
-        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'blog');
+        if(isset($input['thumbnail_image'])){
+            $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'blog');
+        }
 
         return Blog::create($input);
     }
@@ -34,7 +36,9 @@ class BlogService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {
-            deleteFile($blog->thumbnail_image);
+            if($blog->thumbnail_image){
+                deleteFile($blog->thumbnail_image);
+            }
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'blog');
         }
 

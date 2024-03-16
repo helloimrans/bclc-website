@@ -17,7 +17,9 @@ class BlogCategoryService
     {
         $input['slug'] = Str::slug($input['name']);
         $input['created_by'] = Auth::user()->id;
-        $input['image'] = uploadFile($input['image'], 'blog_category');
+        if(isset($input['image'])){
+            $input['image'] = uploadFile($input['image'], 'blog_category');
+        }
 
         return BlogCategory::create($input);
     }
@@ -34,7 +36,9 @@ class BlogCategoryService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['image'])) {
-            deleteFile($category->image);
+            if($category->image){
+                deleteFile($category->image);
+            }
             $input['image'] = uploadFile($input['image'], 'blog_category');
         }
 

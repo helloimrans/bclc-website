@@ -62,8 +62,12 @@ class CourseController extends Controller
         }
         $input['course_id'] = $newId;
 
-        $input['image'] = uploadFile($input['image'], 'courses');
-        $input['certificate_image'] = uploadFile($input['certificate_image'], 'courses');
+        if(isset($input['image'])){
+            $input['image'] = uploadFile($input['image'], 'courses');
+        }
+        if(isset($input['certificate_image'])){
+            $input['certificate_image'] = uploadFile($input['certificate_image'], 'courses');
+        }
 
         $input['slug'] = Str::slug($request->title);
         $input['schedule'] = json_encode($request->schedule);
@@ -117,8 +121,18 @@ class CourseController extends Controller
         $input = $request->all();
         $data = Course::find($id);
 
-        $input['image'] = uploadFile($input['image'], 'courses');
-        $input['certificate_image'] = uploadFile($input['certificate_image'], 'courses');
+        if(isset($input['image'])){
+            if($data->image){
+                deleteFile($data->image);
+            }
+            $input['image'] = uploadFile($input['image'], 'courses');
+        }
+        if(isset($input['certificate_image'])){
+            if($data->certificate_image){
+                deleteFile($data->certificate_image);
+            }
+            $input['certificate_image'] = uploadFile($input['certificate_image'], 'courses');
+        }
 
         $input['slug'] = Str::slug($request->title);
         $input['schedule'] = json_encode($request->schedule);

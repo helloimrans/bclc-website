@@ -244,7 +244,7 @@
                                                     <a href="#">{{ $course->expert->name }}</a>
                                                 </div>
                                             </div>
-                                            <h5><a href="{{ route('training.course.details', $course->slug) }}">{{ $course->title }}</a>
+                                            <h5><a href="{{ route('course.details', $course->slug) }}">{{ $course->title }}</a>
                                             </h5>
                                             <span>{{ $course->serviceCategory->name }}</span>
                                             <p><i class="fa fa-calendar"></i>

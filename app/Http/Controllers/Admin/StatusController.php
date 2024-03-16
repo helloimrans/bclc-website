@@ -21,7 +21,7 @@ class StatusController extends Controller
 
             return response()->json(['success' => true, 'message' => 'Status updated successfully.']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Status updated failed.']);
+            return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 }

@@ -49,14 +49,14 @@
                                     <div class="col-md-6">
                                         <div class="mb-1">
                                             <label class="form-label">Category</label>
-                                            <select id="article_category_id" name="article_category_id"
-                                                class="form-control @error('article_category_id') is-invalid @enderror">
+                                            <select id="blog_category_id" name="blog_category_id"
+                                                class="form-control @error('blog_category_id') is-invalid @enderror">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @if (old('article_category_id',$blog->article_category_id) == $category->id) @selected(true) @endif>{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" @if (old('blog_category_id',$blog->blog_category_id) == $category->id) @selected(true) @endif>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('article_category_id')
+                                            @error('blog_category_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -101,9 +101,7 @@
                                             {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 id="upImg1" class="upImg1 rounded me-50 border" alt="image"
                                                 height="100">
-                                        </div>
-                                        <div class="mb-1">
-                                            <button type="button" id="upImgReset1"
+                                                <button type="button" id="upImgReset1"
                                                 class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
                                         </div>
                                     </div>

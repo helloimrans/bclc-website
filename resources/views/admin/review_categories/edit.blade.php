@@ -76,21 +76,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-1">
-                                            <label class="form-label">Status</label>
-                                            <select name="is_active" class="form-control">
-                                                <option value="1" @if (old('is_active', $category->is_active) == 1) selected @endif>
-                                                    Active
-                                                </option>
-                                                <option value="0" @if (old('is_active', $category->is_active) == 0) selected @endif>
-                                                    Deactive
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-1">
                                             <label class="form-label">Image</label>
                                             <input type="file" id="upImgInput2" name="image"
                                                 class="form-control @error('image') is-invalid @enderror">
@@ -105,9 +90,7 @@
                                                                                 {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 id="upImg2" class="upImg2 rounded me-50 border" alt="profile image"
                                                 height="100">
-                                        </div>
-                                        <div class="mb-1">
-                                            <button type="button" id="upImgReset2"
+                                                <button type="button" id="upImgReset2"
                                                 class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
                                         </div>
                                     </div>

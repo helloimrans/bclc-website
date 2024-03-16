@@ -26,7 +26,7 @@
                                 <div class="d-flex justify-content-between align-items-center w-100">
                                     <h5 class="m-0 font-weight-bold">YOUR SELECTED COURSES</h5>
                                     <a class="btn btn-sm btn-info text-white"
-                                        href="{{ route('training.course.details', $course->slug) }}"><i
+                                        href="{{ route('course.details', $course->slug) }}"><i
                                             class="fa fa-angle-left mr-1"></i>Continue Buying</a>
                                 </div>
                                 <hr>
@@ -122,7 +122,7 @@
                                 </div>
                                 <button type="button" class="btn btn-md btn-outline-info w-100 mt-3 addBtn"
                                     data-toggle="modal" data-target="#addModal" id="payBtn" disabled> Pay Now</button>
-                                <a href="{{ route('training.course.details', $course->slug) }}"
+                                <a href="{{ route('course.details', $course->slug) }}"
                                     class="btn btn-md btn-outline-danger w-100 mt-3"> Cancle</a>
                             </div>
                         </div>

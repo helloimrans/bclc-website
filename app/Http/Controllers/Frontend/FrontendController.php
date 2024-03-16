@@ -25,6 +25,7 @@ use App\Models\OfficeFunctionSector;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServiceFacilitySector;
+use App\Models\User;
 use App\Models\WriteUp;
 use Illuminate\Support\Facades\App;
 
@@ -258,7 +259,7 @@ class FrontendController extends Controller
 
     public function courseCheckout($slug)
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->user_type == User::NORMAL_USER) {
             $data['course'] = Course::where('slug', $slug)->first();
             return view('frontend.enroll.enroll', $data);
         } else {
@@ -266,7 +267,7 @@ class FrontendController extends Controller
                 'message' => 'Please at first login as a user.',
                 'alert-type' => 'info'
             );
-            return redirect()->route('user.login')->with($notification);
+            return redirect()->back()->with($notification);
         }
     }
 

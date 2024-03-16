@@ -101,9 +101,7 @@
                                             {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 id="upImg1" class="upImg1 rounded me-50 border" alt="image"
                                                 height="100">
-                                        </div>
-                                        <div class="mb-1">
-                                            <button type="button" id="upImgReset1"
+                                                <button type="button" id="upImgReset1"
                                                 class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
                                         </div>
                                     </div>

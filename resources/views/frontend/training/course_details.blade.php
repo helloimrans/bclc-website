@@ -29,15 +29,15 @@
             <div class="col-lg-5">
                 <div class="td-text">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <h5 class="mt-4 mt-md-0">Program Overview</h5>
                         </div>
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
                             <div class="td-share">
                                 <a href=""><i class="fa fa-heart"></i></a>
                                 <a href=""><i class="fa fa-share-alt"></i></a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <p>
                         {!! $course->short_description !!}
@@ -205,7 +205,7 @@
 
 
                             </span>
-                            <a href="{{ route('training.course.checkout',$course->slug) }}" class="btn btn-success w-100" style="padding: 14px 5px; border-radius: 10px">
+                            <a href="{{ route('course.checkout',$course->slug) }}" class="btn btn-success w-100" style="padding: 14px 5px; border-radius: 10px">
                                 <strong>Enroll Now</strong>
                             </a>
                         </div>
@@ -300,7 +300,7 @@
                                                 <a href="#">{{ $related_course->expert->name }}</a>
                                             </div>
                                         </div>
-                                        <h5><a href="{{ route('training.course.details',$related_course->slug) }}">{{ $related_course->title }}</a></h5>
+                                        <h5><a href="{{ route('course.details',$related_course->slug) }}">{{ $related_course->title }}</a></h5>
                                         <span>{{ $related_course->serviceCategory->name }}</span>
                                         <p><i class="fa fa-calendar"></i> {{date('jS, F, Y', strtotime($related_course->class_start_date)) }} ({{ $related_course->duration }}) Hours</p>
                                         <p><img src="{{asset('frontend')}}/images/trached.png" alt="image">{{ $related_course->boarding }}</p>

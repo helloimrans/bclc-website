@@ -72,7 +72,7 @@
                                         <td>{!! $officeFunction->communications !!}</td>
                                         <td class="text-center">
                                             @if ($officeFunction->file)
-                                                <a title="Download file" href="{{ $officeFunction->file }}"
+                                                <a title="Download file" href="{{ Storage::url($officeFunction->file) }}"
                                                     class="sfof-action-btn" download><i
                                                         class="fa fa-file-pdf-o"></i></a>
                                             @endif
@@ -120,7 +120,7 @@
 
                                                                 <h6>File</h6>
                                                                 @if ($officeFunction->file)
-                                                                    <p><a href="{{ $officeFunction->file }}"
+                                                                    <p><a href="{{ Storage::url($officeFunction->file) }}"
                                                                             download><i class="fa fa-download"></i>
                                                                             Download</a></p>
                                                                 @else

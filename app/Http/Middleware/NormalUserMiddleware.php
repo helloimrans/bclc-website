@@ -22,6 +22,9 @@ class NormalUserMiddleware
             return $next($request);
         }
 
-        return redirect()->route('frontend');
+        return redirect()->route('frontend')->with([
+            'message' => 'Login as user first, then try again.',
+            'alert-type' => 'error'
+        ]);
     }
 }

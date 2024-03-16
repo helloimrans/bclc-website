@@ -1782,6 +1782,7 @@ header.scrolled .logo {
 .events-txt {
     width: 70%;
     float: left;
+    padding-left: 15px;
 }
 
 .events-img img {
@@ -1790,7 +1791,9 @@ header.scrolled .logo {
 .events-img {
     width: 29%;
     float: left;
-    padding-right: 2%;
+    height: 97px;
+    overflow: hidden;
+    border-radius: 5px !IMPORTANT;
 }
 .news-events-box h6 {
     font-weight: 600;
@@ -1942,9 +1945,10 @@ header.scrolled .logo {
     width: 80px;
     height: 100%;
     margin-right: 10px;
+    overflow: hidden;
+    border-radius: 5px;
 }
 .tab-data li span img {
-    height: 100%;
     width: 100%;
     border-radius: 5px;
 }

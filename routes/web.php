@@ -103,15 +103,17 @@ Route::get('office-and-functions', [FrontendController::class, 'officeFunction']
 Route::get('service-and-facilities', [FrontendController::class, 'serviceFacility'])->name('service.facility');
 
 
-// Training
-Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
-    Route::get('courses', [FrontendController::class, 'courses'])->name('courses');
-    Route::get('course/details/{slug}', [FrontendController::class, 'courseDetails'])->name('course.details');
-    Route::get('course/checkout/{slug}', [FrontendController::class, 'courseCheckout'])->name('course.checkout');
+// Courses
+Route::group(['prefix' => 'courses', 'as' => 'course.'], function () {
+    Route::get('/', [FrontendController::class, 'courses'])->name('all');
+    Route::get('details/{slug}', [FrontendController::class, 'courseDetails'])->name('details');
 });
 
-Route::post('/course/payment/submit', [CoursePaymentController::class, 'paymentSubmit'])->name('course.payment.submit');
-Route::get('/course/payment/success/{transactionId}', [CoursePaymentController::class, 'paymentSuccess'])->name('course.payment.success');
+Route::group(['prefix' => 'course', 'as' => 'course.', 'middleware' => ['auth']], function () {
+    Route::get('checkout/{slug}', [FrontendController::class, 'courseCheckout'])->name('checkout');
+    Route::post('/payment/submit', [CoursePaymentController::class, 'paymentSubmit'])->name('payment.submit');
+    Route::get('/payment/success/{transactionId}', [CoursePaymentController::class, 'paymentSuccess'])->name('payment.success');
+});
 
 //Terms Condition
 Route::get('terms-and-conditions', [FrontendController::class, 'termsCondition'])->name('terms.condition');

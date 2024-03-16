@@ -17,7 +17,9 @@ class WriteUpService
     {
         $input['slug'] = Str::slug($input['title']);
         $input['created_by'] = Auth::user()->id;
-        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'write_up');
+        if(isset($input['thumbnail_image'])){
+            $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'write_up');
+        }
 
         return WriteUp::create($input);
     }
@@ -34,7 +36,9 @@ class WriteUpService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {
-            deleteFile($write_up->thumbnail_image);
+            if($write_up->thumbnail_image){
+                deleteFile($write_up->thumbnail_image);
+            }
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'write_up');
         }
 

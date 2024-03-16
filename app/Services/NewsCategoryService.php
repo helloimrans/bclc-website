@@ -17,7 +17,9 @@ class NewsCategoryService
     {
         $input['slug'] = Str::slug($input['name']);
         $input['created_by'] = Auth::user()->id;
-        $input['image'] = uploadFile($input['image'], 'news_category');
+        if(isset($input['image'])){
+            $input['image'] = uploadFile($input['image'], 'news_category');
+        }
 
         return NewsCategory::create($input);
     }
@@ -34,7 +36,9 @@ class NewsCategoryService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['image'])) {
-            deleteFile($category->image);
+            if($category->image){
+                deleteFile($category->image);
+            }
             $input['image'] = uploadFile($input['image'], 'news_category');
         }
 

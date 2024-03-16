@@ -74,7 +74,7 @@
                                                 </td>
                                                 <td>
                                                     @if ($of->file)
-                                                    <a  title="Download" href="{{$of->file}}" download><i class="fa fa-download"></i> Download</a>
+                                                    <a  title="Download" href="{{Storage::url($of->file)}}" download><i class="fa fa-download"></i> Download</a>
                                                     @endif
                                                 </td>
                                                 <td>{{ $of->sort }}</td>

@@ -17,7 +17,9 @@ class ReviewCategoryService
     {
         $input['slug'] = Str::slug($input['name']);
         $input['created_by'] = Auth::user()->id;
-        $input['image'] = uploadFile($input['image'], 'review_category');
+        if(isset($input['image'])){
+            $input['image'] = uploadFile($input['image'], 'review_category');
+        }
 
         return ReviewCategory::create($input);
     }
@@ -34,7 +36,9 @@ class ReviewCategoryService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['image'])) {
-            deleteFile($category->image);
+            if($category->image){
+                deleteFile($category->image);
+            }
             $input['image'] = uploadFile($input['image'], 'review_category');
         }
 

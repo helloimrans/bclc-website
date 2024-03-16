@@ -17,7 +17,9 @@ class ArticleService
     {
         $input['slug'] = Str::slug($input['title']);
         $input['created_by'] = Auth::user()->id;
-        $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
+        if(isset($input['thumbnail_image'])){
+            $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
+        }
 
         return Article::create($input);
     }
@@ -34,7 +36,9 @@ class ArticleService
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {
-            deleteFile($article->thumbnail_image);
+            if($article->thumbnail_image){
+                deleteFile($article->thumbnail_image);
+            }
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
         }
 

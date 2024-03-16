@@ -49,7 +49,7 @@
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ route('service') }}">Service</a></li>
-                    <li><a href="{{ route('training.courses') }}">Training</a></li>
+                    <li><a href="{{ route('course.all') }}">Training</a></li>
                     <li class="dd-btn1">
                         <a href="#!">
                             Legal Knowledge
@@ -241,7 +241,7 @@
             </div>
             <div class="menu-box">
                 <div class="menu-link">
-                    <a href="{{ route('training.courses') }}">
+                    <a href="{{ route('course.all') }}">
                         Training
                     </a>
                 </div>

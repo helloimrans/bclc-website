@@ -24,11 +24,10 @@ class BlogCategoryRequest extends FormRequest
     public function rules()
     {
         $id = $this->route('blog_category');
-        $imageRules = $id !== null ? 'sometimes|nullable|mimes:jpg,jpeg,png,webp,svg|max:2048' : 'required|mimes:jpg,jpeg,png,webp,svg|max:2048';
         return [
             'name' => 'required|unique:blog_categories,name,' . $id,
-            'image' => $imageRules,
-            'sort' => 'numeric|min:0',
+            'image' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'sort' => 'nullable|numeric|min:0',
         ];
     }
 }

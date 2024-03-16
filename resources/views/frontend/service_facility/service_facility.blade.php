@@ -70,7 +70,7 @@
                                         <td>{!! $serviceFacility->communications !!}</td>
                                         <td class="text-center">
                                             @if ($serviceFacility->file)
-                                            <a class="sfof-action-btn" title="Download file" href="{{ $serviceFacility->file }}" download><i
+                                            <a class="sfof-action-btn" title="Download file" href="{{ Storage::url($serviceFacility->file) }}" download><i
                                                 class="fa fa-file-pdf-o"></i></a>
                                                 @endif
                                                 <a title="View details" href="javascript:;" data-toggle="modal" class="sfof-action-btn"
@@ -115,7 +115,7 @@
 
                                                                 <h6>File</h6>
                                                                 @if ($serviceFacility->file)
-                                                                    <p><a href="{{ $serviceFacility->file }}"
+                                                                    <p><a href="{{ Storage::url($serviceFacility->file) }}"
                                                                             download><i class="fa fa-download"></i>
                                                                             Download</a></p>
                                                                 @else

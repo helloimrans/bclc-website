@@ -74,7 +74,7 @@
                                                 <td>
                                                     {!!$sf->communications!!}
                                                 </td>
-                                                <td><a  title="Download" href="{{$sf->file}}" download><i class="fa fa-download"></i> Download</a></td>
+                                                <td><a  title="Download" href="{{Storage::url($sf->file)}}" download><i class="fa fa-download"></i> Download</a></td>
                                                 <td>{{ $sf->sort }}</td>
                                                 <td>
                                                     @if($sf->status == 1)

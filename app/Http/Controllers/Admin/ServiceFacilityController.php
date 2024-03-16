@@ -54,13 +54,11 @@ class ServiceFacilityController extends Controller
         $data->status                       = $request->status;
         $data->created_by                   = Auth::user()->id;
 
-        // $file = $request->file('file');
-        // if ($file) {
-        //     $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        //     $file->move(public_path('uploaded/service_facility'), $fileName);
-        //     $data->file = '/uploaded/service_facility/' . $fileName;
-        // }
-        $data->file = uploadFile($request->file, 'service_facility');
+        if($request->file){
+            $data->file = uploadFile($request->file, 'service_facility');
+        }
+
+        $data->save();
 
         $notification = array(
             'message' => 'Successfully service & facility created.',
@@ -108,15 +106,12 @@ class ServiceFacilityController extends Controller
         $data->status                       = $request->status;
         $data->updated_by                   = Auth::user()->id;
 
-        // $file = $request->file('file');
-        // if ($file) {
-        //     $file_path = public_path($data->file);
-        //     @unlink($file_path);
-        //     $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        //     $file->move(public_path('uploaded/service_facility'), $fileName);
-        //     $data->file = '/uploaded/service_facility/' . $fileName;
-        // }
-        $data->file = uploadFile($request->file, 'service_facility');
+        if($request->file){
+            if($data->file){
+                deleteFile($data->file);
+            }
+            $data->file = uploadFile($request->file, 'service_facility');
+        }
         $data->update();
 
         $notification = array(
