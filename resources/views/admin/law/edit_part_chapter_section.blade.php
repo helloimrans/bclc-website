@@ -2379,6 +2379,12 @@
             });
         });
 
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                location.reload();
+            });
+        });
+
         const savePillId = (selector) => {
             localStorage.setItem('activePillId', selector);
         };
