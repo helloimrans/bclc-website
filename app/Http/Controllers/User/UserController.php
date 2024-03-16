@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function registrationForm()
+    public function userRegistrationForm()
     {
-        $data['userType'] = "User";
+        $data['userType'] = User::NORMAL_USER;
+        return view('frontend.auth.registration', $data);
+    }
+    public function expertRegistrationForm()
+    {
+        $data['userType'] = User::EXPERT;
         return view('frontend.auth.registration', $data);
     }
 
@@ -23,6 +28,10 @@ class UserController extends Controller
             'name' => 'required',
             'mobile' => 'required|max:11|min:11',
             'email' => 'required|email|unique:users,email',
+            'is_lawyer' => 'nullable|boolean',
+            'is_consultant' => 'nullable|boolean',
+            'is_trainer' => 'nullable|boolean',
+            'is_writer' => 'nullable|boolean',
             'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:8',
         ]);
@@ -35,11 +44,22 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
 
+        if($request->input('user_type') == User::EXPERT){
+            $userType = User::EXPERT;
+        }else{
+            $userType = User::NORMAL_USER;
+        }
+
         $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->mobile = $request->mobile;
-        $user->password = bcrypt($request->password);
+        $user->user_type = $userType;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->mobile = $request->input('mobile');
+        $user->password = bcrypt($request->input('password'));
+        $user->is_lawyer = $request->input('is_lawyer') ?? 0;
+        $user->is_consultant = $request->input('is_consultant') ?? 0;
+        $user->is_trainer = $request->input('is_trainer') ?? 0;
+        $user->is_writer = $request->input('is_writer') ?? 0;
         $user->save();
 
         Auth::login($user);
@@ -51,10 +71,17 @@ class UserController extends Controller
         return redirect()->intended(route('user.dashboard'))->with($notification);
     }
 
-    public function loginForm()
+    public function userLoginForm()
     {
         Redirect::setIntendedUrl(url()->previous());
-        $data['userType'] = "User";
+        $data['userType'] = User::NORMAL_USER;
+        return view('frontend.auth.login', $data);
+    }
+
+    public function expertLoginForm()
+    {
+        Redirect::setIntendedUrl(url()->previous());
+        $data['userType'] = User::EXPERT;
         return view('frontend.auth.login', $data);
     }
 
@@ -99,12 +126,24 @@ class UserController extends Controller
         $data['user'] = User::find(Auth::user()->id);
         return view('admin.profile.profile', $data);
     }
-    
+
     public function update_profile(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'email' => 'required|email',
+            'mobile' => 'required',
+            'dob' => 'nullable|date',
+            'gender' => 'nullable|in:Male,Female,Others',
+            'marital_status' => 'nullable|in:Married,Unmarried',
+            'address' => 'nullable|string',
+            'is_lawyer' => 'nullable|boolean',
+            'is_consultant' => 'nullable|boolean',
+            'is_trainer' => 'nullable|boolean',
+            'is_writer' => 'nullable|boolean',
+            'photo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
         ]);
+
 
         if ($validator->fails()) {
             $notification = array(
@@ -114,18 +153,29 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
 
-        $input = $request->all();
-        $data = User::find(Auth::user()->id);
+        $user = User::find(auth()->id());
 
-        // $image = $request->file('image');
-        // if ($image) {
-        //     $image_path = public_path($data->image);
-        //     @unlink($image_path);
-        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('uploaded/user'), $imageName);
-        //     $input['image'] = '/uploaded/user/' . $imageName;
-        // }
-        $data->update($input);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->mobile = $request->input('mobile');
+        $user->dob = $request->input('dob');
+        $user->gender = $request->input('gender');
+        $user->marital_status = $request->input('marital_status');
+        $user->address = $request->input('address');
+        $user->is_lawyer = $request->input('is_lawyer') ?? 0;
+        $user->is_consultant = $request->input('is_consultant') ?? 0;
+        $user->is_trainer = $request->input('is_trainer') ?? 0;
+        $user->is_writer = $request->input('is_writer') ?? 0;
+
+        if ($request->hasFile('photo')) {
+            if ($user->photo) {
+                deleteFile($user->photo);
+            }
+            $user->photo = uploadFile($request->file('photo'), 'user');
+        }
+
+        $user->save();
+
         $notification = array(
             'message' => 'Successfully profile updated!',
             'alert-type' => 'success'
@@ -146,14 +196,14 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error','Something went wront!, Please try again.');
+            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Something went wront!, Please try again.');
         }
 
         if (Auth::attempt(['id' => Auth::user()->id, 'password' => $request->current_password])) {
             $user = User::find(Auth::user()->id);
             $user->password = bcrypt($request->new_password);
             $user->save();
-            return redirect()->back()->with('success','Successfully password changed.');
+            return redirect()->back()->with('success', 'Successfully password changed.');
         } else {
             $notification = array(
                 'message' => 'Sorry! Your current password dost not match.',

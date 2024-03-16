@@ -22,8 +22,7 @@ use App\Http\Controllers\User\UserController;
 // });
 
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => 'auth'], function () {
-
+Route::group(['prefix' => '/dashboard/user', 'as' => 'user.', 'middleware' => ['auth', 'normal.user']], function () {
     Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
         Route::get('index', [CourseController::class, 'index'])->name('index');
     });

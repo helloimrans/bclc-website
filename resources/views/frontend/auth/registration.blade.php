@@ -1,5 +1,13 @@
+@php
+    if($userType == App\Models\User::NORMAL_USER){
+        $showUserType = 'User';
+    }elseif ($userType == App\Models\User::EXPERT) {
+        $showUserType = 'Expert';
+    }
+@endphp
+
 @extends('frontend.layouts.master')
-@section('title', "$userType Registration")
+@section('title', "$showUserType Registration")
 @section('content')
 
     <!-- start page header -->
@@ -9,7 +17,7 @@
                 <img src="{{ asset('frontend') }}/images/page-header.jpg" alt="image" class="img-fluid">
             </div>
             <div class="page-header-txt">
-                <h4 class="mb-0">{{ $userType }} Registration</h4>
+                <h4 class="mb-0">{{ $showUserType }} Registration</h4>
             </div>
         </div>
     </section>
@@ -25,10 +33,13 @@
                             <div class="text-center">
                                 <img src="{{ asset('frontend') }}/logo/logo.png" class="logo mb-3" alt="Logo" />
                             </div>
-                            <h4 class="text-center m-0 mb-3">Register as a {{ $userType }} </h4>
+                            <h4 class="text-center m-0 mb-3">Register as a {{ $showUserType }} </h4>
                             <form action="{{ route('user.registration.store') }}"
                                 method="POST">
                                 @csrf
+
+                                <input type="hidden" name="user_type" value="{{$userType}}">
+
                                 <div class="form-group">
                                     <label for="#">Full Name<strong>:</strong></label>
                                     <input type="text" name="name" placeholder="Enter name"
@@ -80,7 +91,7 @@
                                     @enderror
                                 </div>
 
-                                @if ($userType == 'Expert')
+                                @if ($userType == App\Models\User::EXPERT)
                                     <div class="form-group">
                                         <label for="">Select Role</label>
                                         <div class="row">
@@ -128,8 +139,12 @@
                                 <button type="submit" class="btn bd mt-2 mb-3 btn-block text-light"><i
                                         class="fa fa-user-plus"></i> Registration</button>
                                 <p class="text-center mb-0 text-15">Already registered? <a class="td"
+                                    @if ($userType == App\Models\User::NORMAL_USER)
                                     href="{{ route('user.login') }}"
-                                        >Login as a {{ $userType }}</a></p>
+                                    @elseif ($userType == App\Models\User::EXPERT)
+                                    href="{{ route('expert.login') }}"
+                                    @endif
+                                        >Login as a {{ $showUserType }}</a></p>
                             </form>
                         </div>
                     </div>

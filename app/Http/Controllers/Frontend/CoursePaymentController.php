@@ -14,7 +14,7 @@ class CoursePaymentController extends Controller
     {
         $request->validate([
             'user_account_number' => 'required',
-            'transaction_id' => 'required',
+            'transaction_id' => 'required|unique:orders,transaction_id',
             'amount' => 'required',
         ]);
 
@@ -39,10 +39,15 @@ class CoursePaymentController extends Controller
 
         $courseOrderDetails->save();
 
-        return response()->json($courseOrderDetails);
+        return response()->json($order);
     }
 
-    public function paymentSuccess(){
-        return view('frontend.enroll.success');
+    public function paymentSuccess($transactionId){
+        $order = Order::where('transaction_id', $transactionId)->first();
+        if($order){
+            return view('frontend.enroll.success');
+        }else{
+            return redirect('/');
+        }
     }
 }

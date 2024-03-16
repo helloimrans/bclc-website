@@ -1,42 +1,6 @@
 @extends('frontend.layouts.master')
-@section('title', 'Course Enroll Success')
-@section('styles')
-<style>
-      .success_card{
-        text-align: center;
-        margin: 50px 0;
-      }
-      .success_card .card h1 {
-        color: #88B04B;
-        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-        font-weight: 900;
-        font-size: 40px;
-        margin-bottom: 10px;
-      }
-      .success_card .card p {
-        color: #404F5E;
-        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-        font-size:20px;
-        margin: 0;
-      }
-      .success_card .card i {
-      color: #9ABC66;
-      font-size: 100px;
-      line-height: 200px;
-      margin-left:-15px;
-    }
-    .success_card .card {
-      background: white;
-      padding: 60px;
-      border-radius: 4px;
-      box-shadow: 0 2px 3px #C8D0D8;
-      display: inline-block;
-      margin: 0 auto;
-    }
-  </style>
-@endsection
+@section('title', 'Course Payment Success')
 @section('content')
-
     <!-- start page header -->
     <section class="page-header-section wow fadeInDown" data-wow-duration="1s">
         <div class="page-header-box">
@@ -44,20 +8,24 @@
                 <img src="{{ asset('frontend') }}/images/page-header.jpg" alt="image" class="img-fluid">
             </div>
             <div class="page-header-txt">
-                <h4 class="mb-0">Course Enroll Success</h4>
+                <h4 class="mb-0">Course Payment Success</h4>
             </div>
         </div>
     </section>
     <!-- end page header -->
 
     <!--start contact section-->
-    <section class="success_card">
-        <div class="card">
-            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
-              <i class="checkmark">✓</i>
+    <section class="enroll-success py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mx-auto">
+                    <div class="payment-success text-center">
+                        <i class="fa fa-check"></i>
+                        <h5>Course payment has been successful.</h5>
+                        <p><a href="{{route('user.course.index')}}">Click here</a> to view your courses</p>
+                    </div>
+                </div>
             </div>
-            <h1>Success</h1> 
-            <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
         </div>
     </section>
     <!--end contact section-->

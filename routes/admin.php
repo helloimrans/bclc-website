@@ -51,29 +51,43 @@ Route::get('/get/abrwn/category/{id}', [DefaultController::class, 'getAbrwnCat']
 //Ajax - Get service category & service
 Route::get('/get/category/service/{id}', [DefaultController::class, 'getCatService']);
 
-//Admin auth route
-Route::get('/admin/login', [AdminController::class, 'loginForm'])->name('admin.login')->middleware('guest');
-Route::post('/admin/login/store', [AdminController::class, 'login'])->name('admin.login.store');
 
-//Auth route
-Route::group(['prefix' => 'dashboard', 'as' => 'user.'], function () {
-    Route::get('login', [UserController::class, 'loginForm'])->name('login')->middleware('guest');
-    Route::get('registration', [UserController::class, 'registrationForm'])->name('registration');
-    Route::post('registration/store', [UserController::class, 'registration'])->name('registration.store');
-    Route::post('login/store', [UserController::class, 'login'])->name('login.store');
-    Route::get('/', [UserController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-    Route::get('logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+//User guest route
+Route::group([], function () {
+
+    //User
+    Route::get('user/login', [UserController::class, 'userLoginForm'])->name('user.login')->middleware('guest');
+    Route::get('user/registration', [UserController::class, 'userRegistrationForm'])->name('user.registration');
+
+    //Expert
+    Route::get('expert/login', [UserController::class, 'expertLoginForm'])->name('expert.login')->middleware('guest');
+    Route::get('expert/registration', [UserController::class, 'expertRegistrationForm'])->name('expert.registration');
+
+
+    //User && Expert
+    Route::post('registration/store', [UserController::class, 'registration'])->name('user.registration.store');
+    Route::post('login/store', [UserController::class, 'login'])->name('user.login.store');
+
+    //Admin
+    Route::get('admin/login', [AdminController::class, 'loginForm'])->name('admin.login')->middleware('guest');
+    Route::post('admin/login/store', [AdminController::class, 'login'])->name('admin.login.store');
+});
+
+//Global auth route
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('/', [UserController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
+    Route::get('logout', [UserController::class, 'logout'])->name('user.logout')->middleware('auth');
 
     // Profile
-    Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
-    Route::post('profile/update', [UserController::class, 'update_profile'])->name('update.profile')->middleware('auth');
-    Route::get('profile/security', [UserController::class, 'security'])->name('security')->middleware('auth');
-    Route::post('profile/update/password', [UserController::class, 'update_password'])->name('update.password')->middleware('auth');
+    Route::get('profile', [UserController::class, 'profile'])->name('user.profile')->middleware('auth');
+    Route::post('profile/update', [UserController::class, 'update_profile'])->name('user.update.profile')->middleware('auth');
+    Route::get('profile/security', [UserController::class, 'security'])->name('user.security')->middleware('auth');
+    Route::post('profile/update/password', [UserController::class, 'update_password'])->name('user.update.password')->middleware('auth');
 });
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
-    //Global
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], function () {
+    //Global status change
     Route::post('/change-status', [StatusController::class, 'changeStatus'])->name('change.status');
 
     //Associated service

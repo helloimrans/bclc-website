@@ -111,7 +111,7 @@ Route::group(['prefix' => 'training', 'as' => 'training.'], function () {
 });
 
 Route::post('/course/payment/submit', [CoursePaymentController::class, 'paymentSubmit'])->name('course.payment.submit');
-Route::get('/course/payment/success', [CoursePaymentController::class, 'paymentSuccess'])->name('course.payment.success');
+Route::get('/course/payment/success/{transactionId}', [CoursePaymentController::class, 'paymentSuccess'])->name('course.payment.success');
 
 //Terms Condition
 Route::get('terms-and-conditions', [FrontendController::class, 'termsCondition'])->name('terms.condition');

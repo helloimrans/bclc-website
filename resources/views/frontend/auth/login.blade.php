@@ -1,5 +1,13 @@
+@php
+    if($userType == App\Models\User::NORMAL_USER){
+        $showUserType = 'User';
+    }elseif ($userType == App\Models\User::EXPERT) {
+        $showUserType = 'Expert';
+    }
+@endphp
+
 @extends('frontend.layouts.master')
-@section('title', "$userType Login")
+@section('title', "$showUserType Login")
 @section('content')
 
     <!-- start page header -->
@@ -9,7 +17,7 @@
                 <img src="{{ asset('frontend') }}/images/page-header.jpg" alt="image" class="img-fluid">
             </div>
             <div class="page-header-txt">
-                <h4 class="mb-0">{{ $userType }} Login</h4>
+                <h4 class="mb-0">{{ $showUserType }} Login</h4>
             </div>
         </div>
     </section>
@@ -25,7 +33,7 @@
                             <div class="text-center">
                                 <img src="{{ asset('frontend') }}/logo/logo.png" class="logo mb-3" alt="Logo" />
                             </div>
-                            <h4 class="text-center m-0 mb-3">Login as a {{ $userType }} </h4>
+                            <h4 class="text-center m-0 mb-3">Login as a {{ $showUserType }} </h4>
                             <form action="{{ route('user.login.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
@@ -52,8 +60,12 @@
                                 <button type="submit" class="btn bd mt-2 mb-3 btn-block text-light"><i
                                         class="fa fa-sign-in"></i> Login</button>
                                 <p class="text-center mb-0 text-15">Not registered yet? <a class="td"
+                                    @if ($userType == App\Models\User::NORMAL_USER)
                                     href="{{ route('user.registration') }}"
-                                        >Register as a {{ $userType }}</a></p>
+                                    @elseif ($userType == App\Models\User::EXPERT)
+                                    href="{{ route('expert.registration') }}"
+                                    @endif
+                                        >Register as a {{ $showUserType }}</a></p>
                             </form>
                         </div>
                     </div>

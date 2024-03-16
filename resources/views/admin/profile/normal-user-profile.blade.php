@@ -6,7 +6,7 @@
         <!-- header section -->
         <div class="d-flex mb-2">
             <a href="#" class="me-25">
-                <img src="@if ($user->image) {{ Storage::url($user->image) }}
+                <img src="@if ($user->photo) {{ Storage::url($user->photo) }}
                 @else
                 {{ asset('defaults/avatar/avatar.png') }} @endif"
                     id="upImg1" class="upImg1 rounded me-50" alt="profile image" height="100" width="100" />
@@ -15,12 +15,12 @@
             <div class="d-flex align-items-end mt-75 ms-1">
                 <div>
                     <label for="upImgInput1" class="btn btn-sm btn-primary mb-75 me-75">Upload</label>
-                    <input type="file" id="upImgInput1" name="image" class="hidden">
+                    <input type="file" id="upImgInput1" name="photo" class="hidden">
                     <button type="button" id="upImgReset1"
                         class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
                     <p class="mb-0">Allowed file types: png, jpg, jpeg.</p>
                 </div>
-                @error('image')
+                @error('photo')
                     <div class="text-danger"><small>{{ $message }}</small></div>
                 @enderror
             </div>
@@ -110,79 +110,24 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-1">
-                    <label class="form-label" for="">Current Institution</label>
-                    <input type="text" name="current_institution" placeholder="Enter current institution"
-                        class="form-control @error('current_institution') is-invalid @enderror"
-                        value="{{ old('current_institution', $user->current_institution) }}">
-
-                    @error('current_institution')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <label class="form-label" for="fp-default">Date of Birth</label>
+                    <input type="date" id="fp-default" name="dob"
+                        class="form-control flatpickr-basic @error('present_location') is-invalid @enderror"
+                        placeholder="YYYY-MM-DD" value="{{ old('dob', $user->dob) }}" />
+                    @error('dob')
+                        <div class="text-danger"><small>{{ $message }}</small></div>
                     @enderror
-
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="mb-1">
-                    <label class="form-label" for="">Current Studing Subject</label>
-                    <input type="text" name="current_subject" placeholder="Enter current subject"
-                        class="form-control @error('current_subject') is-invalid @enderror"
-                        value="{{ old('current_subject', $user->current_subject) }}">
-
-                    @error('current_subject')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="mb-1">
-                    <label class="form-label" for="">Highest
-                        Qualification/Degree</label>
-                    <input type="text" name="highest_qualification" placeholder="Enter highest qualification"
-                        class="form-control @error('highest_qualification') is-invalid @enderror"
-                        value="{{ old('highest_qualification', $user->highest_qualification) }}">
-
-                    @error('highest_qualification')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-
                 </div>
             </div>
         </div>
         <div class="mb-1">
-            <label class="form-label" for="fp-default">Date of Birth</label>
-            <input type="text" id="fp-default" name="dob"
-                class="form-control flatpickr-basic @error('present_location') is-invalid @enderror"
-                placeholder="YYYY-MM-DD" value="{{ old('dob', $user->dob) }}" />
-            @error('dob')
+            <label class="form-label">Address</label>
+            <textarea name="address" class="form-control @error('address') is-invalid @enderror"
+                placeholder="Enter present location...">{{ old('address', $user->address) }}</textarea>
+            @error('address')
                 <div class="text-danger"><small>{{ $message }}</small></div>
             @enderror
         </div>
-        <div class="mb-1">
-            <label class="form-label">Present Location</label>
-            <textarea name="present_location" class="form-control @error('present_location') is-invalid @enderror"
-                placeholder="Enter present location...">{{ old('present_location', $user->present_location) }}</textarea>
-            @error('present_location')
-                <div class="text-danger"><small>{{ $message }}</small></div>
-            @enderror
-        </div>
-        <div class="mb-1">
-            <label class="form-label">Permanent Address</label>
-            <textarea name="permanent_address" class="form-control @error('permanent_address') is-invalid @enderror"
-                placeholder="Enter permanent address...">{{ old('permanent_address', $user->permanent_address) }}</textarea>
-            @error('permanent_address')
-                <div class="text-danger"><small>{{ $message }}</small></div>
-            @enderror
-        </div>
-
-        <div class="mb-1">
-            <label class="form-label">About</label>
-            <textarea name="about" class="form-control @error('about') is-invalid @enderror" placeholder="Enter about...">{{ old('about', $user->about) }}</textarea>
-            @error('about')
-                <div class="text-danger"><small>{{ $message }}</small></div>
-            @enderror
-        </div>
-
     </div>
 
     <div class="mt-2 float-end">

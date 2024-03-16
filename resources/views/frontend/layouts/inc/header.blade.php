@@ -20,11 +20,11 @@
             </div>
             <div class="col-md-6">
                 <div class="ht-social">
-                    <select name="language" id="language">
+                    {{-- <select name="language" id="language">
                         <option value="">Select Language</option>
                         <option value="Bangla">Bangla</option>
                         <option value="English">English</option>
-                    </select>
+                    </select> --}}
                     <a href="#"><i class="fa fa-facebook"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -107,7 +107,9 @@
                         <div class="btn-group">
                             <button type="button" class="header-dd-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="fs-6 fw-bold text-shuttle me-2">{{Auth::user()->name}}</span>
-                                <img src="{{asset('defaults/avatar/avatar.png')}}" alt="user">
+                                <img src="@if (Auth::user()->photo) {{ Storage::url(Auth::user()->photo) }}
+                                @else
+                                {{ asset('defaults/avatar/avatar.png') }} @endif" alt="user">
                                 <i class="fa fa-angle-down d-none" aria-hidden="true"></i>
                             </button>
                             <div class="dropdown-menu header-dd-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -116,18 +118,6 @@
                             </div>
                         </div>
                     </li>
-                    @elseif ( Auth::check())
-                    <div class="btn-group">
-                        <button type="button" class="header-dd-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fs-6 fw-bold text-shuttle me-2">{{Auth::user()->name}}</span>
-                            <img src="{{asset('defaults/avatar/avatar.png')}}" alt="user">
-                            <i class="fa fa-angle-down d-none" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu header-dd-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a href="{{route('expert.dashboard')}}" class="dropdown-item"><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</a>
-                            <a href="{{route('expert.logout')}}" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
-                        </div>
-                    </div>
                     @else
                     <li>
                         <a href="#!" class="pr-1" data-toggle="modal" data-target="#exampleModalLogin"><span

@@ -21,8 +21,19 @@ return new class extends Migration
             $table->string('mobile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('photo')->nullable();
+            $table->date('dob')->nullable();
+            $table->enum('gender', ['Male', 'Female', 'Others'])->nullable();
+            $table->enum('marital_status', ['Married', 'Unmarried'])->nullable();
+            $table->text('address')->nullable();
+
+            $table->boolean('is_lawyer')->default(false);
+            $table->boolean('is_consultant')->default(false);
+            $table->boolean('is_trainer')->default(false);
+            $table->boolean('is_writer')->default(false);
+
             $table->boolean('is_approved')->default(0);
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

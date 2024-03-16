@@ -32,7 +32,8 @@
                                 <hr>
                             </div>
                             <div class="col-md-4">
-                                <img style="height:10em" class="w-100" src="{{ Storage::url($course->image) }}" alt="img">
+                                <img style="height:10em" class="w-100" src="{{ Storage::url($course->image) }}"
+                                    alt="img">
                             </div>
                             <div class="col-md-6">
                                 <p style="font-size: 18px;" class="m-0"><strong>{{ $course->title }}</strong></p>
@@ -52,16 +53,16 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="price font-weight-bold " style="color:#ce5a2c">
-                                    @if($course->active_fee == 1)
-                                    {{ $course->fee }}Tk
+                                    @if ($course->active_fee == 1)
+                                        {{ $course->fee }}Tk
                                     @else
-                                    <span class="d-inline">
-                                        <sup><del>
-                                            {{ $course->fee }}Tk
-                                        </del></sup>
-                                        {{ $course->discount_fee }}Tk
-                                        
-                                    </span> 
+                                        <span class="d-inline">
+                                            <sup><del>
+                                                    {{ $course->fee }}Tk
+                                                </del></sup>
+                                            {{ $course->discount_fee }}Tk
+
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -102,7 +103,7 @@
                                         <td>Total Price</td>
                                         <td>:</td>
                                         <td>
-                                            {{ $course->discount_type == 1 ? $course->fee : $course->discount_fee }}Tk
+                                            {{ $course->active_fee == 1 ? $course->fee : $course->discount_fee }}Tk
                                         </td>
                                     </tr>
                                 </table>
@@ -147,7 +148,9 @@
                         <div class="sm-body">
                             <h5>Payment Confirmation</h5>
                             <p class="text-danger w-75 mx-auto mt-2">To buy <strong>"{{ $course->title }}"</strong> this
-                                course you need to send money of <strong>{{($course->active_fee == 1) ? $course->fee : $course->discount_fee}}Tk.</strong> to below given
+                                course you need to send money of
+                                <strong>{{ $course->active_fee == 1 ? $course->fee : $course->discount_fee }}Tk.</strong>
+                                to below given
                                 Bkash number. </p>
                             <div class="alert alert-danger p-1" id="validation-errors"></div>
                             <form id="paymentForm">
@@ -179,8 +182,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Amount</label>
-                                            <input type="number" value="{{($course->active_fee == 1) ? $course->fee : $course->discount_fee}}" placeholder="Enter amount" class="form-control"
-                                                name="amount">
+                                            <input type="number"
+                                                value="{{ $course->active_fee == 1 ? $course->fee : $course->discount_fee }}"
+                                                placeholder="Enter amount" class="form-control" name="amount">
                                         </div>
                                         <div class="form-group">
                                             <label>Money Transaction ID</label>
@@ -244,7 +248,12 @@
                     toastr.success('Successfully request sent !', 'Success', {
                         timeOut: 3000
                     });
-                    window.location.href = "{{ route('course.payment.success')}}";
+
+                    var successRoute = "{{ route('course.payment.success', ['transactionId' => ':transaction_id']) }}";
+                    var transactionId = data.transaction_id;
+                    var url = successRoute.replace(':transaction_id', transactionId);
+                    window.location.href = url;
+
                 },
                 error: function(xhr) {
                     $('#validation-errors').html('');

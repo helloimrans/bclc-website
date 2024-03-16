@@ -24,7 +24,7 @@
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name fw-bolder">{{ Auth::user()->name }}</span><span
                             class="user-status">User</span></div><span class="avatar"><img class="round"
-                            src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }}
+                            src="@if (Auth::user()->photo) {{ Storage::url(Auth::user()->photo) }}
                             @else
                             {{ asset('defaults/avatar/avatar.png') }} @endif"
                             alt="avatar" height="40" width="40"><span
