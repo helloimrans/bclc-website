@@ -152,8 +152,8 @@
                 <div class="section-title mt-4 pt-3 mb-3 wow fadeInDown" data-wow-duration="1s">
                     <h2><span>Certificate Image</span></h2>
                 </div>
-                <div class="certificate_image mt-4">
-                    <img src="{{Storage::url($course->certificate_image)}}" class="w-100" alt="Certificate">
+                <div class="certificate_image my-4">
+                    <img src="{{Storage::url($course->certificate_image)}}" class="img-fluid rounded" alt="Certificate">
                 </div>
 
                 <!--Start Course FAQs-->
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                        @empty  
+                        @empty
                         @endforelse
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                     <div class="col-lg-6">
                         <div class="td-course-id">
                             <span>Course ID: {{ $course->course_id }}</span>
-                            <span>Course Fee: 
+                            <span>Course Fee:
                                 @if($course->active_fee == 1)
                                 {{ $course->fee }}Tk
                                 @else
@@ -200,10 +200,10 @@
                                     <sup><del>
                                         {{ $course->fee }}Tk
                                     </del></sup>
-                                </span> 
+                                </span>
                                 @endif
-                            
-                            
+
+
                             </span>
                             <a href="{{ route('training.course.checkout',$course->slug) }}" class="btn btn-success w-100" style="padding: 14px 5px; border-radius: 10px">
                                 <strong>Enroll Now</strong>
@@ -240,31 +240,16 @@
                     <div class="tdr-person">
                         <div class="media">
                             <div class="mda-img">
-                                <img src="{{asset('frontend')}}/images/resource-peron.png" alt="image">
+                                <img src="{{$course->expert->photo ? Storage::url($course->expert->photo) : asset('defaults/noimage/no_img.jpg')}}" alt="image">
                             </div>
                             <div class="media-body">
                                 <h6 class="mt-3">{{ $course->expert->name }}</h6>
-                                <span>Advocate</span>
-                                <span>Supreme Court of Bangladesh</span>
+                                <span>{{$course->expert->designation}}</span>
+                                <span>{{$course->expert->workplace_name}}</span>
                             </div>
                         </div>
                         <div class="tdr-desc">
-                            <p>Mr. Niamul Kabir is empirically experienced as a Law Practitioner at court,
-                                Consultant of employment law and regulatory compliance affairs, In-house Legal
-                                Counsel, Trainer and Facilitator in Legal and Compliance arena, Accredited Mediator,
-                                Negotiator & Arbitrator, Head of Legal and Compliance in nongovernmental
-                                organization for a significant time with remarkable track record of legal activities
-                                for more than twelve years. Mr. Niamul Kabir is empirically experienced as a Law
-                                Practitioner at court, Consultant of employment law and regulatory compliance
-                                affairs, In-house Legal Counsel, Trainer and Facilitator in Legal and Compliance
-                                arena, Accredited Mediator, Negotiator & Arbitrator, Head of Legal and Compliance in
-                                nongovernmental organization for a significant time with remarkable track record of
-                                legal activities for more than twelve years. Mr. Niamul Kabir is empirically
-                                experienced as a Law Practitioner at court, Consultant of employment law and
-                                regulatory compliance affairs, In-house Legal Counsel, Trainer and Facilitator in
-                                Legal and Compliance arena, Accredited Mediator, Negotiator & Arbitrator, Head of
-                                Legal and Compliance in nongovernmental organization for a significant time with
-                                remarkable track record of legal activities for more than twelve years.</p>
+                            <p>{{$course->expert->about}}</p>
                         </div>
                     </div>
                 </div>
@@ -324,7 +309,7 @@
                             </div>
                             @endif
                             @endforeach
-                            
+
 
                         </div>
                     </div>

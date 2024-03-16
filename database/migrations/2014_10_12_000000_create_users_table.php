@@ -25,6 +25,9 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->enum('gender', ['Male', 'Female', 'Others'])->nullable();
             $table->enum('marital_status', ['Married', 'Unmarried'])->nullable();
+            $table->text('about')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('workplace_name')->nullable();
             $table->text('address')->nullable();
 
             $table->boolean('is_lawyer')->default(false);

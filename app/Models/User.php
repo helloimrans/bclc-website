@@ -16,6 +16,8 @@ class User extends Authenticatable
     const EXPERT = 'expert';
     const ADMIN = 'admin';
 
+    const APPROVED = 1;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -46,4 +48,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeIsExpert($query){
+        return $query->where('user_type', self::EXPERT);
+    }
+    public function scopeIsApproved($query){
+        return $query->where('is_approved', self::APPROVED);
+    }
 }

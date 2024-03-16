@@ -37,6 +37,7 @@ class FrontendController extends Controller
         $data['newses'] = News::isActive()->limit(10)->latest()->get();
         $data['blogs'] = Blog::isActive()->limit(10)->latest()->get();
         $data['insights'] = AssociatedService::where('status', 1)->limit(10)->latest()->get();
+        $data['courses'] = Course::with(['expert', 'serviceCategory'])->isActive()->limit(10)->get();
         return view('frontend.home.index', $data);
     }
 
@@ -243,13 +244,13 @@ class FrontendController extends Controller
 
     public function courses()
     {
-        $data['courses'] = Course::all();
+        $data['courses'] = Course::with(['expert', 'serviceCategory'])->isActive()->get();
         return view('frontend.training.courses', $data);
     }
 
     public function courseDetails($slug)
     {
-        $data['course'] = Course::where('slug', $slug)->first();
+        $data['course'] = Course::with(['expert', 'serviceCategory'])->isActive()->where('slug', $slug)->first();
         $data['course_faqs'] = CourseFaq::where('course_id', $data['course']->id)->where('status', 1)->get();
         $data['related_courses'] = Course::where('service_category_id', $data['course']->service_category_id)->get();
         return view('frontend.training.course_details', $data);

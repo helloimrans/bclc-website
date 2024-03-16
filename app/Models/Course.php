@@ -43,7 +43,7 @@ class Course extends Model
         'contact_email',
         'training_offering',
         'consulting_offering',
-        
+
         'short_description',
         'key_takeaways',
         'curriculum',
@@ -57,6 +57,12 @@ class Course extends Model
         'updated_by',
         'deleted_by'
     ];
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by', 'id')->withDefault([
@@ -83,7 +89,7 @@ class Course extends Model
     }
     public function expert()
     {
-        return $this->belongsTo(Expert::class, 'expert_id', 'id')->withDefault([
+        return $this->belongsTo(User::class, 'expert_id', 'id')->withDefault([
             'name' => 'None',
         ]);
     }

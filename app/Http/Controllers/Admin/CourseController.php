@@ -11,6 +11,7 @@ use App\Models\ServiceCategory;
 use App\Models\SuitableForCourse;
 use App\Models\CourseFaq;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,7 +26,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        $data['experts'] = Expert::where('status', 1)->get();
+        $data['experts'] = User::isExpert()->isApproved()->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();
         $data['services'] = Service::where('status', 1)->get();
         $data['service_categories'] = ServiceCategory::where('status', 1)->get();
@@ -34,7 +35,6 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'title' => 'required|unique:courses,title',
             'fee' => 'required',
@@ -90,7 +90,7 @@ class CourseController extends Controller
         $data['course'] = Course::findOrFail($id);
         $data['faqs'] = CourseFaq::where('course_id', $id)->get();
         // return $data['course']->schedule;
-        $data['experts'] = Expert::where('status', 1)->get();
+        $data['experts'] = User::isExpert()->isApproved()->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();
         $data['services'] = Service::where('status', 1)->get();
         $data['service_categories'] = ServiceCategory::where('status', 1)->get();

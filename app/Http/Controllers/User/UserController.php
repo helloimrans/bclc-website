@@ -142,6 +142,9 @@ class UserController extends Controller
             'is_trainer' => 'nullable|boolean',
             'is_writer' => 'nullable|boolean',
             'photo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            'about' => 'nullable|string',
+            'designation' => 'nullable|string|max:255',
+            'workplace_name' => 'nullable|string|max:255',
         ]);
 
 
@@ -161,6 +164,11 @@ class UserController extends Controller
         $user->dob = $request->input('dob');
         $user->gender = $request->input('gender');
         $user->marital_status = $request->input('marital_status');
+
+        $user->about = $request->input('about');
+        $user->designation = $request->input('designation');
+        $user->workplace_name = $request->input('workplace_name');
+
         $user->address = $request->input('address');
         $user->is_lawyer = $request->input('is_lawyer') ?? 0;
         $user->is_consultant = $request->input('is_consultant') ?? 0;

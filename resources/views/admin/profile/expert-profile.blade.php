@@ -120,6 +120,38 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-1">
+                    <label class="form-label">Designation</label>
+                    <input type="text" name="designation" class="form-control @error('designation') is-invalid @enderror"
+                        placeholder="Enter designation..." value="{{ old('designation', $user->designation) }}">
+                    @error('designation')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-1">
+                    <label class="form-label">Workplace Name</label>
+                    <input type="text" name="workplace_name" class="form-control @error('workplace_name') is-invalid @enderror"
+                        placeholder="Enter workplace name..." value="{{ old('workplace_name', $user->workplace_name) }}">
+                    @error('workplace_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <label class="form-label">About</label>
+            <textarea name="about" class="form-control @error('about') is-invalid @enderror"
+                placeholder="Enter about...">{{ old('about', $user->about) }}</textarea>
+            @error('about')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
         <div class="mb-1">
             <label class="form-label">Address</label>
             <textarea name="address" class="form-control @error('address') is-invalid @enderror"
