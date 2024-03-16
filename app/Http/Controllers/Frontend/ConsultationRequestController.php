@@ -19,14 +19,11 @@ class ConsultationRequestController extends Controller
 
         $input = $request->all();
         $input['status'] = 0;
-        // $file = $request->file('file');
-        // if ($file) {
-        //     $imageName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        //     $file->move(public_path('uploaded/request_consultation'), $imageName);
-        //     $input['file'] = '/uploaded/request_consultation/' . $imageName;
-        // }
 
-        $input['file'] = uploadFile($input['file'], 'request_consultation');
+
+        if(isset($input['file'])){
+            $input['file'] = uploadFile($input['file'], 'request_consultation');
+        }
 
        $data =  ConsultationRequest::create($input);
        return response()->json($data);

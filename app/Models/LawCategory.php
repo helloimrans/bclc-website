@@ -22,6 +22,11 @@ class LawCategory extends Model
         'deleted_by',
     ];
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function laws()
     {
         return $this->hasMany(Law::class)->where('status',1);

@@ -25,6 +25,15 @@ class Service extends Model
         'deleted_by',
     ];
 
+    public function scopeIsService($query)
+    {
+        return $query->where('is_service', 1);
+    }
+    public function scopeIsProbono($query)
+    {
+        return $query->where('is_service', 2);
+    }
+
     public function associated_service()
     {
         return $this->belongsToMany(AssociatedService::class, 'associated_service_service')->where('status', 1);

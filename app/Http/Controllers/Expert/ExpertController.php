@@ -131,31 +131,6 @@ class ExpertController extends Controller
         $input = $request->all();
         $data = Expert::find(Auth::user()->id);
 
-        // $image = $request->file('image');
-        // if ($image) {
-        //     $image_path = public_path($data->image);
-        //     @unlink($image_path);
-        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('uploaded/expert'), $imageName);
-        //     $input['image'] = '/uploaded/expert/' . $imageName;
-        // }
-        
-        // $image = $request->file('nid_passport_front');
-        // if ($image) {
-        //     $image_path = public_path($data->image);
-        //     @unlink($image_path);
-        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('uploaded/expert'), $imageName);
-        //     $input['nid_passport_front'] = '/uploaded/expert/' . $imageName;
-        // }
-        // $image = $request->file('nid_passport_back');
-        // if ($image) {
-        //     $image_path = public_path($data->image);
-        //     @unlink($image_path);
-        //     $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('uploaded/expert'), $imageName);
-        //     $input['nid_passport_back'] = '/uploaded/expert/' . $imageName;
-        // }
         $input['image'] = uploadFile($input['image'], 'expert');
         $input['nid_passport_front'] = uploadFile($input['nid_passport_front'], 'expert');
         $input['nid_passport_back'] = uploadFile($input['nid_passport_back'], 'expert');

@@ -21,6 +21,11 @@ class OfficeFunctionSector extends Model
         'deleted_by',
     ];
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function officeFunctions()
     {
         return $this->hasMany(OfficeFunction::class);

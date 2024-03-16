@@ -21,22 +21,6 @@ class DefaultController extends Controller
 
         return response()->json($data);
     }
-    public function getAbrwnCat($id){
-
-        if($id == 1){
-            $data = AbrwnCategory::where('is_article',1)->where('status',1)->get();
-        }elseif($id == 2){
-            $data = AbrwnCategory::where('is_blog',1)->where('status',1)->get();
-        }elseif($id == 3){
-            $data = AbrwnCategory::where('is_review',1)->where('status',1)->get();
-        }elseif($id == 3){
-            $data = AbrwnCategory::where('is_writeup',1)->where('status',1)->get();
-        }elseif($id == 3){
-            $data = AbrwnCategory::where('is_news',1)->where('status',1)->get();
-        }
-
-        return response()->json($data);
-    }
     public function getCatService($id)
     {
         if ($id) {

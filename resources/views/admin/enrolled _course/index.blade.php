@@ -61,10 +61,6 @@
                                                     <span class="badge bg-warning">Pending: {{$participant->where('status', 'Pending')->count()}}</span>
                                                 </td>
                                                 <td>
-                                                    <a class="me-1 btn btn-info btn-sm" href="" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Classroom">
-                                                        Classroom
-                                                    </a>
                                                     <a class="me-1 btn btn-primary btn-sm" href="{{route('enrolled.courses.details',$enrolledCourse->course_id)}}" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Details">
                                                         Details

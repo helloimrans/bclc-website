@@ -21,6 +21,11 @@ class ServiceFacilitySector extends Model
         'deleted_by',
     ];
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
     public function  serviceFacilities()
     {
         return $this->hasMany(ServiceFacility::class);

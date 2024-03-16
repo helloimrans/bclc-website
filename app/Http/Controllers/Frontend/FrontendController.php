@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Law;
-use App\Models\Abrwn;
 use App\Models\Course;
 use App\Models\LawFaq;
 use App\Models\LawForm;
@@ -27,7 +26,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ServiceFacilitySector;
 use App\Models\User;
 use App\Models\WriteUp;
-use Illuminate\Support\Facades\App;
 
 class FrontendController extends Controller
 {
@@ -37,32 +35,32 @@ class FrontendController extends Controller
         $data['writeups'] = WriteUp::isActive()->limit(10)->latest()->get();
         $data['newses'] = News::isActive()->limit(10)->latest()->get();
         $data['blogs'] = Blog::isActive()->limit(10)->latest()->get();
-        $data['insights'] = AssociatedService::where('status', 1)->limit(10)->latest()->get();
+        $data['insights'] = AssociatedService::isActive()->limit(10)->latest()->get();
         $data['courses'] = Course::with(['expert', 'serviceCategory'])->isActive()->limit(10)->get();
         return view('frontend.home.index', $data);
     }
 
     public function serviceCategory()
     {
-        $data['service_category'] = ServiceCategory::where('status', 1)->where('is_service', 1)->orderBy('sort', 'ASC')->get();
+        $data['service_category'] = ServiceCategory::isActive()->isService()->orderBy('sort', 'ASC')->get();
         return view('frontend.service.service_category', $data);
     }
 
     public function categoryServiceDetails($slug)
     {
         $category = ServiceCategory::where('slug', $slug)->first();
-        $data['service_category'] = ServiceCategory::where('status', 1)->where('is_service', 1)->orderBy('sort', 'ASC')->get();
+        $data['service_category'] = ServiceCategory::isActive()->isService()->orderBy('sort', 'ASC')->get();
         $cat_id = $category->id;
-        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('service_category_id', $cat_id)->where('is_service', 1)->latest()->first();
+        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('service_category_id', $cat_id)->isService()->latest()->first();
 
-        $data['service_count'] = Service::where('service_category_id', $cat_id)->where('is_service', 1)->count();
+        $data['service_count'] = Service::where('service_category_id', $cat_id)->isService()->count();
 
         return view('frontend.service.service_details', $data);
     }
     public function serviceDetails($slug)
     {
-        $data['service_category'] = ServiceCategory::where('status', 1)->where('is_service', 1)->orderBy('sort', 'ASC')->get();
-        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('slug', $slug)->where('is_service', 1)->latest()->first();
+        $data['service_category'] = ServiceCategory::isActive()->isService()->orderBy('sort', 'ASC')->get();
+        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('slug', $slug)->isService()->latest()->first();
 
         $data['service_count'] = Service::where('slug', $slug)->count();
 
@@ -71,25 +69,25 @@ class FrontendController extends Controller
 
     public function probonoCategory()
     {
-        $data['service_category'] = ServiceCategory::where('status', 1)->where('is_pro_bono', 1)->orderBy('sort', 'ASC')->get();
+        $data['service_category'] = ServiceCategory::isActive()->isProbono()->orderBy('sort', 'ASC')->get();
         return view('frontend.pro_bono.probono_category', $data);
     }
 
     public function categoryProbonoDetails($slug)
     {
         $category = ServiceCategory::where('slug', $slug)->first();
-        $data['service_category'] = ServiceCategory::where('status', 1)->where('is_pro_bono', 1)->orderBy('sort', 'ASC')->get();
+        $data['service_category'] = ServiceCategory::isActive()->isProbono()->orderBy('sort', 'ASC')->get();
         $cat_id = $category->id;
-        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('service_category_id', $cat_id)->where('is_service', 2)->latest()->first();
+        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('service_category_id', $cat_id)->isProbono()->latest()->first();
 
-        $data['service_count'] = Service::where('service_category_id', $cat_id)->where('is_service', 2)->count();
+        $data['service_count'] = Service::where('service_category_id', $cat_id)->isProbono()->count();
 
         return view('frontend.pro_bono.probono_details', $data);
     }
     public function probonoDetails($slug)
     {
-        $data['service_category'] = ServiceCategory::where('status', 1)->where('is_pro_bono', 1)->orderBy('sort', 'ASC')->get();
-        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('slug', $slug)->where('is_service', 2)->latest()->first();
+        $data['service_category'] = ServiceCategory::isActive()->isProbono()->orderBy('sort', 'ASC')->get();
+        $data['service'] = Service::with(['associated_service', 'keywords', 'images'])->where('slug', $slug)->isProbono()->latest()->first();
 
         $data['service_count'] = Service::where('slug', $slug)->count();
 
@@ -122,7 +120,7 @@ class FrontendController extends Controller
     }
     public function insights()
     {
-        $data['insights'] = AssociatedService::where('status', 1)->latest()->paginate(8);
+        $data['insights'] = AssociatedService::isActive()->latest()->paginate(8);
         return view('frontend.insights.insights', $data);
     }
     public function articleDetails($slug)
@@ -163,12 +161,12 @@ class FrontendController extends Controller
     public function insightsDetails($slug)
     {
         $data['insight'] = AssociatedService::where('slug', $slug)->first();
-        $data['latestInsights'] = AssociatedService::where('status', 1)->latest()->limit(10)->get();
+        $data['latestInsights'] = AssociatedService::isActive()->latest()->limit(10)->get();
         return view('frontend.insights.insights_details', $data);
     }
     public function lawsRules()
     {
-        $data['categories'] = LawCategory::with('laws')->where('status', 1)->orderBy('sort', 'ASC')->get();
+        $data['categories'] = LawCategory::with('laws')->isActive()->orderBy('sort', 'ASC')->get();
         return view('frontend.laws_and_rules.laws_rules', $data);
     }
 
@@ -233,13 +231,13 @@ class FrontendController extends Controller
 
     public function officeFunction()
     {
-        $data['of_sectors'] = OfficeFunctionSector::where('status', 1)->orderBy('sort', 'ASC')->get();
+        $data['of_sectors'] = OfficeFunctionSector::isActive()->orderBy('sort', 'ASC')->get();
         return view('frontend.office_function.office_function', $data);
     }
 
     public function serviceFacility()
     {
-        $data['sf_sectors'] = ServiceFacilitySector::where('status', 1)->orderBy('sort', 'ASC')->get();
+        $data['sf_sectors'] = ServiceFacilitySector::isActive()->orderBy('sort', 'ASC')->get();
         return view('frontend.service_facility.service_facility', $data);
     }
 
@@ -252,7 +250,7 @@ class FrontendController extends Controller
     public function courseDetails($slug)
     {
         $data['course'] = Course::with(['expert', 'serviceCategory'])->isActive()->where('slug', $slug)->first();
-        $data['course_faqs'] = CourseFaq::where('course_id', $data['course']->id)->where('status', 1)->get();
+        $data['course_faqs'] = CourseFaq::where('course_id', $data['course']->id)->isActive()->get();
         $data['related_courses'] = Course::where('service_category_id', $data['course']->service_category_id)->get();
         return view('frontend.training.course_details', $data);
     }

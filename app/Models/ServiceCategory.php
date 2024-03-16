@@ -26,6 +26,19 @@ class ServiceCategory extends Model
         'deleted_by',
     ];
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+    public function scopeIsService($query)
+    {
+        return $query->where('is_service', 1);
+    }
+    public function scopeIsProbono($query)
+    {
+        return $query->where('is_pro_bono', 1);
+    }
+
     public function services(){
         return $this->hasMany(Service::class)->where('status',1)->where('is_service',1)->latest();
     }

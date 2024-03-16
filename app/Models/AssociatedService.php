@@ -22,4 +22,9 @@ class AssociatedService extends Model
         'deleted_by',
     ];
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', 1);
+    }
+
 }

@@ -46,8 +46,6 @@ use App\Http\Controllers\User\UserController;
 
 //Ajax - Get service & pro-bono category
 Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceCat']);
-//Ajax - Get ABRWN (Article,Blog,Review,Write Up,News)
-Route::get('/get/abrwn/category/{id}', [DefaultController::class, 'getAbrwnCat']);
 //Ajax - Get service category & service
 Route::get('/get/category/service/{id}', [DefaultController::class, 'getCatService']);
 
