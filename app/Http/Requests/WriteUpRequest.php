@@ -23,7 +23,7 @@ class WriteUpRequest extends FormRequest
         return [
             'title' => 'required|unique:write_ups,title,' . $id,
             'thumbnail_image' => $imageRules,
-            'blog_category_id' => 'required',
+            'write_up_category_id' => 'required',
             'description' => 'required',
         ];
     }
