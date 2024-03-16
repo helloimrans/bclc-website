@@ -63,11 +63,11 @@
                                                 <td>{{ @$law->createdBy->email }}</td>
                                                 <td>{{ @$law->updatedBy->email }}</td>
                                                 <td>
-                                                    <a class="me-1"
+                                                    {{-- <a class="me-1"
                                                         href="{{ route('law.show', $law->id) }}"
                                                         data-bs-toggle="tooltip" data-bs-original-title="Show">
                                                         <i class="far fa-eye text-dark"></i>
-                                                    </a>
+                                                    </a> --}}
                                                     <a class="me-1"
                                                         href="{{ route('law.edit', $law->id) }}"
                                                         data-bs-toggle="tooltip" data-bs-original-title="Edit">

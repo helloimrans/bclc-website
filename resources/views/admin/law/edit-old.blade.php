@@ -43,8 +43,8 @@
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
-                                    <a href="{{ route('law.show', $law->id) }}" class="btn btn-info btn-sm me-1"><i
-                                            data-feather='eye'></i> View</a>
+                                    {{-- <a href="{{ route('law.show', $law->id) }}" class="btn btn-info btn-sm me-1"><i
+                                            data-feather='eye'></i> View</a> --}}
                                     <a href="{{ route('law.index') }}" class="btn btn-success btn-sm"><i
                                             data-feather='corner-up-left'></i> Back</a>
                                 </div>
