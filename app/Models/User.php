@@ -59,6 +59,12 @@ class User extends Authenticatable
     public function scopeIsExpert($query){
         return $query->where('user_type', self::EXPERT);
     }
+    public function scopeIsNormalUser($query){
+        return $query->where('user_type', self::NORMAL_USER);
+    }
+    public function scopeIsAdmin($query){
+        return $query->where('user_type', self::ADMIN);
+    }
     public function scopeIsApproved($query){
         return $query->where('is_approved', self::APPROVED);
     }

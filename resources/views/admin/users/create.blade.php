@@ -1,5 +1,17 @@
+@php
+    if ($userType == App\Models\User::NORMAL_USER) {
+        $showUserType = 'Normal User';
+    } elseif ($userType == App\Models\User::EXPERT) {
+        $showUserType = 'Expert';
+    } elseif ($userType == App\Models\User::ADMIN) {
+        $showUserType = 'Admin';
+    } else {
+        $showUserType = 'User';
+    }
+@endphp
+
 @extends('admin.layouts.master')
-@section('title', 'Create User')
+@section('title', 'Create '.$showUserType)
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +19,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Create User</h2>
+                        <h2 class="content-header-title float-start mb-0">Create {{$showUserType}}</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create User
+                                <li class="breadcrumb-item active">Create {{$showUserType}}
                                 </li>
                             </ol>
                         </div>
@@ -26,10 +38,11 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Create User</h5>
+                                <h5 class="mb-0">Create {{$showUserType}}</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('users.index') }}"
+                                <div class="dt-buttons d-inline-flex"><a
+                                        href="{{ route('users.index', ['user_type' => $userType]) }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
@@ -191,9 +204,10 @@
                                             <div class="mb-1">
                                                 <label class="form-label">Password</label>
                                                 <div class="input-group input-group-merge form-password-toggle">
-                                                    <input type="password" class="form-control form-control-merge" name="password" placeholder="Enter password">
+                                                    <input type="password" class="form-control form-control-merge"
+                                                        name="password" placeholder="Enter password">
                                                     <span class="input-group-text cursor-pointer"><i
-                                                        data-feather="eye"></i></span>
+                                                            data-feather="eye"></i></span>
                                                 </div>
                                                 @error('password')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -226,7 +240,7 @@
                                             <option value="">Select User Type</option>
                                             @foreach (App\Models\User::USER_TYPE as $key => $value)
                                                 <option value="{{ $key }}"
-                                                    {{ old('user_type') == $key ? 'selected' : '' }}>
+                                                    {{ old('user_type', $userType) == $key ? 'selected' : '' }}>
                                                     {{ $value }}</option>
                                             @endforeach
                                         </select>
@@ -236,7 +250,8 @@
                                         @enderror
 
                                     </div>
-                                    <div class="mb-1" id="showRole" style="{{ old('user_type') ==  App\Models\User::EXPERT ? 'display:block' : 'display:none' }}">
+                                    <div class="mb-1" id="showRole"
+                                        style="{{ old('user_type', $userType) == App\Models\User::EXPERT ? 'display:block' : 'display:none' }}">
                                         <label class="form-label">Select Role</label>
                                         <div class="regi-expert-role mb-1">
                                             <div class="custom-control custom-checkbox">

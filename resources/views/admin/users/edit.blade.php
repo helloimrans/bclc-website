@@ -1,5 +1,17 @@
+@php
+    if ($user->user_type == App\Models\User::NORMAL_USER) {
+        $showUserType = 'Normal User';
+    } elseif ($user->user_type == App\Models\User::EXPERT) {
+        $showUserType = 'Expert';
+    } elseif ($user->user_type == App\Models\User::ADMIN) {
+        $showUserType = 'Admin';
+    } else {
+        $showUserType = 'User';
+    }
+@endphp
+
 @extends('admin.layouts.master')
-@section('title', 'Edit User')
+@section('title', 'Edit '.$showUserType )
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +19,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Edit User</h2>
+                        <h2 class="content-header-title float-start mb-0">Edit {{$showUserType }}</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Edit User
+                                <li class="breadcrumb-item active">Edit {{$showUserType }}
                                 </li>
                             </ol>
                         </div>
@@ -26,10 +38,10 @@
                     <div class="card p-2">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Edit User</h5>
+                                <h5 class="mb-0">Edit {{$showUserType }}</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('users.index') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('users.index', ['user_type' => $user->user_type]) }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>

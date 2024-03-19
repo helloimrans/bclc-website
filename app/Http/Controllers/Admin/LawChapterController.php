@@ -51,7 +51,7 @@ class LawChapterController extends Controller
             'chapter_no_bn' => 'required_without:chapter_no',
             'title' => 'required_without:title_bn',
             'title_bn' => 'required_without:title',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ]);
 
         $data = new LawChapter();
@@ -119,7 +119,7 @@ class LawChapterController extends Controller
             'chapter_no_bn' => 'required_without:chapter_no',
             'title' => 'required_without:title_bn',
             'title_bn' => 'required_without:title',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ]);
 
         $data = LawChapter::find($id);

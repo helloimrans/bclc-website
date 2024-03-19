@@ -28,7 +28,7 @@ class ArticleCategoryRequest extends FormRequest
         return [
             'name' => 'required|unique:article_categories,name,' . $id,
             'image' => $imageRules,
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ];
     }
 }

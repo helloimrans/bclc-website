@@ -58,20 +58,6 @@
             <div class="media">
               <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
               <div class="media-body">
-                <a href="{{route('office.function')}}">Office and Functions</a>
-              </div>
-            </div>
-            <!-- footer link -->
-            <div class="media">
-              <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
-              <div class="media-body">
-                <a href="{{route('service.facility')}}">Services and Facilities</a>
-              </div>
-            </div>
-            <!-- footer link -->
-            <div class="media">
-              <img src="{{asset('frontend')}}/images/footer-linik.png" alt="img">
-              <div class="media-body">
                 <a href="{{route('terms.condition')}}">Terms & Conditions</a>
               </div>
             </div>

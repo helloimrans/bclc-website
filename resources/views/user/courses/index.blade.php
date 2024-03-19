@@ -42,7 +42,7 @@
                                             <th>Expert</th>
                                             <th>Fee</th>
                                             <th>Discount Fee</th>
-                                            <th>Actions</th>
+                                            <th>Payment Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,7 +59,9 @@
                                                 <td>{{ $course->courses->expert->name }}</td>
                                                 <td>{{ $course->courses->fee }}</td>
                                                 <td>{{ $course->courses->discount_fee ?? 'N/A' }}</td>
-                                                <td></td>
+                                                <td>
+                                                    <span class='badge {{$course->order->status == 'Complete' ? 'bg-success' : 'bg-danger'}}'>{{$course->order->status}}</span>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

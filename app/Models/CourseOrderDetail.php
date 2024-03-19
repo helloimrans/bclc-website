@@ -12,12 +12,33 @@ class CourseOrderDetail extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
+    const PENDING = 'Pending';
+    const RUNNING = 'Processing';
+    const COMPLETE = 'Complete';
+
     protected $fillable = [
         'user_id',
         'order_id',
         'course_id',
         'status',
     ];
+
+    public function scopeacl($query)
+    {
+        return $query->where('user_id', auth()->user()->id);
+    }
+    public function scopepending($query)
+    {
+        return $query->where('status', self::PENDING);
+    }
+    public function scoperunning($query)
+    {
+        return $query->where('status', self::RUNNING);
+    }
+    public function scopecomplete($query)
+    {
+        return $query->where('status', self::COMPLETE);
+    }
 
     public function courses()
     {

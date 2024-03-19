@@ -1,5 +1,17 @@
+@php
+    if ($userType == App\Models\User::NORMAL_USER) {
+        $showUserType = 'Normal User List';
+    } elseif ($userType == App\Models\User::EXPERT) {
+        $showUserType = 'Expert List';
+    } elseif ($userType == App\Models\User::ADMIN) {
+        $showUserType = 'Admin List';
+    } else {
+        $showUserType = 'User List';
+    }
+@endphp
+
 @extends('admin.layouts.master')
-@section('title', 'Users')
+@section('title', $showUserType)
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -7,12 +19,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-start mb-0">Users</h2>
+                        <h2 class="content-header-title float-start mb-0">{{ $showUserType }}</h2>
                         <div class="breadcrumb-wrapper">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Users
+                                <li class="breadcrumb-item active">{{ $showUserType }}
                                 </li>
                             </ol>
                         </div>
@@ -26,10 +38,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="head-label">
-                                <h5 class="mb-0">Users</h5>
+                                <h5 class="mb-0">{{ $showUserType }}</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{ route('users.create') }}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('users.create', ['user_type' => $userType]) }}"
                                         class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New</a></div>
                             </div>
                         </div>
@@ -67,7 +79,13 @@
             var table = $('.datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: {
+                    url: "{{ route('users.index') }}",
+                    data: function(d) {
+                        d.user_type = '{{$userType}}';
+                    }
+                },
+
                 columns: [{
                         data: null,
                         name: 'serial',
@@ -111,5 +129,5 @@
     </script>
 
     {{-- Change Status Script --}}
-    @include('admin.layouts.inc.change-status', ['table'=> 'users'])
+    @include('admin.layouts.inc.change-status', ['table' => 'users'])
 @endsection

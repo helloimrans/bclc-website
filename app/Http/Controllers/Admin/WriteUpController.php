@@ -68,7 +68,7 @@ class WriteUpController extends Controller
 
     public function edit($id)
     {
-        $writeUp = $this->writeUpService->getWriteUp($id);
+        $write_up = $this->writeUpService->getWriteUp($id);
         $categories = $this->writeUpCategoryService->getAllCategories();
         return view('admin.write_ups.edit', compact('write_up', 'categories'));
     }

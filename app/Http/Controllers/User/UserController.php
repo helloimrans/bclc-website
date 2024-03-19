@@ -3,7 +3,16 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Blog;
+use App\Models\ContactUs;
+use App\Models\Course;
+use App\Models\CourseOrderDetail;
+use App\Models\Law;
+use App\Models\News;
+use App\Models\Review;
 use App\Models\User;
+use App\Models\WriteUp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -101,6 +110,15 @@ class UserController extends Controller
         }
         $check = $request->all();
 
+        $user = User::where('email', $check['email'])->first();
+        if ($user && !$user->is_active) {
+            $notification = array(
+                'message' => 'Your account is inactive. Please contact support.',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+
         if (Auth::attempt(['email' => $check['email'], 'password' => $check['password']])) {
             $notification = array(
                 'message' => 'Successfully Logged In!',
@@ -118,7 +136,32 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        return view('admin.home.index');
+        $data['totalUser'] = User::count();
+        $data['totalNormalUser'] = User::isNormalUser()->count();
+        $data['totalExpert'] = User::isExpert()->count();
+        $data['totalAdmin'] = User::isAdmin()->count();
+
+        $data['totalCourses'] = Course::count();
+        $data['totalEnrolledCourses'] = CourseOrderDetail::count();
+        $data['totalPendingCourses'] = CourseOrderDetail::pending()->count();
+        $data['totalRunningCourses'] = CourseOrderDetail::running()->count();
+        $data['totalCompleteCourses'] = CourseOrderDetail::complete()->count();
+
+        $data['totalLaws'] = Law::count();
+        $data['totalArticles'] = Article::count();
+        $data['totalBlogs'] = Blog::count();
+        $data['totalWriteUps'] = WriteUp::count();
+        $data['totalNews'] = News::count();
+        $data['totalReviews'] = Review::count();
+        $data['totalUnreadContactMessage'] = ContactUs::unread()->count();
+
+
+        $data['totalUserEnrolledCourses'] = CourseOrderDetail::acl()->count();
+        $data['totalUserPendingCourses'] = CourseOrderDetail::acl()->pending()->count();
+        $data['totalUserRunningCourses'] = CourseOrderDetail::acl()->running()->count();
+        $data['totalUserCompleteCourses'] = CourseOrderDetail::acl()->complete()->count();
+
+        return view('admin.home.index', $data);
     }
 
     public function profile()

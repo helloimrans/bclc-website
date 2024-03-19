@@ -13,23 +13,29 @@
 
     <link rel="apple-touch-icon" href="{{ asset('admin') }}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin') }}/app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/forms/select/select2.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('admin') }}/app-assets/vendors/css/forms/select/select2.min.css">
 
     <!-- Datatable -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('admin') }}/app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/bootstrap-extended.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/colors.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/components.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('admin') }}/app-assets/css/core/menu/menu-types/vertical-menu.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}assets/css/style.css">
 
     <!-- Toastr -->
@@ -81,6 +87,17 @@
             margin-right: 10px;
         }
 
+        .vertical-layout.vertical-menu-modern .main-menu .navigation>li>a i,
+        .vertical-layout.vertical-menu-modern .main-menu .navigation>li>a svg {
+            margin-right: 0.6rem;
+        }
+
+        .vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation>li>a>i:before,
+        .vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation>li>a>svg:before {
+            font-size: 18px;
+        }
+
+
 
         /* Extra */
         .sub-btn {
@@ -100,6 +117,8 @@
             background: #fff;
         }
     </style>
+
+    @yield('styles')
 
 </head>
 
@@ -215,4 +234,5 @@
 
     @yield('scripts')
 </body>
+
 </html>

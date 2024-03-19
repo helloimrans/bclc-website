@@ -45,7 +45,7 @@ class LawPartController extends Controller
             'part_no_bn' => 'required_without:part_no',
             'title' => 'required_without:title_bn',
             'title_bn' => 'required_without:title',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ]);
 
         $data = new LawPart();
@@ -108,7 +108,7 @@ class LawPartController extends Controller
             'part_no_bn' => 'required_without:part_no',
             'title' => 'required_without:title_bn',
             'title_bn' => 'required_without:title',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ]);
 
         $data = LawPart::find($id);

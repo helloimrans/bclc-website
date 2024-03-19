@@ -53,7 +53,7 @@ class LawController extends Controller
                 'act_no' => 'required',
                 'act_year' => 'required',
                 'act_date' => 'required',
-                'sort' => 'numeric|min:0',
+                'sort' => 'nullable|numeric|min:0',
                 'short_form' => 'required',
 
             ]);
@@ -71,7 +71,7 @@ class LawController extends Controller
                 'act_no' => 'required',
                 'act_year' => 'required',
                 'act_date' => 'required',
-                'sort' => 'numeric|min:0',
+                'sort' => 'nullable|numeric|min:0',
                 'short_form' => 'required',
                 'rules_title' => 'required',
                 'rules_short_form' => 'required',
@@ -161,7 +161,7 @@ class LawController extends Controller
                 'act_no' => 'required',
                 'act_year' => 'required',
                 'act_date' => 'required',
-                'sort' => 'numeric|min:0',
+                'sort' => 'nullable|numeric|min:0',
                 'short_form' => 'required',
 
             ]);
@@ -179,7 +179,7 @@ class LawController extends Controller
                 'act_no' => 'required',
                 'act_year' => 'required',
                 'act_date' => 'required',
-                'sort' => 'numeric|min:0',
+                'sort' => 'nullable|numeric|min:0',
                 'short_form' => 'required',
                 'rules_title' => 'required',
                 'rules_short_form' => 'required',

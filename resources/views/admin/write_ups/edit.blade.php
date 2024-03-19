@@ -49,14 +49,14 @@
                                     <div class="col-md-6">
                                         <div class="mb-1">
                                             <label class="form-label">Category</label>
-                                            <select id="article_category_id" name="article_category_id"
-                                                class="form-control @error('article_category_id') is-invalid @enderror">
+                                            <select id="write_up_category_id" name="write_up_category_id"
+                                                class="form-control @error('write_up_category_id') is-invalid @enderror">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @if (old('article_category_id',$write_up->article_category_id) == $category->id) @selected(true) @endif>{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" @if (old('write_up_category_id',$write_up->write_up_category_id) == $category->id) @selected(true) @endif>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('article_category_id')
+                                            @error('write_up_category_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>

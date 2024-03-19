@@ -43,7 +43,7 @@ class LawCategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:law_categories,name',
-            // 'sort' => 'numeric|min:0',
+            // 'sort' => 'nullable|numeric|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -105,7 +105,7 @@ class LawCategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:law_categories,name,' . $id,
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
 
         ]);
 

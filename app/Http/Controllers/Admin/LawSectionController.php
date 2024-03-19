@@ -52,7 +52,7 @@ class LawSectionController extends Controller
             'section_no_bn' => 'required_without:section_no',
             'description' => 'required_without:description_bn',
             'description_bn' => 'required_without:description',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ]);
 
         $data = new LawSection();
@@ -126,7 +126,7 @@ class LawSectionController extends Controller
             'section_no_bn' => 'required_without:section_no',
             'description' => 'required_without:description_bn',
             'description_bn' => 'required_without:description',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
         ]);
 
         $data =  LawSection::find($id);

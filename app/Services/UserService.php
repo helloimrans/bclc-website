@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
-    public function getAllUsers()
+    public function getAllUsers($userType)
     {
-        return User::latest()->get();
+        return User::when($userType, function ($query, $userType) {
+            return $query->where('user_type', $userType);
+        })
+        ->latest()
+        ->get();
     }
 
     public function createUser($input)

@@ -44,7 +44,7 @@ class AbrwnCategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:abrwn_categories,name',
             'image' => 'mimes:jpg,jpeg,png,webp,svg',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
             'is_article' => 'nullable|required_without_all:is_blog,is_review,is_writeup,is_news',
             'is_blog' => 'nullable|required_without_all:is_article,is_review,is_writeup,is_news',
             'is_review' => 'nullable|required_without_all:is_blog,is_article,is_writeup,is_news',
@@ -145,7 +145,7 @@ class AbrwnCategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:abrwn_categories,name,'.$id,
             'image' => 'mimes:jpg,jpeg,png,webp,svg',
-            'sort' => 'numeric|min:0',
+            'sort' => 'nullable|numeric|min:0',
             'is_article' => 'nullable|required_without_all:is_blog,is_review,is_writeup,is_news',
             'is_blog' => 'nullable|required_without_all:is_article,is_review,is_writeup,is_news',
             'is_review' => 'nullable|required_without_all:is_blog,is_article,is_writeup,is_news',

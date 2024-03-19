@@ -74,6 +74,8 @@ Route::get('/legal/news', [FrontendController::class,'news'])->name('news');
 Route::get('/news/details/{slug}', [FrontendController::class,'newsDetails'])->name('news.details');
 //Review
 Route::get('/legal/review', [FrontendController::class,'review'])->name('review');
+//Review
+Route::get('/review/details/{slug}', [FrontendController::class,'reviewDetails'])->name('review.details');
 //Insights
 Route::get('/legal/insights', [FrontendController::class,'insights'])->name('insights');
 //Insights details
@@ -110,7 +112,7 @@ Route::group(['prefix' => 'courses', 'as' => 'course.'], function () {
     Route::get('details/{slug}', [FrontendController::class, 'courseDetails'])->name('details');
 });
 
-Route::group(['prefix' => 'course', 'as' => 'course.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'course', 'as' => 'course.'], function () {
     Route::get('checkout/{slug}', [FrontendController::class, 'courseCheckout'])->name('checkout');
     Route::post('/payment/submit', [CoursePaymentController::class, 'paymentSubmit'])->name('payment.submit');
     Route::get('/payment/success/{transactionId}', [CoursePaymentController::class, 'paymentSuccess'])->name('payment.success');

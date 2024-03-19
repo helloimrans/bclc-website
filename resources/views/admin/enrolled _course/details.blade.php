@@ -29,11 +29,8 @@
                                 <h5 class="mb-0">Enrolled Course Details</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex">
-                                    <a href=""
-                                     class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
-                                    </a>
-                                </div>
+                                <div class="dt-buttons d-inline-flex"><a href="{{route('enrolled.courses.index')}}"
+                                    class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -42,34 +39,35 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
-                                            <th>Date</th>
+                                            <th>Payment Date</th>
                                             <th>Trx ID</th>
                                             <th>Fee</th>
                                             <th>Learner</th>
                                             <th>Email</th>
                                             <th>Mobile No.</th>
-                                            <th>Payment</th>
-                                            <th>Actions</th>
+                                            <th>Payment Status</th>
+                                            <th>Is Payment Approved</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($enrolledCourseDetails as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->order->created_at }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($item->order->created_at)->format('d-m-Y') }}</td>
                                                 <td>{{ $item->order->transaction_id }}</td>
                                                 <td>{{ $item->order->amount }}</td>
                                                 <td>{{ $item->order->user->name }}</td>
                                                 <td>{{ $item->order->user->email }}</td>
                                                 <td>{{ $item->order->user->mobile }}</td>
                                                 <td>
-                                                    @if($item->order->status == 'Pending')
-                                                    <span class='badge bg-info'>Pending</span>
-                                                    @else
-                                                    <span class='badge bg-success'>Success</span>
-                                                    @endif
+                                                    <span class='badge {{$item->order->status == 'Complete' ? 'bg-success' : 'bg-danger'}}'>{{$item->order->status}}</span>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
+                                                    @if ($item->order->status == "Pending")
+                                                        <a href="{{route('enrolled.courses.approve', $item->order->id)}}" class="btn btn-sm btn-info"><i class="fa fa-check"></i> Approve</a>
+                                                    @else
+                                                    <a href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-check-circle"></i> Approved</a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -175,8 +175,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
     Route::group(['prefix' => 'enrolled/courses', 'as' => 'enrolled.courses.'], function () {
         Route::get('index', [EnrolledCouseController::class, 'index'])->name('index');
         Route::get('details/{id}', [EnrolledCouseController::class, 'details'])->name('details');
-        // Route::post('update/{id}', [CourseFaqController::class, 'update'])->name('update');
-        // Route::get('destroy/{id}', [CourseFaqController::class, 'destroy'])->name('destroy');
+        Route::get('approve/{orderId}', [EnrolledCouseController::class, 'approve'])->name('approve');
     });
 
     //Course FAQ

@@ -294,7 +294,7 @@
                                         <div class="course-author">
                                             <div class="ta-img">
                                                 <div class="ta-img-main">
-                                                    <img src="{{ asset('frontend') }}/images/tauthor1.png"
+                                                    <img src="{{ $course->expert->photo ? Storage::url($course->expert->photo) : asset('defaults/noimage/no_img.jpg') }}"
                                                         alt="image">
                                                 </div>
                                                 <a href="#">{{ $related_course->expert->name }}</a>

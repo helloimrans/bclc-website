@@ -30,9 +30,6 @@
                             </div>
                             <div class="dt-action-buttons text-end">
                                 <div class="dt-buttons d-inline-flex">
-                                    <a href=""
-                                     class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -57,13 +54,13 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $enrolledCourse->courses->title }}</td>
                                                 <td>
-                                                    <span class="badge bg-secondary">Total: {{$participant->count()}}</span>
-                                                    <span class="badge bg-warning">Pending: {{$participant->where('status', 'Pending')->count()}}</span>
+                                                    <span class="badge bg-info">Total: {{$participant->count()}}</span>
+                                                    <span class="badge bg-danger">Pending: {{$participant->where('status', 'Pending')->count()}}</span>
                                                 </td>
                                                 <td>
                                                     <a class="me-1 btn btn-primary btn-sm" href="{{route('enrolled.courses.details',$enrolledCourse->course_id)}}" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Details">
-                                                        Details
+                                                        <i class="fa fa-eye"></i> Details
                                                     </a>
                                                 </td>
                                             </tr>

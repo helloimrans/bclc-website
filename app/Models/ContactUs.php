@@ -12,6 +12,8 @@ class ContactUs extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
+    const UNREAD = 'Unread';
+
     protected $fillable = [
         'name',
         'mobile',
@@ -19,4 +21,8 @@ class ContactUs extends Model
         'subject',
         'message',
     ];
+
+    public function scopeunread($query){
+        return $query->where('read_status', self::UNREAD);
+    }
 }
