@@ -35,9 +35,11 @@ return new class extends Migration
             $table->boolean('is_trainer')->default(false);
             $table->boolean('is_writer')->default(false);
 
-            $table->boolean('is_approved')->default(0);
-            $table->boolean('status')->default(true);
+            $table->boolean('is_approved')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

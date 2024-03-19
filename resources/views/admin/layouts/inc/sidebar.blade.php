@@ -39,6 +39,11 @@
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Roles">Profession</span></a>
                         </li>
+                        <li class=" @if ($route == 'users.index' || $route == 'users.edit' || $route == 'users.create') active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('users.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Users</span></a>
+                        </li>
                     </ul>
                 </li>
 

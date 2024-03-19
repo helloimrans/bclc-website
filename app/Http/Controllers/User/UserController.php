@@ -44,9 +44,9 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with($notification);
         }
 
-        if($request->input('user_type') == User::EXPERT){
+        if ($request->input('user_type') == User::EXPERT) {
             $userType = User::EXPERT;
-        }else{
+        } else {
             $userType = User::NORMAL_USER;
         }
 
@@ -131,7 +131,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,' . Auth::user()->id,
             'mobile' => 'required',
             'dob' => 'nullable|date',
             'gender' => 'nullable|in:Male,Female,Others',

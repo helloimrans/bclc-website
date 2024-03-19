@@ -18,6 +18,7 @@ use App\Http\Controllers\Defaults\DefaultController;
 use App\Http\Controllers\Admin\LawCategoryController;
 use App\Http\Controllers\Admin\LawScheduleController;
 use App\Http\Controllers\Admin\AbrwnCategoryController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
@@ -126,6 +127,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
     Route::resource('review-categories', ReviewCategoryController::class)->names('review.categories');
     //Reviews
     Route::resource('reviews', ReviewController::class)->names('reviews');
+
+    //Users
+    Route::resource('users', AdminUserController::class);
 
     //Law Category
     Route::resource('law/category', LawCategoryController::class, ['as' => 'law'])->except(['show']);
