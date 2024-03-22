@@ -123,6 +123,7 @@
                         <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="5">
                         </div>
                     </div>
+                    @include('frontend.share.share')
                 </div>
             </div>
 

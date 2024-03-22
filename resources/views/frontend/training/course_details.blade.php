@@ -29,15 +29,12 @@
             <div class="col-lg-5">
                 <div class="td-text">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <h5 class="mt-4 mt-md-0">Program Overview</h5>
                         </div>
-                        {{-- <div class="col-lg-6">
-                            <div class="td-share">
-                                <a href=""><i class="fa fa-heart"></i></a>
-                                <a href=""><i class="fa fa-share-alt"></i></a>
-                            </div>
-                        </div> --}}
+                        <div class="col-lg-6">
+                            @include('frontend.share.share')
+                        </div>
                     </div>
                     <p>
                         {!! $course->short_description !!}

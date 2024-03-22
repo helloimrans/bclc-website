@@ -112,11 +112,12 @@
                                                     <span><i class="fa fa-user-o"></i>
                                                         {{$article->createdBy->name}}
                                                     </span>
+                                                </div>
+                                                <div class="article-icon">
                                                     <span><i class="fa fa-calendar-o"></i>
                                                         {{ $article->created_at->format('d M Y') }}</span>
                                                 </div>
                                                 <div class="article-desc">
-                                                    <p> {!! substr(strip_tags($article->description), 0, 45) !!}</p>
                                                     <a href="{{ route('article.details', $article->slug) }}">Read More</a>
                                                 </div>
                                             </div>
@@ -248,10 +249,12 @@
                                             </h5>
                                             <span>{{ $course->serviceCategory->name }}</span>
                                             <p><i class="fa fa-calendar"></i>
-                                                {{ date('jS, F, Y', strtotime($course->class_start_date)) }} ({{ $course->duration }})
-                                                Hours</p>
+                                                {{ date('jS, F, Y', strtotime($course->class_start_date)) }}</p>
+                                                <p><i class="fa fa-clock-o"></i>
+                                                    {{ $course->duration }}
+                                                    Hours</p>
                                             <p><img src="{{ asset('frontend') }}/images/trached.png"
-                                                    alt="image">{{ $course->boarding }}</p>
+                                                    alt="image"> {{ $course->boarding }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -24,10 +24,9 @@ class ArticleCategoryRequest extends FormRequest
     public function rules()
     {
         $id = $this->route('article_category');
-        $imageRules = $id !== null ? 'sometimes|nullable|mimes:jpg,jpeg,png,webp,svg|max:2048' : 'required|mimes:jpg,jpeg,png,webp,svg|max:2048';
         return [
             'name' => 'required|unique:article_categories,name,' . $id,
-            'image' => $imageRules,
+            'image' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'sort' => 'nullable|numeric|min:0',
         ];
     }

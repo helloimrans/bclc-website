@@ -42,11 +42,12 @@
                                 <span><i class="fa fa-user-o"></i>
                                     {{$article->createdBy->name}}
                                 </span>
+                            </div>
+                            <div class="article-icon">
                                 <span><i class="fa fa-calendar-o"></i>
                                     {{ $article->created_at->format('d M Y') }}</span>
                             </div>
                             <div class="article-desc">
-                                <p> {!! substr(strip_tags($article->description), 0, 45) !!}</p>
                                 <a href="{{ route('article.details',$article->slug) }}">Read More</a>
                             </div>
                         </div>

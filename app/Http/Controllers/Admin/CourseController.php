@@ -26,7 +26,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        $data['experts'] = User::isExpert()->isApproved()->get();
+        $data['experts'] = User::isExpert()->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();
         $data['services'] = Service::where('status', 1)->get();
         $data['service_categories'] = ServiceCategory::where('status', 1)->get();
@@ -94,7 +94,7 @@ class CourseController extends Controller
         $data['course'] = Course::findOrFail($id);
         $data['faqs'] = CourseFaq::where('course_id', $id)->get();
         // return $data['course']->schedule;
-        $data['experts'] = User::isExpert()->isApproved()->get();
+        $data['experts'] = User::isExpert()->get();
         $data['suitables'] = SuitableForCourse::where('status', 1)->get();
         $data['services'] = Service::where('status', 1)->get();
         $data['service_categories'] = ServiceCategory::where('status', 1)->get();

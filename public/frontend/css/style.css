@@ -574,7 +574,7 @@ header.scrolled .logo {
     overflow: hidden;
     margin: 0 6px;
     transition: 0.4s;
-    min-height: 407px;
+    min-height: 365px;
 }
 
 .article-box:hover {
@@ -619,6 +619,9 @@ header.scrolled .logo {
     font-size: 14px;
     font-weight: 600;
     margin-right: 14px;
+}
+.article-desc{
+    margin-top: 10px;
 }
 
 .article-desc p {
@@ -1856,7 +1859,7 @@ header.scrolled .logo {
 
 
 /* article section page styles */
-.article-section-page .article-box {
+/* .article-section-page .article-box {
     min-height: 335px;
     margin: 0;
     margin-bottom: 15px;
@@ -1864,7 +1867,7 @@ header.scrolled .logo {
 
 .article-section-page .article-img {
     height: 123px;
-}
+} */
 .article-section-page .article-txt h5 {
     font-size: 16px;
 }
@@ -2102,4 +2105,40 @@ header.scrolled .logo {
 .payment-success p a{
     font-weight: 600;
     color: #CE5A2C;
+}
+
+
+/* share */
+.pl-share-btn h6{
+    font-weight: 600;
+    font-size: 15px;
+}
+.pl-share-btn a {
+    margin-right: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    border: 1px solid;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 7px;
+}
+
+
+.share-gmail i {
+    color: #DB4437;
+}
+
+.share-facebook i {
+    color: #1877F2;
+}
+
+.share-linkedin i {
+    color: #0077b5;
+}
+
+.share-whatsapp i {
+    color: #25D366;
 }

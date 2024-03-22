@@ -60,6 +60,7 @@
                         <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="5">
                         </div>
                     </div>
+                    @include('frontend.share.share')
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
