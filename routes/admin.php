@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LawController;
-use App\Http\Controllers\Admin\AbrwnController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\LawFaqController;
@@ -17,7 +16,6 @@ use App\Http\Controllers\Admin\ServiceCatController;
 use App\Http\Controllers\Defaults\DefaultController;
 use App\Http\Controllers\Admin\LawCategoryController;
 use App\Http\Controllers\Admin\LawScheduleController;
-use App\Http\Controllers\Admin\AbrwnCategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\ArticleController;
@@ -31,6 +29,9 @@ use App\Http\Controllers\Admin\ServiceFacilityController;
 use App\Http\Controllers\Admin\AssociatedServiceController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\DocumentCategoryController;
+use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\DocumentSubCategoryController;
 use App\Http\Controllers\Admin\OfficeFunctionCatController;
 use App\Http\Controllers\Admin\ServiceFacilityCatController;
 use App\Http\Controllers\Admin\OfficeFunctionSectorController;
@@ -127,6 +128,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
     Route::resource('review-categories', ReviewCategoryController::class)->names('review.categories');
     //Reviews
     Route::resource('reviews', ReviewController::class)->names('reviews');
+
+    Route::resource('document-categories', DocumentCategoryController::class)->names('document.categories');
+    
+    Route::resource('document-subcategories', DocumentSubCategoryController::class)->names('document.subcategories');
+    Route::get('document-subcategories/get-by-category/{category_id}', [DocumentSubCategoryController::class, 'getByCategory']);
+
+    Route::resource('documents', DocumentController::class)->names('document');
 
     //Users
     Route::resource('users', AdminUserController::class);

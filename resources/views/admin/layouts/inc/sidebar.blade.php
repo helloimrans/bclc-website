@@ -29,8 +29,7 @@
 
             @if (Auth::user()->user_type == App\Models\User::ADMIN)
                 {{-- users --}}
-                <li class="nav-item"><a class="d-flex align-items-center"
-                        href="#"><i class="fas fa-users"></i>
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fas fa-users"></i>
                         <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">System
                             Users</span></a>
                     <ul class="menu-content">
@@ -71,34 +70,31 @@
                 {{-- -----------------------------
                 Legal Insights
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center"
-                        href="#"><i class="far fa-eye"></i><span class="menu-title text-truncate"
-                            data-i18n="Roles &amp; Permission">Legal Insights</span></a>
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="far fa-eye"></i><span
+                            class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Legal
+                            Insights</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['associated.service.index', 'associated.service.edit', 'associated.service.create'])) active @endif"><a
-                                class="d-flex align-items-center" href="{{ route('associated.service.index') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Roles">Associated Service</span></a>
+                        <li class="@if (in_array($route, ['associated.service.index', 'associated.service.edit', 'associated.service.create'])) active @endif"><a class="d-flex align-items-center"
+                                href="{{ route('associated.service.index') }}"><i data-feather="circle"></i><span
+                                    class="menu-item text-truncate" data-i18n="Roles">Associated Service</span></a>
                         </li>
-                        <li class="@if (in_array($route, ['keywordss.index', 'keywordss.edit', 'keywordss.create'])) active @endif"><a
-                                class="d-flex align-items-center" href="{{ route('keywordss.index') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Permission">Keywords</span></a>
+                        <li class="@if (in_array($route, ['keywordss.index', 'keywordss.edit', 'keywordss.create'])) active @endif"><a class="d-flex align-items-center"
+                                href="{{ route('keywordss.index') }}"><i data-feather="circle"></i><span
+                                    class="menu-item text-truncate" data-i18n="Permission">Keywords</span></a>
                         </li>
                     </ul>
                 </li>
                 {{-- -----------------------------
                 Service & Pro-Bono
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center"
-                        href="#"><i class="fas fa-wrench"></i><span class="menu-title text-truncate"
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fas fa-wrench"></i><span class="menu-title text-truncate"
                             data-i18n="Roles &amp; Permission">Service &
                             Pro-Bono</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['service.category.index', 'service.category.edit', 'service.category.create'])) active @endif"><a
-                                class="d-flex align-items-center" href="{{ route('service.category.index') }}"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Roles">Category</span></a>
+                        <li class="@if (in_array($route, ['service.category.index', 'service.category.edit', 'service.category.create'])) active @endif"><a class="d-flex align-items-center"
+                                href="{{ route('service.category.index') }}"><i data-feather="circle"></i><span
+                                    class="menu-item text-truncate" data-i18n="Roles">Category</span></a>
                         </li>
                         <li class=" @if ($route == 'service.index' || $route == 'service.edit' || $route == 'service.create') active @endif"><a
                                 class="d-flex align-items-center" href="{{ route('service.index') }}"><i
@@ -115,20 +111,17 @@
                 {{-- -----------------------------
                 Course Management
             ------------------------------ --}}
-                <li class="nav-item"><a
-                        class="d-flex align-items-center" href="#"><i class="fas fa-graduation-cap"></i>
-                        <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Manage Courses</span></a>
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fas fa-graduation-cap"></i>
+                        <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Manage
+                            Courses</span></a>
                     <ul class="menu-content">
                         <li class=" @if ($route == 'course.suitables.index' || $route == 'course.suitables.edit' || $route == 'course.suitables.create') active @endif"><a
                                 class="d-flex align-items-center" href="{{ route('course.suitables.index') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Roles">Suitables For Course</span></a>
                         </li>
-                        <li class=" @if (
-                            $route == 'courses.index' ||
-                                $route == 'courses.edit' ||
-                                $route == 'courses.show' ||
-                                $route == 'courses.create') active @endif"><a
+                        <li class=" @if ($route == 'courses.index' || $route == 'courses.edit' || $route == 'courses.show' || $route == 'courses.create') active @endif"><a
                                 class="d-flex align-items-center" href="{{ route('courses.index') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Roles">Course</span></a>
@@ -144,16 +137,19 @@
                 {{-- -----------------------------
                 Articles
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-file-alt"></i><span class="menu-title text-truncate"
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-file-alt"></i><span class="menu-title text-truncate"
                             data-i18n="Laws & Rules">Articles</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['articles.index', 'articles.edit', 'articles.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('articles.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Articles</span></a>
+                        <li class="@if (in_array($route, ['articles.index', 'articles.edit', 'articles.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('articles.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Articles</span></a>
                         </li>
-                        <li class="@if (in_array($route, ['article.categories.index', 'article.categories.edit', 'article.categories.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('article.categories.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Category</span></a>
+                        <li class="@if (in_array($route, ['article.categories.index', 'article.categories.edit', 'article.categories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('article.categories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Category</span></a>
                         </li>
                     </ul>
                 </li>
@@ -161,49 +157,58 @@
                 {{-- -----------------------------
                 Blogs
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-blog"></i><span class="menu-title text-truncate"
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-blog"></i><span class="menu-title text-truncate"
                             data-i18n="Laws & Rules">Legal Blogs</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['blogs.index', 'blogs.edit', 'blogs.create'])) active @endif"><a class="d-flex align-items-center" href="{{ route('blogs.index') }}"><i
+                        <li class="@if (in_array($route, ['blogs.index', 'blogs.edit', 'blogs.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('blogs.index') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Roles">Blogs</span></a>
                         </li>
-                        <li class="@if (in_array($route, ['blog.categories.index', 'blog.categories.edit', 'blog.categories.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('blog.categories.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Category</span></a>
+                        <li class="@if (in_array($route, ['blog.categories.index', 'blog.categories.edit', 'blog.categories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('blog.categories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Category</span></a>
                         </li>
                     </ul>
                 </li>
                 {{-- -----------------------------
                 Write Ups
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-pen-nib"></i><span class="menu-title text-truncate"
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-pen-nib"></i><span class="menu-title text-truncate"
                             data-i18n="Laws & Rules">Legal Write
                             Ups</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['write_ups.index', 'write_ups.edit', 'write_ups.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('write_ups.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Write Ups</span></a>
+                        <li class="@if (in_array($route, ['write_ups.index', 'write_ups.edit', 'write_ups.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('write_ups.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Write Ups</span></a>
                         </li>
-                        <li class="@if (in_array($route, ['write_up.categories.index', 'write_up.categories.edit', 'write_up.categories.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('write_up.categories.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Category</span></a>
+                        <li class="@if (in_array($route, ['write_up.categories.index', 'write_up.categories.edit', 'write_up.categories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('write_up.categories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Category</span></a>
                         </li>
                     </ul>
                 </li>
                 {{-- -----------------------------
                 News
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-newspaper"></i><span class="menu-title text-truncate"
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-newspaper"></i><span class="menu-title text-truncate"
                             data-i18n="Laws & Rules">Legal News</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['news.index', 'news.edit', 'news.create'])) active @endif"><a class="d-flex align-items-center" href="{{ route('news.index') }}"><i
+                        <li class="@if (in_array($route, ['news.index', 'news.edit', 'news.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('news.index') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="Roles">News</span></a>
                         </li>
-                        <li class="@if (in_array($route, ['news.categories.index', 'news.categories.edit', 'news.categories.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('news.categories.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Category</span></a>
+                        <li class="@if (in_array($route, ['news.categories.index', 'news.categories.edit', 'news.categories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('news.categories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Category</span></a>
                         </li>
                     </ul>
                 </li>
@@ -211,16 +216,19 @@
                 {{-- -----------------------------
                 Reviews
             ------------------------------ --}}
-                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-comments"></i><span class="menu-title text-truncate"
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-comments"></i><span class="menu-title text-truncate"
                             data-i18n="Laws & Rules">Legal Reviews</span></a>
                     <ul class="menu-content">
-                        <li class="@if (in_array($route, ['reviews.index', 'reviews.edit', 'reviews.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('reviews.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Reviews</span></a>
+                        <li class="@if (in_array($route, ['reviews.index', 'reviews.edit', 'reviews.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('reviews.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Reviews</span></a>
                         </li>
-                        <li class="@if (in_array($route, ['review.categories.index', 'review.categories.edit', 'review.categories.create'])) active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('review.categories.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Category</span></a>
+                        <li class="@if (in_array($route, ['review.categories.index', 'review.categories.edit', 'review.categories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('review.categories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Category</span></a>
                         </li>
                     </ul>
                 </li>
@@ -228,9 +236,9 @@
                 {{-- -----------------------------
                 Laws & Rules
             ------------------------------ --}}
-                <li class="nav-item"><a
-                        class="d-flex align-items-center" href="#"><i class="fa fa-gavel"></i><span
-                            class="menu-title text-truncate" data-i18n="Laws & Rules">Laws & Rules</span></a>
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-gavel"></i><span class="menu-title text-truncate"
+                            data-i18n="Laws & Rules">Laws & Rules</span></a>
                     <ul class="menu-content">
                         <li class=" @if ($route == 'law.category.index' || $route == 'law.category.edit' || $route == 'law.category.create') active @endif"><a
                                 class="d-flex align-items-center" href="{{ route('law.category.index') }}"><i
@@ -250,9 +258,9 @@
                 {{-- -----------------------------
                 Office & Function
             ------------------------------ --}}
-                <li class="nav-item"><a
-                        class="d-flex align-items-center" href="#"><i class="fa fa-building"></i><span
-                            class="menu-title text-truncate" data-i18n="Laws & Rules">Office & Function</span></a>
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-building"></i><span class="menu-title text-truncate"
+                            data-i18n="Laws & Rules">Office & Function</span></a>
                     <ul class="menu-content">
                         <li class=" @if ($route == 'of.sector.index' || $route == 'of.sector.edit' || $route == 'of.sector.create') active @endif"><a
                                 class="d-flex align-items-center" href="{{ route('of.sector.index') }}"><i
@@ -279,8 +287,8 @@
                 {{-- -----------------------------
                 Service & Facilitics
             ------------------------------ --}}
-                <li class="nav-item"><a
-                        class="d-flex align-items-center" href="#"><i class="fas fa-industry"></i>
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fas fa-industry"></i>
                         <span class="menu-title text-truncate" data-i18n="Roles &amp; Permission">Service &
                             Facilitics</span></a>
                     <ul class="menu-content">
@@ -302,6 +310,31 @@
                     </ul>
                 </li>
 
+                {{-- -----------------------------
+                Documents
+            ------------------------------ --}}
+                <li class="nav-item"><a class="d-flex align-items-center" href="#"><i
+                            class="fa fa-blog"></i><span class="menu-title text-truncate"
+                            data-i18n="Laws & Rules">Documents Hub</span></a>
+                    <ul class="menu-content">
+                        <li class="@if (in_array($route, ['document.index', 'document.edit', 'document.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('document.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Documents</span></a>
+                        </li>
+                        <li class="@if (in_array($route, ['document.categories.index', 'document.categories.edit', 'document.categories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('document.categories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Category</span></a>
+                        </li>
+                        <li class="@if (in_array($route, ['document.subcategories.index', 'document.subcategories.edit', 'document.subcategories.create'])) active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('document.subcategories.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Sub Category</span></a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <!-- settings -->
 
@@ -311,13 +344,15 @@
                             data-i18n="Roles &amp; Permission">Website
                             Settings</span></a>
                     <ul class="menu-content">
-                        <li class="@if ($route == 'terms.condition.index') active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('terms.condition.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">Terms & Conditions</span></a>
+                        <li class="@if ($route == 'terms.condition.index') active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('terms.condition.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">Terms & Conditions</span></a>
                         </li>
-                        <li class="@if ($route == 'privacy.policy.index') active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('privacy.policy.index') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Permission">Privacy Policy</span></a>
+                        <li class="@if ($route == 'privacy.policy.index') active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('privacy.policy.index') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Permission">Privacy Policy</span></a>
                         </li>
                     </ul>
                 </li>
@@ -329,9 +364,10 @@
                             class="fa fa-envelope"></i><span class="menu-title text-truncate"
                             data-i18n="Roles &amp; Permission">Contact Message</span></a>
                     <ul class="menu-content">
-                        <li class="@if ($route == 'contact.message') active @endif"><a class="d-flex align-items-center"
-                                href="{{ route('contact.message') }}"><i data-feather="circle"></i><span
-                                    class="menu-item text-truncate" data-i18n="Roles">
+                        <li class="@if ($route == 'contact.message') active @endif"><a
+                                class="d-flex align-items-center" href="{{ route('contact.message') }}"><i
+                                    data-feather="circle"></i><span class="menu-item text-truncate"
+                                    data-i18n="Roles">
                                     Show Contact Message</span></a>
                         </li>
 
