@@ -66,7 +66,7 @@ class WriteUpCategoryController extends Controller
     public function edit($id)
     {
         $category = $this->writeUpCategoryService->getCategory($id);
-        return view('admin.blog_categories.edit', compact('category'));
+        return view('admin.write_up_categories.edit', compact('category'));
     }
 
     public function update(WriteUpCategoryRequest $request, $id)

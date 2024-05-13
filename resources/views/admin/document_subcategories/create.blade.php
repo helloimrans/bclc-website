@@ -94,33 +94,3 @@
         </div>
     </div>
 @endsection
-
-{{-- @section('scripts')
-    <script>
-        $(function() {
-            $(document).on('change', '#document_category_id', function() {
-                var id = $(this).val();
-                if (id == '') {
-                    var html = '<option value="">Select SubCategory</option>';
-                    $('#document_sub_category_id').html(html);
-                } else {
-                    $.ajax({
-                        type: "Get",
-                        url: "{{ url('/dashboard/document-subcategories/get-by-category/') }}/" + id,
-                        dataType: "json",
-                        success: function(data) {
-                            var html = '<option value="">Select SubCategory</option>';
-                            $.each(data, function(key, val) {
-                                html += '<option value="' + val.id + '">' + val
-                                    .name + '</option>';
-                            });
-                            $('#document_sub_category_id').html(html);
-                        },
-                    });
-                }
-
-            });
-        });
-    </script>
-
-@endsection --}}

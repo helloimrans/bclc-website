@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ServiceFacilitySector;
 use App\Models\User;
 use App\Models\WriteUp;
+use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
@@ -38,6 +39,12 @@ class FrontendController extends Controller
         $data['insights'] = AssociatedService::isActive()->limit(10)->latest()->get();
         $data['courses'] = Course::with(['expert', 'serviceCategory'])->isActive()->limit(10)->get();
         return view('frontend.home.index', $data);
+    }
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $laws = Law::where('title', 'like', '%' . $query . '%')->get();
+        return view('frontend.laws_and_rules.searchable', compact('laws'));
     }
 
     public function serviceCategory()

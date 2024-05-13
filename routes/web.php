@@ -82,6 +82,10 @@ Route::get('/legal/insights', [FrontendController::class,'insights'])->name('ins
 Route::get('/legal/insights/details/{slug}', [FrontendController::class,'insightsDetails'])->name('insights.details');
 //Laws & Rules
 Route::get('/laws-and-rules', [FrontendController::class,'lawsRules'])->name('laws.rules');
+
+//Laws & Rules
+Route::get('/laws-and-rules/search', [FrontendController::class,'search'])->name('laws.rules.search');
+
 //Laws & Rules View
 Route::get('/laws-and-rules/view/{slug}', [FrontendController::class, 'lawsRulesView'])->name('laws.rules.view');
 //Laws & Rules Details

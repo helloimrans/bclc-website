@@ -23,4 +23,17 @@ class Document extends Model
             'name' => '--',
         ]);
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id')->withDefault([
+            'name' => '--',
+        ]);
+    }
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id')->withDefault([
+            'name' => '--',
+        ]);
+    }
 }

@@ -12,7 +12,7 @@ class DocumentService
         return Document::with(['category' => ['subCategory'], 'createdBy','updatedBy'])->latest()->get();
     }
 
-    public function createArticle($input)
+    public function createDocument($input)
     {
         $input['created_by'] = Auth::user()->id;
         if(isset($input['file'])){

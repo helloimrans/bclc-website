@@ -71,33 +71,41 @@
     <!-- start laws section -->
     <section class="article-page-section py-5 wow fadeInDown" data-wow-duration="1s">
         <div class="container">
+            <div class="row mb-3">
+                <div class="col-lg-9">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                </div>
+            </div>
             <div class="row">
 
                 <div class="col-lg-9">
                     <div class="laws-box">
-                        @foreach ($categories as $category)
-                            <div class="article-item">
-                                <h5 style="font-size: 18px; font-weight:600" class="mb-3"
-                                    id="category_{{ $category->id }}"><i class="fa fa-angle-double-right"></i>
-                                    {{ $category->name }}
-                                </h5>
-                                @if ($category->laws->count() == 0)
-                                    <span class="text-danger text-14"><i class="fa fa-ban text-danger"></i> Not found
-                                        laws!</span>
-                                @endif
-                                @foreach ($category->laws as $law)
-                                    <!-- article item -->
-                                    <div class="media">
-                                        <i class="fa fa fa-legal"></i>
-                                        <div class="media-body">
-                                            <a href="{{ route('laws.rules.view', $law->slug) }}">{{ $law->title }}</a>
+                        <div id="searchResults"></div>
+                        <div id="realLaws">
+                            @foreach ($categories as $category)
+                                <div class="article-item">
+                                    <h5 style="font-size: 18px; font-weight:600" class="mb-3"
+                                        id="category_{{ $category->id }}"><i class="fa fa-angle-double-right"></i>
+                                        {{ $category->name }}
+                                    </h5>
+                                    @if ($category->laws->count() == 0)
+                                        <span class="text-danger text-14"><i class="fa fa-ban text-danger"></i> Not found
+                                            laws!</span>
+                                    @endif
+                                    @foreach ($category->laws as $law)
+                                        <!-- article item -->
+                                        <div class="media">
+                                            <i class="fa fa fa-legal"></i>
+                                            <div class="media-body">
+                                                <a href="{{ route('laws.rules.view', $law->slug) }}">{{ $law->title }}</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
 
-                            </div>
-                            <hr class="mb-4">
-                        @endforeach
+                                </div>
+                                <hr class="mb-4">
+                            @endforeach
+                        </div>
                     </div>
 
                 </div>
@@ -123,4 +131,33 @@
     </section>
     <!-- end laws section -->
 
+@endsection
+
+@section('scripts')
+    <script>
+        $('#searchInput').on('keyup', function() {
+            var query = $(this).val();
+            if (query == '') {
+                $('#realLaws').show();
+                $('#searchResults').hide();
+            } else {
+                $('#realLaws').hide();
+                $('#searchResults').show();
+            }
+            if (query.length >= 3) {
+                $.ajax({
+                    url: "{{ route('laws.rules.search') }}",
+                    type: "GET",
+                    data: {
+                        query: query
+                    },
+                    success: function(data) {
+                        $('#searchResults').html(data);
+                    }
+                });
+            } else {
+                $('#searchResults').html('');
+            }
+        });
+    </script>
 @endsection

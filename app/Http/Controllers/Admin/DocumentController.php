@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DocumentRequest;
 use App\Http\Requests\DocumentSubCategoryRequest;
 use App\Services\DocumentCategoryService;
 use App\Services\DocumentService;
 use App\Services\DocumentSubCategoryService;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class DocumentController extends Controller
@@ -36,6 +38,9 @@ class DocumentController extends Controller
                                 <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-id="' . $document->id . '" ' . $checkStatus . '>
                              </div>';
                 })
+                ->editColumn('file', function ($document) {
+                    return '<a href="' . Storage::url($document->file) . '" target="_blank" class="me-1"><i class="far fa-eye text-dark"></i> View File</a>';
+                })
                 ->addColumn('action', function ($document) {
                     $str = '<a href="' . route("document.edit", $document->id) . '" class="me-1"><i class="far fa-edit text-dark"></i></a>';
                     $str .= '<form class="d-inline" id="delForm" action="' . route("document.destroy", $document->id) . '" method="POST">' .
@@ -45,11 +50,11 @@ class DocumentController extends Controller
                         '</form>';
                     return $str;
                 })
-                ->rawColumns(['action', 'is_active'])
+                ->rawColumns(['action', 'is_active', 'file'])
                 ->make(true);
         }
 
-        return view('admin.document_subcategories.index');
+        return view('admin.document.index');
     }
 
     public function create()
@@ -58,9 +63,9 @@ class DocumentController extends Controller
         return view('admin.document.create', compact('categories'));
     }
 
-    public function store(DocumentSubCategoryRequest $request)
+    public function store(DocumentRequest $request)
     {
-        $this->documentSubCategoryService->createCategory($request->validated());
+        $this->documentService->createDocument($request->validated());
         return redirect()->route('document.index')->with([
             'message' => 'Data stored successfully.',
             'alert-type' => 'success'
@@ -69,13 +74,14 @@ class DocumentController extends Controller
 
     public function edit($id)
     {
+        $document = $this->documentService->getDocument($id);
         $categories = $this->documentCategoryService->getAllCategories();
-        return view('admin.document.edit', compact('categories'));
+        return view('admin.document.edit', compact('categories', 'document'));
     }
 
-    public function update(DocumentSubCategoryRequest $request, $id)
+    public function update(DocumentRequest $request, $id)
     {
-        $this->documentSubCategoryService->updateCategory($id, $request->validated());
+        $this->documentService->updateDocument($id, $request->validated());
         return redirect()->route('document.index')->with([
             'message' => 'Data updated successfully.',
             'alert-type' => 'success'
@@ -84,7 +90,7 @@ class DocumentController extends Controller
 
     public function destroy($id)
     {
-        $this->documentSubCategoryService->deleteCategory($id);
+        $this->documentService->deleteDocument($id);
         return redirect()->back()->with([
             'message' => 'Data deleted successfully.',
             'alert-type' => 'success'
