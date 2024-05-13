@@ -220,7 +220,7 @@
 
                                     <div class="mb-1">
                                         <label class="form-label">About</label>
-                                        <textarea name="about" class="form-control @error('about') is-invalid @enderror" placeholder="Enter about...">{{ old('about') }}</textarea>
+                                        <textarea name="about" class="form-control summernote @error('about') is-invalid @enderror" placeholder="Enter about...">{{ old('about') }}</textarea>
                                         @error('about')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror

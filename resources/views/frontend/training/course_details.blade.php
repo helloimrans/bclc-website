@@ -240,13 +240,13 @@
                                 <img src="{{$course->expert->photo ? Storage::url($course->expert->photo) : asset('defaults/noimage/no_img.jpg')}}" alt="image">
                             </div>
                             <div class="media-body">
-                                <h6 class="mt-3">{{ $course->expert->name }}</h6>
+                                <h6 class="mt-3" style="font-size: 20px">{{ $course->expert->name }}</h6>
                                 <span>{{$course->expert->designation}}</span>
-                                <span>{{$course->expert->workplace_name}}</span>
+                                <span style="font-size: 14px; color:#666">{{$course->expert->workplace_name}}</span>
                             </div>
                         </div>
-                        <div class="tdr-desc">
-                            <p>{{$course->expert->about}}</p>
+                        <div class="tdr-desc mt-4">
+                            {!!  @$course->expert->about !!}
                         </div>
                     </div>
                 </div>
