@@ -330,7 +330,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-check">
                                                     <label class="control-label" for="suitable_course{{$key}}">
-                                                        <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}" @if (@in_array($row->name, json_decode($course->suitable_course))) checked @else  @endif >
+                                                        <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}" @if (@in_array($row->name, json_decode($course->suitable_course) ?? [])) checked @else  @endif >
                                                         {{$row->name}} 
                                                     </label>
                                                     </div>
