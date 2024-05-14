@@ -95,7 +95,7 @@
                                             <th>Suitable Course</th>
                                             <th>:</th>
                                             <td>
-                                                @forelse (json_decode($course->suitable_course) as $suitable_course)
+                                                @forelse (json_decode($course->suitable_course) ?? [] as $suitable_course)
                                                     <span class="badge bg-secondary">{{ $suitable_course }}</span>
                                                 @empty
                                                 @endforelse
