@@ -63,7 +63,7 @@
                                 <li><a href="{{ route('review') }}">Legal Review</a></li>
                                 <li><a href="{{ route('insights') }}">Legal Insights</a></li>
                                 <li><a href="{{ route('writeup') }}">Legal Write Up</a></li>
-                                <li><a href="legal-sector.html">Career In Legal Sector</a></li>
+                                <li><a href="{{ route('laws.rules') }}">Laws & Rules</a></li>
                             </ul>
                         </div>
                     </li>
@@ -269,7 +269,7 @@
                             <li><a href="{{ route('review') }}">Legal Review</a></li>
                             <li><a href="{{ route('insights') }}">Legal Insights</a></li>
                             <li><a href="{{ route('writeup') }}">Legal Write Up</a></li>
-                            <li><a href="legal-sector.html">Career In Legal Sector</a></li>
+                            <li><a href="{{ route('laws.rules') }}">Laws & Rules</a></li>
                         </ul>
                     </div>
                 </div>
