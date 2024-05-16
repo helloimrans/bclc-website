@@ -18,7 +18,7 @@ class Law extends Model
         'slug',
         'link',
         'description',
-        'laws_description',
+        'rules_description',
         'act_no',
         'act_year',
         'act_date',

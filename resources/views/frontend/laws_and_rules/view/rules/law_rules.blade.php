@@ -34,7 +34,7 @@
             </tr>
         </table>
     </div>
-    <p>{!! $law->description !!}</p>
+    <p>{!! $law->rules_description !!}</p>
 
     @if ($law->format == 'part_chapter_section')
         @include('frontend.laws_and_rules.view.rules.part_chapter_section', ['law' => $law])
