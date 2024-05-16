@@ -54,8 +54,6 @@ class ServiceProBonoController extends Controller
             'is_service' => 'required',
             'service_category_id' => 'required',
             'description' => 'required',
-            'associated_service' => 'required',
-            'keywords' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -152,8 +150,6 @@ class ServiceProBonoController extends Controller
             'is_service' => 'required',
             'service_category_id' => 'required',
             'description' => 'required',
-            'associated_service' => 'required',
-            'keywords' => 'required',
         ]);
 
         if ($validator->fails()) {

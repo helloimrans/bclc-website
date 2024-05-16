@@ -60,8 +60,8 @@
                                             <label class="form-label">Services</label>
                                             <select id="service_id" name="service_id"
                                                 class="form-control @error('service_id') is-invalid @enderror">
-                                                <option value="{{ $course->service->id }}" selected hidden>
-                                                    {{ $course->service->title }}
+                                                <option value="{{ @$course->service->id }}" selected hidden>
+                                                    {{ @$course->service->title }}
                                                 </option>
                                             </select>
                                             @error('service_id')
@@ -109,8 +109,8 @@
                                                 <option value="Wednesday" @if (@in_array('Wednesday', json_decode($course->schedule))) selected @endif >Wednesday</option>
                                                 <option value="Thursday" @if (@in_array('Thursday', json_decode($course->schedule))) selected @endif >Thursday</option>
                                                 <option value="Friday" @if (@in_array('Friday', json_decode($course->schedule))) selected @endif >Friday</option>
-                                                
-                                                
+
+
                                         </optgroup>
                                     </select>
                                     @error('schedule')
@@ -325,13 +325,13 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="row">
-                                            
+
                                             @foreach($suitables as $key => $row)
                                                 <div class="col-md-3">
                                                     <div class="form-check">
                                                     <label class="control-label" for="suitable_course{{$key}}">
                                                         <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}" @if (@in_array($row->name, json_decode($course->suitable_course) ?? [])) checked @else  @endif >
-                                                        {{$row->name}} 
+                                                        {{$row->name}}
                                                     </label>
                                                     </div>
                                                 </div>
@@ -637,7 +637,7 @@
             var fee = $('#fee').val();
             var discount_type = $('#discount_type').val();
             var discount = $('#discount').val();
-    
+
             if (discount_type == 1) {
                 var discount_fee = fee - discount;
             } else if (discount_type == 2) {
@@ -646,16 +646,16 @@
             } else {
                 var discount_fee = 0;
             }
-    
+
             if (!isNaN(discount_fee)) {
                 $('#discount_fee').val(discount_fee);
             }
         }
-    
+
         $('#fee, #discount_type, #discount, #discount_fee').on('keyup change', function() {
             offer();
         });
-    
+
     </script>
 
     {{-- Start Course FAQ ajax --}}

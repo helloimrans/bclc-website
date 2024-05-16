@@ -64,7 +64,7 @@
                                         <tr>
                                             <th>Service</th>
                                             <th>:</th>
-                                            <td>{{ $course->service->title ?? 'N/A' }}</td>
+                                            <td>{{ @$course->service->title ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Service Category</th>
@@ -172,9 +172,9 @@
                                             <td>
                                                 @if($course->discount)
                                                         {{ $course->discount }}
-                                                    @if($course->discount_type == 1) 
-                                                        TK 
-                                                    @else  
+                                                    @if($course->discount_type == 1)
+                                                        TK
+                                                    @else
                                                         %
                                                     @endif
                                                 @endif
@@ -189,9 +189,9 @@
                                             <th>Active Fee</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->active_fee == 1) 
-                                                        Main Fee 
-                                                @else  
+                                                @if($course->active_fee == 1)
+                                                        Main Fee
+                                                @else
                                                         Discount Fee
                                                 @endif
                                             </td>

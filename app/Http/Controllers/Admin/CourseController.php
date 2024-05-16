@@ -39,7 +39,6 @@ class CourseController extends Controller
             'title' => 'required|unique:courses,title',
             'fee' => 'required',
             'service_category_id' => 'required',
-            'service_id' => 'required',
             'expert_id' => 'required',
         ]);
 
@@ -107,7 +106,6 @@ class CourseController extends Controller
             'title' => 'required|unique:courses,title,' . $id,
             'fee' => 'required',
             'service_category_id' => 'required',
-            'service_id' => 'required',
             'expert_id' => 'required',
         ]);
 

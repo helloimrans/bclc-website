@@ -64,7 +64,7 @@
                                                     src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                     alt="{{ $course->title }}">
                                                 </td>
-                                                <td>{{ $course->service->title }}</td>
+                                                <td>{{ @$course->service->title }}</td>
                                                 <td>{{ $course->serviceCategory->name }}</td>
                                                 <td>{{ $course->expert->name }}</td>
                                                 <td>{{ $course->fee }}</td>
