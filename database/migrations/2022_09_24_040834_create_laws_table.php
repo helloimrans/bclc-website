@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('rules_total_section')->nullable();
             $table->string('rules_total_schedule')->nullable();
             $table->string('rules_total_form')->nullable();
+            $table->longText('rules_description')->nullable();
 
             $table->string('total_part')->nullable();
             $table->string('total_chapter')->nullable();

@@ -554,6 +554,14 @@
 
 
                                                             </div>
+                                                            <div class="mb-1">
+                                                                <label class="form-label" for="">Rules Description</label>
+                                                                <textarea name="rules_description" rows="2" class="summernote @error('rules_description') is-invalid @enderror"
+                                                                    placeholder="Enter rules_description">{{ old('rules_description', $law->rules_description) }}</textarea>
+                                                                @error('rules_description')
+                                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                                @enderror
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

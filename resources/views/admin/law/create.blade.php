@@ -220,7 +220,7 @@
                                     </div>
 
                                 </div>
-                                
+
 
                                 <div class="mb-1">
                                     <label class="form-label" for="">Description</label>
@@ -436,7 +436,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                
+
                                                                 <div class="col-md-6">
                                                                     <div class="mb-1">
                                                                         <label class="form-label" for="">Rules Last Amendment</label>
@@ -522,6 +522,14 @@
                                                                 </div>
 
 
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <label class="form-label" for="">Rules Description</label>
+                                                                <textarea name="rules_description" rows="2" class="summernote @error('rules_description') is-invalid @enderror"
+                                                                    placeholder="Enter rules_description">{{ old('rules_description') }}</textarea>
+                                                                @error('rules_description')
+                                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>

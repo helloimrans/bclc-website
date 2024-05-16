@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('active_fee')->nullable();
             $table->string('slug')->unique();
             $table->bigInteger('service_category_id')->unsigned();
-            $table->bigInteger('service_id')->unsigned();
+            $table->bigInteger('service_id')->unsigned()->nullable();
             $table->string('duration')->nullable();
             $table->bigInteger('expert_id')->unsigned()->nullable();
             $table->json('schedule')->nullable();
