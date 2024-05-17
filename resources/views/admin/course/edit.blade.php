@@ -275,6 +275,12 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="show_key_takeaways" type="checkbox" value="1" @if($course->show_key_takeaways == 1) checked @endif id="show_key_takeaways">
+                                    <label class="form-check-label" for="show_key_takeaways">
+                                        Show Key Takeways
+                                    </label>
+                                </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Curriculum</label>
                                     <textarea name="curriculum" rows="2" class="summernote @error('curriculum') is-invalid @enderror"
@@ -293,6 +299,12 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="show_training_offering" type="checkbox" value="1" @if($course->show_training_offering == 1) checked @endif id="show_training_offering">
+                                    <label class="form-check-label" for="show_training_offering">
+                                        Show Training Offering
+                                    </label>
+                                </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Consulting Offering</label>
                                     <textarea name="consulting_offering" rows="2" class="summernote @error('consulting_offering') is-invalid @enderror"
@@ -300,6 +312,13 @@
                                     @error('consulting_offering')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="show_consulting_offering" type="checkbox" value="1" @if($course->show_consulting_offering == 1) checked @endif id="show_consulting_offering">
+                                    <label class="form-check-label" for="show_consulting_offering">
+                                        Show Consulting Offering
+                                    </label>
                                 </div>
 
                                 <div class="mb-1">
@@ -407,13 +426,13 @@
 
 
                                 <div class="form-check mb-1">
-                                    <input class="form-check-input" name="comming_soon" type="checkbox" value="{{ $course->comming_soon }}" @if($course->comming_soon == 1) checked @endif id="comming_soon">
+                                    <input class="form-check-input" name="comming_soon" type="checkbox" value="1" @if($course->comming_soon == 1) checked @endif id="comming_soon">
                                     <label class="form-check-label" for="comming_soon">
                                         Comming Soon
                                     </label>
                                 </div>
                                 <div class="form-check mb-1">
-                                    <input class="form-check-input" name="home_slider" type="checkbox" value="{{ $course->home_slider }}" @if($course->home_slider == 1) checked @endif id="home_slider">
+                                    <input class="form-check-input" name="home_slider" type="checkbox" value="1" @if($course->home_slider == 1) checked @endif id="home_slider">
                                     <label class="form-check-label" for="home_slider">
                                         Home Slider
                                     </label>

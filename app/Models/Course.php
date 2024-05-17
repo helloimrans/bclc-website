@@ -52,6 +52,11 @@ class Course extends Model
         'home_slider',
         'boarding',
         'comming_soon',
+
+        'show_training_offering',
+        'show_consulting_offering',
+        'show_key_takeaways',
+
         'status',
         'created_by',
         'updated_by',

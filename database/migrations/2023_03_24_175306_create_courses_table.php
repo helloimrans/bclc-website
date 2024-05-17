@@ -59,6 +59,10 @@ return new class extends Migration
             $table->string('boarding')->nullable();
             $table->string('comming_soon')->nullable();
 
+            $table->boolean('show_training_offering')->default(0);
+            $table->boolean('show_consulting_offering')->default(0);
+            $table->boolean('show_key_takeaways')->default(0);
+
             $table->boolean('status')->nullable()->default(1);
             $table->bigInteger('created_by')->unsigned()->nullable();
             $table->bigInteger('updated_by')->unsigned()->nullable();

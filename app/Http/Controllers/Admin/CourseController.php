@@ -102,6 +102,7 @@ class CourseController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|unique:courses,title,' . $id,
             'fee' => 'required',
@@ -136,6 +137,12 @@ class CourseController extends Controller
         $input['schedule'] = json_encode($request->schedule);
         $input['suitable_course'] = json_encode($request->suitable_course);
         $input['created_by'] = Auth::user()->id;
+
+        $input['comming_soon'] = $input['comming_soon'] ?? null;
+        $input['home_slider'] = $input['home_slider'] ?? null;
+        $input['show_training_offering'] = $input['show_training_offering'] ?? null;
+        $input['show_consulting_offering'] = $input['show_consulting_offering'] ?? null;
+        $input['show_key_takeaways'] = $input['show_key_takeaways'] ?? null;
 
         $data->update($input);
 

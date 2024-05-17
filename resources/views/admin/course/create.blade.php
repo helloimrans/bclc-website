@@ -282,6 +282,12 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="key_takeaways" type="checkbox" value="1" id="key_takeaways">
+                                    <label class="form-check-label" for="key_takeaways">
+                                        Show Key Takeaways
+                                    </label>
+                                </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Curriculum</label>
                                     <textarea name="curriculum" rows="2" class="summernote @error('curriculum') is-invalid @enderror"
@@ -301,6 +307,12 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="show_training_offering" type="checkbox" value="1" id="show_training_offering">
+                                    <label class="form-check-label" for="show_training_offering">
+                                        Show Training Offering
+                                    </label>
+                                </div>
                                 <div class="mb-1">
                                     <label class="form-label" for="">Consulting Offering</label>
                                     <textarea name="consulting_offering" rows="2" class="summernote @error('consulting_offering') is-invalid @enderror"
@@ -310,8 +322,15 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" name="show_consulting_offering" type="checkbox" value="1" id="show_consulting_offering">
+                                    <label class="form-check-label" for="show_consulting_offering">
+                                        Show Consulting Offering
+                                    </label>
+                                </div>
 
-                                
+
+
                                 <div class="mb-1">
                                     <label class="form-label">Course Thumbnail Image</label>
                                     <input type="file" id="upImgInput1" name="image"
@@ -340,7 +359,7 @@
                                                     <div class="form-check">
                                                     <label class="control-label" for="suitable_course{{$key}}">
                                                         <input class="form-check-input" type="checkbox" name="suitable_course[]" value="{{$row->name}}" id="suitable_course{{$key}}">
-                                                        {{$row->name}} 
+                                                        {{$row->name}}
                                                     </label>
                                                     </div>
                                                 </div>
@@ -486,7 +505,7 @@
             var fee = $('#fee').val();
             var discount_type = $('#discount_type').val();
             var discount = $('#discount').val();
-    
+
             if (discount_type == 1) {
                 var discount_fee = fee - discount;
             } else if (discount_type == 2) {
@@ -495,16 +514,16 @@
             } else {
                 var discount_fee = 0;
             }
-    
+
             if (!isNaN(discount_fee)) {
                 $('#discount_fee').val(discount_fee);
             }
         }
-    
+
         $('#fee, #discount_type, #discount, #discount_fee').on('keyup change', function() {
             offer();
         });
-    
+
     </script>
 
 @endsection

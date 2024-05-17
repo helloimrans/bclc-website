@@ -39,10 +39,12 @@
                         <p>
                             {!! $course->short_description !!}
                         </p>
-                        <h5>Key Takeaways</h5>
-                        <ul>
-                            {!! $course->key_takeaways !!}
-                        </ul>
+                        @if ($course->show_key_takeaways)
+                            <h5>Key Takeaways</h5>
+                            <ul>
+                                {!! $course->key_takeaways !!}
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -103,48 +105,69 @@
                         <h2><span>Curriculum</span></h2>
                     </div>
                     <div class="td-curriculum wow fadeInDown" data-wow-duration="1s">
+                        @php
+                            $curriculum = strip_tags($course->curriculum);
+                            $isLongContent = strlen($curriculum) > 500;
+                            $truncated = $isLongContent ? substr($curriculum, 0, 500) . '...' : $curriculum;
+                        @endphp
+
                         <div class="tdr-height">
-                            {!! $course->curriculum !!}
+                            {!! $truncated !!}
                         </div>
+
+                        @if ($isLongContent)
+                            <div class="tdr-full-content" style="display:none;">
+                                {!! $curriculum !!}
+                            </div>
+                        @endif
+
+                        @if ($isLongContent)
                         <a href="javascript:;" class="mt-2 tdr-show">Show More</a>
+                        @endif
                     </div>
 
                     <div class="td-accordions wow fadeInDown" data-wow-duration="1s">
                         <div id="accordion" class="service-accordion">
-                            <div class="card">
-                                <div class="card-header" id="heading-1">
-                                    <h5 class="mb-0">
-                                        <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="false"
-                                            aria-controls="collapse-1" class="collapsed">
-                                            Our Training offering
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapse-1" class="collapse" data-parent="#accordion" aria-labelledby="heading-1"
-                                    style="">
-                                    <div class="card-body">
-                                        {!! $course->training_offering !!}
+                            @if ($course->show_training_offering)
+                                <div class="card">
+                                    <div class="card-header" id="heading-1">
+                                        <h5 class="mb-0">
+                                            <a role="button" data-toggle="collapse" href="#collapse-1"
+                                                aria-expanded="false" aria-controls="collapse-1" class="collapsed">
+                                                Our Training offering
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse-1" class="collapse" data-parent="#accordion"
+                                        aria-labelledby="heading-1" style="">
+                                        <div class="card-body">
+                                            {!! $course->training_offering !!}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading-2">
-                                    <h5 class="mb-0">
-                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2"
-                                            aria-expanded="false" aria-controls="collapse-2">
-                                            Our Consulting Offering
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapse-2" class="collapse" data-parent="#accordion" aria-labelledby="heading-2">
-                                    <div class="card-body">
-                                        {!! $course->consulting_offering !!}
+                            @endif
+                            @if ($course->show_consulting_offering)
+                                <div class="card">
+                                    <div class="card-header" id="heading-2">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2"
+                                                aria-expanded="false" aria-controls="collapse-2">
+                                                Our Consulting Offering
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse-2" class="collapse" data-parent="#accordion"
+                                        aria-labelledby="heading-2">
+                                        <div class="card-body">
+                                            {!! $course->consulting_offering !!}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
 
                         </div>
                     </div>
+
                     <div class="section-title mt-4 pt-3 mb-3 wow fadeInDown" data-wow-duration="1s">
                         <h2><span>Certificate Image</span></h2>
                     </div>
@@ -203,10 +226,17 @@
 
 
                                 </span>
-                                <a href="{{ route('course.checkout', $course->slug) }}" class="btn btn-success w-100"
-                                    style="padding: 14px 5px; border-radius: 10px">
-                                    <strong>Enroll Now</strong>
-                                </a>
+                                @if ($course->comming_soon)
+                                    <a href="javascript:;" class="btn btn-success w-100"
+                                        style="padding: 14px 5px; border-radius: 10px">
+                                        <strong>Comming Soon</strong>
+                                    </a>
+                                @else
+                                    <a href="{{ route('course.checkout', $course->slug) }}" class="btn btn-success w-100"
+                                        style="padding: 14px 5px; border-radius: 10px">
+                                        <strong>Enroll Now</strong>
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -338,4 +368,26 @@
   </script>
 @endsection --}}
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $(".tdr-show").click(function() {
+                var fullContent = $(this).siblings(".tdr-full-content");
+                var truncatedContent = $(this).siblings(".tdr-height");
+                var btn = $(this);
+
+                if (fullContent.is(":visible")) {
+                    fullContent.hide();
+                    truncatedContent.show();
+                    btn.text("Show More");
+                } else {
+                    fullContent.show();
+                    truncatedContent.hide();
+                    btn.text("Show Less");
+                }
+            });
+        });
+    </script>
 @endsection
