@@ -29,9 +29,11 @@
                                 <h5 class="mb-0">Training Course View</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="
+                                <div class="dt-buttons d-inline-flex"><a
+                                        href="
                                     {{ route('courses.index') }}
-                                    " class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
+                                    "
+                                        class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -49,16 +51,16 @@
                                             <th>Image</th>
                                             <th>:</th>
                                             <td><img class="rounded" width="60"
-                                                src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
-                                                alt="{{ $course->title }}">
+                                                    src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                    alt="{{ $course->title }}">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Certificate image</th>
                                             <th>:</th>
                                             <td><img class="rounded" width="60"
-                                                src="@if ($course->certificate_image) {{ Storage::url($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
-                                                alt="{{ $course->title }}">
+                                                    src="@if ($course->certificate_image) {{ Storage::url($course->certificate_image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                    alt="{{ $course->title }}">
                                             </td>
                                         </tr>
                                         <tr>
@@ -104,7 +106,7 @@
                                         <tr>
                                             <th>Venue</th>
                                             <th>:</th>
-                                            <td>{{ $course->venue ?? 'N/A'}}</td>
+                                            <td>{{ $course->venue ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Class Start Date</th>
@@ -129,7 +131,7 @@
                                         <tr>
                                             <th>Total Hours</th>
                                             <th>:</th>
-                                            <td>{{ ($course->total_hours .''. $course->hour_minute) ?? 'N/A' }}</td>
+                                            <td>{{ $course->total_hours . '' . $course->hour_minute ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
                                             <th>Last Reg. Date</th>
@@ -170,9 +172,9 @@
                                             <th>Discount</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->discount)
-                                                        {{ $course->discount }}
-                                                    @if($course->discount_type == 1)
+                                                @if ($course->discount)
+                                                    {{ $course->discount }}
+                                                    @if ($course->discount_type == 1)
                                                         TK
                                                     @else
                                                         %
@@ -189,10 +191,10 @@
                                             <th>Active Fee</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->active_fee == 1)
-                                                        Main Fee
+                                                @if ($course->active_fee == 1)
+                                                    Main Fee
                                                 @else
-                                                        Discount Fee
+                                                    Discount Fee
                                                 @endif
                                             </td>
                                         </tr>
@@ -200,7 +202,7 @@
                                             <th>Provide Certificate</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->provide_certificate == 1)
+                                                @if ($course->provide_certificate == 1)
                                                     <span class="badge badge-light-success">Active</span>
                                                 @else
                                                     <span class="badge badge-light-warning">Deactive</span>
@@ -211,7 +213,7 @@
                                             <th>Home Slider</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->home_slider == 1)
+                                                @if ($course->home_slider == 1)
                                                     <span class="badge badge-light-success">Active</span>
                                                 @else
                                                     <span class="badge badge-light-warning">Deactive</span>
@@ -222,7 +224,7 @@
                                             <th>Provide Certificate</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->provide_certificate == 1)
+                                                @if ($course->provide_certificate == 1)
                                                     <span class="badge badge-light-success">Active</span>
                                                 @else
                                                     <span class="badge badge-light-warning">Deactive</span>
@@ -233,7 +235,40 @@
                                             <th>Comming Soon</th>
                                             <th>:</th>
                                             <td>
-                                                @if($course->comming_soon == 1)
+                                                @if ($course->comming_soon == 1)
+                                                    <span class="badge badge-light-success">Active</span>
+                                                @else
+                                                    <span class="badge badge-light-warning">Deactive</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Show Key Takeaways </th>
+                                            <th>:</th>
+                                            <td>
+                                                @if ($course->show_key_takeaways == 1)
+                                                    <span class="badge badge-light-success">Active</span>
+                                                @else
+                                                    <span class="badge badge-light-warning">Deactive</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Show Training Offering </th>
+                                            <th>:</th>
+                                            <td>
+                                                @if ($course->show_training_offering == 1)
+                                                    <span class="badge badge-light-success">Active</span>
+                                                @else
+                                                    <span class="badge badge-light-warning">Deactive</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Show Consulting Offering </th>
+                                            <th>:</th>
+                                            <td>
+                                                @if ($course->show_consulting_offering == 1)
                                                     <span class="badge badge-light-success">Active</span>
                                                 @else
                                                     <span class="badge badge-light-warning">Deactive</span>
@@ -261,43 +296,44 @@
         </div>
     </div>
     @section('scripts')
-    <script>
-        // Service Category to Servoce onChange
-        $(function() {
-            $(document).on('change', '#service_category_id', function() {
-                var id = $(this).val();
-                if (id == '') {
-                    var html = '<option value="" selected disabled>Select Service</option>';
-                    $('#service_id').html(html);
-                    $('#service_id').prop('disabled', true);
-                } else {
-                    $.ajax({
-                        type: "Get",
-                        url: "{{ url('/get/category/service') }}/" + id,
-                        dataType: "json",
-                        success: function(data) {
-                            var html = '<option value="" selected disabled>Select Service</option>';
-                            $('#service_id').prop('disabled', false);
-                            $.each(data, function(key, val) {
-                                html += '<option value="' + val.id + '">' + val
-                                    .title + '</option>';
-                            });
-                            $('#service_id').html(html);
-                        },
-                    });
-                }
+        <script>
+            // Service Category to Servoce onChange
+            $(function() {
+                $(document).on('change', '#service_category_id', function() {
+                    var id = $(this).val();
+                    if (id == '') {
+                        var html = '<option value="" selected disabled>Select Service</option>';
+                        $('#service_id').html(html);
+                        $('#service_id').prop('disabled', true);
+                    } else {
+                        $.ajax({
+                            type: "Get",
+                            url: "{{ url('/get/category/service') }}/" + id,
+                            dataType: "json",
+                            success: function(data) {
+                                var html =
+                                    '<option value="" selected disabled>Select Service</option>';
+                                $('#service_id').prop('disabled', false);
+                                $.each(data, function(key, val) {
+                                    html += '<option value="' + val.id + '">' + val
+                                        .title + '</option>';
+                                });
+                                $('#service_id').html(html);
+                            },
+                        });
+                    }
 
+                });
             });
-        });
-    </script>
-    <script>
-        // Generate course id onClick
-        function generateId() {
-            var uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            document.getElementById("course_id").value = uniqueId;
-            document.getElementById("course_id").disabled = false;
-        }
-    </script>
+        </script>
+        <script>
+            // Generate course id onClick
+            function generateId() {
+                var uniqueId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+                document.getElementById("course_id").value = uniqueId;
+                document.getElementById("course_id").disabled = false;
+            }
+        </script>
 
-@endsection
+    @endsection
 @endsection
