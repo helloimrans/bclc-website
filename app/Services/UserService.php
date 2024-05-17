@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
-    public function getAllUsers($userType)
+    public function getAllUsers($userType = null)
     {
         return User::when($userType, function ($query, $userType) {
             return $query->where('user_type', $userType);

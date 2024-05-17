@@ -10,12 +10,13 @@ class WriteUpService
 {
     public function getAllWriteUps()
     {
-        return WriteUp::with(['category','createdBy','updatedBy'])->latest()->get();
+        return WriteUp::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
 
     public function createWriteUp($input)
     {
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['created_by'] = Auth::user()->id;
         if(isset($input['thumbnail_image'])){
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'write_up');
@@ -33,6 +34,7 @@ class WriteUpService
     {
         $write_up = WriteUp::find($id);
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {

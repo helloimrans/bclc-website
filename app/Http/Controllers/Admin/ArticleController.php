@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Models\ArticleCategory;
+use App\Models\User;
 use App\Services\ArticleCategoryService;
 use App\Services\ArticleService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -14,11 +16,16 @@ class ArticleController extends Controller
 {
     protected $articleService;
     protected $articleCategoryService;
+    protected $userService;
 
-    public function __construct(ArticleService $articleService, ArticleCategoryService $articleCategoryService)
-    {
+    public function __construct(
+        ArticleService $articleService,
+        ArticleCategoryService $articleCategoryService,
+        UserService $userService
+    ) {
         $this->articleService = $articleService;
         $this->articleCategoryService = $articleCategoryService;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -54,7 +61,8 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = $this->articleCategoryService->getAllCategories();
-        return view('admin.articles.create', compact('categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.articles.create', compact('categories', 'users'));
     }
 
     public function store(ArticleRequest $request)
@@ -70,7 +78,8 @@ class ArticleController extends Controller
     {
         $article = $this->articleService->getArticle($id);
         $categories = $this->articleCategoryService->getAllCategories();
-        return view('admin.articles.edit', compact('article', 'categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.articles.edit', compact('article', 'categories', 'users'));
     }
 
     public function update(ArticleRequest $request, $id)

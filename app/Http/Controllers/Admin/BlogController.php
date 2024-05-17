@@ -7,6 +7,7 @@ use App\Http\Requests\BlogRequest;
 use App\Models\BlogCategory;
 use App\Services\BlogCategoryService;
 use App\Services\BlogService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -14,11 +15,13 @@ class BlogController extends Controller
 {
     protected $blogService;
     protected $blogCategoryService;
+    protected $userService;
 
-    public function __construct(BlogService $blogService, BlogCategoryService $blogCategoryService)
+    public function __construct(BlogService $blogService, BlogCategoryService $blogCategoryService, UserService $userService)
     {
         $this->blogService = $blogService;
         $this->blogCategoryService = $blogCategoryService;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -54,7 +57,8 @@ class BlogController extends Controller
     public function create()
     {
         $categories = $this->blogCategoryService->getAllCategories();
-        return view('admin.blogs.create', compact('categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.blogs.create', compact('categories', 'users'));
     }
 
     public function store(BlogRequest $request)
@@ -70,7 +74,8 @@ class BlogController extends Controller
     {
         $blog = $this->blogService->getBlog($id);
         $categories = $this->blogCategoryService->getAllCategories();
-        return view('admin.blogs.edit', compact('blog', 'categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.blogs.edit', compact('blog', 'categories', 'users'));
     }
 
     public function update(BlogRequest $request, $id)

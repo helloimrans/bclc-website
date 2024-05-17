@@ -10,12 +10,13 @@ class ArticleService
 {
     public function getAllArticles()
     {
-        return Article::with(['category','createdBy','updatedBy'])->latest()->get();
+        return Article::with(['category','createdBy','updatedBy', 'wroteBy'])->latest()->get();
     }
 
     public function createArticle($input)
     {
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['created_by'] = Auth::user()->id;
         if(isset($input['thumbnail_image'])){
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'article');
@@ -33,6 +34,7 @@ class ArticleService
     {
         $article = Article::find($id);
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {

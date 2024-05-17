@@ -7,6 +7,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Models\ReviewCategory;
 use App\Services\ReviewCategoryService;
 use App\Services\ReviewService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -14,11 +15,13 @@ class ReviewController extends Controller
 {
     protected $reviewService;
     protected $reviewCategoryService;
+    protected $userService;
 
-    public function __construct(ReviewService $reviewService, ReviewCategoryService $reviewCategoryService)
+    public function __construct(ReviewService $reviewService, ReviewCategoryService $reviewCategoryService, UserService $userService)
     {
         $this->reviewService = $reviewService;
         $this->reviewCategoryService = $reviewCategoryService;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -54,7 +57,8 @@ class ReviewController extends Controller
     public function create()
     {
         $categories = $this->reviewCategoryService->getAllCategories();
-        return view('admin.reviews.create', compact('categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.reviews.create', compact('categories', 'users'));
     }
 
     public function store(ReviewRequest $request)
@@ -70,7 +74,8 @@ class ReviewController extends Controller
     {
         $review = $this->reviewService->getReview($id);
         $categories = $this->reviewCategoryService->getAllCategories();
-        return view('admin.reviews.edit', compact('article', 'categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.reviews.edit', compact('review', 'categories', 'users'));
     }
 
     public function update(ReviewRequest $request, $id)

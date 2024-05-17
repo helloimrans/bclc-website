@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WriteUpRequest;
 use App\Models\WriteUpCategory;
+use App\Services\UserService;
 use App\Services\WriteUpCategoryService;
 use App\Services\WriteUpService;
 use Illuminate\Support\Facades\Storage;
@@ -14,11 +15,14 @@ class WriteUpController extends Controller
 {
     protected $writeUpService;
     protected $writeUpCategoryService;
+    protected $userService;
 
-    public function __construct(WriteUpService $writeUpService, WriteUpCategoryService $writeUpCategoryService)
+
+    public function __construct(WriteUpService $writeUpService, WriteUpCategoryService $writeUpCategoryService, UserService $userService)
     {
         $this->writeUpService = $writeUpService;
         $this->writeUpCategoryService = $writeUpCategoryService;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -54,7 +58,8 @@ class WriteUpController extends Controller
     public function create()
     {
         $categories = $this->writeUpCategoryService->getAllCategories();
-        return view('admin.write_ups.create', compact('categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.write_ups.create', compact('categories', 'users'));
     }
 
     public function store(WriteUpRequest $request)
@@ -70,7 +75,8 @@ class WriteUpController extends Controller
     {
         $write_up = $this->writeUpService->getWriteUp($id);
         $categories = $this->writeUpCategoryService->getAllCategories();
-        return view('admin.write_ups.edit', compact('write_up', 'categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.write_ups.edit', compact('write_up', 'categories', 'users'));
     }
 
     public function update(WriteUpRequest $request, $id)

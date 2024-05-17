@@ -10,12 +10,13 @@ class NewsService
 {
     public function getAllNews()
     {
-        return News::with(['category','createdBy','updatedBy'])->latest()->get();
+        return News::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
 
     public function createNews($input)
     {
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['created_by'] = Auth::user()->id;
         $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'news');
 
@@ -31,6 +32,7 @@ class NewsService
     {
         $news = News::find($id);
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {

@@ -30,6 +30,7 @@ class BlogRequest extends FormRequest
             'thumbnail_image' => $imageRules,
             'blog_category_id' => 'required',
             'description' => 'required',
+            'user_id' => 'nullable',
         ];
     }
 }

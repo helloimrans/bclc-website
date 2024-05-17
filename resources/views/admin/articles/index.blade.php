@@ -39,6 +39,7 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
+                                            <th>Writer</th>
                                             <th>Title</th>
                                             <th>Thumbnail</th>
                                             <th>Category</th>
@@ -74,6 +75,10 @@
                         render: function(data, type, row, meta) {
                             return meta.row + 1;
                         }
+                    },
+                    {
+                        data: 'wrote_by.name',
+                        name: 'wrote_by.name'
                     },
                     {
                         data: 'title',

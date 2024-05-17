@@ -25,6 +25,7 @@ class WriteUpRequest extends FormRequest
             'thumbnail_image' => $imageRules,
             'write_up_category_id' => 'required',
             'description' => 'required',
+            'user_id' => 'nullable',
         ];
     }
 }

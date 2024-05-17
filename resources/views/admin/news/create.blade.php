@@ -37,6 +37,23 @@
                             <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-1">
+                                            <label class="form-label">Writer</label>
+                                            <select id="user_id" name="user_id"
+                                                class="form-control select2 @error('user_id') is-invalid @enderror">
+                                                <option value="">Select</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}" {{old('user_id') ? 'selected' : ''}} >{{ $user->name }} {{$user->designation ? "($user->designation)" : ''}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-1">
                                             <label class="form-label">Category</label>

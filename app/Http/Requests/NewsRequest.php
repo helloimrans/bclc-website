@@ -24,6 +24,7 @@ class NewsRequest extends FormRequest
             'thumbnail_image' => $imageRules,
             'news_category_id' => 'required',
             'description' => 'required',
+            'user_id' => 'nullable',
         ];
     }
 }

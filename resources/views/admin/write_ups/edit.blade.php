@@ -2,7 +2,7 @@
     $route = Route::currentRouteName();
 @endphp
 @extends('admin.layouts.master')
-@section('title','Edit Write Up')
+@section('title', 'Edit Write Up')
 @section('content')
 
     <div class="content-wrapper container-xxl p-0">
@@ -35,7 +35,7 @@
                                 <h5 class="mb-0">Edit Write Up</h5>
                             </div>
                             <div class="dt-action-buttons text-end">
-                                <div class="dt-buttons d-inline-flex"><a href="{{route('write_ups.index')}}"
+                                <div class="dt-buttons d-inline-flex"><a href="{{ route('write_ups.index') }}"
                                         class="btn btn-success btn-sm"><i data-feather='corner-up-left'></i> Back</a></div>
                             </div>
                         </div>
@@ -46,6 +46,26 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-1">
+                                            <label class="form-label">Writer</label>
+                                            <select id="user_id" name="user_id"
+                                                class="form-control select2 @error('user_id') is-invalid @enderror">
+                                                <option value="">Select</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}"
+                                                        {{ old('user_id', $write_up->user_id) == $user->id ? 'selected' : '' }}>
+                                                        {{ $user->name }}
+                                                        {{ $user->designation ? "($user->designation)" : '' }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-1">
                                             <label class="form-label">Category</label>
@@ -53,7 +73,9 @@
                                                 class="form-control @error('write_up_category_id') is-invalid @enderror">
                                                 <option value="">Select</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" @if (old('write_up_category_id',$write_up->write_up_category_id) == $category->id) @selected(true) @endif>{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}"
+                                                        @if (old('write_up_category_id', $write_up->write_up_category_id) == $category->id) @selected(true) @endif>
+                                                        {{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('write_up_category_id')

@@ -7,6 +7,7 @@ use App\Http\Requests\NewsRequest;
 use App\Models\NewsCategory;
 use App\Services\NewsCategoryService;
 use App\Services\NewsService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -14,11 +15,13 @@ class NewsController extends Controller
 {
     protected $newsService;
     protected $newsCategoryService;
+    protected $userService;
 
-    public function __construct(NewsService $newsService, NewsCategoryService $newsCategoryService)
+    public function __construct(NewsService $newsService, NewsCategoryService $newsCategoryService, UserService $userService)
     {
         $this->newsService = $newsService;
         $this->newsCategoryService = $newsCategoryService;
+        $this->userService = $userService;
     }
 
     public function index()
@@ -54,7 +57,8 @@ class NewsController extends Controller
     public function create()
     {
         $categories = $this->newsCategoryService->getAllCategories();
-        return view('admin.news.create', compact('categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.news.create', compact('categories', 'users'));
     }
 
     public function store(NewsRequest $request)
@@ -70,7 +74,8 @@ class NewsController extends Controller
     {
         $news = $this->newsService->getNews($id);
         $categories = $this->newsCategoryService->getAllCategories();
-        return view('admin.news.edit', compact('news', 'categories'));
+        $users = $this->userService->getAllUsers();
+        return view('admin.news.edit', compact('news', 'categories', 'users'));
     }
 
     public function update(newsRequest $request, $id)

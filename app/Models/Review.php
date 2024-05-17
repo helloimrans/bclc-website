@@ -31,6 +31,12 @@ class Review extends Model
             'name' => '--',
         ]);
     }
+    public function wroteBy()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
+            'name' => '--',
+        ]);
+    }
 
     public function scopeIsActive($query)
     {

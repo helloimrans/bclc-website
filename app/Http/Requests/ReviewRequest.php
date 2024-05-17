@@ -25,6 +25,7 @@ class ReviewRequest extends FormRequest
             'thumbnail_image' => $imageRules,
             'review_category_id' => 'required',
             'description' => 'required',
+            'user_id' => 'nullable',
         ];
     }
 }

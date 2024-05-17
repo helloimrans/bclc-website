@@ -10,13 +10,14 @@ class BlogService
 {
     public function getAllBlogs()
     {
-        return Blog::with(['category','createdBy','updatedBy'])->latest()->get();
+        return Blog::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
 
     public function createBlog($input)
     {
         $input['slug'] = Str::slug($input['title']);
-        $input['created_by'] = Auth::user()->id;
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
+        $input['created_by'] =  Auth::user()->id;
         if(isset($input['thumbnail_image'])){
             $input['thumbnail_image'] = uploadFile($input['thumbnail_image'], 'blog');
         }
@@ -33,6 +34,7 @@ class BlogService
     {
         $blog = Blog::find($id);
         $input['slug'] = Str::slug($input['title']);
+        $input['user_id'] = $input['user_id'] ?? Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
 
         if (isset($input['thumbnail_image'])) {

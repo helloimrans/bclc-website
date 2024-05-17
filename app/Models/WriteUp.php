@@ -32,6 +32,13 @@ class WriteUp extends Model
         ]);
     }
 
+    public function wroteBy()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
+            'name' => '--',
+        ]);
+    }
+
     public function scopeIsActive($query)
     {
         return $query->where('is_active', true);
