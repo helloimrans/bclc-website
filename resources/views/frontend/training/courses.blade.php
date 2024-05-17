@@ -39,9 +39,9 @@
                                 <span>{{ $course->serviceCategory->name }}</span>
                                 <p><i class="fa fa-calendar"></i>
                                     {{ date('jS, F, Y', strtotime($course->class_start_date)) }}</p>
-                                <p><i class="fa fa-clock-o"></i>
-                                    {{ $course->duration }}
-                                    Hours</p>
+                                    <p><i class="fa fa-clock-o"></i>
+                                        {{ $course->duration }}: {{ $course->total_hours }}
+                                        Hours</p>
                                 <p><img src="{{ asset('frontend') }}/images/trached.png"
                                         alt="image"> {{ $course->boarding }}</p>
                             </div>
