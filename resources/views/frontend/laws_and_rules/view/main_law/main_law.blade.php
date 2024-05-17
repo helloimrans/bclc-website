@@ -15,13 +15,13 @@
             </tr>
             <tr>
                 <th class="bg-light">Act Date</th>
-                <td>{{ \Carbon\Carbon::parse($law->act_date)->format(' d M, Y') }}</td>
+                <td>{{ $law->act_date ? \Carbon\Carbon::parse($law->act_date)->format(' d M, Y') : '' }}</td>
                 <th class="bg-light">Section</th>
                 <td>{{ $law->total_section }}</td>
             </tr>
             <tr>
                 <th class="bg-light">Amendment</th>
-                <td>{{ \Carbon\Carbon::parse($law->last_amendment)->format(' d M, Y') }}</td>
+                <td>{{ $law->last_amendment ? \Carbon\Carbon::parse($law->last_amendment)->format(' d M, Y') : '' }}</td>
                 <th class="bg-light">Schedule</th>
                 <td>{{ $law->total_schedule }}</td>
             </tr>
