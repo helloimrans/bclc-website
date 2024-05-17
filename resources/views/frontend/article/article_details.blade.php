@@ -42,7 +42,7 @@
                     </div>
                     <div class="ad-author mb-4">
                         <span><i class="fa fa-user-o"></i>
-                            {{$article->createdBy->name}}
+                            {{$article->wroteBy->name}}
                         </span>
                         <span><i class="fa fa-calendar"></i> {{ $article->created_at->format('d M Y') }}</span>
                     </div>

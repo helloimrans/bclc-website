@@ -42,7 +42,7 @@
                     </div>
                     <div class="ad-author mb-4">
                         <span><i class="fa fa-user-o"></i>
-                            {{$review->createdBy->name}}
+                            {{$review->wroteBy->name}}
                         </span>
                         <span><i class="fa fa-calendar"></i> {{ $review->created_at->format('d M Y') }}</span>
                     </div>

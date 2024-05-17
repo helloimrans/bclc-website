@@ -40,7 +40,7 @@
                             <h5><a href="{{ route('article.details',$article->slug) }}">{{ $article->title }}</a></h5>
                             <div class="article-icon">
                                 <span><i class="fa fa-user-o"></i>
-                                    {{$article->createdBy->name}}
+                                    {{$article->wroteBy->name}}
                                 </span>
                             </div>
                             <div class="article-icon">
