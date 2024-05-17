@@ -46,6 +46,7 @@ class LawController extends Controller
      */
     public function store(Request $request)
     {
+
         if ($request->is_rules == null) {
             $validator = Validator::make($request->all(), [
                 'title' => 'required|unique:laws,title',
@@ -88,6 +89,12 @@ class LawController extends Controller
 
 
         $input = $request->all();
+
+        if($request->lang == 'both'){
+            $input['default_lang'] = $request->default_lang;
+        }else{
+            $input['default_lang'] = $request->lang;
+        }
 
         $input['slug'] = Str::slug($request->title);
         $input['created_by'] = Auth::user()->id;
@@ -203,6 +210,12 @@ class LawController extends Controller
             $input['is_rules'] = 0;
         } else {
             $input['is_rules'] = $request->is_rules;
+        }
+
+        if($request->lang == 'both'){
+            $input['default_lang'] = $request->default_lang;
+        }else{
+            $input['default_lang'] = $request->lang;
         }
 
 

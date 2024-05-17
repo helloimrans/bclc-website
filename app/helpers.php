@@ -31,10 +31,10 @@ if (!function_exists('deleteFile')) {
 if (!function_exists('setLawLocale')) {
     function setLawLocale($lawData) {
         $lawLocale = 'en';
-        if ($lawData->lang == 'en' || $lawData->default_lang == 'en') {
-            $lawLocale = 'en';
-        } elseif ($lawData->lang == 'bn' || $lawData->default_lang == 'bn') {
-            $lawLocale = 'bn';
+        if ($lawData->lang == 'both') {
+            $lawLocale = $lawData->default_lang;
+        } elseif ($lawData->lang == 'bn' || $lawData->lang == 'en') {
+            $lawLocale = $lawData->lang;
         }
         session()->put([
             'lawLocale' => $lawLocale,
