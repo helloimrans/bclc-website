@@ -21,7 +21,7 @@ class GeneralNotification extends Notification
         $this->notificationData = $notificationData;
     }
 
-    /**
+    /**`
      * Get the notification's delivery channels.
      *
      * @return array<int, string>
