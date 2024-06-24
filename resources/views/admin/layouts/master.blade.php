@@ -225,10 +225,23 @@
 
         $(document).ready(function() {
             $(".summernote").summernote({
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ],
                 placeholder: 'Enter description...',
                 tabsize: 2,
-                height: 200
+                height: 200,
             });
+
         });
     </script>
 
