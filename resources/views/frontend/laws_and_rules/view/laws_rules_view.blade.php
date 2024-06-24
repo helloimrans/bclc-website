@@ -130,7 +130,6 @@
         .laws-chapters-section h5 {
             font-size: 16px;
             font-weight: 700;
-            margin-top: 40px
         }
 
         .laws-chapters-section p {

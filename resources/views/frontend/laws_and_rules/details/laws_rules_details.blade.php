@@ -198,7 +198,7 @@
                             <h5>Law Schedules</h5>
                             <div class="law-schedule-options text-center">
                                 @forelse ($law_schedules as $ls)
-                                    <a href="#!" class="btn btn-md btn-info w-100 mb-2">{{ $ls->title }}</a>
+                                    <a href="{{Storage::url($ls->file)}}" target="_blank" class="btn btn-md btn-info w-100 mb-2">{{ $ls->title }}</a>
                                 @empty
                                     <h5 class="text-danger">Empty</h5>
                                 @endforelse
@@ -225,7 +225,7 @@
                             <h5>Law Forms</h5>
                             <div class="law-schedule-options text-center">
                                 @forelse ($law_forms as $lf)
-                                    <a href="#!" class="btn btn-md btn-info w-100 mb-2">{{ $lf->title }}</a>
+                                    <a href="{{Storage::url($lf->file)}}" class="btn btn-md btn-info w-100 mb-2">{{ $lf->title }}</a>
                                 @empty
                                     <h5 class="text-danger">Empty</h5>
                                 @endforelse
