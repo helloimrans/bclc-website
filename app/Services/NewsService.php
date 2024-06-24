@@ -12,6 +12,10 @@ class NewsService
     {
         return News::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
+    public function getAllNewsDatatable()
+    {
+        return News::with(['category','createdBy','updatedBy','wroteBy'])->latest();
+    }
 
     public function createNews($input)
     {

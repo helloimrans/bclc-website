@@ -13,6 +13,11 @@ class BlogService
         return Blog::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
 
+    public function getAllBlogsDatatable()
+    {
+        return Blog::with(['category','createdBy','updatedBy','wroteBy'])->latest();
+    }
+
     public function createBlog($input)
     {
         $input['slug'] = Str::slug($input['title']);

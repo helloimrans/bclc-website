@@ -13,6 +13,11 @@ class ReviewService
         return Review::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
 
+    public function getAllReviewsDatatable()
+    {
+        return Review::with(['category','createdBy','updatedBy','wroteBy'])->latest();
+    }
+
     public function createReview($input)
     {
         $input['slug'] = Str::slug($input['title']);

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Services\ArticleCategoryService;
 use App\Services\ArticleService;
 use App\Services\UserService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -31,11 +32,29 @@ class ArticleController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $articles = $this->articleService->getAllArticles();
+            $query = $this->articleService->getAllArticlesDatatable();
+
+            if ($writer = request()->get('writer')) {
+                $query->where('user_id', $writer);
+            }
+
+            if ($fromDate = request()->get('from_date')) {
+                $query->whereDate('created_at', '>=', $fromDate);
+            }
+
+            if ($toDate = request()->get('to_date')) {
+                $query->whereDate('created_at', '<=', $toDate);
+            }
+
+            $articles = $query->get();
+
             return DataTables::of($articles)
                 ->editColumn('thumbnail_image', function ($article) {
                     $imageUrl = $article->thumbnail_image ? Storage::url($article->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $article->title . '">';
+                })
+                ->editColumn('created_at', function ($article) {
+                    return Carbon::parse($article->created_at)->format('d-m-Y');
                 })
                 ->editColumn('is_active', function ($article) {
                     $checkStatus = $article->is_active ? 'checked' : '';

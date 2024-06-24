@@ -8,6 +8,7 @@ use App\Models\ReviewCategory;
 use App\Services\ReviewCategoryService;
 use App\Services\ReviewService;
 use App\Services\UserService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -27,11 +28,29 @@ class ReviewController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $reviews = $this->reviewService->getAllReviews();
+            $query = $this->reviewService->getAllReviewsDatatable();
+
+            if ($writer = request()->get('writer')) {
+                $query->where('user_id', $writer);
+            }
+
+            if ($fromDate = request()->get('from_date')) {
+                $query->whereDate('created_at', '>=', $fromDate);
+            }
+
+            if ($toDate = request()->get('to_date')) {
+                $query->whereDate('created_at', '<=', $toDate);
+            }
+
+            $reviews = $query->get();
+
             return DataTables::of($reviews)
                 ->editColumn('thumbnail_image', function ($review) {
                     $imageUrl = $review->thumbnail_image ? Storage::url($review->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $review->title . '">';
+                })
+                ->editColumn('created_at', function ($review) {
+                    return Carbon::parse($review->created_at)->format('d-m-Y');
                 })
                 ->editColumn('is_active', function ($review) {
                     $checkStatus = $review->is_active ? 'checked' : '';

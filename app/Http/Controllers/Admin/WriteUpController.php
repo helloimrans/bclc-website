@@ -8,6 +8,7 @@ use App\Models\WriteUpCategory;
 use App\Services\UserService;
 use App\Services\WriteUpCategoryService;
 use App\Services\WriteUpService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -28,11 +29,28 @@ class WriteUpController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $writeUps = $this->writeUpService->getAllWriteUps();
+            $query = $this->writeUpService->getAllWriteUpsDatatable();
+            if ($writer = request()->get('writer')) {
+                $query->where('user_id', $writer);
+            }
+
+            if ($fromDate = request()->get('from_date')) {
+                $query->whereDate('created_at', '>=', $fromDate);
+            }
+
+            if ($toDate = request()->get('to_date')) {
+                $query->whereDate('created_at', '<=', $toDate);
+            }
+
+            $writeUps = $query->get();
+
             return DataTables::of($writeUps)
                 ->editColumn('thumbnail_image', function ($writeUp) {
                     $imageUrl = $writeUp->thumbnail_image ? Storage::url($writeUp->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $writeUp->title . '">';
+                })
+                ->editColumn('created_at', function ($writeUp) {
+                    return Carbon::parse($writeUp->created_at)->format('d-m-Y');
                 })
                 ->editColumn('is_active', function ($writeUp) {
                     $checkStatus = $writeUp->is_active ? 'checked' : '';

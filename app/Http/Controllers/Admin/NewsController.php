@@ -8,6 +8,7 @@ use App\Models\NewsCategory;
 use App\Services\NewsCategoryService;
 use App\Services\NewsService;
 use App\Services\UserService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -27,11 +28,28 @@ class NewsController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $newss = $this->newsService->getAllNews();
+            $query = $this->newsService->getAllNewsDatatable();
+            if ($writer = request()->get('writer')) {
+                $query->where('user_id', $writer);
+            }
+
+            if ($fromDate = request()->get('from_date')) {
+                $query->whereDate('created_at', '>=', $fromDate);
+            }
+
+            if ($toDate = request()->get('to_date')) {
+                $query->whereDate('created_at', '<=', $toDate);
+            }
+
+            $newss = $query->get();
+
             return DataTables::of($newss)
                 ->editColumn('thumbnail_image', function ($news) {
                     $imageUrl = $news->thumbnail_image ? Storage::url($news->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $news->title . '">';
+                })
+                ->editColumn('created_at', function ($news) {
+                    return Carbon::parse($news->created_at)->format('d-m-Y');
                 })
                 ->editColumn('is_active', function ($news) {
                     $checkStatus = $news->is_active ? 'checked' : '';

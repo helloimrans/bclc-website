@@ -18,6 +18,11 @@ class AdminUserController extends Controller
         $this->userService = $userService;
     }
 
+    public function ajaxGetUsers(){
+        $users = $this->userService->getAllUsers();
+        return response()->json($users);
+    }
+
     public function index()
     {
         $userType = request('user_type');

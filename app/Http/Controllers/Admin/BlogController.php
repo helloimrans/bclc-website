@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use App\Services\BlogCategoryService;
 use App\Services\BlogService;
 use App\Services\UserService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -27,11 +28,29 @@ class BlogController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $blogs = $this->blogService->getAllBlogs();
+            $query = $this->blogService->getAllBlogsDatatable();
+
+            if ($writer = request()->get('writer')) {
+                $query->where('user_id', $writer);
+            }
+
+            if ($fromDate = request()->get('from_date')) {
+                $query->whereDate('created_at', '>=', $fromDate);
+            }
+
+            if ($toDate = request()->get('to_date')) {
+                $query->whereDate('created_at', '<=', $toDate);
+            }
+
+            $blogs = $query->get();
+
             return DataTables::of($blogs)
                 ->editColumn('thumbnail_image', function ($blog) {
                     $imageUrl = $blog->thumbnail_image ? Storage::url($blog->thumbnail_image) : asset('defaults/noimage/no_img.jpg');
                     return '<img class="rounded" width="60" src="' . $imageUrl . '" alt="' . $blog->title . '">';
+                })
+                ->editColumn('created_at', function ($blog) {
+                    return Carbon::parse($blog->created_at)->format('d-m-Y');
                 })
                 ->editColumn('is_active', function ($blog) {
                     $checkStatus = $blog->is_active ? 'checked' : '';

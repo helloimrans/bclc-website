@@ -51,6 +51,10 @@ Route::get('/get/service/category/{id}', [DefaultController::class, 'getServiceC
 //Ajax - Get service category & service
 Route::get('/get/category/service/{id}', [DefaultController::class, 'getCatService']);
 
+//Ajax - Get Users
+Route::get('/ajax/get/users', [AdminUserController::class, 'ajaxGetUsers'])->name('ajax.get.users');
+
+
 
 //User guest route
 Route::group([], function () {
@@ -130,7 +134,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
     Route::resource('reviews', ReviewController::class)->names('reviews');
 
     Route::resource('document-categories', DocumentCategoryController::class)->names('document.categories');
-    
+
     Route::resource('document-subcategories', DocumentSubCategoryController::class)->names('document.subcategories');
     Route::get('document-subcategories/get-by-category/{category_id}', [DocumentSubCategoryController::class, 'getByCategory']);
 

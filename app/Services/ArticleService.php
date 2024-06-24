@@ -13,6 +13,11 @@ class ArticleService
         return Article::with(['category','createdBy','updatedBy', 'wroteBy'])->latest()->get();
     }
 
+    public function getAllArticlesDatatable()
+    {
+        return Article::with(['category', 'createdBy', 'updatedBy', 'wroteBy'])->latest();
+    }
+
     public function createArticle($input)
     {
         $input['slug'] = Str::slug($input['title']);

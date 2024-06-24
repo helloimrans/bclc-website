@@ -33,12 +33,31 @@
                                         class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New</a></div>
                             </div>
                         </div>
+                        <div class="px-2 content-filter">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="user_id" class="form-label">Writer</label>
+                                    <select id="user_id" class="form-select select2" name="user_id">
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="from_date" class="form-label">From Date</label>
+                                    <input type="date" id="from_date" name="from_date" class="form-control" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="to_date" class="form-label">To Date</label>
+                                    <input type="date" id="to_date" name="to_date" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table text-nowrap datatable">
                                     <thead>
                                         <tr>
                                             <th>SL</th>
+                                            <th>Date</th>
                                             <th>Writer</th>
                                             <th>Title</th>
                                             <th>Thumbnail</th>
@@ -64,17 +83,46 @@
 
 @section('scripts')
     <script type="text/javascript">
+                $(function() {
+            $.ajax({
+                method: "GET",
+                url: '{{ route('ajax.get.users') }}',
+                dataType: 'JSON',
+                success: function(response) {
+                    console.log(response);
+                    $("#user_id").html('<option value="">Select Writer</option>');
+                    $.each(response, function(key, item) {
+                        $("#user_id").append('<option value="' + item.id + '">' + item.name +
+                            '</option>');
+                    })
+                },
+                error: function(response) {
+                    //
+                }
+            });
+        });
         $(function() {
             var table = $('.datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('reviews.index') }}",
+                ajax: {
+                    url: "{{ route('reviews.index') }}",
+                    data: function(d) {
+                        d.writer = $('#user_id').val();
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                    }
+                },
                 columns: [{
                         data: null,
                         name: 'serial',
                         render: function(data, type, row, meta) {
                             return meta.row + 1;
                         }
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at'
                     },
                     {
                         data: 'wrote_by.name',
@@ -111,6 +159,9 @@
                         searchable: false
                     },
                 ]
+            });
+            $('#user_id, #from_date, #to_date').on('change', function() {
+                table.draw();
             });
         });
     </script>

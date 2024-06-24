@@ -13,6 +13,11 @@ class WriteUpService
         return WriteUp::with(['category','createdBy','updatedBy','wroteBy'])->latest()->get();
     }
 
+    public function getAllWriteUpsDatatable()
+    {
+        return WriteUp::with(['category','createdBy','updatedBy','wroteBy'])->latest();
+    }
+
     public function createWriteUp($input)
     {
         $input['slug'] = Str::slug($input['title']);
