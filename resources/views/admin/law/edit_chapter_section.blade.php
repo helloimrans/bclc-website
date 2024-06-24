@@ -1813,22 +1813,24 @@
                         <div class="alert alert-success" id="c_validation-success"></div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Chapter No</label>
-                            <input type="text" name="chapter_no" placeholder="Enter chapter no" class="form-control">
-                        </div>
-                        <div class="mb-1">
                             <label class="form-label" for="">Chapter No (BN)</label>
                             <input type="text" name="chapter_no_bn" placeholder="Enter chapter no (bn)"
                                 class="form-control">
                         </div>
+
                         <div class="mb-1">
-                            <label class="form-label" for="">Chapter Title</label>
-                            <input type="text" name="title" placeholder="Enter chapter title" class="form-control">
+                            <label class="form-label" for="">Chapter No (EN)</label>
+                            <input type="text" name="chapter_no" placeholder="Enter chapter no (en)" class="form-control">
                         </div>
 
                         <div class="mb-1">
                             <label class="form-label" for="">Chapter Title (BN)</label>
                             <input type="text" name="title_bn" placeholder="Enter chapter (bn)" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter Title (EN)</label>
+                            <input type="text" name="title" placeholder="Enter chapter title (en)" class="form-control">
                         </div>
 
                         <div class="mb-1">
@@ -1875,19 +1877,15 @@
                         <div class="alert alert-success" id="c_edit-errors"></div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Chapter No</label>
-                            <input type="text" name="chapter_no" placeholder="Enter chapter no" id="chapter_no"
-                                class="form-control">
-                        </div>
-                        <div class="mb-1">
                             <label class="form-label" for="">Chapter No (BN)</label>
                             <input type="text" name="chapter_no_bn" placeholder="Enter chapter no (bn)"
                                 id="chapter_no_bn" class="form-control">
                         </div>
 
+
                         <div class="mb-1">
-                            <label class="form-label" for="">Chapter Title</label>
-                            <input type="text" name="title" placeholder="Enter chapter title" id="chapter_title"
+                            <label class="form-label" for="">Chapter No (EN)</label>
+                            <input type="text" name="chapter_no" placeholder="Enter chapter no (en)" id="chapter_no"
                                 class="form-control">
                         </div>
 
@@ -1895,6 +1893,12 @@
                             <label class="form-label" for="">Chapter Title (BN)</label>
                             <input type="text" name="title_bn" placeholder="Enter chapter title (bn)"
                                 id="chapter_title_bn" class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Chapter Title (EN)</label>
+                            <input type="text" name="title" placeholder="Enter chapter title (en)" id="chapter_title"
+                                class="form-control">
                         </div>
 
                         <div class="mb-1">
@@ -1949,35 +1953,38 @@
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Section No</label>
-                            <input type="text" name="section_no" placeholder="Ex: 12" class="form-control">
-                        </div>
-
-                        <div class="mb-1">
                             <label class="form-label" for="">Section No (BN)</label>
                             <input type="text" name="section_no_bn" placeholder="Ex: ১২" class="form-control">
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Title</label>
-                            <input type="text" name="title" placeholder="Enter title" class="form-control">
-
+                            <label class="form-label" for="">Section No (EN)</label>
+                            <input type="text" name="section_no" placeholder="Ex: 12" class="form-control">
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label" for="">Title (BN)</label>
                             <input type="text" name="title_bn" placeholder="Enter title (bn)" class="form-control">
                         </div>
 
+
                         <div class="mb-1">
-                            <label class="form-label" for="">Description</label>
-                            <textarea name="description" class="form-control summernote" rows="3" placeholder="Description..."></textarea>
+                            <label class="form-label" for="">Title (EN)</label>
+                            <input type="text" name="title" placeholder="Enter title (en)" class="form-control">
+
+                        </div>
+
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description (BN)</label>
+                            <textarea name="description_bn" class="form-control summernote" rows="3" placeholder="Description (bn)..."></textarea>
 
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Description (BN)</label>
-                            <textarea name="description_bn" class="form-control summernote" rows="3" placeholder="Description bangla..."></textarea>
+                            <label class="form-label" for="">Description (EN)</label>
+                            <textarea name="description" class="form-control summernote" rows="3" placeholder="Description (en)..."></textarea>
 
                         </div>
 
@@ -2033,24 +2040,15 @@
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Section No</label>
-                            <input type="text" name="section_no" placeholder="Ex: 12" id="section_no"
-                                class="form-control">
-                        </div>
-
-                        <div class="mb-1">
                             <label class="form-label" for="">Section No (BN)</label>
                             <input type="text" name="section_no_bn" placeholder="Ex: ১২" id="section_no_bn"
                                 class="form-control">
                         </div>
 
-
-
                         <div class="mb-1">
-                            <label class="form-label" for="">Title</label>
-                            <input type="text" name="title" id="section_title" placeholder="Enter title"
+                            <label class="form-label" for="">Section No (EN)</label>
+                            <input type="text" name="section_no" placeholder="Ex: 12" id="section_no"
                                 class="form-control">
-
                         </div>
 
                         <div class="mb-1">
@@ -2059,19 +2057,28 @@
                                 id="section_title_bn" class="form-control">
                         </div>
 
+
                         <div class="mb-1">
-                            <label class="form-label" for="">Description</label>
-                            <textarea name="description" id="section_description" class="form-control summernote" rows="3"
-                                placeholder="Description..."></textarea>
+                            <label class="form-label" for="">Title (EN)</label>
+                            <input type="text" name="title" id="section_title (en)" placeholder="Enter title"
+                                class="form-control">
 
                         </div>
 
                         <div class="mb-1">
                             <label class="form-label" for="">Description (BN)</label>
                             <textarea name="description_bn" id="section_description_bn" class="form-control summernote" rows="3"
-                                placeholder="Description bangla..."></textarea>
+                                placeholder="Description (bn)..."></textarea>
+
+                        </div>`
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description (EN)</label>
+                            <textarea name="description" id="section_description" class="form-control summernote" rows="3"
+                                placeholder="Description (en)..."></textarea>
 
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label">Sort</label>

@@ -1803,24 +1803,27 @@
                     <div class="modal-body">
                         <div class="alert alert-danger" id="p_validation-errors"></div>
                         <div class="alert alert-success" id="p_validation-success"></div>
-
-                        <div class="mb-1">
-                            <label class="form-label" for="">Part No</label>
-                            <input type="text" name="part_no" placeholder="Enter part no" class="form-control">
-                        </div>
                         <div class="mb-1">
                             <label class="form-label" for="">Part No (BN)</label>
                             <input type="text" name="part_no_bn" placeholder="Enter part no (bn)"
                                 class="form-control">
                         </div>
                         <div class="mb-1">
-                            <label class="form-label" for="">Part Title</label>
-                            <input type="text" name="title" placeholder="Enter part title" class="form-control">
+                            <label class="form-label" for="">Part No (EN)</label>
+                            <input type="text" name="part_no" placeholder="Enter part no (en)" class="form-control">
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label" for="">Part Title (BN)</label>
-                            <input type="text" name="title_bn" placeholder="Enter part (bn)" class="form-control">
+                            <input type="text" name="title_bn" placeholder="Enter part (bn)"
+                                class="form-control">
+                        </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Part Title (EN)</label>
+                            <input type="text" name="title" placeholder="Enter part title (en)"
+                                class="form-control">
                         </div>
 
                         <div class="mb-1">
@@ -1845,7 +1848,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
                                 data-feather='x'></i> Close</button>
-                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Save</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i>
+                            Save</button>
                     </div>
                 </form>
             </div>
@@ -1865,12 +1869,6 @@
                     <div class="modal-body">
                         <div class="alert alert-danger" id="p_edit-errors"></div>
                         <div class="alert alert-success" id="p_edit-errors"></div>
-
-                        <div class="mb-1">
-                            <label class="form-label" for="">Part No</label>
-                            <input type="text" name="part_no" placeholder="Enter part no" id="part_no"
-                                class="form-control">
-                        </div>
                         <div class="mb-1">
                             <label class="form-label" for="">Part No (BN)</label>
                             <input type="text" name="part_no_bn" placeholder="Enter part no (bn)" id="part_no_bn"
@@ -1878,16 +1876,24 @@
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Part Title</label>
-                            <input type="text" name="title" placeholder="Enter part title" id="part_title"
+                            <label class="form-label" for="">Part No (EN)</label>
+                            <input type="text" name="part_no" placeholder="Enter part no (en)" id="part_no"
                                 class="form-control">
                         </div>
 
                         <div class="mb-1">
                             <label class="form-label" for="">Part Title (BN)</label>
-                            <input type="text" name="title_bn" placeholder="Enter part title (bn)" id="part_title_bn"
+                            <input type="text" name="title_bn" placeholder="Enter part title (bn)"
+                                id="part_title_bn" class="form-control">
+                        </div>
+
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Part Title (EN)</label>
+                            <input type="text" name="title" placeholder="Enter part title (en)" id="part_title"
                                 class="form-control">
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label">Sort</label>
@@ -1906,7 +1912,8 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i
                                 data-feather='x'></i> Close</button>
-                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i> Update</button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i data-feather='save'></i>
+                            Update</button>
                     </div>
                 </form>
             </div>
@@ -1942,37 +1949,43 @@
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Section No</label>
-                            <input type="text" name="section_no" placeholder="Ex: 12" class="form-control">
-                        </div>
-
-                        <div class="mb-1">
                             <label class="form-label" for="">Section No (BN)</label>
                             <input type="text" name="section_no_bn" placeholder="Ex: ১২" class="form-control">
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Title</label>
-                            <input type="text" name="title" placeholder="Enter title" class="form-control">
-
+                            <label class="form-label" for="">Section No (EN)</label>
+                            <input type="text" name="section_no" placeholder="Ex: 12" class="form-control">
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label" for="">Title (BN)</label>
-                            <input type="text" name="title_bn" placeholder="Enter title (bn)" class="form-control">
+                            <input type="text" name="title_bn" placeholder="Enter title (bn)"
+                                class="form-control">
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Description</label>
-                            <textarea name="description" class="form-control summernote" rows="3" placeholder="Description..."></textarea>
+                            <label class="form-label" for="">Title (EN)</label>
+                            <input type="text" name="title" placeholder="Enter title (en)" class="form-control">
 
                         </div>
 
                         <div class="mb-1">
                             <label class="form-label" for="">Description (BN)</label>
-                            <textarea name="description_bn" class="form-control summernote" rows="3" placeholder="Description bangla..."></textarea>
+                            <textarea name="description_bn" class="form-control summernote" rows="3"
+                                placeholder="Description (bn)..."></textarea>
 
                         </div>
+
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description (EN)</label>
+                            <textarea name="description" class="form-control summernote" rows="3" placeholder="Description (en)..."></textarea>
+
+                        </div>
+
+
 
                         <div class="mb-1">
                             <label class="form-label">Sort</label>
@@ -2025,11 +2038,6 @@
                             </select>
                         </div>
 
-                        <div class="mb-1">
-                            <label class="form-label" for="">Section No</label>
-                            <input type="text" name="section_no" placeholder="Ex: 12" id="section_no"
-                                class="form-control">
-                        </div>
 
                         <div class="mb-1">
                             <label class="form-label" for="">Section No (BN)</label>
@@ -2037,14 +2045,12 @@
                                 class="form-control">
                         </div>
 
-
-
                         <div class="mb-1">
-                            <label class="form-label" for="">Title</label>
-                            <input type="text" name="title" id="section_title" placeholder="Enter title"
+                            <label class="form-label" for="">Section No (EN)</label>
+                            <input type="text" name="section_no" placeholder="Ex: 12" id="section_no"
                                 class="form-control">
-
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label" for="">Title (BN)</label>
@@ -2053,18 +2059,27 @@
                         </div>
 
                         <div class="mb-1">
-                            <label class="form-label" for="">Description</label>
-                            <textarea name="description" id="section_description" class="form-control summernote" rows="3"
-                                placeholder="Description..."></textarea>
+                            <label class="form-label" for="">Title (EN)</label>
+                            <input type="text" name="title" id="section_title" placeholder="Enter title (en)"
+                                class="form-control">
 
                         </div>
+
 
                         <div class="mb-1">
                             <label class="form-label" for="">Description (BN)</label>
                             <textarea name="description_bn" id="section_description_bn" class="form-control summernote" rows="3"
-                                placeholder="Description bangla..."></textarea>
+                                placeholder="Description (bn)..."></textarea>
 
                         </div>
+
+                        <div class="mb-1">
+                            <label class="form-label" for="">Description (EN)</label>
+                            <textarea name="description" id="section_description" class="form-control summernote" rows="3"
+                                placeholder="Description (en)..."></textarea>
+
+                        </div>
+
 
                         <div class="mb-1">
                             <label class="form-label">Sort</label>
