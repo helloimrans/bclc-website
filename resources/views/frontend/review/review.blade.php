@@ -34,6 +34,7 @@
                         <div class="news-events-box">
                             <div class="events-img">
                                 <img src="@if ($review->thumbnail_image) {{ Storage::url($review->thumbnail_image) }}
+                                @elseif ($review->category->image) {{ Storage::url($review->category->image) }}
                                 @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" class="img-fluid" alt="{{ $review->title }}">
                             </div>
                             <div class="events-txt">

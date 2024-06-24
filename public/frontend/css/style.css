@@ -1838,17 +1838,23 @@ header.scrolled .logo {
     text-align: center;
     background: #fff;
     border-left: 4px solid var(--bd);
+<<<<<<< HEAD
     transition: .4s;
+=======
+>>>>>>> c47df4c5ffd0d6d1e659b7d22a0b43d236745d0c
 }
 .service-cat-box a{
     text-decoration: none;
     color: #444;
 
 }
+<<<<<<< HEAD
 
 .service-cat-box:hover {
     transform: var(--animate);
 }
+=======
+>>>>>>> c47df4c5ffd0d6d1e659b7d22a0b43d236745d0c
 .sc-txt {
     display: table-cell;
     height: 70px;

@@ -42,6 +42,7 @@
                                         href="{{ route('news.details',$relatedNews->slug) }}">
                                         <span>
                                             <img src="@if ($relatedNews->thumbnail_image) {{ Storage::url($relatedNews->thumbnail_image) }}
+                                            @if ($relatedNews->category->image) {{ Storage::url($relatedNews->category->image) }}
                                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 alt="image">
                                         </span>
@@ -111,6 +112,10 @@
                     </div>
                     <div class="ad-images mb-3">
                         <img class="img-fluid rounded" src="@if ($news->thumbnail_image) {{ Storage::url($news->thumbnail_image) }}
+<<<<<<< HEAD
+=======
+                        @elseif ($news->category->image) {{ Storage::url($news->category->image) }}
+>>>>>>> c47df4c5ffd0d6d1e659b7d22a0b43d236745d0c
                         @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="image">
                     </div>
                     <div class="ad-descs">

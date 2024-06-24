@@ -198,7 +198,11 @@
                             <h5>Law Schedules</h5>
                             <div class="law-schedule-options text-center">
                                 @forelse ($law_schedules as $ls)
+<<<<<<< HEAD
                                     <a href="{{Storage::url($ls->file)}}" target="_blank" class="btn btn-md btn-info w-100 mb-2">{{ $ls->title }}</a>
+=======
+                                    <a href="#!" class="btn btn-md btn-info w-100 mb-2">{{ $ls->title }}</a>
+>>>>>>> c47df4c5ffd0d6d1e659b7d22a0b43d236745d0c
                                 @empty
                                     <h5 class="text-danger">Empty</h5>
                                 @endforelse

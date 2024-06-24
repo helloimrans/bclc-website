@@ -2124,7 +2124,6 @@
                         <div class="alert alert-danger" id="c_edit-errors"></div>
                         <div class="alert alert-success" id="c_edit-errors"></div>
 
-
                         <div class="mb-1">
                             <label class="form-label" for="">Chapter No (BN)</label>
                             <input type="text" name="chapter_no_bn" placeholder="Enter chapter no (bn)"

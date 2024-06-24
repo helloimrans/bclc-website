@@ -34,13 +34,17 @@
                         <div class="news-events-box">
                             <div class="events-img">
                                 <img src="@if ($blog->thumbnail_image) {{ Storage::url($blog->thumbnail_image) }}
-                                @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" class="img-fluid" alt="{{ $blog->title }}">
+                                @elseif ($blog->category->image) {{ Storage::url($blog->category->image) }}
+                                @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                    class="img-fluid" alt="{{ $blog->title }}">
                             </div>
                             <div class="events-txt">
-                                <h6><a href="{{ route('blog.details',$blog->slug) }}">{{ \Str::limit($blog->title, 40) }}</a></h6>
+                                <h6><a
+                                        href="{{ route('blog.details', $blog->slug) }}">{{ \Str::limit($blog->title, 40) }}</a>
+                                </h6>
                                 <p class="ne-date">{{ $blog->created_at->format('d M Y') }}</p>
                                 <p class="ne-desc">{!! substr(strip_tags($blog->description), 0, 45) !!}...</p>
-                                <a class="ne-readmore" href="{{ route('blog.details',$blog->slug) }}">Read More</a>
+                                <a class="ne-readmore" href="{{ route('blog.details', $blog->slug) }}">Read More</a>
                             </div>
 
                         </div>

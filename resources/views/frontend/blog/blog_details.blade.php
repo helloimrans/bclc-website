@@ -48,6 +48,7 @@
                     </div>
                     <div class="ad-images mb-3">
                         <img class="img-fluid rounded" src="@if ($blog->thumbnail_image) {{ Storage::url($blog->thumbnail_image) }}
+                        @elseif ($blog->category->image) {{ Storage::url($blog->category->image) }}
                         @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="image">
                     </div>
                     <div class="ad-descs">
@@ -81,6 +82,7 @@
                                         href="{{ route('blog.details',$relatedBlog->slug) }}">
                                         <span>
                                             <img src="@if ($relatedBlog->thumbnail_image) {{ Storage::url($relatedBlog->thumbnail_image) }}
+                                            @elseif ($relatedBlog->category->image) {{ Storage::url($relatedBlog->category->image) }}
                                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 alt="image">
                                         </span>
@@ -112,6 +114,7 @@
                                         href="{{ route('blog.details',$latestBlog->slug) }}">
                                         <span>
                                             <img src="@if ($latestBlog->thumbnail_image) {{ Storage::url($latestBlog->thumbnail_image) }}
+                                            @elseif ($latestBlog->category->image) {{ Storage::url($latestBlog->category->image) }}
                                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 alt="image">
                                         </span>

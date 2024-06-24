@@ -81,6 +81,7 @@
                                         href="{{ route('blog.details',$relatedReview->slug) }}">
                                         <span>
                                             <img src="@if ($relatedReview->thumbnail_image) {{ Storage::url($relatedReview->thumbnail_image) }}
+                                            @elseif ($relatedReview->category->image) {{ Storage::url($relatedReview->category->image) }}
                                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                 alt="image">
                                         </span>

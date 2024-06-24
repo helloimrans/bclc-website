@@ -101,6 +101,7 @@
                                         <div class="article-box">
                                             <div class="article-img">
                                                 <img src="@if ($article->thumbnail_image) {{ Storage::url($article->thumbnail_image) }}
+                                                @elseif ($article->category->image){{ Storage::url($article->category->image) }}
                       @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
                                                     alt="{{ $article->title }}">
                                             </div>
@@ -110,7 +111,7 @@
                                                 </h5>
                                                 <div class="article-icon">
                                                     <span><i class="fa fa-user-o"></i>
-                                                        {{$article->wroteBy->name}}
+                                                        {{ $article->wroteBy->name }}
                                                     </span>
                                                 </div>
                                                 <div class="article-icon">
@@ -228,36 +229,38 @@
                             <div class="training-slider my-slider">
 
                                 @foreach ($courses as $course)
-                                <!-- slider item -->
-                                <div class="slider-item">
-                                    <!-- training box -->
-                                    <div class="course-box">
-                                        <div class="course-img">
-                                            <img class="img-fluid" src="{{ Storage::url($course->image) }}" alt="image">
-                                        </div>
-                                        <div class="course-desc">
-                                            <div class="course-author">
-                                                <div class="ta-img">
-                                                    <div class="ta-img-main">
-                                                        <img src="{{ $course->expert->photo ? Storage::url($course->expert->photo) : asset('defaults/noimage/no_img.jpg') }}"
-                                                            alt="image">
-                                                    </div>
-                                                    <a href="#">{{ $course->expert->name }}</a>
-                                                </div>
+                                    <!-- slider item -->
+                                    <div class="slider-item">
+                                        <!-- training box -->
+                                        <div class="course-box">
+                                            <div class="course-img">
+                                                <img class="img-fluid" src="{{ Storage::url($course->image) }}"
+                                                    alt="image">
                                             </div>
-                                            <h5><a href="{{ route('course.details', $course->slug) }}">{{ $course->title }}</a>
-                                            </h5>
-                                            <span>{{ $course->serviceCategory->name }}</span>
-                                            <p><i class="fa fa-calendar"></i>
-                                                {{ date('jS, F, Y', strtotime($course->class_start_date)) }}</p>
+                                            <div class="course-desc">
+                                                <div class="course-author">
+                                                    <div class="ta-img">
+                                                        <div class="ta-img-main">
+                                                            <img src="{{ $course->expert->photo ? Storage::url($course->expert->photo) : asset('defaults/noimage/no_img.jpg') }}"
+                                                                alt="image">
+                                                        </div>
+                                                        <a href="#">{{ $course->expert->name }}</a>
+                                                    </div>
+                                                </div>
+                                                <h5><a
+                                                        href="{{ route('course.details', $course->slug) }}">{{ $course->title }}</a>
+                                                </h5>
+                                                <span>{{ $course->serviceCategory->name }}</span>
+                                                <p><i class="fa fa-calendar"></i>
+                                                    {{ date('jS, F, Y', strtotime($course->class_start_date)) }}</p>
                                                 <p><i class="fa fa-clock-o"></i>
                                                     {{ $course->duration }}: {{ $course->total_hours }}
                                                     Hours</p>
-                                            <p><img src="{{ asset('frontend') }}/images/trached.png"
-                                                    alt="image"> {{ $course->boarding }}</p>
+                                                <p><img src="{{ asset('frontend') }}/images/trached.png" alt="image">
+                                                    {{ $course->boarding }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
 
                             </div>

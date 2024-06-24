@@ -34,6 +34,7 @@
                      <div class="article-box">
                         <div class="article-img">
                             <img src="@if ($article->thumbnail_image) {{ Storage::url($article->thumbnail_image) }}
+                            @elseif ($article->category->image) {{ Storage::url($article->category->image) }}
                             @else {{ asset('defaults/noimage/no_img.jpg') }} @endif">
                         </div>
                         <div class="article-txt">
