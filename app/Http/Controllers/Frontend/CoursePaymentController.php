@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CourseOrderDetail;
 use App\Models\Order;
 use App\Models\User;
+use App\Notifications\GeneralNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,6 +40,17 @@ class CoursePaymentController extends Controller
         $courseOrderDetails->course_id = base64_decode($request->course_id);
 
         $courseOrderDetails->save();
+
+        $notify = [
+            'heading' => 'Received Payment',
+            'text' => "You've successfully received a payment for course.",
+            'url' => '',
+        ];
+
+        $adminUsers = User::where('user_type', User::ADMIN)->get();
+        foreach($adminUsers as $admin){
+            $admin->notify(new GeneralNotification($notify));
+        }
 
         return response()->json($order);
     }

@@ -19,39 +19,32 @@
         </div>
         <ul class="nav navbar-nav align-items-center ms-auto">
 
-
-
             {{-- notification --}}
             <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
-                <a class="nav-link dropdown-toggle hide-arrow show" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="true">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="true">
                   <i class="fa fa-bell"></i>
                   <span class="badge bg-danger rounded-pill badge-notifications">{{ count(Auth::user()->unreadNotifications)}}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end py-0 show" data-bs-popper="static">
+                <ul class="dropdown-menu dropdown-menu-end py-0" data-bs-popper="static">
                   <li class="dropdown-menu-header border-bottom">
                         <span class="dropdown-item dropdown-header">
-                            Notifications
+                            <span class="me-3">Notifications</span>
                             @if (count(Auth::user()->unreadNotifications) > 0)
                             <a href="javascript:;" class="mark-all-as-read"><i class="fa fa-circle mr-1"></i> Mark all
                                 as read</a>
                             @endif
                         </span>
-                        {{-- <div class="dropdown-divider"></div>  --}}
                   </li>
-
 
                   <li class="dropdown-notifications-list scrollable-container ps">
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item list-group-item-action dropdown-notifications-item">
                             @forelse(Auth::user()->notifications as $notification)
                             <div class="media notifications-box">
-                                <button type="button" data-notification-id="{{ $notification->id }}"
-                                    class="notification-close remove-notification"><span aria-hidden="true">&times;</span></button>
-                                <img src="{{ asset('frontend/images/notifications.svg') }}" class="mr-3" alt="">
                                 <div class="media-body">
                                     <a href="javascript:;" data-notification-id="{{ $notification->id }}" class="mark-and-view">
                                         <p>{{ $notification->data['heading'] }} @if (!$notification->read_at)
-                                                <i class="fa fa-circle custom-color-danger ml-1 fs-10"></i>
+                                                <i class="fa fa-circle custom-color-danger ml-1"></i>
                                             @endif
                                         </p>
                                         <h6>{{ $notification->data['text'] }}</h6>
@@ -62,17 +55,17 @@
                             @empty
                                 <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">No notifications found.</a>
                             @endforelse
-                        
+
                       </li>
-                      
+
                     </ul>
 
 
                 </ul>
             </li>
 
-            
-            
+
+
 
 
 
