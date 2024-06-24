@@ -120,6 +120,28 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-1">
+                    <label class="form-label">Occupation</label>
+                    <input type="text" name="occupation" class="form-control @error('occupation') is-invalid @enderror"
+                        placeholder="Enter workplace name..." value="{{ old('occupation', $user->occupation) }}">
+                    @error('occupation')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-1">
+                    <label class="form-label">Workplace Name</label>
+                    <input type="text" name="workplace_name" class="form-control @error('workplace_name') is-invalid @enderror"
+                        placeholder="Enter workplace name..." value="{{ old('workplace_name', $user->workplace_name) }}">
+                    @error('workplace_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
         <div class="mb-1">
             <label class="form-label">Address</label>
             <textarea name="address" class="form-control @error('address') is-invalid @enderror"

@@ -217,7 +217,8 @@ class UserController extends Controller
         $user->marital_status = $request->input('marital_status');
 
         $user->about = $request->input('about');
-        $user->degree = $request->input('degree') ?? null;
+        $user->degree = $request->input('degree');
+        $user->occupation = $request->input('occupation');
         $user->designation = $request->input('designation');
         $user->workplace_name = $request->input('workplace_name');
 
