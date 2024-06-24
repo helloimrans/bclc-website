@@ -50,6 +50,18 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                @if ($userType == App\Models\User::EXPERT)
+                                <div class="form-group">
+                                    <label for="#">Degree<strong>:</strong></label>
+                                    <input type="text" name="degree" placeholder="Enter degree"
+                                        class="form-control @error('degree') is-invalid @enderror"
+                                        value="{{ old('degree') }}">
+
+                                    @error('degree')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                @endif
                                 <div class="form-group">
                                     <label for="#">Mobile Number<strong>:</strong></label>
                                     <input type="tel" pattern="[0-9]*" name="mobile" placeholder="Enter mobile number"

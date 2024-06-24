@@ -33,8 +33,10 @@ class UserController extends Controller
 
     public function registration(Request $request)
     {
+        $expertRules = $request->input('user_type') != User::EXPERT ? 'sometimes|nullable' : 'required';
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'degree' => $expertRules,
             'mobile' => 'required|max:11|min:11',
             'email' => 'required|email|unique:users,email',
             'is_lawyer' => 'nullable|boolean',
@@ -62,6 +64,7 @@ class UserController extends Controller
         $user = new User();
         $user->user_type = $userType;
         $user->name = $request->input('name');
+        $user->degree = $request->input('degree') ?? null;
         $user->email = $request->input('email');
         $user->mobile = $request->input('mobile');
         $user->password = bcrypt($request->input('password'));
@@ -172,6 +175,10 @@ class UserController extends Controller
 
     public function update_profile(Request $request)
     {
+        $user = User::find(auth()->id());
+
+        $expertRules = $user->user_type != User::EXPERT ? 'sometimes|nullable' : 'required';
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . Auth::user()->id,
@@ -187,6 +194,7 @@ class UserController extends Controller
             'photo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'about' => 'nullable|string',
             'designation' => 'nullable|string|max:255',
+            'degree' => $expertRules,
             'workplace_name' => 'nullable|string|max:255',
         ]);
 
@@ -209,6 +217,7 @@ class UserController extends Controller
         $user->marital_status = $request->input('marital_status');
 
         $user->about = $request->input('about');
+        $user->degree = $request->input('degree') ?? null;
         $user->designation = $request->input('designation');
         $user->workplace_name = $request->input('workplace_name');
 

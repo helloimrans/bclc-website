@@ -122,7 +122,17 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <div class="mb-1">
+                    <label class="form-label">Degree</label>
+                    <input type="text" name="degree" class="form-control @error('degree') is-invalid @enderror"
+                        placeholder="Enter degree..." value="{{ old('degree', $user->degree) }}">
+                    @error('degree')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-4">
                 <div class="mb-1">
                     <label class="form-label">Designation</label>
                     <input type="text" name="designation" class="form-control @error('designation') is-invalid @enderror"
@@ -132,7 +142,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="mb-1">
                     <label class="form-label">Workplace Name</label>
                     <input type="text" name="workplace_name" class="form-control @error('workplace_name') is-invalid @enderror"
