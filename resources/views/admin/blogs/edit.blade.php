@@ -127,6 +127,18 @@
                                                 class="btn btn-sm btn-outline-secondary mb-75 waves-effect">Reset</button>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="">Last Update</label>
+                                            <input type="date" name="last_update" class="form-control @error('last_update') is-invalid @enderror"
+                                                value="{{ old('last_update', $blog->last_update) }}">
+
+                                            @error('last_update')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mt-2 float-end">

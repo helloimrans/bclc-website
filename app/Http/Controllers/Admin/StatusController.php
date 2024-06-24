@@ -12,14 +12,17 @@ class StatusController extends Controller
     {
         $id = $request->input('id');
         $table = $request->input('table');
+        $column = $request->input('column');
         $status = $request->input('status');
 
         try {
             DB::table($table)
                 ->where('id', $id)
-                ->update(['is_active' => $status]);
+                ->update([
+                    $column => $status
+                ]);
 
-            return response()->json(['success' => true, 'message' => 'Status updated successfully.']);
+            return response()->json(['success' => true, 'message' => 'Successfully updated.']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }

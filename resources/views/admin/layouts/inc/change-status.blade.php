@@ -1,17 +1,19 @@
 <script>
     $(document).ready(function() {
         $(document).on('change', '.change-status-checkbox', function() {
-            var articleId = $(this).data('id');
-            var status = $(this).prop('checked') ? 1 : 0;
-            let table = '{{$table}}';
+            let id = $(this).data('id');
+            let table = $(this).data('table');
+            let column = $(this).data('column');
+            let status = $(this).prop('checked') ? 1 : 0;
 
             $.ajax({
                 url: "{{ route('change.status') }}",
                 method: 'POST',
                 data: {
                     _token: "{{ csrf_token() }}",
-                    id: articleId,
+                    id: id,
                     table: table,
+                    column: column,
                     status: status
                 },
                 success: function(response) {

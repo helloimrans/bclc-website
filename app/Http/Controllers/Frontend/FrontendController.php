@@ -32,12 +32,12 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $data['articles'] = Article::with(['createdBy'])->isActive()->limit(10)->latest()->get();
-        $data['writeups'] = WriteUp::isActive()->limit(10)->latest()->get();
-        $data['newses'] = News::isActive()->limit(10)->latest()->get();
-        $data['blogs'] = Blog::isActive()->limit(10)->latest()->get();
+        $data['articles'] = Article::with(['createdBy'])->isActive()->isHomeSlider()->limit(10)->latest()->get();
+        $data['writeups'] = WriteUp::isActive()->isHomeSlider()->limit(10)->latest()->get();
+        $data['newses'] = News::isActive()->isHomeSlider()->limit(10)->latest()->get();
+        $data['blogs'] = Blog::isActive()->isHomeSlider()->limit(10)->latest()->get();
         $data['insights'] = AssociatedService::isActive()->limit(10)->latest()->get();
-        $data['courses'] = Course::with(['expert', 'serviceCategory'])->isActive()->limit(10)->get();
+        $data['courses'] = Course::with(['expert', 'serviceCategory'])->isActive()->isHomeSlider()->limit(10)->get();
         return view('frontend.home.index', $data);
     }
     public function search(Request $request)

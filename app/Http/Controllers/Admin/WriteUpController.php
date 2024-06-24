@@ -52,10 +52,16 @@ class WriteUpController extends Controller
                 ->editColumn('created_at', function ($writeUp) {
                     return Carbon::parse($writeUp->created_at)->format('d-m-Y');
                 })
-                ->editColumn('is_active', function ($writeUp) {
-                    $checkStatus = $writeUp->is_active ? 'checked' : '';
+                ->editColumn('is_active', function ($news) {
+                    $checkStatus = $news->is_active ? 'checked' : '';
                     return '<div class="form-check form-switch">
-                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-id="' . $writeUp->id . '" ' . $checkStatus . '>
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-table="write_ups" data-column="is_active" data-id="' . $news->id . '" ' . $checkStatus . '>
+                             </div>';
+                })
+                ->editColumn('is_home_slider', function ($news) {
+                    $checkStatus = $news->is_home_slider ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-table="write_ups" data-column="is_home_slider" data-id="' . $news->id . '" ' . $checkStatus . '>
                              </div>';
                 })
                 ->addColumn('action', function ($writeUp) {
@@ -67,7 +73,7 @@ class WriteUpController extends Controller
                         '</form>';
                     return $str;
                 })
-                ->rawColumns(['action', 'thumbnail_image', 'is_active'])
+                ->rawColumns(['action', 'thumbnail_image', 'is_active','is_home_slider'])
                 ->make(true);
         }
         return view('admin.write_ups.index');

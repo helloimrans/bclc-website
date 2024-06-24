@@ -48,10 +48,7 @@
                     </div>
                     <div class="ad-images mb-3">
                         <img class="img-fluid rounded" src="@if ($article->thumbnail_image) {{ Storage::url($article->thumbnail_image) }}
-<<<<<<< HEAD
-=======
                         @elseif ($article->category->image) {{ Storage::url($article->category->image) }}
->>>>>>> c47df4c5ffd0d6d1e659b7d22a0b43d236745d0c
                         @else {{ asset('defaults/noimage/no_img.jpg') }} @endif" alt="image">
                     </div>
                     <div class="ad-descs">

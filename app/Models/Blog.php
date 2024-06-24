@@ -47,4 +47,9 @@ class Blog extends Model
         return $query->isActive()
             ->where('blog_category_id', $categoryId);
     }
+
+    public function scopeIsHomeSlider($query)
+    {
+        return $query->where('is_home_slider', true);
+    }
 }

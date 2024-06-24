@@ -54,7 +54,13 @@ class NewsController extends Controller
                 ->editColumn('is_active', function ($news) {
                     $checkStatus = $news->is_active ? 'checked' : '';
                     return '<div class="form-check form-switch">
-                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-id="' . $news->id . '" ' . $checkStatus . '>
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-table="news" data-column="is_active" data-id="' . $news->id . '" ' . $checkStatus . '>
+                             </div>';
+                })
+                ->editColumn('is_home_slider', function ($news) {
+                    $checkStatus = $news->is_home_slider ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-table="news" data-column="is_home_slider" data-id="' . $news->id . '" ' . $checkStatus . '>
                              </div>';
                 })
                 ->addColumn('action', function ($news) {
@@ -66,7 +72,7 @@ class NewsController extends Controller
                         '</form>';
                     return $str;
                 })
-                ->rawColumns(['action', 'thumbnail_image', 'is_active'])
+                ->rawColumns(['action', 'thumbnail_image', 'is_active', 'is_home_slider'])
                 ->make(true);
         }
         return view('admin.news.index');

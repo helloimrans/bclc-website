@@ -59,7 +59,13 @@ class ArticleController extends Controller
                 ->editColumn('is_active', function ($article) {
                     $checkStatus = $article->is_active ? 'checked' : '';
                     return '<div class="form-check form-switch">
-                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-id="' . $article->id . '" ' . $checkStatus . '>
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-table="articles" data-column="is_active" data-id="' . $article->id . '" ' . $checkStatus . '>
+                             </div>';
+                })
+                ->editColumn('is_home_slider', function ($article) {
+                    $checkStatus = $article->is_home_slider ? 'checked' : '';
+                    return '<div class="form-check form-switch">
+                                <input class="form-check-input change-status-checkbox" type="checkbox" role="switch" data-table="articles" data-column="is_home_slider" data-id="' . $article->id . '" ' . $checkStatus . '>
                              </div>';
                 })
                 ->addColumn('action', function ($article) {
@@ -71,7 +77,7 @@ class ArticleController extends Controller
                         '</form>';
                     return $str;
                 })
-                ->rawColumns(['action', 'thumbnail_image', 'is_active'])
+                ->rawColumns(['action', 'thumbnail_image', 'is_active', 'is_home_slider'])
                 ->make(true);
         }
         return view('admin.articles.index');

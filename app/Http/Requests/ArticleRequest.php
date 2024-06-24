@@ -24,13 +24,14 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         $id = $this->route('article');
-        $imageRules = $id !== null ? 'sometimes|nullable|mimes:jpg,jpeg,png,webp,svg,gif|max:2048' : 'required|mimes:jpg,jpeg,png,webp,svg,gif|max:2048';
+        $imageRules = $id !== null ? 'sometimes|nullable|mimes:jpg,jpeg,png,webp,svg,gif|max:2048' : 'nullable|mimes:jpg,jpeg,png,webp,svg,gif|max:2048';
         return [
             'title' => 'required|unique:articles,title,' . $id,
             'thumbnail_image' => $imageRules,
             'article_category_id' => 'required',
             'description' => 'required',
             'user_id' => 'nullable',
+            'last_update' => 'nullable',
         ];
     }
 }

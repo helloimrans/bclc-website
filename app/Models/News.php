@@ -49,4 +49,8 @@ class News extends Model
         return $query->isActive()
             ->where('news_category_id', $categoryId);
     }
+    public function scopeIsHomeSlider($query)
+    {
+        return $query->where('is_home_slider', true);
+    }
 }

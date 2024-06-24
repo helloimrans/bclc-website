@@ -32,7 +32,7 @@
                                 <div class="dt-buttons d-inline-flex">
                                     <a href="
                                     {{ route('courses.create') }}"
-                                     class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
+                                        class="btn btn-info btn-sm"><i data-feather='plus-square'></i> Add New
                                     </a>
                                 </div>
                             </div>
@@ -43,6 +43,7 @@
                                     <thead>
                                         <tr>
                                             <th>SL</th>
+                                            <th>Home Slider</th>
                                             <th>Course Title</th>
                                             <th>Image</th>
                                             <th>Service</th>
@@ -59,10 +60,18 @@
                                         @foreach ($courses as $course)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input change-status-checkbox"
+                                                            type="checkbox" role="switch" data-table="courses"
+                                                            data-column="is_home_slider" data-id="{{ $course->id }}"
+                                                            {{ $course->is_home_slider ? 'checked' : '' }}>
+                                                    </div>
+                                                </td>
                                                 <td>{{ $course->title }}</td>
                                                 <td><img class="rounded" width="60"
-                                                    src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
-                                                    alt="{{ $course->title }}">
+                                                        src="@if ($course->image) {{ Storage::url($course->image) }} @else {{ asset('defaults/noimage/no_img.jpg') }} @endif"
+                                                        alt="{{ $course->title }}">
                                                 </td>
                                                 <td>{{ @$course->service->title }}</td>
                                                 <td>{{ $course->serviceCategory->name }}</td>
@@ -70,7 +79,7 @@
                                                 <td>{{ $course->fee }}</td>
                                                 <td>{{ $course->discount_fee ?? 'N/A' }}</td>
                                                 <td>
-                                                    @if($course->status == 1)
+                                                    @if ($course->status == 1)
                                                         <span class="badge badge-light-success">Active</span>
                                                     @else
                                                         <span class="badge badge-light-warning">Deactive</span>
@@ -78,26 +87,31 @@
                                                 </td>
                                                 <td>{{ $course->createdBy->name }}</td>
                                                 <td>
-                                                    <a class="me-1" href="
-                                                    {{ route('courses.show',$course->id) }}
-                                                    " data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Edit">
+                                                    <a class="me-1"
+                                                        href="
+                                                    {{ route('courses.show', $course->id) }}
+                                                    "
+                                                        data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                                         <i class="far fa-eye text-dark"></i>
                                                     </a>
-                                                    <a class="me-1" href="
-                                                    {{ route('courses.edit',$course->id) }}
-                                                    " data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Edit">
+                                                    <a class="me-1"
+                                                        href="
+                                                    {{ route('courses.edit', $course->id) }}
+                                                    "
+                                                        data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                                         <i class="far fa-edit text-dark"></i>
                                                     </a>
-                                                    <form class="d-inline" id="delForm" action="
-                                                    {{ route('courses.destroy',$course->id) }}
-                                                        " method="POST">
+                                                    <form class="d-inline" id="delForm"
+                                                        action="
+                                                    {{ route('courses.destroy', $course->id) }}
+                                                        "
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        <button id="delete" type="submit" class="me-1 dlt-btn" data-bs-toggle="tooltip"
-                                                        data-bs-original-title="Delete"><i class="far fa-trash-alt text-danger"></i></button>
+                                                        <button id="delete" type="submit" class="me-1 dlt-btn"
+                                                            data-bs-toggle="tooltip" data-bs-original-title="Delete"><i
+                                                                class="far fa-trash-alt text-danger"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -112,4 +126,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    {{-- Change Status Script --}}
+    @include('admin.layouts.inc.change-status')
 @endsection

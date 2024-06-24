@@ -98,4 +98,9 @@ class Course extends Model
             'name' => 'None',
         ]);
     }
+
+    public function scopeIsHomeSlider($query)
+    {
+        return $query->where('is_home_slider', true);
+    }
 }

@@ -49,4 +49,9 @@ class Article extends Model
         return $query->isActive()
             ->where('article_category_id', $categoryId);
     }
+
+    public function scopeIsHomeSlider($query)
+    {
+        return $query->where('is_home_slider', true);
+    }
 }

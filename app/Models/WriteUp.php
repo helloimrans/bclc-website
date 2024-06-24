@@ -49,4 +49,9 @@ class WriteUp extends Model
         return $query->isActive()
             ->where('write_up_category_id', $categoryId);
     }
+
+    public function scopeIsHomeSlider($query)
+    {
+        return $query->where('is_home_slider', true);
+    }
 }

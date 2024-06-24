@@ -63,6 +63,7 @@
                                             <th>Title</th>
                                             <th>Thumbnail</th>
                                             <th>Category</th>
+                                            <th>Home Slider</th>
                                             <th>Status</th>
                                             <th>Created By</th>
                                             <th>Updated By</th>
@@ -143,6 +144,10 @@
                         name: 'category.name'
                     },
                     {
+                        data: 'is_home_slider',
+                        name: 'is_home_slider'
+                    },
+                    {
                         data: 'is_active',
                         name: 'is_active'
                     },
@@ -169,5 +174,5 @@
     </script>
 
     {{-- Change Status Script --}}
-    @include('admin.layouts.inc.change-status', ['table' => 'articles'])
+    @include('admin.layouts.inc.change-status')
 @endsection

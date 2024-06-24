@@ -77,7 +77,7 @@ $(document).ready(function () {
 //Article Slider
 $(document).ready(function () {
   $(".article-slider").slick({
-    infinite: false,
+    infinite: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 2,
@@ -85,6 +85,8 @@ $(document).ready(function () {
     nextArrow: $(".art-nxt"),
     prevArrow: $(".art-prv"),
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
@@ -116,7 +118,7 @@ $(document).ready(function () {
 //Training Slider
 $(document).ready(function () {
   $(".training-slider").slick({
-    infinite: false,
+    infinite: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 2,
@@ -124,6 +126,8 @@ $(document).ready(function () {
     nextArrow: $(".trn-nxt"),
     prevArrow: $(".trn-prv"),
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
@@ -152,10 +156,10 @@ $(document).ready(function () {
   });
 });
 
-//Training Slider
+//Write up Slider
 $(document).ready(function () {
   $(".writeup-slider").slick({
-    infinite: false,
+    infinite: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 2,
@@ -163,6 +167,8 @@ $(document).ready(function () {
     nextArrow: $(".wrtp-nxt"),
     prevArrow: $(".wrtp-prv"),
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
@@ -194,7 +200,7 @@ $(document).ready(function () {
 //////////Solution slider
 $(document).ready(function () {
   $(".solution-slider").slick({
-    infinite: false,
+    infinite: true,
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 2,
@@ -202,6 +208,8 @@ $(document).ready(function () {
     nextArrow: $(".nxt-slsn"),
     prevArrow: $(".prv-slsn"),
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 1024,
@@ -233,7 +241,7 @@ $(document).ready(function () {
 //////////news slider
 $(document).ready(function () {
   $(".news-slider").slick({
-    infinite: false,
+    infinite: true,
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -242,13 +250,15 @@ $(document).ready(function () {
     nextArrow: $(".nxt-news"),
     prevArrow: $(".prv-news"),
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
   });
 });
 
 //////////events slider
 $(document).ready(function () {
   $(".events-slider").slick({
-    infinite: false,
+    infinite: true,
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -257,5 +267,7 @@ $(document).ready(function () {
     nextArrow: $(".nxt-events"),
     prevArrow: $(".prv-events"),
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
   });
 });
