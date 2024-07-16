@@ -29,7 +29,15 @@ class SettingsController extends Controller
         }
 
         $input = $request->except('_token');
-        Setting::firstOrCreate($input);
+        
+        $setting = Setting::latest()->first();
+        if($setting){
+            $setting->update($input);
+
+        }else{
+            Setting::create($input);
+        }
+
         $notification = array(
             'message' => 'Successfully settings created.',
             'alert-type' => 'success'
