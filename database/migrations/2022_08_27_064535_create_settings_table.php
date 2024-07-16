@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->enum('bkash_account_type', ['personal','agent'])->nullable();
+            $table->string('bkash_number');
             $table->timestamps();
         });
     }

@@ -24,6 +24,7 @@ use App\Models\OfficeFunctionSector;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ServiceFacilitySector;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\WriteUp;
 use Illuminate\Http\Request;
@@ -266,6 +267,7 @@ class FrontendController extends Controller
     {
         if (Auth::check() && Auth::user()->user_type == User::NORMAL_USER) {
             $data['course'] = Course::where('slug', $slug)->first();
+            $data['setting'] = Setting::latest()->first();
             return view('frontend.enroll.enroll', $data);
         } else {
             $notification = array(

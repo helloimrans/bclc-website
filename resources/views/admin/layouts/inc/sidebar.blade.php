@@ -384,6 +384,11 @@
                                 Settings</span></a>
                         <ul class="menu-content">
                             <li class="@if ($route == 'terms.condition.index') active @endif"><a
+                                    class="d-flex align-items-center" href="{{ route('settings.index') }}"><i
+                                        data-feather="gear"></i><span class="menu-item text-truncate"
+                                        data-i18n="Roles">Settings</span></a>
+                            </li>
+                            <li class="@if ($route == 'terms.condition.index') active @endif"><a
                                     class="d-flex align-items-center" href="{{ route('terms.condition.index') }}"><i
                                         data-feather="circle"></i><span class="menu-item text-truncate"
                                         data-i18n="Roles">Terms & Conditions</span></a>

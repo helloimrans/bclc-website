@@ -161,14 +161,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Bkash Number</label>
-                                            <input type="text" value="01792980503" name="account_number"
+                                            <input type="text" value="{{@$setting->bkash_number}}" name="account_number"
                                                 class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Account Type</label>
-                                            <input type="text" value="Personal" class="form-control"
+                                            <input type="text" value="{{@$setting->bkash_account_type}}" class="form-control"
                                                 name="user_account_type" readonly>
                                         </div>
                                     </div>

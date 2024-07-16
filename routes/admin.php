@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ReviewCategoryController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\Admin\WriteUpCategoryController;
 use App\Http\Controllers\Admin\WriteUpController;
@@ -254,4 +255,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'admin']], funct
 
     // Contact Message
     Route::get('contact/message', [ContactMessageController::class, 'index'])->name('contact.message');
+
+    //Settings
+    Route::resource('settings', SettingsController::class);
 });
